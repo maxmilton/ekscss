@@ -1,0 +1,39 @@
+/**
+ * COLOURS
+ */
+
+/* Foreground colours */
+
+${g.fn.entries(g.color, ([key, value]) => xcss`
+  .${key} { color: ${value}; }
+`)}
+
+/* Background colours */
+
+${g.fn.entries(g.color, ([key, value]) => xcss`
+  .bg-${key} { background-color: ${value}; }
+`)}
+
+/* Zebra stripes (alternating coloured backgrounds) */
+
+.bg-zebra:nth-child(even) {
+  background-color: ${g.color.light2};
+}
+
+/* Transparency */
+
+.alpha100 { opacity: 1; }
+.alpha85 { opacity: 0.85; }
+.alpha75 { opacity: 0.75; }
+.alpha50 { opacity: 0.5; }
+.alpha25 { opacity: 0.25; }
+.alpha15 { opacity: 0.15; }
+.alpha0 { opacity: 0; }
+
+/* Utility colours */
+
+.plain { color: ${g.color.text}; }
+.muted { color: ${g.color.muted}; }
+.bg-muted { background-color: ${g.color.muted}; }
+.inherit { color: inherit; }
+.inherit-i { color: inherit !important; } /* stylelint-disable-line declaration-no-important */

@@ -1,0 +1,107 @@
+// FIXME: Rename this file
+
+/**
+ * UTILITIES
+ */
+
+/* Width */
+
+.w100 { width: 100%; }
+// .wfit { width: fit-content; }
+.wi { width: initial; }
+
+// ${g.fn.entries(g.media, ([bp, query]) => xcss`
+//   @media ${query} {
+//     .${bp}-w100 { width: 100%; }
+//     .${bp}-wi { width: initial; }
+//   }
+// `)}
+
+/* Text alignment */
+
+.tl { text-align: left; }
+.tr { text-align: right; }
+.tc { text-align: center; }
+.tu { text-align: unset; }
+
+${g.fn.entries(g.media, ([bp, query]) => xcss`
+  @media ${query} {
+    .${bp}-tl { text-align: left; }
+    .${bp}-tr { text-align: right; }
+    .${bp}-tc { text-align: center; }
+    .${bp}-tu { text-align: unset; }
+  }
+`)}
+
+/* Font variants and decoration */
+
+.bold { font-weight: ${g.textWeightHeavy}; }
+.italic { font-style: italic; }
+
+.normal {
+  font-style: normal;
+  font-weight: ${g.textWeight};
+}
+
+.underline { text-decoration: underline; }
+
+/* Text transform */
+
+.ttc { text-transform: capitalize; }
+.ttl { text-transform: lowercase; }
+.ttu { text-transform: uppercase; }
+.ttn { text-transform: none; }
+
+/* Text wrapping */
+
+.wsn { white-space: nowrap; }
+.wsu { white-space: unset; }
+
+
+/* Mouse */
+
+.pen { pointer-events: none; }
+.pea { pointer-events: auto; }
+
+.hide-on-hover {
+  backface-visibility: hidden; /* promote into own layer to avoid repaints */
+  transition: opacity ${g.animateSpeedIn} ease-out;
+
+  &:hover,
+  &:focus {
+    opacity: 0;
+    transition-duration: ${g.animateSpeedOut};
+  }
+}
+
+/* Borders */
+
+.rounded { border-radius: ${g.radius}; }
+
+
+/* Cursors */
+
+.pointer { cursor: pointer; }
+.help { cursor: help; }
+
+/* Line height hacks */
+
+.lh1 { line-height: 1; }
+.lh0 { line-height: 0; }
+
+/* Flexbox */
+// FIXME: Move to somewhere better
+/**
+ * Much of the time when using flexbox you really just want to vertically align
+ * elements, so this class is a shortcut for that.
+ */
+ .dfc {
+  display: flex;
+  align-items: center;
+}
+
+/* Alignment */
+
+.vam {
+  vertical-align: middle;
+}

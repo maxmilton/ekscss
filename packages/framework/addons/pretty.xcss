@@ -1,0 +1,13 @@
+// FIXME: Rename this file to something better
+
+h1,
+h2 {
+  font-weight: 500;
+}
+
+/* Horizontal rule */
+
+hr {
+  margin: ${g.hrMargin};
+  color: ${g.hrColor}
+}

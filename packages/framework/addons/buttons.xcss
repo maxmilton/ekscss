@@ -1,0 +1,105 @@
+/**
+ * BUTTONS
+ */
+
+// Buttons should look correct on <button>, <a>, <div>, etc.
+
+ .button {
+  display: inline-block;
+  padding: ${g.button.paddingY} ${g.button.paddingX};
+  color: ${g.button.textColor};
+  // font-weight: ${g.button.textWeight};
+  text-align: center;
+  text-decoration: none; // for when used on anchor tags
+  vertical-align: middle;
+  background-color: ${g.button.backgroundColor};
+  border: ${g.button.border};
+  border-radius: ${g.button.radius};
+  user-select: none;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    text-decoration: none;
+    background-color: ${g.button.hoverBackgroundColor};
+  }
+
+  &:active {
+    background-color: ${g.button.activeBackgroundColor};
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus,
+  // FIXME: Is there some reason why we don't use just :disabled ?
+  &:disabled {
+    color: ${g.button.disabledTextColor};
+    background-color: ${g.button.disabledbackgroundColor};
+    border-color: ${g.button.disabledBorderColor};
+  }
+
+  // TODO: Keep... or let devs do spacing themselves? Or too magical? Does help
+  // with preventing overlap of box-shadow or dodgy implementations of outline
+  //  ↳ It breaks styling when there's a list of .button.w100
+  // & + & {
+  //   margin-left: 0.5em;
+  // }
+  // TODO: Using :not feels kind of dumb
+  // & + &:not(.w100) {
+  //   margin-left: 0.5em;
+  // }
+}
+
+/* Remove browser default \`<button>\` styles */
+
+.button-clear {
+  background: transparent;
+  // border: 0;
+  border-color: transparent;
+
+  &:hover,
+  &:focus {
+    /* prevent change when applied to links */
+    color: unset;
+  }
+}
+
+/* Fix link whitespace when next to \`.button\` */
+
+.button-link {
+  display: inline-block;
+  margin: 0;
+  padding: ${g.button.paddingY} ${g.button.paddingX};
+  line-height: ${g.lineHeight};
+}
+
+/* Smaller button */
+
+// FIXME: Rename for consistency across the framework
+.button-mini {
+  padding: ${g.button.miniPadding};
+}
+
+/* Combined button groups */
+
+.button-group {
+  // ensure equal height
+  display: flex;
+
+  & > .button {
+    border-radius: 0;
+
+    & + .button {
+      border-left: none;
+    }
+
+    &:first-of-type {
+      border-top-left-radius: ${g.button.radius};
+      border-bottom-left-radius: ${g.button.radius};
+    }
+    &:last-of-type {
+      border-top-right-radius: ${g.button.radius};
+      border-bottom-right-radius: ${g.button.radius};
+    }
+  }
+}

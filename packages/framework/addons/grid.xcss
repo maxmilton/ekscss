@@ -1,0 +1,97 @@
+.con {
+  max-width: ${g.containerWidthMax};
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: ${g.gutterCol};
+  padding-left: ${g.gutterCol};
+
+  @media ${g.media.l} {
+    padding-right: calc(${g.gutterCol} * 2);
+    padding-left: calc(${g.gutterCol} * 2);
+  }
+}
+
+.narrow {
+  max-width: ${g.containerNarrowWidthMax};
+}
+
+.fluid {
+  max-width: unset;
+}
+
+/* Grid base */
+
+.grid {
+  display: grid;
+  grid-gap: ${g.gutterRow} ${g.gutterCol};
+
+  ${g.autoRows !== 'auto' && xcss`
+    grid-auto-rows: ${g.autoRows};
+  `}
+
+  ${g.autoCols !== 'auto' && xcss`
+    grid-auto-columns: ${g.autoCols};
+  `}
+
+  @media ${g.media.l} {
+    grid-gap: ${g.gutterRowLarge} ${g.gutterColLarge};
+  }
+}
+
+.col-fluid { grid-template-columns: auto; }
+
+/*
+  .<RESPONSIVE><BASE><MOD>
+
+  RESPONSIVE
+        = (no prefix) default small
+    ns- = not small screen breakpoint; anything medium or bigger
+    m- = medium screen breakpoint
+    l- = large screen breakpoint
+
+  BASE
+    x = number of columns in grid
+    y = number of rows in grid
+    c = starting column
+    r = starting row
+    w = item width
+    h = item height
+
+  MOD
+    cols = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    rows = 1, 2, 3, 4, 5, 6
+
+*/
+
+/* TODO: Optimise loops for best compression */
+${g.fn.map(g.colSteps, (step, i) => xcss`
+  .x${step} { grid-template-columns: repeat(${step}, ${g.itemSize}); }
+  .c${step} { grid-column-start: ${step}; }
+  .w${step} { grid-column-end: span ${step}; }
+`)}
+
+${g.fn.entries(g.media, ([bp, query]) => xcss`
+  @media ${query} {
+    ${g.fn.map(g.colSteps, (step, i) => xcss`
+      .${bp}-x${step} { grid-template-columns: repeat(${step}, ${g.itemSize}); }
+      .${bp}-c${step} { grid-column-start: ${step}; }
+      .${bp}-w${step} { grid-column-end: span ${step}; }
+    `)}
+  }
+`)}
+
+${g.fn.map(g.rowSteps, (step, i) => xcss`
+  .y${step} { grid-template-rows: repeat(${step}, auto); }
+  .r${step} { grid-row-start: ${step}; }
+  .h${step} { grid-row-end: span ${step}; }
+`)}
+
+${g.fn.entries(g.media, ([bp, query]) => xcss`
+  @media ${query} {
+    ${g.fn.map(g.rowSteps, (step, i) => xcss`
+      .${bp}-y${step} { grid-template-rows: repeat(${step}, auto); }
+      .${bp}-r${step} { grid-row-start: ${step}; }
+      .${bp}-h${step} { grid-row-end: span ${step}; }
+    `)}
+  }
+`)}

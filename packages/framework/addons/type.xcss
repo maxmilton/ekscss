@@ -1,0 +1,60 @@
+/* Paragraphs */
+
+p {
+  // line-height: ${g.paragraphLineHeight};
+
+  /**
+  * Better hyphenation; improved word flow, especially on small screens.
+  * @see http://clagnut.com/blog/2395
+  */
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  hyphenate-limit-lines: 2;
+  hyphenate-limit-last: always;
+  hyphenate-limit-zone: 8%;
+}
+
+.lead {
+  font-size: ${g.paragraphLeadTextSize};
+  font-weight: ${g.paragraphLeadTextWeight};
+}
+
+/* Links */
+
+// a {
+//   // margin: calc(-1 * ${g.linkClickArea});
+//   // padding: ${g.linkClickArea}; /* Larger link click area size */
+//   // color: ${g.linkColor};
+//   // word-wrap: break-word;
+//   // cursor: pointer;
+
+//   &:hover,
+//   &:focus {
+//     // color: ${g.linkHoverColor};
+//   }
+// }
+
+blockquote {
+  margin: 0 0 1rem;
+  padding: 20px 30px;
+  background-color: #eff6ff;
+  border-left: 5px solid #0f96ff;
+}
+
+/* Lists */
+
+/* List style none */
+.lsn {
+  padding-left: 0;
+  list-style: none;
+}
+
+code {
+  // display: inline-block;
+  // padding: 0.1em 0.4em;
+  // color: ${g.codeTextColor};
+  // line-height: ${g.lineHeight}; /* So it doesn't look strange in <p> */
+  // background-color: ${g.codeBackgroundColor};
+  // border: 1px solid ${g.codeBorderColor};
+  // border-radius: ${g.radius};
+}

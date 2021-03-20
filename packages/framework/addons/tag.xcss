@@ -1,0 +1,21 @@
+/**
+ * TAGS
+ *
+ * @format
+ */
+
+.tag {
+  display: inline-block;
+  padding: ${g.tag.padding};
+  color: ${g.tag.textColor};
+  font-size: ${g.tag.textSize};
+  vertical-align: middle;
+  background-color: ${g.tag.backgroundColor};
+  border-radius: ${g.tag.borderRadius};
+}
+
+/* Whitespace between tags */
+
+.tag + .tag {
+  margin-left: ${g.tag.marginBetween};
+}

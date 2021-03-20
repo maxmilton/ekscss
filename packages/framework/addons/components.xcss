@@ -1,0 +1,11 @@
+/**
+* Common Components
+*/
+
+/* Footer */
+
+.footer {
+  margin-top: ${g.footer.marginY};
+  margin-bottom: ${g.footer.marginY};
+  color: ${g.footer.textColor};
+}

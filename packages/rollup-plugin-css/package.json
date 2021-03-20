@@ -1,0 +1,22 @@
+{
+  "name": "@ekscss/rollup-plugin-css",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "prebuild": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "rollup": "^2.0.0"
+  },
+  "dependencies": {
+    "@rollup/pluginutils": "^4.1.0",
+    "source-map": "^0.7.3"
+  },
+  "devDependencies": {
+    "rollup": "2.41.2"
+  }
+}

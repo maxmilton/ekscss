@@ -1,0 +1,94 @@
+/* Line Heights
+***************/
+
+/*
+* The default \`normal\` line-height is tightly spaced, but takes font-metrics into account.
+* Looser spacing may improve readability, but may cause problems in some scripts.
+* See: https://github.com/mozdevs/cssremedy/issues/7
+* See: https://github.com/jensimmons/cssremedy/blob/master/css/reminders.css
+*/
+html {
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.25;
+}
+
+caption,
+figcaption,
+label,
+legend {
+  line-height: 1.375;
+}
+
+/* Base
+*******/
+
+body {
+  color: ${g.color.text};
+  font-family: ${g.fontStack};
+  font-size: ${g.textSize};
+  font-weight: ${g.textWeight};
+  background-color: ${g.color.background};
+}
+
+/* Links */
+
+a {
+  color: ${g.color.link};
+  word-wrap: break-word;
+
+  &:hover,
+  &:focus {
+    color: ${g.color.linkHover};
+  }
+}
+
+small {
+  font-size: 90%;
+}
+
+blockquote {
+  margin: 0;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.code,
+code {
+  font-family: ${g.fontStackMonospace};
+}
+
+/* Lists */
+
+ul,
+ol {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+dd {
+  margin-left: 0;
+}

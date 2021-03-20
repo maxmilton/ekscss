@@ -1,0 +1,93 @@
+/*
+* Display full page height
+* See: https://github.com/jensimmons/cssremedy/issues/70
+*/
+html,
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Form elements */
+
+button,
+select,
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+// TODO: Check common browsers to see if this is necessary
+// input,
+// textarea {
+//   cursor: text;
+// }
+
+// allow resize but not horizontally to prevent breaking layout
+textarea {
+  resize: vertical;
+}
+
+/* Images */
+
+// responsive down-scaling by default
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tables */
+
+// Remove most spacing between table cells.
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/* Abbreviations */
+
+abbr[title] {
+  cursor: help;
+}
+
+/* Details */
+
+// TODO: Keep this? Maybe move to an addon since it's unlikely to be used on most sites
+
+// details {
+//   summary {
+//     cursor: pointer;
+//   }
+
+//   &:not([open]) {
+//     // Set details content hidden by default for browsers that don't do this
+//     > *:not(summary) {
+//       display: none !important;
+//     }
+//   }
+// }
+
+/* Element attributes */
+
+[disabled] {
+  cursor: not-allowed !important;
+}
+
+// increase the selector specificity for [hidden] so that it always overrides
+// utility classes (.db, etc.)
+[hidden][hidden] {
+  display: none !important;
+}

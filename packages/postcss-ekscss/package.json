@@ -1,0 +1,19 @@
+{
+  "name": "postcss-ekscss",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "prebuild": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "ekscss": "*",
+    "postcss": "^8.0.0"
+  },
+  "devDependencies": {
+    "postcss": "8.2.8"
+  }
+}

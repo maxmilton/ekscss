@@ -1,0 +1,17 @@
+{
+  "name": "ekscss",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "prebuild": "rm -rf dist"
+  },
+  "dependencies": {
+    "@types/stylis": "^4.0.0",
+    "stylis": "^4.0.7"
+  },
+  "devDependencies": {}
+}
