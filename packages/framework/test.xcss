@@ -1,3 +1,7 @@
 // FIXME: REMOVE FILE; DEV ONLY!!
 
 @import './addons/xxxx.xcss';
+
+::placeholder {
+  color: red;
+}

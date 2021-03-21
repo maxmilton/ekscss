@@ -1,5 +1,5 @@
 {
-  "name": "@ekscss/purge",
+  "name": "@ekscss/apply",
   "version": "0.0.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -12,5 +12,7 @@
   "peerDependencies": {
     "ekscss": "*"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "ekscss": "link:../ekscss"
+  }
 }

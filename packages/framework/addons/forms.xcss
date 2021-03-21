@@ -63,7 +63,7 @@ input::-webkit-inner-spin-button {
 }
 
 // FIXME: Incorporate into config.js
-${g.fn.setDefault(g, {
+${g.fn.default(g, {
   // selectZindex: 4,
   // selectBackgroundColor: g.light1,
   // selectShadow: g.shadow, g.shadowHover,

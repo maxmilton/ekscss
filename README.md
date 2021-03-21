@@ -39,20 +39,20 @@ Simple, fast, and powerful CSS preprocessor.
 
 ### To Do
 
-- @apply mechanism (as a separate package/plugin?)
-- Unused styles purge addon
+- Fix source map mapping for XCSS template expressions and cli header option
+- Add READMEs to remaining packages
+- `@apply` middleware package
+- A way to remove unused styles
 - Webpack plugin
 - Stylelint plugin
 - Prettier plugin
 - VS Code syntax
-- Better DX:
-  - Source map support
 - Documentation:
   - Templates in XCSS (`${...}`) are still evaluated when they're in a _CSS comment_; to disable them it's necessary to comment out the code _inside the template_
 
 ## Licence
 
-`XCSS` is an MIT licensed open source project. See [LICENCE](https://github.com/MaxMilton/xcss/blob/master/LICENCE).
+`ekscss` is an MIT licensed open source project. See [LICENCE](https://github.com/MaxMilton/ekscss/blob/master/LICENCE).
 
 ---
 

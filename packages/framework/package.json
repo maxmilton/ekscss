@@ -1,16 +1,27 @@
 {
   "name": "@ekscss/framework",
   "version": "0.0.0",
+  "description": "CSS framework powered by ekscss",
   "license": "MIT",
+  "repository": "MaxMilton/ekscss",
+  "author": "Max Milton <max@wearegenki.com>",
   "main": "index.xcss",
   "scripts": {
-    "build": "node build.js",
-    "prebuild": "rm -rf dist; mkdir dist && cp index.html dist/"
+    "build": "xcss base.xcss dist/base.css && xcss index.xcss dist/index.css",
+    "build_test": "xcss test.xcss dist/test.css",
+    "prebuild": "rm -rf dist; mkdir dist"
+  },
+  "peerDependencies": {
+    "ekscss": "*"
   },
   "dependencies": {
-    "@types/color": "^3.0.1",
+    "@ekscss/apply": "link:../ekscss-apply",
     "color": "^3.1.3",
-    "cssremedy": "0.1.0-beta.2",
-    "ekscss": "^0.0.0"
+    "cssremedy": "^0.1.0-beta.2"
+  },
+  "devDependencies": {
+    "@ekscss/cli": "link:../cli",
+    "@types/color": "^3.0.1",
+    "ekscss": "link:../ekscss"
   }
 }

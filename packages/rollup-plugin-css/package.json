@@ -17,6 +17,6 @@
     "source-map": "^0.7.3"
   },
   "devDependencies": {
-    "rollup": "2.41.2"
+    "rollup": "2.42.1"
   }
 }

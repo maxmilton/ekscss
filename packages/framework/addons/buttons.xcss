@@ -8,9 +8,9 @@
   display: inline-block;
   padding: ${g.button.paddingY} ${g.button.paddingX};
   color: ${g.button.textColor};
-  // font-weight: ${g.button.textWeight};
+  font-weight: ${g.button.textWeight};
   text-align: center;
-  text-decoration: none; // for when used on anchor tags
+  text-decoration: none;
   vertical-align: middle;
   background-color: ${g.button.backgroundColor};
   border: ${g.button.border};
@@ -71,13 +71,6 @@
   margin: 0;
   padding: ${g.button.paddingY} ${g.button.paddingX};
   line-height: ${g.lineHeight};
-}
-
-/* Smaller button */
-
-// FIXME: Rename for consistency across the framework
-.button-mini {
-  padding: ${g.button.miniPadding};
 }
 
 /* Combined button groups */

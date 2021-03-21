@@ -3,7 +3,7 @@ import { createFilter, FilterPattern } from '@rollup/pluginutils';
 // import { performance } from 'perf_hooks';
 import type { Plugin } from 'rollup';
 
-interface PluginOptions {
+export interface PluginOptions {
   /** Files to exclude from processing. */
   exclude?: FilterPattern;
   /** Files to include in processing. */

@@ -19,10 +19,16 @@
 /**
  * XCSS mixin to draw a triangle.
  *
- * @param {string} size
- * @param {string} color
- * @param {'top' | 'right' | 'bottom' | 'left'} side
- * @param {boolean} pseudo
+ * Generates a triangle using the border technique. By default it will output
+ * styles for use inline inside a rule targeting an existing element.
+ *
+ * Alternatively it can output styles for a pseudo element for easy use without
+ * interfering with the document flow.
+ *
+ * @param {string} size - Size including unit, e.g. `0.5rem` or `8px`.
+ * @param {string} color - A CSS color, e.g. `red`, `#f00`, `rgba(255, 0, 0, 0.5)`.
+ * @param {'top' | 'right' | 'bottom' | 'left'} [side]
+ * @param {boolean} [pseudo]
  * @return {string}
  */
 function triangle(size, color = 'inherit', side = 'bottom', pseudo = false) {

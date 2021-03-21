@@ -1,5 +1,5 @@
 {
-  "name": "@ekscss/plugin-apply",
+  "name": "@ekscss/rollup-plugin-clean",
   "version": "0.0.0",
   "license": "MIT",
   "main": "dist/index.js",

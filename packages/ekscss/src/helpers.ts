@@ -1,12 +1,16 @@
 /* eslint-disable id-length */
 
-import { internals } from './compiler';
 import type {
-  // InternalData,
-  Warning,
-  XCSSTemplateFn,
-  XCSSValidType,
+  Context, Warning, XCSSTemplateFn, XCSSValidType,
 } from './types';
+
+export const ctx: Context = {
+  dependencies: null,
+  from: null,
+  g: null,
+  rootDir: null,
+  warnings: null,
+};
 
 /**
  * Interpolative template engine for XCSS.
@@ -176,53 +180,22 @@ export function entries<T>(
  * expressions which return a function will be passed `g`, and contextual `ctx`
  * agruments at runtime.
  */
-// export function xcssTag({ ctx, g, warnings }: InternalData) {
-//   return (children: TemplateStringsArray, ...values: XCSSValidType[]): string => children.raw.reduce((code, current, index) => {
-//     let value = values[index - 1];
-//
-//     // Reduce XCSS function expressions to their final value
-//     while (typeof value === 'function') {
-//       value = value(g, ctx);
-//     }
-//
-//     if (typeof value === 'object' && value !== null) {
-//       if (typeof value.toString === 'function') {
-//         value = value.toString();
-//       } else {
-//         warnings.push({
-//           code: 'expression-invalid',
-//           filename: ctx.from,
-//           message: `Invalid XCSS template expression. Must be string, object with toString() method,
-// number, or falsely but got ${Object.prototype.toString.call(value)}`,
-//         });
-//
-//         value = 'INVALID';
-//       }
-//     }
-//
-//     return (
-//       code
-//         + (value || (value == null || value === false ? '' : value))
-//         + current
-//     );
-//   });
-// }
 export function xcssTag() {
   return (children: TemplateStringsArray, ...values: XCSSValidType[]): string => children.raw.reduce((code, current, index) => {
     let value = values[index - 1];
 
     // Reduce XCSS function expressions to their final value
     while (typeof value === 'function') {
-      value = value(internals.g, internals.ctx);
+      value = value(ctx.g, { from: ctx.from, rootDir: ctx.rootDir });
     }
 
     if (typeof value === 'object' && value !== null) {
       if (typeof value.toString === 'function') {
         value = value.toString();
       } else {
-        internals.warnings.push({
+        ctx.warnings.push({
           code: 'expression-invalid',
-          filename: internals.ctx.from,
+          filename: ctx.from,
           message: `Invalid XCSS template expression. Must be string, object with toString() method,
 number, or falsely but got ${Object.prototype.toString.call(value)}`,
         });

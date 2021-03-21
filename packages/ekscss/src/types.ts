@@ -1,10 +1,13 @@
-import type { Element as _Element, Middleware as _Middleware } from 'stylis';
+import type { RawSourceMap } from 'source-map';
+import type { Element as _Element, Middleware } from 'stylis';
 import type { xcssTag } from './helpers';
 
+export type { Middleware };
+
 export interface Element extends _Element {
-  /** Extra data for constructing source maps. Only found on IMPORT nodes. */
+  /** AST for constructing source maps. Only on `@import` nodes. */
   __ast?: Element[];
-  /** Extra data for constructing source maps. Only found on IMPORT nodes. */
+  /** From path for constructing source maps. Only on `@import` nodes. */
   __from?: string;
 }
 
@@ -25,46 +28,31 @@ export interface Warning {
   toString?: () => string;
 }
 
-export interface XCSSContext {
+export interface Context {
+  dependencies: string[];
   from?: string;
+  g: XCSSGlobals;
   rootDir: string;
-}
-
-export interface XCSSFunctions {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  [name: string]: Function;
+  warnings: Warning[];
 }
 
 export interface XCSSGlobals {
   [key: string]: any;
 
-  fn?: XCSSFunctions;
+  fn?: {
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    [name: string]: Function;
+  };
 }
-
-export interface InternalData {
-  ctx: XCSSContext;
-  dependencies: string[];
-  g: XCSSGlobals;
-  warnings: Warning[];
-}
-
-// Extends stylis Middleware with  extra `internal` argument
-export type Middleware = (
-  element: Element,
-  index: number,
-  children: (Element | string)[],
-  callback: _Middleware,
-  internals: InternalData,
-) => string | void;
 
 export interface XCSSCompileOptions {
-  /** Input file path. */
+  /** Input file path. Without this top level relative `@import`s may fail. */
   from?: string;
-  globals?: {
-    [key: string]: any;
-
-    fn?: XCSSFunctions;
-  };
+  /** Output file path. Only used in source maps. */
+  to?: string;
+  /** Generate source map. */
+  map?: boolean;
+  globals?: XCSSGlobals;
   /**
    * Stylis compatible middleware to use as XCSS plugins.
    *
@@ -89,7 +77,7 @@ export type XCSSTemplateFn = (xcss: XCSSFn, g: XCSSGlobals) => string;
 
 export type XCSSExpressionFn = (
   g: XCSSGlobals,
-  ctx: XCSSContext,
+  ctx: { from?: string; rootDir: string },
 ) => XCSSValidType;
 
 export type XCSSValidType =
@@ -105,4 +93,5 @@ export interface XCSSCompileResult {
   css: string;
   dependencies: string[];
   warnings: Warning[];
+  map?: RawSourceMap;
 }

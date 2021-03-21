@@ -1,26 +1,20 @@
 /* eslint-disable id-length, no-param-reassign */
 
-import * as stylis from 'stylis';
 import path from 'path';
 import { SourceNode } from 'source-map';
+import * as stylis from 'stylis';
 import {
-  globalsProxy,
   assignNullish,
+  ctx,
   entries,
+  globalsProxy,
   interpolate,
   map as _map,
   xcssTag,
 } from './helpers';
-import {
-  inlineImport,
-  // middleware,
-  // serialize,
-  // stringify,
-  sourcemap,
-} from './middleware';
+import { inlineImport } from './middleware';
 import type {
   Element,
-  InternalData,
   Warning,
   XCSSCompileOptions,
   XCSSCompileResult,
@@ -28,7 +22,7 @@ import type {
 
 const defaultGlobals = {
   fn: {
-    setDefault: assignNullish,
+    default: assignNullish,
     entries,
     map: _map,
   },
@@ -38,7 +32,7 @@ function mergeDefaultGlobals<T extends XCSSCompileOptions['globals']>(
   globals: T,
 ): typeof defaultGlobals & T {
   return {
-    ...defaultGlobals,
+    // ...defaultGlobals, // TODO: Remove? No top level props
     ...globals,
 
     fn: {
@@ -54,46 +48,47 @@ function compileSourceMap(
   from?: string,
   to?: string,
 ) {
-  function nodeReducer(nodes: Element[], node: Element) {
+  function nodeReducer(nodes: SourceNode[], node: Element) {
     if (node.return) {
-      switch (node.type) {
-        case stylis.IMPORT: {
-          const importedAst = node.__ast.map((importedNode) => {
-            importedNode.root = importedNode.root || node;
+      // @import nodes have .__ast after the import'd contents are compiled
+      if (node.__ast) {
+        const importAst = node.__ast
+          .map((importedNode) => {
+            importedNode.root ??= node;
             return importedNode;
-          });
-          nodes.push(importedAst.reduce(nodeReducer, []).flat());
-          break;
+          })
+          .reduce(nodeReducer, []);
+
+        // eslint-disable-next-line no-restricted-syntax
+        for (const importedNode of importAst) {
+          nodes.push(importedNode);
         }
-        default: {
-          const relPath = path.relative(rootDir, node.root?.__from || from);
-          nodes.push(
-            new SourceNode(node.line, node.column, relPath, node.return),
-          );
-          break;
-        }
+      } else {
+        const relPath = path.relative(
+          rootDir,
+          (node.root && node.root.__from) || from,
+        );
+        nodes.push(
+          new SourceNode(node.line, node.column, relPath, node.return),
+        );
       }
     }
 
     return nodes;
   }
 
-  // TODO: Handle imported files with existing source maps
-  const nodes = ast.reduce(nodeReducer, []).flat();
-  // console.log('@@ NODES', nodes);
+  // TODO: Handle @import'd files with existing source maps
+  const nodes = ast.reduce(nodeReducer, []);
 
   const rootNode = new SourceNode(null, null, null, nodes);
   const sourceMap = rootNode.toStringWithSourceMap({
     file: to || from,
     sourceRoot: rootDir,
-    // skipValidation: true, // performance improvement
+    skipValidation: true, // better performance
   });
-  // console.log('@@ MAP', map);
 
   return sourceMap;
 }
-
-export const internals: InternalData = {};
 
 export function compile(
   code: string,
@@ -110,80 +105,45 @@ export function compile(
   if (from) dependencies.push(from);
   const warnings: Warning[] = [];
   const g = globalsProxy(mergeDefaultGlobals(globals), 'g', warnings);
-  const ctx = { from, rootDir };
-  // const internals = {
-  //   ctx,
-  //   dependencies,
-  //   g,
-  //   warnings,
-  // };
-  internals.ctx = ctx;
-  internals.dependencies = dependencies;
-  internals.g = g;
-  internals.warnings = warnings;
 
-  // const allPlugins = [inlineImport, plugins, stringify].flat().filter(Boolean);
-  const allPlugins = [inlineImport, plugins, stylis.stringify]
-    .flat()
-    .filter(Boolean);
-  // const allPlugins = [inlineImport, plugins].flat().filter(Boolean);
+  ctx.dependencies = dependencies;
+  ctx.from = from;
+  ctx.g = g;
+  ctx.rootDir = rootDir;
+  ctx.warnings = warnings;
 
-  if (map) {
-    allPlugins.push(sourcemap);
-  }
+  const allPlugins = [inlineImport, ...plugins, stylis.stringify];
 
-  // const xcss = xcssTag(internals);
-  const xcss = xcssTag();
-  // FIXME: This is a very dodgy way to access the `xcss` tag in configs and will definitely break something if there is any async code
-  global.xcss = xcss;
-  const interpolated = interpolate(code)(xcss, g);
-  // const interpolated = interpolate(code)(xcssTag(internals), g);
+  const interpolated = interpolate(code)(xcssTag(), g);
   const ast = stylis.compile(interpolated);
-  // const output = serialize(ast, middleware(allPlugins), internals);
   const output = stylis.serialize(ast, stylis.middleware(allPlugins));
 
   // FIXME: The template interpolation needs to be handled in source maps
 
-  // FIXME: Nodes can be serialize(copy())'d in middleware causing the AST to
+  // FIXME: Nodes can be serialize(copy())'d in middleware causing `ast` to
   // be incorrect leading to incorrect source maps -- we need to capture the
   // true final AST after all the plugins have run
+  //  ↳ https://github.com/thysultan/stylis.js/blob/master/src/Middleware.js#L42
+
+  // TODO: Souce map `file` and `sourceRoot` include the build system's full
+  // path but that's not useful when deployed (but is for development?)
 
   let sourceMap;
 
   if (map) {
-    // console.log('@@ AST');
-    // console.dir(ast, { depth: null });
     const rawSourceMap = compileSourceMap(ast, rootDir, from, to);
-    sourceMap = rawSourceMap?.map.toJSON();
-
-    console.log('!! XCSS MAP', rawSourceMap);
-
-    if (
-      from === '/home/max/Projects/trackx/packages/web-app/src/css/index.xcss'
-    ) {
-      console.log('!! XCSS FROM', from);
-      console.log('!! XCSS MAP', sourceMap);
-    }
+    sourceMap = rawSourceMap.map.toJSON();
   }
 
-  // let sourceMap;
+  ctx.dependencies = null;
+  ctx.from = null;
+  ctx.g = null;
+  ctx.rootDir = null;
+  ctx.warnings = null;
 
-  // // TODO: Move this logic into another place
-  // if (map && internals.rawSourceMaps && internals.rawSourceMaps.length) {
-  //   const rootNode = new SourceNode(null, null, null, internals.rawSourceMaps);
-  //   const rawSourceMap = rootNode.toStringWithSourceMap({
-  //     file: to || from,
-  //     sourceRoot: rootDir,
-  //     skipValidation: true, // improved performance
-  //   });
-  //   sourceMap = rawSourceMap.map.toJSON();
-  //   console.log('@@@@@@@ rawSourceMap', rawSourceMap);
+  // for (const key in ctx) {
+  //   ctx[key] = null;
   // }
-
-  internals.ctx = null;
-  internals.dependencies = null;
-  internals.g = null;
-  internals.warnings = null;
 
   return {
     css: output,

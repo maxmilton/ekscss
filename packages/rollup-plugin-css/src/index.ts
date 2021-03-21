@@ -5,7 +5,7 @@ import path from 'path';
 import type { Plugin } from 'rollup';
 import { SourceMapConsumer, SourceNode } from 'source-map';
 
-interface Pluginptions {
+export interface Pluginptions {
   /**
    * Files to exclude from processing.
    * @default []
@@ -52,7 +52,6 @@ export default function rollupPlugin({
       ) {
         console.log('!! ROLLUP ID', id);
         console.log('!! ROLLUP MAP', this.getCombinedSourcemap());
-
         console.log('!! MODULE INFO', this.getModuleInfo(id));
       }
 

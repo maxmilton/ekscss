@@ -1,0 +1,29 @@
+{
+  "name": "@ekscss/cli",
+  "version": "0.0.0",
+  "description": "A simple, fast, and powerful CSS preprocessor",
+  "license": "MIT",
+  "repository": "MaxMilton/ekscss",
+  "author": "Max Milton <max@wearegenki.com>",
+  "bin": {
+    "ekscss": "bin.js",
+    "xcss": "bin.js"
+  },
+  "main": "index.js",
+  "types": "types.d.ts",
+  "engines": {
+    "node": ">= 10"
+  },
+  "peerDependencies": {
+    "ekscss": "*"
+  },
+  "dependencies": {
+    "colorette": "^1.2.2",
+    "joycon": "^3.0.1",
+    "sade": "^1.7.4"
+  },
+  "devDependencies": {
+    "@types/sade": "1.7.2",
+    "ekscss": "link:../ekscss"
+  }
+}

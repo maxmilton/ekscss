@@ -5,7 +5,8 @@ import { compile, XCSSCompileOptions, XCSSGlobals } from 'ekscss';
 import { resolve } from 'path';
 import type { Plugin } from 'rollup';
 
-interface PluginOptions extends Omit<XCSSCompileOptions, 'from' | 'globals'> {
+export interface PluginOptions
+  extends Omit<XCSSCompileOptions, 'from' | 'globals'> {
   /** XCSS config or the path to a config file. */
   config?: string | { globals: XCSSGlobals };
   /**
@@ -36,32 +37,33 @@ export default function rollupPlugin({
     _config = mod.default || mod;
   }
 
+  // const cache_emit = new Map();
+
   return {
     name: 'ekscss',
 
-    // resolveId(source, importer, opts) {
-    //   // xx
+    // resolveId(importee) {
+    //   if (cache_emit.has(importee)) return importee;
     // },
 
     // load(id) {
-    //   // xx
+    //   return cache_emit.get(id) || null;
     // },
 
     transform(code, id) {
       if (!filter(id)) return null;
 
-      if (typeof config === 'string') {
-        this.addWatchFile(config);
-      }
-
       const result = compile(code, {
-        to: id.replace(/\.xcss$/, '.css'),
+        // to: id.replace(/\.xcss$/, '.css'),
         from: id,
         globals: _config.globals,
         plugins,
         rootDir,
       });
 
+      if (typeof config === 'string') {
+        this.addWatchFile(config);
+      }
       for (const dep of result.dependencies) {
         this.addWatchFile(dep);
       }
@@ -69,6 +71,9 @@ export default function rollupPlugin({
       for (const warning of result.warnings) {
         this.warn(warning);
       }
+
+      // compiled.js.code += `\nimport ${JSON.stringify(fname)};\n`;
+      // cache_emit.set(id.replace(/\.xcss$/, '.css'), result.css);
 
       return {
         code: result.css,
