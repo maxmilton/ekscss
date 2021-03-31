@@ -17,6 +17,6 @@
     "colorette": "^1.2.2"
   },
   "devDependencies": {
-    "svelte": "3.35.0"
+    "svelte": "3.37.0"
   }
 }
