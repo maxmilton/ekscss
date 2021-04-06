@@ -4,40 +4,52 @@ import type { xcssTag } from './helpers';
 
 export type { Middleware };
 
+// TODO: Remove?
 export interface Element extends _Element {
   /** AST for constructing source maps. Only on `@import` nodes. */
   __ast?: Element[];
   /** From path for constructing source maps. Only on `@import` nodes. */
   __from?: string;
+  root: Element;
 }
 
 export interface Warning {
-  // TODO: Keep?
+  /** A kebab cased reference code/name of the warning. */
   code: string;
-  // TODO: Keep?
-  start?: { line: number; column: number; pos?: number };
-  // TODO: Keep?
-  end?: { line: number; column: number };
-  // TODO: Keep?
-  pos?: number;
   message: string;
-  filename?: string;
-  // TODO: Keep?
-  frame?: string;
-  // TODO: Keep?
-  toString?: () => string;
+  file?: string;
+  line?: number;
+  column?: number;
 }
 
 export interface Context {
+  // index signature for XCSS plugins to add properties
+  [key: string]: unknown;
+
   dependencies: string[];
   from?: string;
-  g: XCSSGlobals;
+  /**
+   * Raw globals which are not proxied and will not generate warnings when
+   * looking up undefined props.
+   */
+  rawX: XCSSGlobals;
   rootDir: string;
   warnings: Warning[];
+  x: XCSSGlobals;
 }
 
+export type XCSSExpression =
+  | ((x: XCSSGlobals) => XCSSExpression)
+  | string
+  | number
+  | Array<string | number>
+  | { toString(): string }
+  | false
+  | null
+  | undefined;
+
 export interface XCSSGlobals {
-  [key: string]: any;
+  [key: string]: XCSSExpression | { [key: string]: XCSSExpression };
 
   fn?: {
     // eslint-disable-next-line @typescript-eslint/ban-types
@@ -45,53 +57,45 @@ export interface XCSSGlobals {
   };
 }
 
+export type BuildHookFn = () => void;
+
 export interface XCSSCompileOptions {
   /** Input file path. Without this top level relative `@import`s may fail. */
   from?: string;
   /** Output file path. Only used in source maps. */
   to?: string;
-  /** Generate source map. */
+  /**
+   * Generate source map.
+   *
+   * @default false
+   */
   map?: boolean;
   globals?: XCSSGlobals;
   /**
-   * Stylis compatible middleware to use as XCSS plugins.
+   * XCSS plugins or package names of XCSS plugins.
    *
-   * Note: If you want to disable vendor prefixing, pass an empty array. If you
-   * do want to vendor prefixing, include it if you change the default.
+   * XCSS plugins are stylis Middleware which may also use the ekscss compiler
+   * API. Any valid stylis middleware is also a valid XCSS plugin.
    *
-   * @default
-   * [require('stylis').prefixer]
+   * @default []
    */
-  plugins?: Middleware[];
+  plugins?: Array<Middleware | string>;
   /**
-   * Root directory path to use when resolving `@import` file paths.
+   * Root directory path to use when resolving file paths e.g., in `@import`.
    *
    * @default process.cwd()
    */
   rootDir?: string;
 }
 
-export type XCSSFn = ReturnType<typeof xcssTag>;
-
-export type XCSSTemplateFn = (xcss: XCSSFn, g: XCSSGlobals) => string;
-
-export type XCSSExpressionFn = (
-  g: XCSSGlobals,
-  ctx: { from?: string; rootDir: string },
-) => XCSSValidType;
-
-export type XCSSValidType =
-  | XCSSExpressionFn
-  | string
-  | { toString(): string }
-  | number
-  | false
-  | null
-  | undefined;
+export type XCSSTemplateFn = (
+  xcss: ReturnType<typeof xcssTag>,
+  x: XCSSGlobals,
+) => string;
 
 export interface XCSSCompileResult {
   css: string;
   dependencies: string[];
-  warnings: Warning[];
   map?: RawSourceMap;
+  warnings: Warning[];
 }

@@ -9,8 +9,10 @@
     "dev": "tsc --watch --preserveWatchOutput",
     "prebuild": "rm -rf dist"
   },
-  "peerDependencies": {
-    "ekscss": "*"
+  "dependencies": {
+    "csso": "^4.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/csso": "3.5.1"
+  }
 }

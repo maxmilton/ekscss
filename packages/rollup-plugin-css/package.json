@@ -14,9 +14,11 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.0",
+    "csso": "^4.2.0",
     "source-map": "^0.7.3"
   },
   "devDependencies": {
-    "rollup": "2.42.1"
+    "@types/csso": "3.5.1",
+    "rollup": "2.44.0"
   }
 }

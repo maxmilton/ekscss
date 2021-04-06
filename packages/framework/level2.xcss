@@ -1,0 +1,23 @@
+@charset 'UTF-8';
+/*!
+* XCSS Framework Level 2 - https://github.com/MaxMilton/ekscss
+* (c) 2021 Max Milton
+* MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
+*/
+
+// Level 1 - Core
+@import './level1.xcss';
+
+// Level 2 - Functional
+@import './level2/type.xcss';
+@import './level2/form.xcss';
+@import './level2/button.xcss';
+@import './level2/color.xcss';
+@import './level2/flex.xcss';
+@import './level2/grid.xcss';
+@import './level2/spacing.xcss';
+@import './level2/display.xcss';
+@import './level2/postition.xcss';
+@import './level2/z-index.xcss';
+@import './level2/utils.xcss';
+@import './level2/a11y.xcss';

@@ -1,6 +1,8 @@
 # ekscss a.k.a XCSS
 
-Simple, fast, and powerful CSS preprocessor.
+> Before we hit version `1.0` there may be backwards incompatible changes. You have been warned!
+
+A simple, fast, and powerful CSS preprocessor.
 
 ## 'JS in CSS' style preprocessor
 
@@ -12,6 +14,7 @@ Simple, fast, and powerful CSS preprocessor.
 - Compile speed
 - Use case agnostic
 - Light weight; leverages the power of JS
+  - JS is already fantastic for easily manipulating strings
 - Simplicity
 
 #### Features
@@ -42,11 +45,15 @@ Simple, fast, and powerful CSS preprocessor.
 - Fix source map mapping for XCSS template expressions and cli header option
 - Add READMEs to remaining packages
 - `@apply` middleware package
+- Add `joycon` config loading to `esbuild-plugin-ekscss` and `svelte-ekscss`
+- Better typescript support for `g`
 - A way to remove unused styles
 - Webpack plugin
-- Stylelint plugin
-- Prettier plugin
-- VS Code syntax
+- PostCSS syntax plugin then (related):
+  - Stylelint plugin
+  - Prettier plugin
+  - VS Code syntax
+- Add finer details to compiler warnings; line, column, etc.
 - Documentation:
   - Templates in XCSS (`${...}`) are still evaluated when they're in a _CSS comment_; to disable them it's necessary to comment out the code _inside the template_
 

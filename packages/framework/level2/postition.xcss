@@ -1,0 +1,36 @@
+/**
+* POSITION
+*/
+
+.pos-f { position: fixed; }
+.pos-a { position: absolute; }
+.pos-r { position: relative; }
+.pos-s { position: sticky; }
+
+.t0 { top: 0; }
+.r0 { right: 0; }
+.b0 { bottom: 0; }
+.l0 { left: 0; }
+
+.a0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+${x.fn.entries(x.media, ([bp, query]) => xcss`
+  @media ${query} {
+    .${bp}-t0 { top: 0; }
+    .${bp}-r0 { right: 0; }
+    .${bp}-b0 { bottom: 0; }
+    .${bp}-l0 { left: 0; }
+
+    .${bp}-a0 {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+`)}

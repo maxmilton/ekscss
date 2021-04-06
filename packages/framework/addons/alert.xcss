@@ -1,0 +1,47 @@
+/**
+ * ALERTS
+ */
+
+.alert {
+  margin-top: ${x.alert.marginY};
+  margin-bottom: ${x.alert.marginY};
+  padding: ${x.alert.padding};
+  background-color: ${x.alert.backgroundColor};
+  border-left: ${x.alert.borderSize} solid;
+
+  > a {
+    text-decoration: underline;
+  }
+}
+
+.alert-tip {
+  color: ${x.alert.tipTextColor};
+  border-color: ${x.alert.tipBorderColor};
+}
+
+.alert-info {
+  color: ${x.alert.infoTextColor};
+  border-color: ${x.alert.infoBorderColor};
+}
+
+.alert-warn {
+  color: ${x.alert.warningTextColor};
+  border-color: ${x.alert.warningBorderColor};
+}
+
+.alert-error {
+  color: ${x.alert.errorTextColor};
+  border-color: ${x.alert.errorBorderColor};
+}
+
+/* Close button */
+
+.button-close {
+  margin: -${x.alert.padding};
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    background-color: unset;
+  }
+}

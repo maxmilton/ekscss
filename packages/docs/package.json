@@ -1,0 +1,27 @@
+{
+  "name": "@ekscss/docs",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "NODE_ENV=production node build.js",
+    "dev": "NODE_ENV=development node build.js",
+    "postbuild": "tsc --emitDeclarationOnly",
+    "prebuild": "rm -rf dist; mkdir -p dist/plugins"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "marked": "2.0.1",
+    "stage0": "^0.0.25"
+  },
+  "devDependencies": {
+    "@ekscss/framework": "link:../framework",
+    "@types/marked": "2.0.1",
+    "esbuild": "0.11.5",
+    "esbuild-plugin-ekscss": "link:../esbuild-plugin-ekscss"
+  }
+}

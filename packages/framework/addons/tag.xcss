@@ -6,16 +6,16 @@
 
 .tag {
   display: inline-block;
-  padding: ${g.tag.padding};
-  color: ${g.tag.textColor};
-  font-size: ${g.tag.textSize};
+  padding: ${x.tag.padding};
+  color: ${x.tag.textColor};
+  font-size: ${x.tag.textSize};
   vertical-align: middle;
-  background-color: ${g.tag.backgroundColor};
-  border-radius: ${g.tag.borderRadius};
+  background-color: ${x.tag.backgroundColor};
+  border-radius: ${x.tag.borderRadius};
 }
 
 /* Whitespace between tags */
 
 .tag + .tag {
-  margin-left: ${g.tag.marginBetween};
+  margin-left: ${x.tag.marginBetween};
 }

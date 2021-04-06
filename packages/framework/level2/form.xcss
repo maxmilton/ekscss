@@ -1,0 +1,174 @@
+/**
+ * FORMS
+ */
+
+// TODO: Move validation into new "addons/form-validation.xcss"
+
+// TODO: Create search input styles in "addons/form-search.xcss"
+
+// hide the up/down buttons in <input type=number> as they're confusing, but
+// still allow use of the type=number; makes number input more usable on phones
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+::placeholder {
+  color: ${x.input.placeholderTextColor};
+
+  [disabled]& {
+    color: ${x.input.disabledPlaceholderTextColor};
+  }
+}
+
+.label {
+  display: block; // make label appear above inputs
+  margin-bottom: ${x.input.paddingY};
+  font-weight: ${x.textWeightHeavy};
+
+  .radio + &,
+  .checkbox + & {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+}
+
+.input,
+.select,
+.textarea {
+  max-width: 100%;
+  padding: ${x.input.paddingY} ${x.input.paddingX};
+  color: ${x.input.textColor};
+  vertical-align: middle;
+  background-color: ${x.input.backgroundColor};
+  border: ${x.input.border};
+  border-radius: ${x.input.radius};
+
+  &:hover {
+    border-color: ${x.input.hoverBorderColor};
+    outline: none;
+    box-shadow: 0 0 0 2px ${x.input.hoverBorderColor};
+  }
+
+  &:focus,
+  &:active {
+    border-color: ${x.input.activeBorderColor};
+    outline: none;
+    box-shadow: 0 0 0 2px ${x.input.activeBorderColor};
+  }
+
+  &[disabled] {
+    color: ${x.input.disabledTextColor};
+    background-color: ${x.input.disabledBackgroundColor};
+    border: ${x.input.disabledBorder};
+    outline: none;
+  }
+}
+
+// FIXME: Incorporate into config.js
+${x.fn.default({
+  // selectZindex: 4,
+  // selectBackgroundColor: x.light1,
+  // selectShadow: x.shadow, x.color.shadowDeep,
+  // selectSelectedTextColor: x.light1,
+  // selectSelectedBackgroundColor: x.linkColor,
+  // selectCaretColor: x.input.textColor,
+  // selectCaretColor: x.color.text,
+  selectCaretColor: x.color.dark2,
+  // selectCaretSize: '0.3em',
+  selectCaretSize: '5px',
+  // selectAnimateSpeedIn: x.animateSpeedIn,
+  // selectAnimateSpeedOut: x.animateSpeedOut,
+  // selectDisabledTextColor: x.input.disabledTextColor,
+  // selectDisabledCaretColor: x.input.disabledTextColor,
+  selectDisabledCaretColor: x.color.light1,
+})}
+
+.select {
+  position: relative;
+  appearance: none;
+
+  padding-right: 26px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 16px 12px;
+}
+
+// TODO: Is this useful? Remove?
+.select[multiple] {
+  height: auto;
+}
+
+// TODO: Create more custom radio input styles
+.radio {}
+
+.checkbox {
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 0.8em 0 0;
+  appearance: none;
+  border: ${x.input.border};
+  // FIXME: Use variables
+  border: 2px solid ${x.color.gray3};
+  border-radius: ${x.input.radius};
+  vertical-align: middle;
+  cursor: pointer;
+
+  &:checked {
+    // FIXME: Use variables
+    background-color: ${x.color.blue3};
+    border-color: ${x.color.blue2};
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23fff' d='M12 5a1 1 0 00-.71.29L7 9.59l-2.29-2.3a1 1 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1 1 0 0012 5z'/%3E%3C/svg%3E");
+  }
+}
+
+// TODO: Create more custom range input styles
+.range {}
+
+/* Grouped form elements */
+
+/* TODO: Make groups more flexible */
+.input-group {
+  display: inline-flex;
+
+  & > .button {
+    border: ${x.input.border};
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  & > .input {
+    margin-right: -${x.radius};
+  }
+}
+
+/* Form assistance & validation */
+
+.note {
+  display: block;
+  margin-top: ${x.form.helpMargin};
+  color: ${x.form.helpTextColor};
+}
+
+// TODO: The :invalid state can be tricky to work with... maybe better if we
+// provide a form validation solution/s
+.input:invalid:not(:placeholder-shown),
+.select:invalid,
+.textarea:invalid,
+.invalid {
+  border-color: ${x.input.invalidBorder};
+  box-shadow: 0 0 0 2px ${x.input.invalidColor};
+}
+
+.invalid-feedback {
+  display: none;
+  margin-top: ${x.form.helpMargin};
+  color: ${x.input.invalidColor};
+
+  .invalid + & {
+    display: block;
+  }
+}

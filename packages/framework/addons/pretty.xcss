@@ -8,6 +8,6 @@ h2 {
 /* Horizontal rule */
 
 hr {
-  margin: ${g.hrMargin};
-  color: ${g.hrColor}
+  margin: ${x.hrMargin};
+  color: ${x.hrColor}
 }

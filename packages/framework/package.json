@@ -1,21 +1,25 @@
 {
   "name": "@ekscss/framework",
   "version": "0.0.0",
-  "description": "CSS framework powered by ekscss",
+  "description": "Progressive CSS framework powered by ekscss",
   "license": "MIT",
   "repository": "MaxMilton/ekscss",
   "author": "Max Milton <max@wearegenki.com>",
-  "main": "index.xcss",
+  "main": "level2.xcss",
+  "style": "dist/index.css",
   "scripts": {
-    "build": "xcss base.xcss dist/base.css && xcss index.xcss dist/index.css",
-    "build_test": "xcss test.xcss dist/test.css",
+    "build": "xcss level1.xcss dist/level1.css --map && xcss level2.xcss dist/level2.css --map && xcss level3.xcss dist/level3.css --map",
+    "build__REMOVE_ME": "xcss level1.xcss dist/level1.css --map; xcss level2.xcss dist/level2.css --map; xcss level3.xcss dist/level3.css --map",
+    "build__TEST": "xcss test.xcss dist/test.css",
     "prebuild": "rm -rf dist; mkdir dist"
   },
   "peerDependencies": {
     "ekscss": "*"
   },
   "dependencies": {
-    "@ekscss/apply": "link:../ekscss-apply",
+    "@ekscss/plugin-apply": "^0.0.0",
+    "@ekscss/plugin-import": "^0.0.0",
+    "@ekscss/plugin-prefix": "^0.0.0",
     "color": "^3.1.3",
     "cssremedy": "^0.1.0-beta.2"
   },

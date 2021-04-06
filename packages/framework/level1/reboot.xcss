@@ -1,0 +1,69 @@
+/*
+* Display full page height
+* See: https://github.com/jensimmons/cssremedy/issues/70
+*/
+html,
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Form elements */
+
+button,
+select,
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+// allow resize but not horizontally to prevent breaking layout
+textarea {
+  resize: vertical;
+}
+
+/* Images */
+
+// responsive down-scaling by default
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tables */
+
+// Remove most spacing between table cells.
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/* Abbreviations */
+
+abbr[title] {
+  cursor: help;
+}
+
+/* Element attributes */
+
+[disabled] {
+  cursor: not-allowed !important;
+}
+
+// increase the selector specificity so that it always overrides other rules
+[hidden][hidden] {
+  display: none !important;
+}

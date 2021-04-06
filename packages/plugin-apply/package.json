@@ -1,0 +1,24 @@
+{
+  "name": "@ekscss/plugin-apply",
+  "version": "0.0.0",
+  "description": "XCSS plugin to inline the properties of referenced rules",
+  "license": "MIT",
+  "repository": "MaxMilton/ekscss",
+  "author": "Max Milton <max@wearegenki.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "prebuild": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "ekscss": "*"
+  },
+  "dependencies": {
+    "stylis": "^4.0.9"
+  },
+  "devDependencies": {
+    "ekscss": "link:../ekscss"
+  }
+}

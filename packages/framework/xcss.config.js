@@ -1,26 +1,28 @@
-// https://refactoringui.com/previews/building-your-color-palette/
-
 'use strict'; // eslint-disable-line
 
-const { apply } = require('@ekscss/apply');
-const { prefixer } = require('stylis');
-
+const { applyPlugin } = require('@ekscss/plugin-apply');
+const { importPlugin } = require('@ekscss/plugin-import');
+const { prefixPlugin } = require('@ekscss/plugin-prefix');
 const color = require('color');
 const { xcssTag } = require('ekscss');
-// const { triangle } = require('./mixins/triangle');
 
+// FIXME: Remove if unused + remove framework/mixins/*
+const { triangle } = require('./mixins/triangle');
+
+// TODO: Document use of xcss tagged template literals in special cases in XCSS configs or plugins
 const xcss = xcssTag();
 
 /** @type {import('@ekscss/cli').XCSSConfig} */
 module.exports = {
-  plugins: [apply, prefixer],
+  plugins: [importPlugin, applyPlugin, prefixPlugin],
+  // plugins: ['@ekscss/plugin-import', '@ekscss/plugin-apply', '@ekscss/plugin-prefix'],
   // header: `@charset 'UTF-8';/*!
-  header: `/*!
-* XCSS Framework - https://github.com/MaxMilton/ekscss
-* (c) 2021 Max Milton
-* MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
-*/
-`,
+  //   header: `/*!
+  // * XCSS Framework - https://github.com/MaxMilton/ekscss
+  // * (c) 2021 Max Milton
+  // * MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
+  // */
+  // `,
   globals: {
     fn: {
       /**
@@ -31,7 +33,7 @@ module.exports = {
       color: (value) => color(xcss`${value}`),
       // Mixins
       // FIXME: Remove if unused + remove framework/mixins/*
-      // triangle,
+      triangle,
     },
     media: {
       ns: '(min-width: 30.01em)',
@@ -155,37 +157,39 @@ module.exports = {
       sepia4: '#b07b46',
       sepia5: '#c99765',
       // App
-      primary: (g) => g.color.blue2,
-      success: (g) => g.color.green2,
-      warning: (g) => g.color.orange2,
-      danger: (g) => g.color.red2,
-      muted: (g) => g.color.gray1,
-      disabled: (g) => g.fn.color(g.color.muted).alpha(0.5),
-      background: (g) => g.color.light5,
-      shadow: (g) => g.fn.color(g.color.dark4).alpha(0.1),
+      primary: (x) => x.color.blue2,
+      success: (x) => x.color.green2,
+      warning: (x) => x.color.orange2,
+      danger: (x) => x.color.red2,
+      muted: (x) => x.color.gray1,
+      // disabled: (x) => x.fn.color(x.color.muted).alpha(0.5),
+      disabled: (x) => x.color.gray3,
+      background: (x) => x.color.light5,
+      shadow: (x) => x.fn.color(x.color.dark4).alpha(0.1),
+      shadowDeep: (x) => x.color.shadow, // FIXME:
       // text: '#212529',
-      text: (g) => g.color.dark2,
+      text: (x) => x.color.dark2,
       // link: '#2d3436',
       // link: 'inherit',
-      link: (g) => g.color.primary,
+      link: (x) => x.color.primary,
       // linkHover: '#0f96ff',
-      // linkHover: (g) => g.color.primary,
+      // linkHover: (x) => x.color.primary,
       linkHover: 'inherit',
     },
 
     /* Grid */
-    containerWidthMax: '50rem' /* 1000px @ 20px fontSize */,
+    containerWidthMax: '50rem', // 1000px @ 20px textSize
     containerNarrowWidthMax: '30rem',
     itemSize: '1fr',
     autoRows: 'auto',
-    autoCols: (g) => g.itemSize,
+    autoCols: (x) => x.itemSize,
     rowSteps: [1, 2, 3, 4, 5, 6],
     colSteps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     gutterRow: '1em',
     gutterCol: '0.5em',
     gutterRowLarge: '1em',
     gutterColLarge: '1em',
-    gutterCompact: (g) => `${g.gutterRow / 4} 0`,
+    gutterCompact: (x) => `${x.gutterRow / 4} 0`,
 
     radius: '4px',
     radiusLarge: '5px',
@@ -194,7 +198,7 @@ module.exports = {
     animateSpeedOut: '192ms',
 
     hrMargin: '1.2rem 0',
-    hrColor: (g) => g.fn.color(g.color.dark5).alpha(0.15),
+    hrColor: (x) => x.fn.color(x.color.dark5).alpha(0.15),
 
     linkClickArea: '0.4em', // XXX: Reduce if links overlap
 
@@ -206,85 +210,102 @@ module.exports = {
     textWeightHeavy: 'bolder',
 
     paragraphLeadTextSize: '1.3em',
-    paragraphLeadTextWeight: (g) => g.textWeightLight,
+    paragraphLeadTextWeight: (x) => x.textWeightLight,
 
     form: {
       groupMargin: '1em',
-      helpMargin: (g) => g.input.paddingY,
-      helpTextColor: (g) => g.color.dark3,
+      helpMargin: (x) => x.input.paddingY,
+      helpTextColor: (x) => x.color.dark3,
     },
 
     input: {
       paddingX: '1em',
       paddingY: '0.4em',
       textColor: 'inherit',
-      backgroundColor: (g) => g.color.white,
-      activeBorderColor: (g) => g.color.primary,
-      hoverBorderColor: (g) => g.fn.color(g.color.dark4).alpha(0.5),
-      invalidColor: (g) => g.color.red2,
-      invalidBorder: (g) => g.color.red3,
-      errorTextColor: (g) => g.color.red4,
-      placeholderColor: (g) => g.color.muted,
-      border: (g) => `1px solid ${g.color.gray4}`,
-      radius: (g) => g.radius,
+      backgroundColor: (x) => x.color.white,
+      activeBorderColor: (x) => x.color.primary,
+      hoverBorderColor: (x) => x.fn.color(x.color.dark4).alpha(0.5),
+      invalidColor: (x) => x.color.red2,
+      invalidBorder: (x) => x.color.red3,
+      errorTextColor: (x) => x.color.red4,
+      placeholderTextColor: (x) => x.color.muted,
+      border: (x) => `1px solid ${x.color.gray4}`,
+      radius: (x) => x.radius,
+      disabledTextColor: (x) => x.color.disabled,
+      // disabledBackgroundColor: (x) => x.color.muted,
+      disabledBackgroundColor: (x) => x.color.light4,
+      // disabledBorder: (x) => x.color.disabled,
+      disabledBorder: (x) => x.color.light1,
+      disabledPlaceholderTextColor: (x) => x.color.disabled,
     },
 
     button: {
-      paddingX: (g) => g.input.paddingX,
-      paddingY: (g) => g.input.paddingY,
+      paddingX: (x) => x.input.paddingX,
+      paddingY: (x) => x.input.paddingY,
       textColor: 'inherit',
       textWeight: 'inherit',
-      backgroundColor: (g) => g.input.backgroundColor,
-      border: (g) => g.input.border,
-      radius: (g) => g.radius,
-      hoverBackgroundColor: (g) => g.color.light3,
-      activeBackgroundColor: (g) => g.color.light3,
-      disabledTextColor: (g) => g.color.disabled,
-      disabledbackgroundColor: (g) => g.color.muted,
-      disabledBorderColor: (g) => g.color.disabled,
+      backgroundColor: (x) => x.input.backgroundColor,
+      border: (x) => x.input.border,
+      radius: (x) => x.radius,
+      hoverBackgroundColor: (x) => x.color.light3,
+      activeBackgroundColor: (x) => x.color.light3,
+      // disabledTextColor: (x) => x.color.disabled,
+      disabledTextColor: (x) => x.input.disabledTextColor,
+      // disabledbackgroundColor: (x) => x.color.muted,
+      // disabledbackgroundColor: (x) => x.color.light4,
+      disabledBackgroundColor: (x) => x.input.disabledBackgroundColor,
+      // disabledBorder: (x) => x.color.disabled,
+      // disabledBorder: (x) => x.color.gray5,
+      disabledBorder: (x) => x.input.disabledBorder,
+    },
+
+    code: {
+      textColor: (x) => x.color.light3,
+      backgroundColor: (x) => x.color.dark3,
+      radius: (x) => x.radius,
     },
 
     card: {
-      backgroundColor: (g) => g.color.white,
-      shadow: (g) => xcss`0 0.125em 0.5em 1px ${g.color.shadow}`,
-      hoverZindex: 1,
-      hoverTextColor: (g) => g.color.text,
-      hoverShadow: (g) => g.color.shadow,
-      hoverAnimateSpeedIn: (g) => g.animateSpeedIn,
-      hoverAnimateSpeedOut: (g) => g.animateSpeedOut,
-      hoverHoverShadow: (g) => g.shadowHover,
+      backgroundColor: (x) => x.color.white,
+      shadow: (x) => xcss`0 0.125em 0.5em 1px ${x.color.shadow}`,
+      hoverZIndex: 1,
+      hoverTextColor: (x) => x.color.text,
+      hoverShadow: (x) => x.color.shadow,
+      hoverAnimateSpeedIn: (x) => x.animateSpeedIn,
+      hoverAnimateSpeedOut: (x) => x.animateSpeedOut,
+      hoverHoverShadow: (x) => x.color.shadowDeep,
       bodyMargin: '1.2rem 2rem',
       buttonTextColor: 'inherit',
-      buttonBorder: (g) => `1px solid ${g.fn.color(g.color.light3).alpha(0.5)}`,
+      buttonBorder: (x) => `1px solid ${x.fn.color(x.color.light3).alpha(0.5)}`,
     },
 
     alert: {
       padding: '1em',
       marginY: '2em',
-      backgroundColor: (g) => g.color.light3,
+      backgroundColor: (x) => x.color.light3,
       borderSize: '0.4rem',
-      tipTextColor: (g) => g.color.green1,
-      tipBorderColor: (g) => g.color.green4,
-      infoTextColor: (g) => g.color.blue1,
-      infoBorderColor: (g) => g.color.blue4,
-      warningTextColor: (g) => g.color.orange1,
-      warningBorderColor: (g) => g.color.orange4,
-      errorTextColor: (g) => g.color.red1,
-      errorBorderColor: (g) => g.color.red4,
+      tipTextColor: (x) => x.color.green1,
+      tipBorderColor: (x) => x.color.green4,
+      infoTextColor: (x) => x.color.blue1,
+      infoBorderColor: (x) => x.color.blue4,
+      warningTextColor: (x) => x.color.orange1,
+      warningBorderColor: (x) => x.color.orange4,
+      errorTextColor: (x) => x.color.red1,
+      errorBorderColor: (x) => x.color.red4,
     },
 
     tag: {
       padding: '0.2em 0.4em',
       textSize: '0.9em',
-      textColor: (g) => g.color.dark2,
-      backgroundColor: (g) => g.color.light3,
-      borderRadius: (g) => g.radius,
+      textColor: (x) => x.color.dark2,
+      backgroundColor: (x) => x.color.light3,
+      borderRadius: (x) => x.radius,
       marginBetween: '1em',
     },
 
     footer: {
       marginY: '5rem',
-      textColor: (g) => g.color.muted,
+      textColor: (x) => x.color.muted,
     },
   },
 };

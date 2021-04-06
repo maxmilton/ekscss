@@ -1,0 +1,30 @@
+/**
+* XCSS Addon: Styled Native Elements
+*
+* Style native elements by default. We keep opinionated styles like this out of
+* levels 1 and 2 to give developers more freedom in how things look and to
+* reduce unexpected results. But, for times when you want everything to look
+* great without needing to explicitly set CSS classes this package is for you.
+*/
+
+${null}
+
+/* Typography */
+
+table { #apply: .table; }
+blockquote { #apply: .blockquote; }
+code { #apply: .code; }
+
+/* Form */
+
+label { #apply: .label; }
+input { #apply: .input; }
+select { #apply: .select; }
+textarea { #apply: .textarea; }
+input[type='radio'] { #apply: .radio; }
+input[type='checkbox'] { #apply: .checkbox; }
+input[type='range'] { #apply: .range; }
+
+/* Button */
+
+button { #apply: .button; }

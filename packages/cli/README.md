@@ -38,7 +38,7 @@ Output:
 
 ### Input and output paths
 
-When `src` is not provided then automatically try `index.xcss`, `src/index.xcss`, or else throw an error.
+When `src` is not provided then automatically try `index.xcss`, `src/index.xcss`, or else error and exit.
 
 When `dest` is not provided output CSS will be put into a file with the same file path as `src` but with a `.css` file extension.
 
@@ -51,9 +51,11 @@ XCSS configuration files may be in either JSON or JavaScript format. Config file
 - `xcss.config.js`
 - `xcss.config.json`
 - an `"xcss"` field in your `package.json`
-- or any file name when you use the `--config` option
+- or any file name or path when you use the `--config` option
 
 ## Notes
+
+This package is intended to be simple and lightweight. If you need more features like watching for file changes use [rollup](https://rollupjs.org) together with [rollup-plugin-ekscss](../rollup-plugin-ekscss) and [@ekscss/rollup-plugin-css](../rollup-plugin-css). In your production CSS bundles use [@ekscss/rollup-plugin-clean](../rollup-plugin-clean) too to remove unused styles.
 
 This package registers the CLI executable binaries `xcss` and `ekscss` which are both equivalent.
 

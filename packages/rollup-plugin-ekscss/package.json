@@ -14,9 +14,10 @@
     "rollup": "^2.0.0"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^4.1.0"
+    "@rollup/pluginutils": "^4.1.0",
+    "joycon": "^3.0.1"
   },
   "devDependencies": {
-    "rollup": "2.42.1"
+    "rollup": "2.44.0"
   }
 }

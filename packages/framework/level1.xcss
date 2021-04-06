@@ -1,0 +1,10 @@
+/*!
+* XCSS Framework Level 1 - https://github.com/MaxMilton/ekscss
+* (c) 2021 Max Milton
+* MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
+*/
+
+// Level 1 - Core
+@import 'cssremedy/css/remedy.css';
+@import './level1/reboot.xcss';
+@import './level1/type.xcss';

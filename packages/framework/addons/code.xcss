@@ -1,0 +1,8 @@
+.code-block {
+  padding: 0.5em 1em;
+  border-radius: ${x.code.radius};
+  color: ${x.code.textColor};
+  background-color: ${x.code.backgroundColor};
+  overflow: auto;
+  white-space: pre;
+}

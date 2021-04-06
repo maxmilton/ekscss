@@ -1,34 +1,50 @@
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
-// import colors from 'colorette';
-// import { performance } from 'perf_hooks';
+import csso from 'csso';
 import type { Plugin } from 'rollup';
 
 export interface PluginOptions {
-  /** Files to exclude from processing. */
+  /**
+   * Files to exclude from processing.
+   * @default []
+   */
   exclude?: FilterPattern;
-  /** Files to include in processing. */
+  /**
+   * Files to include in processing.
+   * @default /\.x?css$/
+   */
   include?: FilterPattern;
-  whitelist?: ReadonlyArray<string | RegExp> | string | RegExp;
 }
 
-// export const defaultWhitelist = ['body', 'html'];
+// TODO: It actually makes much more sense to run csso once all the CSS files
+// are bundled into one... move csso into @ekscss/rollup-plugin-css
+//  ↳ This plugin should be about removing unused styles!
 
 export default function rollupPlugin({
   exclude = [],
-  // whitelist = defaultWhitelist,
-  // FIXME: Figure out a better way to support sapper rather than main.css
-  // include = [/\.xcss(\.js)?$/, /src\/css\/main\.css$/],
-  include = [/\.xcss?$/, /src\/css\/main\.css$/],
+  include = /\.x?css$/,
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
 
   return {
-    name: 'xcss-purge',
+    name: 'xcss-clean',
 
     transform(code, id) {
-      if (!filter(id)) return;
+      if (!filter(id)) return null;
 
-      return { code };
+      const minified = csso.minify(code, {
+        filename: id,
+        sourceMap: true,
+      });
+
+      // if (id.endsWith('web-app/src/css/index.xcss')) {
+      //   console.log('!! CLEAN ID', id);
+      //   console.log('!! CLEAN MAP', minified.map?.toJSON());
+      // }
+
+      return {
+        code: minified.css,
+        map: minified.map.toJSON(),
+      };
     },
   };
 }

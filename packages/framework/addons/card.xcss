@@ -4,28 +4,28 @@
 
 .card {
   word-wrap: break-word;
-  background-color: ${g.card.backgroundColor};
-  border-radius: ${g.radiusLarge};
-  box-shadow: ${g.card.shadow};
+  background-color: ${x.card.backgroundColor};
+  border-radius: ${x.radiusLarge};
+  box-shadow: ${x.card.shadow};
 }
 
 .card-hover {
   position: relative;
-  z-index: ${g.card.hoverZIndex};
+  z-index: ${x.card.hoverZIndex};
   display: inline-block;
   margin: 0;
   padding: 0;
-  color: ${g.card.hoverTextColor};
-  box-shadow: ${g.card.hoverShadow};
+  color: ${x.card.hoverTextColor};
+  box-shadow: ${x.card.hoverShadow};
 
   a& {
-    font-weight: ${g.textWeight};
+    font-weight: ${x.textWeight};
     text-decoration: none;
 
     /* override anchor pseudo state style as cards already have visual cues */
     &:hover,
     &:focus {
-      color: ${g.card.hoverTextColor};
+      color: ${x.card.hoverTextColor};
       text-decoration: unset;
     }
   }
@@ -34,23 +34,23 @@
    * Don't include a hover state on small screens as they typically don't have
    * mouse input and/or are low powered so animations may jank the UI.
    */
-  @media ${g.media.ns} {
+  @media ${x.media.ns} {
     &::after {
       position: absolute;
       z-index: -1;
       width: 100%;
       height: 100%;
-      border-radius: ${g.radiusLarge};
-      box-shadow: ${g.card.hoverHoverShadow};
+      border-radius: ${x.radiusLarge};
+      box-shadow: ${x.card.hoverHoverShadow};
       opacity: 0;
-      transition: opacity ${g.card.hoverAnimateSpeedOut} ease-out;
+      transition: opacity ${x.card.hoverAnimateSpeedOut} ease-out;
       content: '';
     }
 
     &:hover::after,
     &:focus::after {
       opacity: 1;
-      transition-duration: ${g.card.hoverAnimateSpeedIn};
+      transition-duration: ${x.card.hoverAnimateSpeedIn};
     }
   }
 }
@@ -61,22 +61,22 @@
 }
 
 .card-img {
-  border-top-left-radius: ${g.radiusLarge};
-  border-top-right-radius: ${g.radiusLarge};
+  border-top-left-radius: ${x.radiusLarge};
+  border-top-right-radius: ${x.radiusLarge};
 }
 
 .card-body {
   display: inline-block; /* prevents margin collapsing */
-  margin: ${g.card.bodyMargin};
+  margin: ${x.card.bodyMargin};
 }
 
 .card-button {
   margin: auto 0 0;
-  padding: ${g.button.paddingY} ${g.button.paddingX};
-  color: ${g.card.buttonTextColor};
-  font-weight: ${g.button.textWeight};
+  padding: ${x.button.paddingY} ${x.button.paddingX};
+  color: ${x.card.buttonTextColor};
+  font-weight: ${x.button.textWeight};
   text-align: center;
-  border-top: ${g.card.buttonBorder};
-  border-bottom-right-radius: ${g.radiusLarge};
-  border-bottom-left-radius: ${g.radiusLarge};
+  border-top: ${x.card.buttonBorder};
+  border-bottom-right-radius: ${x.radiusLarge};
+  border-bottom-left-radius: ${x.radiusLarge};
 }

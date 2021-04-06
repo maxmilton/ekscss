@@ -10,7 +10,7 @@ sade('xcss [src] [dest]')
   .example('--map=false styles.xcss')
   .example('-q')
   .option('-c, --config', 'Use specified config file')
-  .option('-m, --map', 'Generate a source map', true)
+  .option('-m, --map', 'Generate a source map', false)
   .option('-q, --quiet', "Don't print errors or stats")
   .action(boot)
   .parse(process.argv);
