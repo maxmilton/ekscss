@@ -16,7 +16,7 @@
     "ekscss": "*"
   },
   "dependencies": {
-    "stylis": "^4.0.9"
+    "stylis": "^4.0.10"
   },
   "devDependencies": {
     "ekscss": "link:../ekscss"
