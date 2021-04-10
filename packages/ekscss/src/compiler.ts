@@ -1,4 +1,4 @@
-/* eslint-disable id-length, no-param-reassign, no-restricted-syntax */
+/* eslint-disable no-param-reassign, no-restricted-syntax, no-underscore-dangle */
 
 import path from 'path';
 import { SourceNode } from 'source-map';
@@ -19,6 +19,7 @@ import type {
   Warning,
   XCSSCompileOptions,
   XCSSCompileResult,
+  XCSSGlobals,
 } from './types';
 
 const beforeBuildFns: BuildHookFn[] = [];
@@ -32,14 +33,14 @@ export function onAfterBuild(callback: BuildHookFn): void {
   afterBuildFns.push(callback);
 }
 
-function mergeDefaultGlobals(globals: XCSSCompileOptions['globals']) {
+function mergeDefaultGlobals(globals: Partial<XCSSGlobals>) {
   return {
     ...globals,
     fn: {
       default: applyDefault,
       entries: combineEntries,
       map: combineMap,
-      ...(globals?.fn || {}),
+      ...(globals.fn || {}),
     },
   };
 }
@@ -68,7 +69,7 @@ function compileSourceMap(
         const srcFrom = node.root?.__from || from;
         const srcPath = srcFrom ? path.relative(rootDir, srcFrom) : '<unknown>';
         nodes.push(
-          new SourceNode(node.line, node.column, srcPath, node.return),
+          new SourceNode(node.line!, node.column!, srcPath, node.return),
         );
       }
     }
@@ -114,31 +115,34 @@ export function compile(
   const middlewares = plugins.map((plugin) => {
     // load plugins which are package name strings (e.g., from JSON configs)
     if (typeof plugin === 'string') {
+      // eslint-disable-next-line
       const mod = require(plugin);
-      plugin = mod.default || mod;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      plugin = (mod.default || mod) as Middleware;
     }
-    return plugin as Middleware;
+    return plugin;
   });
   middlewares.push(stylis.stringify);
 
-  for (const fn of beforeBuildFns) {
-    fn();
-  }
+  for (const fn of beforeBuildFns) fn();
 
   const interpolated = interpolate(code)(xcssTag(), x);
   const ast = stylis.compile(interpolated);
   const output = stylis.serialize(ast, stylis.middleware(middlewares));
 
+  // @ts-expect-error - reset for next compile
   ctx.dependencies = undefined;
   ctx.from = undefined;
+  // @ts-expect-error - reset for next compile
   ctx.rawX = undefined;
+  // @ts-expect-error - reset for next compile
   ctx.rootDir = undefined;
+  // @ts-expect-error - reset for next compile
   ctx.warnings = undefined;
+  // @ts-expect-error - reset for next compile
   ctx.x = undefined;
 
-  for (const fn of afterBuildFns) {
-    fn();
-  }
+  for (const fn of afterBuildFns) fn();
 
   // TODO: Documentation:
   // - Explain our template engine and link to supporting docs:

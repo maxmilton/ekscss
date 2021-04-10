@@ -43,21 +43,22 @@ export type XCSSExpression =
   | string
   | number
   | Array<string | number>
-  | { toString(): string }
   | false
   | null
-  | undefined;
+  | undefined
+  // FIXME: Remove (too broad; undesirable matches e.g., functions) and fix
+  // types throughout the package
+  | { toString: () => string };
 
-export interface XCSSGlobals {
-  [key: string]: XCSSExpression | { [key: string]: XCSSExpression };
-
-  fn?: {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    [name: string]: Function;
-  };
+export interface XCSSNestedGlobals {
+  [key: string]: XCSSExpression | XCSSNestedGlobals;
 }
 
-export type BuildHookFn = () => void;
+export interface XCSSGlobals extends XCSSNestedGlobals {
+  fn: {
+    [name: string]: (...args: any[]) => any;
+  };
+}
 
 export interface XCSSCompileOptions {
   /** Input file path. Without this top level relative `@import`s may fail. */
@@ -70,7 +71,7 @@ export interface XCSSCompileOptions {
    * @default false
    */
   map?: boolean;
-  globals?: XCSSGlobals;
+  globals?: Partial<XCSSGlobals>;
   /**
    * XCSS plugins or package names of XCSS plugins.
    *
@@ -87,6 +88,8 @@ export interface XCSSCompileOptions {
    */
   rootDir?: string;
 }
+
+export type BuildHookFn = () => void;
 
 export type XCSSTemplateFn = (
   xcss: ReturnType<typeof xcssTag>,

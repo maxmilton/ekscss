@@ -1,13 +1,23 @@
-/* eslint-disable id-length, no-restricted-syntax */
+/* eslint-disable no-restricted-syntax */
 
-import type { Context, XCSSTemplateFn, XCSSExpression } from './types';
+import type {
+  Context,
+  XCSSExpression,
+  XCSSGlobals,
+  XCSSTemplateFn,
+} from './types';
 
 export const ctx: Context = {
+  // @ts-expect-error - initialised in compile setup phase
   dependencies: undefined,
   from: undefined,
+  // @ts-expect-error - initialised in compile setup phase
   x: undefined,
+  // @ts-expect-error - initialised in compile setup phase
   rawX: undefined,
+  // @ts-expect-error - initialised in compile setup phase
   rootDir: undefined,
+  // @ts-expect-error - initialised in compile setup phase
   warnings: undefined,
 };
 
@@ -18,7 +28,7 @@ export const ctx: Context = {
  */
 export function interpolate(template: string): XCSSTemplateFn {
   // @ts-expect-error - Function constructor is not type aware
-  // eslint-disable-next-line no-new-func, @typescript-eslint/no-implied-eval
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
   return new Function('xcss', 'x', `'use strict'; return xcss\`${template}\``);
 }
 
@@ -34,7 +44,6 @@ export function interpolate(template: string): XCSSTemplateFn {
  * direct property access for mixed object types - <https://jsben.ch/KVoXV>.
  */
 class UndefinedProperty {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   UNDEFINED = 'UNDEFINED';
 
   constructor() {
@@ -72,7 +81,7 @@ export function globalsProxy<
 
   for (const key in obj) {
     if (typeof obj[key] === 'object') {
-      // @ts-expect-error
+      // @ts-expect-error - FIXME: Account for `UndefinedProperty`
       // eslint-disable-next-line no-param-reassign
       obj[key] = globalsProxy(obj[key], `${parentPath}.${key}`);
     }
@@ -92,6 +101,7 @@ export function globalsProxy<
         return globalsProxy(new UndefinedProperty(), propPath);
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return Reflect.get(target, prop, receiver);
     },
 
@@ -112,6 +122,7 @@ export function globalsProxy<
         });
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const proxiedValue = typeof value === 'object'
         ? globalsProxy(value, `${parentPath}.${String(prop)}`)
         : value;
@@ -153,16 +164,21 @@ function assignNullish(
   for (const prop in from) to[prop] ??= from[prop];
 }
 
+function isObject(val: any): val is Record<string, unknown> {
+  return val != null && typeof val === 'object' && Array.isArray(val) === false;
+}
+
 /**
  * Recursively set default values in global properties.
  *
  * Will only set a property value if one does not already exist.
  */
-export function applyDefault(obj: Record<string, any>, x = ctx.rawX): void {
+export function applyDefault(obj: Partial<XCSSGlobals>, x = ctx.rawX): void {
   assignNullish(x, obj);
 
   for (const key in obj) {
-    if (typeof obj[key] === 'object') {
+    if (isObject(obj[key])) {
+      // @ts-expect-error - FIXME: Type guard
       applyDefault(obj[key], x[key]);
     }
   }
@@ -211,6 +227,7 @@ export const xcssTag = () => function xcss(
 
     // Reduce XCSS function expressions to their final value
     while (typeof val === 'function') {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       val = val(ctx.x);
     }
 
@@ -230,6 +247,7 @@ number, or falsely but got ${Object.prototype.toString.call(val)}`,
     }
 
     return (
+    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
       code + (val || (val == null || val === false ? '' : val)) + current
     );
   });
