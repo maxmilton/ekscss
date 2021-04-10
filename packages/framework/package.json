@@ -14,7 +14,7 @@
     "prebuild": "rm -rf dist; mkdir dist"
   },
   "peerDependencies": {
-    "ekscss": "*"
+    "ekscss": "^0.0.1"
   },
   "dependencies": {
     "@ekscss/plugin-apply": "^0.0.0",

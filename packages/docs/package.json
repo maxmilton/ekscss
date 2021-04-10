@@ -15,13 +15,12 @@
     "src"
   ],
   "dependencies": {
-    "marked": "2.0.1",
+    "marked": "2.0.2",
     "stage0": "^0.0.25"
   },
   "devDependencies": {
     "@ekscss/framework": "link:../framework",
     "@types/marked": "2.0.1",
-    "esbuild": "0.11.6",
     "esbuild-plugin-ekscss": "link:../esbuild-plugin-ekscss"
   }
 }

@@ -10,8 +10,8 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "*",
-    "svelte": "*"
+    "ekscss": "^0.0.1",
+    "svelte": "^3.0.0"
   },
   "dependencies": {
     "colorette": "^1.2.2"

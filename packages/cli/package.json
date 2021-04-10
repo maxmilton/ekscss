@@ -15,7 +15,7 @@
     "node": ">= 10"
   },
   "peerDependencies": {
-    "ekscss": "*"
+    "ekscss": "^0.0.1"
   },
   "dependencies": {
     "colorette": "^1.2.2",
