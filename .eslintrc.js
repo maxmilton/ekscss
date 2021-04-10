@@ -2,8 +2,10 @@
 
 const OFF = 0;
 
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
+  reportUnusedDisableDirectives: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
