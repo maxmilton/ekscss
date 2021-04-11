@@ -1,11 +1,9 @@
-/* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies */
 
-'use strict'; // eslint-disable-line
-
-const { xcss } = require('esbuild-plugin-ekscss');
-const esbuild = require('esbuild');
-const fs = require('fs');
+import esbuild from 'esbuild';
+import { xcss } from 'esbuild-plugin-ekscss';
+import fs from 'fs';
+import path from 'path';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -16,34 +14,36 @@ function handleErr(err) {
 }
 
 /** @param {esbuild.BuildResult} buildResult */
-// this approach is flaky and could cause issues later... but it works!
 function compressTemplateStrings(buildResult) {
   if (!buildResult.outputFiles) return;
 
-  const outputMap = buildResult.outputFiles[0];
-  const outputJs = buildResult.outputFiles[1];
+  buildResult.outputFiles.forEach((file) => {
+    switch (path.extname(file.path)) {
+      case '.map':
+      case '.css':
+        fs.writeFile(file.path, file.text, 'utf8', handleErr);
+        break;
 
-  const filePath = outputJs.path;
-  // FIXME: Direct mangling breaks source maps
-  const code = outputJs.text
-    // reduce multiple whitespace down to a single space
-    .replace(/\s{2,}/gm, ' ')
-    // convert remaining whitespace characters into a space
-    .replace(/\s/gm, ' ')
-    // remove whitespace after and before tags
-    .replace(/> /g, '>')
-    .replace(/ </g, '<')
-    // remove whitespace at start and end of template string
-    .replace(/` </g, '`<')
-    .replace(/> `/g, '>`');
+      case '.js':
+        // FIXME: Direct mangling breaks source maps
+        // TODO: Would be nice to have an AST and only mangle template literal strings
+        const code = file.text
+          // reduce whitespace to a single space
+          .replace(/\s+/gm, ' ')
+          // remove space after and before tags
+          .replace(/> /g, '>')
+          .replace(/ </g, '<')
+          // remove space at start and end of template string
+          .replace(/` </g, '`<')
+          .replace(/> `/g, '>`');
 
-  fs.writeFile(filePath, code, 'utf8', handleErr);
-  fs.writeFile(outputMap.path, outputMap.text, 'utf8', handleErr);
+        fs.writeFile(file.path, code, 'utf8', handleErr);
+        break;
 
-  const outputCss = buildResult.outputFiles[2];
-  if (outputCss) {
-    fs.writeFile(outputCss.path, outputCss.text, 'utf8', handleErr);
-  }
+      default:
+        throw new TypeError(`Unsupported file extension: ${file.path}`);
+    }
+  });
 }
 
 // Main web app
@@ -77,7 +77,7 @@ esbuild
     define: {
       'process.env.NODE_ENV': JSON.stringify(mode),
     },
-    // plugins: [xcss()],
+    plugins: [xcss()],
     banner: { js: '"use strict";' },
     bundle: true,
     minify: !dev,

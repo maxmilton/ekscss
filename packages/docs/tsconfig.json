@@ -4,5 +4,5 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "exclude": ["dist", "build.js", "xcss.config.js"]
+  "exclude": ["dist", "build.mjs", "xcss.config.js"]
 }
