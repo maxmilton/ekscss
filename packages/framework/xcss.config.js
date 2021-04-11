@@ -1,3 +1,13 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck 😢
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+// FIXME: ekscss compiler issues which need the eslint disable comments above
+
 'use strict'; // eslint-disable-line
 
 const { applyPlugin } = require('@ekscss/plugin-apply');
@@ -15,7 +25,6 @@ const xcss = xcssTag();
 /** @type {import('@ekscss/cli').XCSSConfig} */
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
-  // plugins: ['@ekscss/plugin-import', '@ekscss/plugin-apply', '@ekscss/plugin-prefix'],
   // header: `@charset 'UTF-8';/*!
   //   header: `/*!
   // * XCSS Framework - https://github.com/MaxMilton/ekscss
@@ -189,7 +198,6 @@ module.exports = {
     gutterCol: '0.5em',
     gutterRowLarge: '1em',
     gutterColLarge: '1em',
-    gutterCompact: (x) => `${x.gutterRow / 4} 0`,
 
     radius: '4px',
     radiusLarge: '5px',

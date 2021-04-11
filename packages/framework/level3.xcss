@@ -5,6 +5,9 @@
 * MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
 */
 
+// FIXME: Add clear notice about our recommendation NOT to use level 3 directly,
+// but rather level 2 + the specific addons you need for your project
+
 // Level 1 - Core
 @import './level1.xcss';
 
@@ -12,7 +15,6 @@
 @import './level2.xcss';
 
 // Level 3 - Addons
-
 @import './addons/type-hyphens.xcss';
 @import './addons/pretty.xcss';
 @import './addons/tag.xcss';
