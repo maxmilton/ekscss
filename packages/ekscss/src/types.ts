@@ -46,19 +46,21 @@ export type XCSSExpression =
   | false
   | null
   | undefined
+  | void
   // FIXME: Remove (too broad; undesirable matches e.g., functions) and fix
   // types throughout the package
   | { toString: () => string };
 
-export interface XCSSNestedGlobals {
-  [key: string]: XCSSExpression | XCSSNestedGlobals;
-}
+export type ExpressionOrNested =
+  | XCSSExpression
+  | { [key: string]: ExpressionOrNested };
 
-export interface XCSSGlobals extends XCSSNestedGlobals {
-  fn: {
-    [name: string]: (...args: any[]) => any;
-  };
-}
+export type XCSSGlobals = {
+  [key: string]: ExpressionOrNested;
+} & {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  fn: Record<string, Function>;
+};
 
 export interface XCSSCompileOptions {
   /** Input file path. Without this top level relative `@import`s may fail. */
