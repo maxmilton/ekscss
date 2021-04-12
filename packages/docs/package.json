@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@ekscss/framework": "link:../framework",
-    "@types/marked": "2.0.1",
+    "@types/marked": "2.0.2",
     "esbuild-plugin-ekscss": "link:../esbuild-plugin-ekscss"
   }
 }
