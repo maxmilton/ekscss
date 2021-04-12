@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@ekscss/cli": "link:../cli",
-    "@types/color": "^3.0.1",
+    "@types/color": "3.0.1",
     "ekscss": "link:../ekscss"
   }
 }
