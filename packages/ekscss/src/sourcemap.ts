@@ -69,6 +69,7 @@ export function compileSourceMap(
         const sourceMapRef = extractSourceMapRef(node.__ast);
 
         if (sourceMapRef) {
+          // eslint-disable-next-line no-console
           console.debug(
             'XXX: ekscss does not yet apply input source maps; URL:',
             sourceMapRef,

@@ -8,10 +8,15 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch --preserveWatchOutput",
+    "build": "NODE_ENV=production node build.mjs",
+    "dev": "NODE_ENV=development node build.mjs",
+    "postbuild": "tsc --emitDeclarationOnly",
     "prebuild": "rm -rf dist"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "@types/stylis": "^4.0.0",
     "source-map": "^0.7.3",

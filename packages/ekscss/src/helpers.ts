@@ -144,7 +144,7 @@ function assignNullish(
   for (const prop in from) to[prop] ??= from[prop];
 }
 
-function isObject(val: any): val is Record<string, unknown> {
+function isObject(val: unknown): val is Record<string, unknown> {
   return val != null && typeof val === 'object' && Array.isArray(val) === false;
 }
 
