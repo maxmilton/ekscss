@@ -26,7 +26,7 @@ const xcss = xcssTag();
 /** @type {import('@ekscss/cli').XCSSConfig} */
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
-  header: `/*!
+  banner: `/*!
   * XCSS Framework - https://github.com/MaxMilton/ekscss
   * (c) 2021 Max Milton
   * MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE

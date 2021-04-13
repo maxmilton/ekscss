@@ -95,15 +95,15 @@ module.exports = async (src, dest, opts) => {
     }
   }
 
-  const css = `${config.header ? `${config.header}\n` : ''}${compiled.css}`;
+  const css = `${config.banner ? `${config.banner}\n` : ''}${compiled.css}`;
   /** @type {import('source-map').SourceMapGenerator | undefined | string} */
   let sourcemap = compiled.map;
 
   if (sourcemap) {
-    if (config.header) {
-      const headerLineCount = config.header.split('\n').length;
+    if (config.banner) {
+      const bannerLineCount = config.banner.split('\n').length;
       const map = sourcemap.toJSON();
-      map.mappings = `${';'.repeat(headerLineCount)}${map.mappings}`;
+      map.mappings = `${';'.repeat(bannerLineCount)}${map.mappings}`;
       sourcemap = JSON.stringify(map);
     }
 
