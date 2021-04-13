@@ -15,7 +15,7 @@
     "node": ">= 10"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.1"
+    "ekscss": "^0.0.0"
   },
   "dependencies": {
     "colorette": "^1.2.2",
@@ -24,6 +24,6 @@
   },
   "devDependencies": {
     "@types/sade": "1.7.2",
-    "ekscss": "link:../ekscss"
+    "ekscss": "workspace:*"
   }
 }
