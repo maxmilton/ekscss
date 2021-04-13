@@ -15,12 +15,13 @@
     "src"
   ],
   "dependencies": {
-    "marked": "^2.0.2",
+    "marked": "^2.0.3",
     "stage0": "^0.0.25"
   },
   "devDependencies": {
     "@ekscss/framework": "link:../framework",
-    "@types/marked": "2.0.1",
+    "@types/marked": "2.0.2",
+    "esbuild-minify-templates": "0.0.3",
     "esbuild-plugin-ekscss": "link:../esbuild-plugin-ekscss"
   }
 }

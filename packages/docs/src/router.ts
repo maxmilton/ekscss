@@ -111,7 +111,7 @@ async function getContent(path: string): Promise<string> {
 
     content = `
 <div class="alert alert-error">
-  <strong>ERROR:</strong>&nbsp;An error occured when loading content file ${path}
+  <strong>ERROR:</strong> An error occured when loading content file ${path}
   <br/>${err.code || '500'} ${err.message || 'Unknown error'}
 </div>
     `;

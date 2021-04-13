@@ -16,10 +16,8 @@ const view = h`
 `;
 
 export function Header(): HeaderComponent {
-  const root = view;
-  // const root = view.cloneNode(true) as HeaderComponent;
+  const root = view as HeaderComponent;
   const { name } = view.collect(root) as RefNodes;
-
   const config = getConfig();
 
   name.textContent = config.title;
