@@ -8,12 +8,14 @@ import { minifyTemplates, writeFiles } from 'esbuild-minify-templates';
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 
+const target = ['chrome78', 'firefox77', 'safari11', 'edge44'];
+
 // Main web app
 esbuild
   .build({
     entryPoints: ['src/index.ts'],
     outfile: 'dist/index.js',
-    // target: ['chrome88'],
+    target,
     define: {
       'process.env.NODE_ENV': JSON.stringify(mode),
     },
@@ -41,7 +43,7 @@ plugins.forEach((pluginName) => {
     .build({
       entryPoints: [`src/plugins/${pluginName}.ts`],
       outfile: `dist/plugins/${pluginName}.js`,
-      // target: ['chrome88'],
+      target,
       define: {
         'process.env.NODE_ENV': JSON.stringify(mode),
       },
