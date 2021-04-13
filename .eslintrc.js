@@ -24,4 +24,12 @@ module.exports = {
   rules: {
     'import/prefer-default-export': OFF,
   },
+  overrides: [
+    {
+      files: ['.eslintrc.js'],
+      parserOptions: {
+        createDefaultProgram: true,
+      },
+    },
+  ],
 };
