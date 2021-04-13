@@ -8,6 +8,11 @@ const JoyCon = require('joycon').default;
 const path = require('path');
 const { performance } = require('perf_hooks');
 
+/** @param {Error?} err */
+function handleErr(err) {
+  if (err) throw err;
+}
+
 const joycon = new JoyCon({
   files: [
     '.xcssrc.js',
@@ -72,6 +77,8 @@ module.exports = async (src, dest, opts) => {
   const t1 = performance.now();
 
   for (const warning of compiled.warnings) {
+    process.exitCode = 1;
+
     if (!opts.quiet) {
       console.error(colors.red('Error:'), warning.message || warning);
 
@@ -86,7 +93,6 @@ module.exports = async (src, dest, opts) => {
         );
       }
     }
-    process.exitCode = 1;
   }
 
   const css = `${config.header ? `${config.header}\n` : ''}${compiled.css}`;
@@ -96,19 +102,20 @@ module.exports = async (src, dest, opts) => {
   if (sourcemap) {
     if (config.header) {
       const headerLineCount = config.header.split('\n').length;
-      const mapData = sourcemap.toJSON();
-      mapData.mappings = `${';'.repeat(headerLineCount)}${mapData.mappings}`;
-      sourcemap = JSON.stringify(mapData);
+      const map = sourcemap.toJSON();
+      map.mappings = `${';'.repeat(headerLineCount)}${map.mappings}`;
+      sourcemap = JSON.stringify(map);
     }
 
-    fs.writeFileSync(
+    fs.writeFile(
       destFile,
       `${css}\n/*# sourceMappingURL=${path.basename(destFile)}.map */`,
       'utf8',
+      handleErr,
     );
-    fs.writeFileSync(`${destFile}.map`, sourcemap.toString(), 'utf8');
+    fs.writeFile(`${destFile}.map`, sourcemap.toString(), 'utf8', handleErr);
   } else {
-    fs.writeFileSync(destFile, css, 'utf8');
+    fs.writeFile(destFile, css, 'utf8', handleErr);
   }
 
   if (!opts.quiet) {
