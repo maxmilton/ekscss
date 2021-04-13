@@ -34,16 +34,20 @@ export function toName(path: string): string {
 /**
  * Delay running a function until X ms have passed since its last call.
  */
-export function debounce<T extends Function>(fn: T, delay = 260): T {
+export function debounce<T extends (...args: any[]) => any>(
+  fn: T,
+  delay = 260): T {
   let timer: number;
 
-  // @ts-expect-error
+  // @ts-expect-error - Transparent wraper will not change input function type
   return function (this: any, ...args) {
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-this-alias, @typescript-eslint/no-unsafe-assignment
     const context = this;
 
-    clearTimeout(timer);
+    window.clearTimeout(timer);
 
-    timer = setTimeout(() => {
+    timer = window.setTimeout(() => {
       fn.apply(context, args);
     }, delay);
   };

@@ -10,6 +10,7 @@
     "prebuild": "rm -rf dist"
   },
   "dependencies": {
+    "@rollup/pluginutils": "^4.1.0",
     "csso": "^4.2.0"
   },
   "devDependencies": {

@@ -118,6 +118,7 @@ export default function rollupPlugin({
     watchChange(id) {
       if (id === configPath) {
         // delete require.cache[configPath];
+        // @ts-expect-error - Clearing data between builds
         configData = undefined;
         configPath = undefined;
         joycon.clearCache();

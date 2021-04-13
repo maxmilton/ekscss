@@ -1,6 +1,6 @@
 import { setupSyntheticEvent } from 'stage0/syntheticEvents';
 import marked from 'marked';
-import type { Routes } from './types';
+import type { Route, Routes } from './types';
 import { getConfig, toName } from './utils';
 
 interface RouteEntry {
@@ -10,7 +10,7 @@ interface RouteEntry {
 
 export const routeMap = new Map<string, RouteEntry>();
 
-export function goto(url: string): void {
+export function routeTo(url: string): void {
   window.location.hash = url;
 }
 
@@ -27,32 +27,30 @@ function handleClick(event: MouseEvent): void {
     return;
   }
 
-  const link = event.target.closest('a');
+  const link = (event.target as HTMLElement).closest('a');
   const href = link && link.getAttribute('href');
 
   if (
     !href
-    || link.target
-    || link.host !== window.location.host
+    || link!.target
+    || link!.host !== window.location.host
     || href[0] === '#'
   ) {
     return;
   }
 
-  // if (href[0] !== '/' || rgx.test(href)) {
-  //   event.preventDefault();
-  //   goto(href);
-  // }
   event.preventDefault();
-  goto(href);
+  routeTo(href);
 }
 
-const joinPaths = (parent: string, route: string) => `#/${parent ? `${parent}/` : ''}${route}`;
+function joinPaths(parent: string, route: string): string {
+  return `#/${parent ? `${parent}/` : ''}${route}`;
+}
 
 function normaliseRoutes(routes: Routes, parentPath = '') {
   for (const route of routes) {
-    const newRoute: RouteEntry = {};
-    let path: string;
+    const newRoute: Partial<RouteEntry> = {};
+    let path: string | undefined;
 
     if (typeof route === 'string') {
       path = joinPaths(parentPath, route);
@@ -75,11 +73,11 @@ function normaliseRoutes(routes: Routes, parentPath = '') {
       }
     }
 
-    routeMap.set(path, newRoute);
+    routeMap.set(path!, newRoute as RouteEntry);
 
     // process children after adding parent section to routes
     if (newRoute.section) {
-      normaliseRoutes(route.children, route.path);
+      normaliseRoutes((route as Route).children!, (route as Route).path);
     }
   }
 }
@@ -92,6 +90,10 @@ export function setupRouter(): void {
   normaliseRoutes(config.routes);
 }
 
+interface CodedError extends Error {
+  code?: number;
+}
+
 async function getContent(path: string): Promise<string> {
   let content;
 
@@ -99,7 +101,7 @@ async function getContent(path: string): Promise<string> {
     const res = await fetch(path);
 
     if (!res.ok) {
-      const error = new Error(res.statusText);
+      const error: CodedError = new Error(res.statusText);
       error.code = res.status;
       throw error;
     }
@@ -109,12 +111,15 @@ async function getContent(path: string): Promise<string> {
     // eslint-disable-next-line no-console
     console.error(err);
 
+    /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+    /* eslint-disable @typescript-eslint/restrict-template-expressions */
     content = `
 <div class="alert alert-error">
   <strong>ERROR:</strong> An error occured when loading content file ${path}
   <br/>${err.code || '500'} ${err.message || 'Unknown error'}
 </div>
     `;
+    /* eslint-enable */
   }
 
   return content;
@@ -134,19 +139,21 @@ export function Router(): RouterComponent {
 
     if (!path || path === '/') {
       // first route
-      goto(routeMap.keys().next().value);
+      routeTo(routeMap.keys().next().value);
       return;
     }
 
     // eslint-disable-next-line no-void
     void getContent(config.root + path).then((code) => {
-      const route = routeMap.get(`#${path}`);
+      let route = routeMap.get(`#${path}`);
+
+      // TODO: Handle markdown rendering errors
       const html = marked(code, {
         baseUrl: '#/',
       });
 
-      // TODO: Handle missing route
-      // TODO: Handle markdown rendering errors
+      // TODO: Handle missing route properly
+      route ??= { name: '' };
 
       root.innerHTML = html;
       document.title = `${route.name} | ${config.title}`;

@@ -4,7 +4,7 @@ import { createFilter, FilterPattern } from '@rollup/pluginutils';
 import csso from 'csso';
 import path from 'path';
 import type { Plugin } from 'rollup';
-import { SourceMapConsumer, SourceNode } from 'source-map';
+import { SourceMapConsumer, SourceNode, SourceMapGenerator } from 'source-map';
 
 export interface PluginOptions {
   /**
@@ -93,7 +93,7 @@ export default function rollupPlugin({
 
       const assetName = inferredName.replace(path.extname(inferredName), '');
       const combinedCss = `${css}`;
-      let minifiedMap;
+      let minifiedMap: SourceMapGenerator | null | undefined;
 
       if (minify) {
         const minified = csso.minify(css, {
@@ -102,13 +102,14 @@ export default function rollupPlugin({
         });
 
         css = minified.css;
-        minifiedMap = minified.map;
+        minifiedMap = minified.map as SourceMapGenerator;
       }
 
       if (outputOpts.sourcemap) {
         const mapNodes = [];
 
         for (const id of sourcemaps.keys()) {
+          // eslint-disable-next-line no-await-in-loop
           const consumer = await new SourceMapConsumer(sourcemaps.get(id));
           const node = SourceNode.fromStringWithSourceMap(
             styles.get(id),
@@ -119,7 +120,10 @@ export default function rollupPlugin({
 
         if (minifiedMap) {
           mapNodes.push(
-            SourceNode.fromStringWithSourceMap(combinedCss, minifiedMap),
+            SourceNode.fromStringWithSourceMap(
+              combinedCss,
+              await new SourceMapConsumer(minifiedMap.toJSON()),
+            ),
           );
         }
 

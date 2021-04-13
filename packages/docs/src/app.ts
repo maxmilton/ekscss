@@ -10,8 +10,8 @@ export function render(): void {
   const wrapper = document.createElement('div');
   const main = document.createElement('main');
 
-  wrapper.classList = 'df h100';
-  main.classList = 'docs-main';
+  wrapper.className = 'df h100';
+  main.className = 'docs-main';
 
   append(Header());
   append(Sidebar(), wrapper);

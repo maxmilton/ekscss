@@ -43,7 +43,9 @@ export default function rollupPlugin({
 
       return {
         code: minified.css,
-        map: minified.map.toJSON(),
+        // @ts-expect-error - Poorly typed upstream package
+        // eslint-disable-next-line
+        map: minified.map?.toJSON(),
       };
     },
   };

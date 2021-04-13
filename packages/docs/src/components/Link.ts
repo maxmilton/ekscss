@@ -11,7 +11,8 @@ export type LinkComponent = HTMLAnchorElement;
 //   title: Text;
 // }
 
-// TODO: If we never add more elements (e.g., for accordion menu items) use a simple document.createElement
+// TODO: If we never add more elements (e.g., for accordion menu items) use a
+// simple document.createElement
 // const view = h`
 //   <a>#title</a>
 // `;

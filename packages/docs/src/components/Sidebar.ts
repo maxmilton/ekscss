@@ -2,7 +2,21 @@ import h, { HNode } from 'stage0';
 // import reuseNodes from 'stage0/reuseNodes';
 import { Link } from './Link';
 import { routeMap } from '../router';
-import { getConfig } from '../utils';
+// import { getConfig } from '../utils';
+
+type SectionComponent = HTMLHeadingElement;
+
+const sectionView = document.createElement('h2');
+
+// TODO: Move somewhere better
+function Section(title: string): SectionComponent {
+  const root = sectionView.cloneNode(true) as SectionComponent;
+
+  root.className = 'docs-menu-section';
+  root.textContent = title;
+
+  return root;
+}
 
 // TODO: Currently active menu item should have extra CSS class
 
@@ -34,21 +48,6 @@ export function Sidebar(): SidebarComponent {
 
     list.appendChild(menuitem);
   }
-
-  return root;
-}
-
-// TODO: Move somewhere better
-
-type SectionComponent = HTMLHeadingElement;
-
-const sectionView = document.createElement('h2');
-
-function Section(title: string): SectionComponent {
-  const root = sectionView.cloneNode(true) as SectionComponent;
-
-  root.className = 'docs-menu-section';
-  root.textContent = title;
 
   return root;
 }

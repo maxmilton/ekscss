@@ -41,6 +41,7 @@ module.exports = async (src, dest, opts) => {
   }
 
   /** @type {import('./types').XCSSConfig} */
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const config = result.data || {};
   const rootDir = config.rootDir || process.cwd();
   const srcFiles = src ? [src] : ['index.xcss', 'src/index.xcss'];
