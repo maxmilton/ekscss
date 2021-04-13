@@ -132,26 +132,6 @@ export function globalsProxy<
   });
 }
 
-// /**
-//  * Assign properties from an object to another but only if those properties are
-//  * nullish, mutating the `to` object in place. Also works on globalsProxy(g).
-//  */
-// export function assignNullish(
-//   to: Record<string, unknown>,
-//   from: Record<string, unknown>,
-// ): void {
-//   for (const prop in from) {
-//     // Workaround for globalsProxy()
-//     if (to[prop] instanceof UndefinedProxy) {
-//       // eslint-disable-next-line no-param-reassign
-//       to[prop] = from[prop];
-//     } else {
-//       // eslint-disable-next-line no-param-reassign
-//       to[prop] ??= from[prop];
-//     }
-//   }
-// }
-
 /**
  * Assign properties from an object to another but only if those properties are
  * nullish. Mutates the `to` object in place.
@@ -173,13 +153,24 @@ function isObject(val: any): val is Record<string, unknown> {
  *
  * Will only set a property value if one does not already exist.
  */
-export function applyDefault(obj: Partial<XCSSGlobals>, x = ctx.rawX): void {
-  assignNullish(x, obj);
+export function applyDefault(globals: Partial<XCSSGlobals>): void;
+export function applyDefault(
+  globals: Partial<XCSSGlobals>,
+  x: Partial<XCSSGlobals>,
+): void;
+export function applyDefault(
+  globals: Partial<XCSSGlobals>,
+  x: Partial<XCSSGlobals> = ctx.rawX,
+): void {
+  assignNullish(x, globals);
 
-  for (const key in obj) {
-    if (isObject(obj[key])) {
-      // @ts-expect-error - FIXME: Type guard
-      applyDefault(obj[key], x[key]);
+  // eslint-disable-next-line guard-for-in
+  for (const key in globals) {
+    const from = globals[key];
+    const to = x[key];
+
+    if (isObject(from) && isObject(to)) {
+      applyDefault(from, to);
     }
   }
 }

@@ -43,7 +43,7 @@ function extractSourceMapRef(ast: Element[]): string | null {
     // guard unnecessarily (even though node.type=='comm' will always have
     // node.children as a string)
     && typeof lastNode.children === 'string'
-    && lastNode.children?.indexOf('# sourceMappingURL=') === 0
+    && lastNode.children.indexOf('# sourceMappingURL=') === 0
   ) {
     // 19 = '# sourceMappingURL='.length
     return lastNode.children.slice(19).trim();
