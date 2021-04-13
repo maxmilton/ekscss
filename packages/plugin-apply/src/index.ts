@@ -54,6 +54,7 @@ export const applyPlugin: Middleware = (
   }
 
   if (element.type === stylis.DECLARATION && element.props === '#apply') {
+    // @ts-expect-error - stylis types don't differentiate by node.type
     const targets = stylis.tokenize(element.children);
     const decls: Element[] = [];
 
@@ -63,6 +64,7 @@ export const applyPlugin: Middleware = (
 
         if (refs) {
           for (const ref of refs) {
+            // @ts-expect-error - stylis types don't differentiate by node.type
             decls.push(...ref.children);
           }
         } else {
