@@ -1,64 +1,83 @@
-import * as colors from 'colorette';
-// import { performance } from 'perf_hooks';
-import { compile, XCSSCompileOptions, XCSSGlobals } from 'ekscss';
-import type { Preprocessor, PreprocessorGroup } from './types';
+/* eslint-disable no-console */
 
-interface PluginOptions extends Omit<XCSSCompileOptions, 'from' | 'globals'> {
-  /**
-   * An XCSS globals object or the full path to a file with a default export
-   * containing the globals.
-   */
-  globals?: XCSSGlobals | string;
+import * as colors from 'colorette';
+import { compile, XCSSCompileOptions } from 'ekscss';
+import JoyCon from 'joycon';
+import type { Preprocessor, PreprocessorGroup } from './types';
+// import type { Preprocessor, PreprocessorGroup } from 'svelte/types/compiler/preprocess';
+
+export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
+
+interface PluginOptions {
+  /** An XCSS config object or the path to a config file. */
+  config?: XCSSConfig | string;
 }
 
-export const style = ({
-  globals,
-  plugins,
-  rootDir,
-}: PluginOptions = {}): Preprocessor => {
-  let xcssGlobals = globals;
+export const style = ({ config }: PluginOptions = {}): Preprocessor => {
+  const joycon = new JoyCon({
+    files: [
+      '.xcssrc.js',
+      '.xcssrc.json',
+      'xcss.config.js',
+      'xcss.config.json',
+      'package.json',
+    ],
+    packageKey: 'xcss',
+  });
+  let configData: XCSSConfig;
+  let configPath: string | undefined;
 
-  if (typeof xcssGlobals === 'string') {
-    const mod = require(xcssGlobals);
-    xcssGlobals = (mod.default || mod) as XCSSGlobals;
-  }
+  return async ({ attributes, content, filename }) => {
+    if (attributes.lang !== 'xcss') return null;
 
-  return ({ attributes, content, filename }) => {
-    if (attributes.lang !== 'xcss') return;
+    // XXX: Svelte has no way to identify when the config was changed when
+    // watching during dev mode, so to update the config the whole svelte
+    // processes must be manually restarted
 
-    // console.log('[XCSS|SVELTE] ID', colors.cyan(filename || ''));
-    // console.log('[XCSS|SVELTE] CODE', content);
+    if (!config || typeof config === 'string') {
+      // load user defined config or fall back to default file locations
+      const result = await joycon.load(config ? [config] : undefined);
+      configData = (result.data as XCSSConfig) || {};
+      configPath = result.path;
 
-    // const t0 = performance.now();
-    const result = compile(content, {
-      from: filename,
-      // @ts-expect-error - FIXME: TS doesn't detect string xcssGlobals was reassigned
-      globals: xcssGlobals,
-      plugins,
-      rootDir,
-    });
-    // const t1 = performance.now();
-    // console.log(
-    //   `[XCSS|SVELTE] compile ${colors.blue(
-    //     // @ts-expect-error
-    //     Number.parseFloat(t1 - t0).toPrecision(2),
-    //   )}ms`,
-    // );
-
-    for (const warning of result.warnings) {
-      console.warn(colors.bold(colors.yellow('WARNING:')), warning.message);
-      // console.warn(warning.message);
-      // console.warn(Object.assign(new Error(warning.message), warning));
-      // console.warn(Object.assign(new Warning(warning.message), warning));
+      if (!result.path) {
+        console.warn(colors.yellow('Warning:'), 'Unable to locate XCSS config');
+      }
+    } else {
+      configData = config || {};
     }
 
-    // console.log('[XCSS|SVELTE] CSS', result.css);
-    // console.log('[XCSS|SVELTE] dependencies', result.dependencies);
+    const compiled = compile(content, {
+      from: filename,
+      globals: configData.globals,
+      map: configData.map,
+      plugins: configData.plugins,
+      rootDir: configData.rootDir,
+    });
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const warning of compiled.warnings) {
+      console.warn(colors.yellow('Warning:'), warning.message || warning);
+
+      if (warning.file) {
+        console.log(
+          '  at',
+          colors.dim(
+            [warning.file, warning.line, warning.column]
+              .filter(Boolean)
+              .join(':'),
+          ),
+        );
+      }
+    }
+
+    const { dependencies } = compiled;
+    if (configPath) dependencies.push(configPath);
 
     return {
-      code: result.css,
-      dependencies: result.dependencies,
-      // map: result.map,
+      code: compiled.css,
+      dependencies,
+      map: compiled.map?.toJSON(),
     };
   };
 };

@@ -14,7 +14,8 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "colorette": "^1.2.2"
+    "colorette": "^1.2.2",
+    "joycon": "^3.0.1"
   },
   "devDependencies": {
     "svelte": "3.37.0"
