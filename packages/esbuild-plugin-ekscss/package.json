@@ -5,15 +5,19 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "yarn prebuild && tsc",
     "dev": "tsc --watch --preserveWatchOutput",
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.1",
+    "ekscss": "^0.0.0",
     "esbuild": "^0.11.0"
   },
   "dependencies": {
     "joycon": "^3.0.1"
+  },
+  "devDependencies": {
+    "ekscss": "workspace:*",
+    "typescript": "4.2.4"
   }
 }

@@ -2,26 +2,23 @@
   "name": "@ekscss/monorepo",
   "private": true,
   "scripts": {
-    "build": "yarn workspaces run build",
+    "build": "yarn build --verbose",
+    "rebuild": "yarn build --verbose --ignore-cache",
     "dev:docs": "sirv docs --port 5000 --dev --cors",
-    "dev:docs__": "sirv --port 5000 --dev --cors",
+    "dev:docs__": "sirv . --port 5000 --dev --cors",
     "lint": "yarn lint:css && yarn lint:js && yarn lint:ts",
     "lint:css": "echo 'TODO: CSS linting'; exit 0",
     "lint:js": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.jsx,.mjs,.cjs .",
     "lint:ts": "tsc --noEmit",
     "test": "echo 'TODO: Testing'; exit 0"
   },
-  "workspaces": {
-    "packages": [
-      "packages/ekscss",
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@types/node": "14.14.37",
     "@typescript-eslint/eslint-plugin": "4.22.0",
     "@typescript-eslint/parser": "4.22.0",
-    "esbuild": "0.11.9",
     "eslint": "7.24.0",
     "eslint-config-airbnb-typescript": "12.3.1",
     "eslint-plugin-import": "2.22.1",

@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "yarn prebuild && tsc",
     "dev": "tsc --watch --preserveWatchOutput",
     "prebuild": "rm -rf dist"
   },
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/csso": "3.5.1",
-    "rollup": "2.45.2"
+    "rollup": "2.45.2",
+    "typescript": "4.2.4"
   }
 }
