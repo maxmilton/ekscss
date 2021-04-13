@@ -6,7 +6,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-// FIXME: ekscss compiler issues which need the eslint disable comments above
+// FIXME: ekscss compiler types issues which need the eslint disable comments above
 
 'use strict'; // eslint-disable-line
 
@@ -19,19 +19,18 @@ const { xcssTag } = require('ekscss');
 // FIXME: Remove if unused + remove framework/mixins/*
 const { triangle } = require('./mixins/triangle');
 
-// TODO: Document use of xcss tagged template literals in special cases in XCSS configs or plugins
+// TODO: Document the use of xcss tagged template literals for special cases in
+// XCSS configs or plugins
 const xcss = xcssTag();
 
 /** @type {import('@ekscss/cli').XCSSConfig} */
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
-  // header: `@charset 'UTF-8';/*!
-  //   header: `/*!
-  // * XCSS Framework - https://github.com/MaxMilton/ekscss
-  // * (c) 2021 Max Milton
-  // * MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
-  // */
-  // `,
+  header: `/*!
+  * XCSS Framework - https://github.com/MaxMilton/ekscss
+  * (c) 2021 Max Milton
+  * MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
+  */`,
   globals: {
     fn: {
       /**
