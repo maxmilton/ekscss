@@ -79,7 +79,7 @@ export function compile(
       } catch (err) {
         warnings.push({
           code: 'plugin-load-error',
-          message: `Unable to load plugin "${plugin.toString()}"; ${(err as Error).toString()}`,
+          message: `Failed to load plugin "${plugin.toString()}"; ${(err as Error).toString()}`,
           file: __filename,
         });
         plugin = noop;
@@ -96,16 +96,8 @@ export function compile(
   const output = stylis.serialize(ast, stylis.middleware(middlewares));
 
   // @ts-expect-error - reset for next compile
-  ctx.dependencies = undefined;
-  ctx.from = undefined;
-  // @ts-expect-error - reset for next compile
-  ctx.rawX = undefined;
-  // @ts-expect-error - reset for next compile
-  ctx.rootDir = undefined;
-  // @ts-expect-error - reset for next compile
-  ctx.warnings = undefined;
-  // @ts-expect-error - reset for next compile
-  ctx.x = undefined;
+  // eslint-disable-next-line no-multi-assign
+  ctx.dependencies = ctx.from = ctx.rawX = ctx.rootDir = ctx.warnings = ctx.x = undefined;
 
   for (const fn of afterBuildFns) fn();
 

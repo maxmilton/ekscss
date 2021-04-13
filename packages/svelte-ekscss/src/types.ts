@@ -8,12 +8,12 @@ export interface Processed {
   toString?: () => string;
 }
 
-export declare type MarkupPreprocessor = (options: {
+export type MarkupPreprocessor = (options: {
   content: string;
   filename: string;
 }) => Processed | null | undefined | Promise<Processed | null | undefined>;
 
-export declare type Preprocessor = (options: {
+export type Preprocessor = (options: {
   content: string;
   attributes: Record<string, string | boolean>;
   filename?: string;
