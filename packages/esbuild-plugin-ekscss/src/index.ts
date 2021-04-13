@@ -5,9 +5,6 @@ import { compile, XCSSCompileOptions } from 'ekscss';
 import type { Plugin } from 'esbuild';
 import fs from 'fs';
 import JoyCon from 'joycon';
-// import path from 'path';
-
-// TODO: Warnings never seem to show on the console
 
 export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
 
@@ -28,12 +25,6 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
     let configData: XCSSConfig;
     let configPath: string | undefined;
 
-    // build.onResolve({ filter: /\.xcss$/ }, (args) => ({
-    //   path: path.resolve(args.resolveDir, args.path),
-    //   namespace: 'xcss',
-    // }));
-
-    // build.onLoad({ filter: /.*/, namespace: 'xcss' }, async (args) => {
     build.onLoad({ filter: /\.xcss$/ }, async (args) => {
       const code = await fs.promises.readFile(args.path, 'utf-8');
       const warnings = [];
@@ -42,7 +33,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
         if (!config || typeof config === 'string') {
           // load user defined config or fall back to default file locations
           const result = await joycon.load(config ? [config] : undefined);
-          configData = result.data || {};
+          configData = (result.data as XCSSConfig) || {};
           configPath = result.path;
 
           if (!result.path) {
@@ -75,11 +66,23 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
         });
       }
 
+      let output = compiled.css;
+
+      // XXX: Source maps for CSS are not yet supported in esbuild but adding
+      // here anyway in preparation for when they are supported; see:
+      // - https://github.com/evanw/esbuild/issues/519
+      // - https://github.com/evanw/esbuild/issues/20
+      if (compiled.map) {
+        output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${Buffer.from(
+          compiled.map.toString(),
+        ).toString('base64')} */`;
+      }
+
       const watchFiles = compiled.dependencies;
       if (configPath) watchFiles.push(configPath);
 
       return {
-        contents: compiled.css,
+        contents: output,
         loader: 'css',
         warnings,
         watchFiles,
