@@ -1,4 +1,4 @@
-import type { RawSourceMap } from 'source-map';
+import type { SourceMapGenerator } from 'source-map';
 import type { Element as _Element, Middleware } from 'stylis';
 import type { xcssTag } from './helpers';
 
@@ -101,6 +101,6 @@ export type XCSSTemplateFn = (
 export interface XCSSCompileResult {
   css: string;
   dependencies: string[];
-  map?: RawSourceMap;
+  map?: SourceMapGenerator;
   warnings: Warning[];
 }

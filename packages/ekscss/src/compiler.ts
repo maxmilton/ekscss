@@ -1,7 +1,5 @@
-/* eslint-disable no-param-reassign, no-restricted-syntax, no-underscore-dangle */
+/* eslint-disable no-param-reassign, no-restricted-syntax */
 
-import path from 'path';
-import { SourceNode } from 'source-map';
 import * as stylis from 'stylis';
 import {
   applyDefault,
@@ -12,9 +10,9 @@ import {
   interpolate,
   xcssTag,
 } from './helpers';
+import { compileSourceMap } from './sourcemap';
 import type {
   BuildHookFn,
-  Element,
   Middleware,
   Warning,
   XCSSCompileOptions,
@@ -43,49 +41,6 @@ function mergeDefaultGlobals(globals: Partial<XCSSGlobals>) {
       ...(globals.fn || {}),
     },
   };
-}
-
-function compileSourceMap(
-  ast: Element[],
-  rootDir: string,
-  from?: string,
-  to?: string,
-) {
-  function nodeReducer(nodes: SourceNode[], node: Element) {
-    if (node.return) {
-      // importPlugin adds __ast and __from after the @import'd contents are compiled
-      if (node.__ast) {
-        const importAst = node.__ast
-          .map((importedNode) => {
-            importedNode.root ??= node;
-            return importedNode;
-          })
-          .reduce(nodeReducer, []);
-
-        for (const importedNode of importAst) {
-          nodes.push(importedNode);
-        }
-      } else {
-        const srcFrom = node.root?.__from || from;
-        const srcPath = srcFrom ? path.relative(rootDir, srcFrom) : '<unknown>';
-        nodes.push(
-          new SourceNode(node.line!, node.column!, srcPath, node.return),
-        );
-      }
-    }
-
-    return nodes;
-  }
-
-  const nodes = ast.reduce(nodeReducer, []);
-  const rootNode = new SourceNode(null, null, null, nodes);
-  const pathTo = to || from;
-  const sourceRoot = pathTo ? path.dirname(pathTo) : rootDir;
-  return rootNode.toStringWithSourceMap({
-    file: pathTo && path.relative(sourceRoot, pathTo),
-    sourceRoot,
-    skipValidation: true, // better performance
-  });
 }
 
 export function compile(
@@ -144,35 +99,10 @@ export function compile(
 
   for (const fn of afterBuildFns) fn();
 
-  // TODO: Documentation:
-  // - Explain our template engine and link to supporting docs:
-  //  ↳ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-  //  ↳ https://tc39.es/ecma262/#sec-tagged-templates
-  // - State of source map support
-  // - How to comment expressions in templates
-
-  // FIXME: The template interpolation needs to be handled in source maps... and
-  // can it be done in a way that has zero or near-zero performance impact when
-  // sourcemaps are off?
-
-  // FIXME: Nodes can be serialize(copy())'d in middleware causing `ast` to
-  // be incorrect leading to incorrect source maps -- we need to capture the
-  // true final AST after all the plugins have run
-  //  ↳ https://github.com/thysultan/stylis.js/blob/master/src/Middleware.js#L42
-
-  // TODO: Handle @import'd files with existing source maps
-
-  // TODO: Souce map `file` and `sourceRoot` include the build system's full
-  // path but that's not useful when deployed (but is for development?)
-
-  // TODO: Document sourcemaps build performance impact (about 20% extra time,
-  // but do benchmarks to verify)
-
   let sourceMap;
 
   if (map) {
-    const compiledMap = compileSourceMap(ast, rootDir, from, to);
-    sourceMap = compiledMap.map.toJSON();
+    sourceMap = compileSourceMap(ast, rootDir, from, to);
   }
 
   return {

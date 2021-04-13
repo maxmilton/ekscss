@@ -55,7 +55,7 @@ export default function rollupPlugin({
       if (!config || typeof config === 'string') {
         // load user defined config or fall back to default file locations
         const result = await joycon.load(config ? [config] : undefined);
-        configData = result.data || {};
+        configData = (result.data as XCSSConfig) || {};
         configPath = result.path;
 
         if (!result.path) {
@@ -111,7 +111,7 @@ export default function rollupPlugin({
 
       return {
         code: compiled.css,
-        map: compiled.map,
+        map: compiled.map?.toJSON(),
       };
     },
 

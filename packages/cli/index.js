@@ -112,7 +112,7 @@ module.exports = async (src, dest, opts) => {
     //  ↳ Or could we remove the "header" option completely? Or move into compiler?
 
     css = compiled.css;
-    const map = JSON.stringify(compiled.map);
+    const map = compiled.map.toString();
 
     // let map;
     //
