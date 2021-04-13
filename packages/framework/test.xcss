@@ -196,3 +196,8 @@ ${null}
 // ::placeholder {
 //   color: red;
 // }
+
+// ////////////////////////////////////
+
+// @import './not-exist.xcss';
+@import './test-imported.xcss';

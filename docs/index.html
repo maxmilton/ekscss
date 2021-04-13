@@ -49,3 +49,20 @@
     ]
   }
 </script>
+
+<script>
+  function ready(a){"loading"!==document.readyState?a():document.addEventListener("DOMContentLoaded",a)};
+
+  ready(()=>{
+    function headLinks() {
+      const root = document.createElement('div');
+      const link = document.createElement('a');
+      link.href = 'https://github.com/MaxMilton/ekscss';
+      link.textContent = 'github';
+      root.appendChild(link);
+      return root;
+    }
+
+    document.querySelector('.docs-header').appendChild(headLinks());
+  })
+</script>

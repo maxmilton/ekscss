@@ -1,5 +1,5 @@
 <div class="alert alert-error">
-  <strong>ERROR:</strong>&nbsp;Unable to load "${path}"
+  <strong>ERROR:</strong> Unable to load "${path}"
   <br/>Reason: ${err.code || ''} ${err.message || ''}
 </div>
 
