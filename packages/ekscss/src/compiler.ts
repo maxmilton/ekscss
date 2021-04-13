@@ -22,6 +22,7 @@ import type {
 
 const beforeBuildFns: BuildHookFn[] = [];
 const afterBuildFns: BuildHookFn[] = [];
+const noop = () => {};
 
 export function onBeforeBuild(callback: BuildHookFn): void {
   beforeBuildFns.push(callback);
@@ -70,10 +71,19 @@ export function compile(
   const middlewares = plugins.map((plugin) => {
     // load plugins which are package name strings (e.g., from JSON configs)
     if (typeof plugin === 'string') {
-      // eslint-disable-next-line
-      const mod = require(plugin);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      plugin = (mod.default || mod) as Middleware;
+      try {
+        // eslint-disable-next-line
+        const mod = require(plugin);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        plugin = (mod.default || mod) as Middleware;
+      } catch (err) {
+        warnings.push({
+          code: 'plugin-load-error',
+          message: `Unable to load plugin "${plugin.toString()}"; ${(err as Error).toString()}`,
+          file: __filename,
+        });
+        plugin = noop;
+      }
     }
     return plugin;
   });
