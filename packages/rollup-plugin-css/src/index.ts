@@ -70,7 +70,6 @@ export default function rollupPlugin({
       };
     },
 
-    // eslint-disable-next-line sort-keys
     async generateBundle(outputOpts) {
       if (!styles.size) return;
 

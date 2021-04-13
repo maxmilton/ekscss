@@ -1,4 +1,4 @@
-/* eslint-disable id-length, no-param-reassign, no-nested-ternary, no-restricted-syntax */
+/* eslint-disable no-param-reassign, no-underscore-dangle */
 
 import {
   ctx, Element, interpolate, Middleware, xcssTag,

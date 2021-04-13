@@ -1,5 +1,9 @@
 /* eslint-disable no-param-reassign, no-restricted-syntax */
 
+// FIXME: Valid but empty serialize result should also remove the #apply decl,
+// ideally without clearing the value like we do in importPlugin (would be
+// nice to fix there too!)
+
 // TODO: Documentation: #apply as decl with value of rule selectors to inline
 //  ↳ Selectors can be separated by comma and/or whitespace (including new
 //    lines), both OK
