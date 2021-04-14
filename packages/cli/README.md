@@ -4,13 +4,21 @@ Compile XCSS into CSS using [ekscss](https://github.com/MaxMilton/ekscss) on the
 
 ## Usage
 
-### Without local install (yarn >= v2 only)
+### Yarn; local run without install
+
+> Note: When in a yarn >= v2 project only
 
 ```sh
 yarn dlx -p @ekscss/cli xcss --help
 ```
 
-### With install
+### NPM; global run
+
+```sh
+npx --package=@ekscss/cli -- xcss --help
+```
+
+### Yarn; with local install
 
 ```sh
 yarn add @ekscss/cli
@@ -18,6 +26,16 @@ yarn add @ekscss/cli
 
 ```sh
 yarn xcss --help
+```
+
+### NPM; with local install
+
+```sh
+npm -i @ekscss/cli
+```
+
+```sh
+npx xcss --help
 ```
 
 Output:
