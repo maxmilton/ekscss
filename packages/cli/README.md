@@ -4,7 +4,23 @@ Compile XCSS into CSS using [ekscss](https://github.com/MaxMilton/ekscss) on the
 
 ## Usage
 
-### Yarn; local run without install
+### NPM run globally
+
+```sh
+npx --package=@ekscss/cli -- xcss --help
+```
+
+### Yarn run globally
+
+```sh
+yarn global add @ekscss/cli
+```
+
+```sh
+xcss --help
+```
+
+### Yarn run in project without install
 
 > Note: When in a yarn >= v2 project only
 
@@ -12,13 +28,7 @@ Compile XCSS into CSS using [ekscss](https://github.com/MaxMilton/ekscss) on the
 yarn dlx -p @ekscss/cli xcss --help
 ```
 
-### NPM; global run
-
-```sh
-npx --package=@ekscss/cli -- xcss --help
-```
-
-### Yarn; with local install
+### Yarn per project install
 
 ```sh
 yarn add @ekscss/cli
@@ -28,7 +38,7 @@ yarn add @ekscss/cli
 yarn xcss --help
 ```
 
-### NPM; with local install
+### NPM per project install
 
 ```sh
 npm -i @ekscss/cli
