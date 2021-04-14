@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "description": "Progressive CSS framework powered by ekscss",
   "license": "MIT",
-  "repository": "MaxMilton/ekscss",
-  "author": "Max Milton <max@wearegenki.com>",
+  "repository": "maxmilton/ekscss",
+  "author": "Max Milton <max@happycode.ltd>",
+  "homepage": "https://maxmilton.github.io/ekscss",
   "main": "level2.xcss",
   "style": "dist/index.css",
   "scripts": {

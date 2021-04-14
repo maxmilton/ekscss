@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "description": "A simple, fast, and powerful CSS preprocessor",
   "license": "MIT",
-  "repository": "MaxMilton/ekscss",
-  "author": "Max Milton <max@wearegenki.com>",
+  "repository": "maxmilton/ekscss",
+  "author": "Max Milton <max@happycode.ltd>",
+  "homepage": "https://maxmilton.github.io/ekscss",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -23,7 +24,7 @@
     "stylis": "^4.0.10"
   },
   "devDependencies": {
-    "esbuild": "0.11.9",
+    "esbuild": "0.11.10",
     "typescript": "4.2.4"
   }
 }

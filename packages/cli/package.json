@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "description": "A simple, fast, and powerful CSS preprocessor",
   "license": "MIT",
-  "repository": "MaxMilton/ekscss",
-  "author": "Max Milton <max@wearegenki.com>",
+  "repository": "maxmilton/ekscss",
+  "author": "Max Milton <max@happycode.ltd>",
+  "homepage": "https://maxmilton.github.io/ekscss",
   "bin": {
     "ekscss": "bin.js",
     "xcss": "bin.js"

@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "description": "XCSS plugin to inline the properties of referenced rules",
   "license": "MIT",
-  "repository": "MaxMilton/ekscss",
-  "author": "Max Milton <max@wearegenki.com>",
+  "repository": "maxmilton/ekscss",
+  "author": "Max Milton <max@happycode.ltd>",
+  "homepage": "https://maxmilton.github.io/ekscss",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
