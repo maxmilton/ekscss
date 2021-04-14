@@ -1,6 +1,6 @@
-# XCSS CLI
+# @ekscss/cli
 
-Compile XCSS into CSS using [ekscss](https://github.com/MaxMilton/ekscss) on the command line.
+Compile XCSS into CSS using [ekscss](https://github.com/MaxMilton/ekscss) on the command line or in `package.json` scripts.
 
 ## Usage
 
