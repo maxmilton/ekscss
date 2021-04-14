@@ -31,6 +31,8 @@ export default function rollupPlugin({
     async transform(code, id) {
       if (!filter(id)) return null;
 
+      this.error('This plugin currently does nothing');
+
       const purgedcss = await new PurgeCSS().purge({
         content: [
           { extension: '.html', raw: 'FIXME' },
