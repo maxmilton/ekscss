@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple, fast, and powerful CSS preprocessor",
   "license": "MIT",
   "repository": "maxmilton/ekscss",
@@ -15,8 +15,11 @@
   "engines": {
     "node": ">= 10"
   },
+  "files": [
+    "*.js"
+  ],
   "peerDependencies": {
-    "ekscss": "^0.0.0"
+    "ekscss": "^0.0.1"
   },
   "dependencies": {
     "colorette": "^1.2.2",

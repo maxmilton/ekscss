@@ -42,7 +42,7 @@ __metadata:
     joycon: ^3.0.1
     sade: ^1.7.4
   peerDependencies:
-    ekscss: ^0.0.0
+    ekscss: ^0.0.1
   bin:
     ekscss: bin.js
     xcss: bin.js
@@ -54,15 +54,15 @@ __metadata:
   resolution: "@ekscss/framework@workspace:packages/framework"
   dependencies:
     "@ekscss/cli": "workspace:*"
-    "@ekscss/plugin-apply": "workspace:^0.0.0"
-    "@ekscss/plugin-import": "workspace:^0.0.0"
-    "@ekscss/plugin-prefix": "workspace:^0.0.0"
+    "@ekscss/plugin-apply": "workspace:^0.0.1"
+    "@ekscss/plugin-import": "workspace:^0.0.1"
+    "@ekscss/plugin-prefix": "workspace:^0.0.1"
     "@types/color": 3.0.1
     color: ^3.1.3
     cssremedy: ^0.1.0-beta.2
     ekscss: "workspace:*"
   peerDependencies:
-    ekscss: ^0.0.0
+    ekscss: ^0.0.1
   languageName: unknown
   linkType: soft
 
@@ -82,7 +82,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ekscss/plugin-apply@workspace:^0.0.0, @ekscss/plugin-apply@workspace:packages/plugin-apply":
+"@ekscss/plugin-apply@workspace:^0.0.1, @ekscss/plugin-apply@workspace:packages/plugin-apply":
   version: 0.0.0-use.local
   resolution: "@ekscss/plugin-apply@workspace:packages/plugin-apply"
   dependencies:
@@ -90,11 +90,11 @@ __metadata:
     stylis: ^4.0.10
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.0
+    ekscss: ^0.0.1
   languageName: unknown
   linkType: soft
 
-"@ekscss/plugin-import@workspace:^0.0.0, @ekscss/plugin-import@workspace:packages/plugin-import":
+"@ekscss/plugin-import@workspace:^0.0.1, @ekscss/plugin-import@workspace:packages/plugin-import":
   version: 0.0.0-use.local
   resolution: "@ekscss/plugin-import@workspace:packages/plugin-import"
   dependencies:
@@ -102,11 +102,11 @@ __metadata:
     stylis: ^4.0.10
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.0
+    ekscss: ^0.0.1
   languageName: unknown
   linkType: soft
 
-"@ekscss/plugin-prefix@workspace:^0.0.0, @ekscss/plugin-prefix@workspace:packages/plugin-prefix":
+"@ekscss/plugin-prefix@workspace:^0.0.1, @ekscss/plugin-prefix@workspace:packages/plugin-prefix":
   version: 0.0.0-use.local
   resolution: "@ekscss/plugin-prefix@workspace:packages/plugin-prefix"
   dependencies:
@@ -114,7 +114,7 @@ __metadata:
     stylis: ^4.0.10
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.0
+    ekscss: ^0.0.1
   languageName: unknown
   linkType: soft
 
@@ -1014,7 +1014,7 @@ __metadata:
     joycon: ^3.0.1
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.0
+    ekscss: ^0.0.1
     esbuild: ^0.11.0
   languageName: unknown
   linkType: soft
@@ -2565,7 +2565,7 @@ fsevents@~2.3.1:
     rollup: 2.45.2
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.0
+    ekscss: ^0.0.1
     rollup: ^2.0.0
   languageName: unknown
   linkType: soft
@@ -2922,7 +2922,7 @@ fsevents@~2.3.1:
     svelte: 3.37.0
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.0
+    ekscss: ^0.0.1
     svelte: ^3.0.0
   languageName: unknown
   linkType: soft

@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/plugin-import",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "XCSS plugin to inline the contents of @import statements",
   "license": "MIT",
   "repository": "maxmilton/ekscss",
@@ -13,8 +13,12 @@
     "dev": "tsc --watch --preserveWatchOutput",
     "prebuild": "rm -rf dist"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "peerDependencies": {
-    "ekscss": "^0.0.0"
+    "ekscss": "^0.0.1"
   },
   "dependencies": {
     "stylis": "^4.0.10"
