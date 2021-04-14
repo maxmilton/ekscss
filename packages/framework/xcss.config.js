@@ -17,7 +17,7 @@ const color = require('color');
 const { xcssTag } = require('ekscss');
 
 // FIXME: Remove if unused + remove framework/mixins/*
-const { triangle } = require('./mixins/triangle');
+// const { triangle } = require('./mixins/triangle');
 
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
@@ -41,7 +41,7 @@ module.exports = {
       color: (value) => color(xcss`${value}`),
       // Mixins
       // FIXME: Remove if unused + remove framework/mixins/*
-      triangle,
+      // triangle,
     },
     media: {
       ns: '(min-width: 30.01em)',
