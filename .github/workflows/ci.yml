@@ -1,26 +1,6 @@
 name: ci
 on: push
 jobs:
-  prep-yarn-cache:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      - name: Get yarn cache path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            yarn-
-      - run: yarn install --immutable --skip-builds
-        env:
-          YARN_ENABLE_SCRIPTS: false # disable post-install scripts
-          YARN_NODE_LINKER: pnp # use pnp linker for better linking performance: it's meant to update yarn cache only
   test:
     needs: prep-yarn-cache
     runs-on: ubuntu-latest
@@ -35,7 +15,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - run: yarn install --immutable
       - run: yarn run build
       - run: yarn run test
@@ -61,7 +43,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - run: yarn install --immutable
       - run: yarn run build
       - run: yarn run lint
