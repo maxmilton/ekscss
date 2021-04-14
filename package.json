@@ -29,7 +29,15 @@
     "arrowParens": "always",
     "endOfLine": "lf",
     "singleQuote": true,
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files":["*.yml"],
+        "options": {
+          "singleQuote": false
+        }
+      }
+    ]
   },
   "renovate": {
     "extends": [
