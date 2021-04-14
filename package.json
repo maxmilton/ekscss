@@ -32,7 +32,9 @@
     "trailingComma": "all",
     "overrides": [
       {
-        "files":["*.yml"],
+        "files": [
+          "*.yml"
+        ],
         "options": {
           "singleQuote": false
         }
