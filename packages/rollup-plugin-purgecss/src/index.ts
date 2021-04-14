@@ -29,6 +29,8 @@ export default function rollupPlugin({
 
       this.error('This plugin currently does nothing');
 
+      // REF: https://github.com/FullHuman/purgecss/blob/master/packages/rollup-plugin-purgecss/src/index.ts
+
       // @ts-expect-error - TODO: Remove comment
       const purgedcss = await new PurgeCSS().purge({
         content: [
