@@ -68,7 +68,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ekscss/monorepo@workspace:."
   dependencies:
-    "@types/node": 14.14.37
+    "@types/node": 14.14.39
     "@typescript-eslint/eslint-plugin": 4.22.0
     "@typescript-eslint/parser": 4.22.0
     eslint: 7.24.0
@@ -276,10 +276,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:14.14.37":
-  version: 14.14.37
-  resolution: "@types/node@npm:14.14.37"
-  checksum: 5e2d9baf7594ebacaf016716515f30de0765169412787f981481c2fb8b468923149bb9e2e3219ee672399811672ceddc339a7372a61cf15bc656836a5494d991
+"@types/node@npm:14.14.39":
+  version: 14.14.39
+  resolution: "@types/node@npm:14.14.39"
+  checksum: b4d729f65ae350b9c49a5a5eaa5fd2e73913bb69cad7a9e3802e9d94574228436b74deb1fa415b147bd0b6e31ce5d2da601e9fdf497542c11e304fb0b60c38b3
   languageName: node
   linkType: hard
 
