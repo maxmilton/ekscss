@@ -1,5 +1,5 @@
 {
-  "name": "@ekscss/rollup-plugin-clean",
+  "name": "@ekscss/rollup-plugin-purgecss",
   "version": "0.0.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -15,10 +15,9 @@
   ],
   "dependencies": {
     "@rollup/pluginutils": "^4.1.0",
-    "csso": "^4.2.0"
+    "purgecss": "^4.0.3"
   },
   "devDependencies": {
-    "@types/csso": "3.5.1",
     "typescript": "4.2.4"
   }
 }

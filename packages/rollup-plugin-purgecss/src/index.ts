@@ -1,5 +1,5 @@
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
-import csso from 'csso';
+import { PurgeCSS } from 'purgecss';
 import type { Plugin } from 'rollup';
 
 export interface PluginOptions {
@@ -26,26 +26,23 @@ export default function rollupPlugin({
   const filter = createFilter(include, exclude);
 
   return {
-    name: 'xcss-clean',
+    name: 'xcss-purge',
 
-    transform(code, id) {
+    async transform(code, id) {
       if (!filter(id)) return null;
 
-      const minified = csso.minify(code, {
-        filename: id,
-        sourceMap: true,
+      const purgedcss = await new PurgeCSS().purge({
+        content: [
+          { extension: '.html', raw: 'FIXME' },
+          { extension: '.js', raw: 'FIXME' },
+        ],
+        css: [{ raw: code }],
+        safelist: ['html', 'body'],
       });
 
-      // if (id.endsWith('web-app/src/css/index.xcss')) {
-      //   console.log('!! CLEAN ID', id);
-      //   console.log('!! CLEAN MAP', minified.map?.toJSON());
-      // }
-
       return {
-        code: minified.css,
-        // @ts-expect-error - Poorly typed upstream package
-        // eslint-disable-next-line
-        map: minified.map?.toJSON(),
+        code: purgedcss[0].css,
+        map: { mappings: '' },
       };
     },
   };
