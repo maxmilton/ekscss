@@ -15,10 +15,6 @@ export interface PluginOptions {
   include?: FilterPattern;
 }
 
-// TODO: It actually makes much more sense to run csso once all the CSS files
-// are bundled into one... move csso into @ekscss/rollup-plugin-css
-//  ↳ This plugin should be about removing unused styles!
-
 export default function rollupPlugin({
   exclude = [],
   include = /\.x?css$/,
