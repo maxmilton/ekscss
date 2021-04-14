@@ -2,7 +2,6 @@ name: ci
 on: push
 jobs:
   test:
-    needs: prep-yarn-cache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,7 +29,6 @@ jobs:
       #     ./cc-test-reporter format-coverage -t lcov -o coverage/codeclimate.json test/coverage/lcov.info
       #     ./cc-test-reporter upload-coverage --id ${{ secrets.CC_TEST_REPORTER_ID }} || true
   lint:
-    needs: prep-yarn-cache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
