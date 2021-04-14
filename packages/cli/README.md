@@ -2,13 +2,19 @@
 
 Compile XCSS into CSS using [ekscss](https://github.com/MaxMilton/ekscss) on the command line.
 
-## Install
+## Usage
+
+### Without local install (yarn >= v2 only)
+
+```sh
+yarn dlx -p @ekscss/cli xcss --help
+```
+
+### With install
 
 ```sh
 yarn add @ekscss/cli
 ```
-
-## Usage
 
 ```sh
 yarn xcss --help
@@ -25,14 +31,14 @@ Output:
 
   Options
     -c, --config     Use specified config file
-    -m, --map        Generate a source map  (default true)
+    -m, --map        Generate a source map  (default false)
     -q, --quiet      Don't print errors or stats
     -v, --version    Displays current version
     -h, --help       Displays this message
 
   Examples
     $ xcss styles.xcss dist/styles.css
-    $ xcss --map=false styles.xcss
+    $ xcss --map styles.xcss
     $ xcss -q
 ```
 
@@ -55,7 +61,7 @@ XCSS configuration files may be in either JSON or JavaScript format. Config file
 
 ## Notes
 
-This package is intended to be simple and lightweight. If you need more features like watching for file changes use [rollup](https://rollupjs.org) together with [rollup-plugin-ekscss](../rollup-plugin-ekscss) and [@ekscss/rollup-plugin-css](../rollup-plugin-css). In your production CSS bundles use [@ekscss/rollup-plugin-clean](../rollup-plugin-clean) too to remove unused styles.
+This package is intended to be simple and lightweight. If you need features like watching for file changes use [rollup](https://rollupjs.org) together with [rollup-plugin-ekscss](https://github.com/MaxMilton/ekscss/tree/master/packages/rollup-plugin-ekscss) and [@ekscss/rollup-plugin-css](../rollup-plugin-css). Alternatively, for simple projects or when build speed is important, use [esbuild](https://esbuild.github.io) with [esbuild-plugin-ekscss](https://github.com/MaxMilton/ekscss/tree/master/packages/esbuild-plugin-ekscss).
 
 This package registers the CLI executable binaries `xcss` and `ekscss` which are both equivalent.
 

@@ -38,11 +38,9 @@ __metadata:
   dependencies:
     "@types/sade": 1.7.2
     colorette: ^1.2.2
-    ekscss: "workspace:*"
+    ekscss: "workspace:^0.0.1"
     joycon: ^3.0.1
     sade: ^1.7.4
-  peerDependencies:
-    ekscss: ^0.0.1
   bin:
     ekscss: bin.js
     xcss: bin.js
@@ -911,7 +909,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ekscss@workspace:*, ekscss@workspace:packages/ekscss":
+"ekscss@workspace:*, ekscss@workspace:^0.0.1, ekscss@workspace:packages/ekscss":
   version: 0.0.0-use.local
   resolution: "ekscss@workspace:packages/ekscss"
   dependencies:
