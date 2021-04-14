@@ -29,6 +29,7 @@ export default function rollupPlugin({
 
       this.error('This plugin currently does nothing');
 
+      // @ts-expect-error - TODO: Remove comment
       const purgedcss = await new PurgeCSS().purge({
         content: [
           { extension: '.html', raw: 'FIXME' },
@@ -38,6 +39,7 @@ export default function rollupPlugin({
         safelist: ['html', 'body'],
       });
 
+      // @ts-expect-error - TODO: Remove comment
       return {
         code: purgedcss[0].css,
         map: { mappings: '' },
