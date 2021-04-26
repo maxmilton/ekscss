@@ -35,18 +35,22 @@ import * as stylis from 'stylis';
 import type { Element } from './types';
 
 function extractSourceMapRef(ast: Element[]): string | null {
-  const lastNode = ast[ast.length - 1];
+  let currentNode;
+  let index = 0;
 
-  if (
-    lastNode.type === stylis.COMMENT
-    // FIXME: stylis types don't differentiate by Element.type so we must type
-    // guard unnecessarily (even though node.type=='comm' will always have
-    // node.children as a string)
-    && typeof lastNode.children === 'string'
-    && lastNode.children.indexOf('# sourceMappingURL=') === 0
-  ) {
-    // 19 = '# sourceMappingURL='.length
-    return lastNode.children.slice(19).trim();
+  // look through the last 3 AST nodes to try find a source map ref comment
+  while (++index < 4 && (currentNode = ast[ast.length - index])) {
+    if (
+      currentNode.type === stylis.COMMENT
+      // FIXME: stylis types don't differentiate by Element.type so we must
+      // type guard unnecessarily (even though currentNode.type=='comm' will
+      // always have currentNode.children as a string)
+      && typeof currentNode.children === 'string'
+      && currentNode.children.indexOf('# sourceMappingURL=') === 0
+    ) {
+      // 19 = '# sourceMappingURL='.length
+      return currentNode.children.slice(19).trim();
+    }
   }
 
   return null;

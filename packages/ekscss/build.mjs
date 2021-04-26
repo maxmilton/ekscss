@@ -21,7 +21,7 @@ esbuild
     sourcemap: true,
     minifySyntax: !dev,
     watch: dev,
-    logLevel: 'info',
+    logLevel: 'debug',
   })
   .catch((err) => {
     console.error(err);
