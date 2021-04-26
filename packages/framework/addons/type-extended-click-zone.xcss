@@ -9,6 +9,7 @@ ${x.fn.default({
 
 /* Larger link click area size */
 a {
-  margin: calc(-1 * ${x.linkClickArea});
+  display: inline-block;
+  margin: -${x.linkClickArea};
   padding: ${x.linkClickArea};
 }
