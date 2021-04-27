@@ -1,19 +1,17 @@
-# WIP
+# ekscss
+
+> This project is still new and experimental. Before version `1.0` there may be backwards incompatible changes. You have been warned!
+
+`ekscss` (pronounced X-C-S-S) is a simple, fast, and powerful CSS preprocessor.
 
 <!--
-# ekscss a.k.a XCSS
-
-> Before we hit version `1.0` there may be backwards incompatible changes. You have been warned!
-
-A simple, fast, and powerful CSS preprocessor.
-
 ## 'JS in CSS' style preprocessor
 
 ### Why
 
 - PostCSS is (still) great but:
-  - Fed up with inflexibility of plugin system
-  - Too many dependencies/complexity
+  - Fed up with inflexibility of plugins, especially plugin interoperability
+  - Too many dependencies/complexity once you add plugins
 - Compile speed
 - Use case agnostic
 - Light weight; leverages the power of JS
@@ -59,6 +57,13 @@ A simple, fast, and powerful CSS preprocessor.
 - Add finer details to compiler warnings; line, column, etc.
 - Documentation:
   - Templates in XCSS (`${...}`) are still evaluated when they're in a _CSS comment_; to disable them it's necessary to comment out the code _inside the template_
+- Explain the "ekscss" name
+- Add benchmarks:
+  - Vs other CSS preprocessors
+  - Source map overhead
+  - Overhead for each plugin
+- List some places it's already in use: new-tab, trackx
+-->
 
 ## Licence
 
@@ -67,4 +72,3 @@ A simple, fast, and powerful CSS preprocessor.
 ---
 
 © 2021 [Max Milton](https://maxmilton.com)
--->
