@@ -123,7 +123,7 @@ __metadata:
     "@rollup/pluginutils": ^4.1.0
     "@types/csso": 3.5.1
     csso: ^4.2.0
-    rollup: 2.45.2
+    rollup: 2.46.0
     source-map: ^0.7.3
     typescript: 4.2.4
   peerDependencies:
@@ -2628,7 +2628,7 @@ fsevents@~2.3.1:
     "@rollup/pluginutils": ^4.1.0
     ekscss: "workspace:*"
     joycon: ^3.0.1
-    rollup: 2.45.2
+    rollup: 2.46.0
     typescript: 4.2.4
   peerDependencies:
     ekscss: ^0.0.1
@@ -2636,9 +2636,9 @@ fsevents@~2.3.1:
   languageName: unknown
   linkType: soft
 
-"rollup@npm:2.45.2":
-  version: 2.45.2
-  resolution: "rollup@npm:2.45.2"
+"rollup@npm:2.46.0":
+  version: 2.46.0
+  resolution: "rollup@npm:2.46.0"
   dependencies:
     fsevents: ~2.3.1
   dependenciesMeta:
@@ -2646,7 +2646,7 @@ fsevents@~2.3.1:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: b07c6051c35ed30916f529cbfb3731c9ac10355daca167ba8d863bcda6499e39593e078eb8e29b4bf94a1e3d112e1cdfa908fe147a231b6a93b9fd6b732beb98
+  checksum: d06dfec49dee3ec6973cab356fb74a2446c08a0d64185826081f9755353a87826a51ae43d1c88f985a756eb4c74eedfbca97c6050a3e39a17cc6d96dd48505f8
   languageName: node
   linkType: hard
 
