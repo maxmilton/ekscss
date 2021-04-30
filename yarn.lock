@@ -2985,7 +2985,7 @@ fsevents@~2.3.1:
     colorette: ^1.2.2
     ekscss: "workspace:*"
     joycon: ^3.0.1
-    svelte: 3.37.0
+    svelte: 3.38.0
     typescript: 4.2.4
   peerDependencies:
     ekscss: ^0.0.1
@@ -2993,10 +2993,10 @@ fsevents@~2.3.1:
   languageName: unknown
   linkType: soft
 
-"svelte@npm:3.37.0":
-  version: 3.37.0
-  resolution: "svelte@npm:3.37.0"
-  checksum: fc7a1e9b641fbe938bd666b1d82433b5f262eb680635097bdf85f50753365c1fe5d51d387eadb3145b389df20f71e0576ba592cebfc44a2120971c96c4367f75
+"svelte@npm:3.38.0":
+  version: 3.38.0
+  resolution: "svelte@npm:3.38.0"
+  checksum: 5a08223f3d95b5ab9460c988a3abfc0fdd27a0d0ff19838c9313aec592d3577ffed5837e5e80a83d414fc9da5b318f9c510c30f901d554dee17001baf753a46f
   languageName: node
   linkType: hard
 
