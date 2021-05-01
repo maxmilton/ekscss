@@ -57,6 +57,7 @@
 - Add finer details to compiler warnings; line, column, etc.
 - Documentation:
   - Templates in XCSS (`${...}`) are still evaluated when they're in a _CSS comment_; to disable them it's necessary to comment out the code _inside the template_
+  - compiler browser bundle (browser compatible but no sourcemap support)
 - Explain the "ekscss" name
 - Add benchmarks:
   - Vs other CSS preprocessors

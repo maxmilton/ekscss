@@ -104,7 +104,15 @@ export function compile(
   let sourceMap;
 
   if (map) {
-    sourceMap = compileSourceMap(ast, rootDir, from, to);
+    if (!process.env.BROWSER) {
+      sourceMap = compileSourceMap(ast, rootDir, from, to);
+    } else {
+      warnings.push({
+        code: 'browser-no-sourcemap',
+        message: 'Browser bundle does not support sourcemaps',
+        file: __filename,
+      });
+    }
   }
 
   return {
