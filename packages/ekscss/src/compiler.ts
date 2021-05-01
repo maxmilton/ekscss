@@ -110,7 +110,6 @@ export function compile(
       warnings.push({
         code: 'browser-no-sourcemap',
         message: 'Browser bundle does not support sourcemaps',
-        file: __filename,
       });
     }
   }

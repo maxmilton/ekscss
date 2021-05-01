@@ -39,6 +39,7 @@ esbuild
     platform: 'browser',
     format: 'esm',
     define: {
+      __filename: JSON.stringify(''),
       'process.env.BROWSER': 'true',
       'process.env.NODE_ENV': JSON.stringify(mode),
     },
