@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "colorette": "^1.2.2",
-    "ekscss": "workspace:^0.0.1",
+    "ekscss": "workspace:^0.0.2",
     "joycon": "^3.0.1",
     "sade": "^1.7.4"
   },

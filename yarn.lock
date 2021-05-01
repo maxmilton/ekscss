@@ -38,7 +38,7 @@ __metadata:
   dependencies:
     "@types/sade": 1.7.2
     colorette: ^1.2.2
-    ekscss: "workspace:^0.0.1"
+    ekscss: "workspace:^0.0.2"
     joycon: ^3.0.1
     sade: ^1.7.4
   bin:
@@ -60,7 +60,7 @@ __metadata:
     cssremedy: ^0.1.0-beta.2
     ekscss: "workspace:*"
   peerDependencies:
-    ekscss: ^0.0.1
+    ekscss: ^0.0.2
   languageName: unknown
   linkType: soft
 
@@ -88,7 +88,7 @@ __metadata:
     stylis: ^4.0.10
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.1
+    ekscss: ^0.0.2
   languageName: unknown
   linkType: soft
 
@@ -100,7 +100,7 @@ __metadata:
     stylis: ^4.0.10
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.1
+    ekscss: ^0.0.2
   languageName: unknown
   linkType: soft
 
@@ -112,7 +112,7 @@ __metadata:
     stylis: ^4.0.10
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.1
+    ekscss: ^0.0.2
   languageName: unknown
   linkType: soft
 
@@ -924,7 +924,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ekscss@workspace:*, ekscss@workspace:^0.0.1, ekscss@workspace:packages/ekscss":
+"ekscss@workspace:*, ekscss@workspace:^0.0.2, ekscss@workspace:packages/ekscss":
   version: 0.0.0-use.local
   resolution: "ekscss@workspace:packages/ekscss"
   dependencies:
@@ -1027,7 +1027,7 @@ __metadata:
     joycon: ^3.0.1
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.1
+    ekscss: ^0.0.2
     esbuild: ^0.11.0
   languageName: unknown
   linkType: soft
@@ -2631,7 +2631,7 @@ fsevents@~2.3.1:
     rollup: 2.46.0
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.1
+    ekscss: ^0.0.2
     rollup: ^2.0.0
   languageName: unknown
   linkType: soft
@@ -2988,7 +2988,7 @@ fsevents@~2.3.1:
     svelte: 3.38.0
     typescript: 4.2.4
   peerDependencies:
-    ekscss: ^0.0.1
+    ekscss: ^0.0.2
     svelte: ^3.0.0
   languageName: unknown
   linkType: soft
