@@ -929,7 +929,7 @@ __metadata:
   resolution: "ekscss@workspace:packages/ekscss"
   dependencies:
     "@types/stylis": ^4.0.0
-    esbuild: 0.11.16
+    esbuild: 0.11.17
     source-map: ^0.7.3
     stylis: ^4.0.10
     typescript: 4.2.4
@@ -1032,12 +1032,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"esbuild@npm:0.11.16":
-  version: 0.11.16
-  resolution: "esbuild@npm:0.11.16"
+"esbuild@npm:0.11.17":
+  version: 0.11.17
+  resolution: "esbuild@npm:0.11.17"
   bin:
     esbuild: bin/esbuild
-  checksum: ccbdf57069a83714fac7b9c884db8dc38020ebb8530e8f14f209740401b0ae0dd58e0871ef0821b101798b57720f8d139f6f85a4952a065a448ab5142e6eddf7
+  checksum: 8f67ff366b9bf29f0284a6b7855a878d657052acfa13bdf63d2a7efd191804ff3d4344c95fa4196872184f75ebb9feaac5ab68b783af975734d21b7323121e84
   languageName: node
   linkType: hard
 
