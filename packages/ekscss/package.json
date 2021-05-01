@@ -7,6 +7,7 @@
   "author": "Max Milton <max@happycode.ltd>",
   "homepage": "https://maxmilton.github.io/ekscss",
   "main": "dist/index.js",
+  "browser": "dist/browser.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "yarn prebuild && NODE_ENV=production yarn node build.mjs && yarn postbuild",
