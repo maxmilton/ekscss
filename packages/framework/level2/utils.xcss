@@ -44,6 +44,9 @@ ${x.fn.entries(x.media, ([bp, query]) => xcss`
 
 .underline { text-decoration: underline; }
 
+.fss { font-size: 90%; }
+.fsl { font-size: 140%; }
+
 /* Text transform */
 
 .ttc { text-transform: capitalize; }
