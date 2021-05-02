@@ -228,8 +228,9 @@ export const xcssTag = () => function xcss(
       } else {
         ctx.warnings.push({
           code: 'expression-invalid',
-          message: `Invalid XCSS template expression. Must be string, object with toString() method,
-number, or falsely but got ${Object.prototype.toString.call(val)}`,
+          message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${Object.prototype.toString.call(
+            val,
+          )}`,
           file: ctx.from,
         });
 
