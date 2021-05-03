@@ -209,12 +209,10 @@ module.exports = {
 
     linkClickArea: '0.4em', // XXX: Reduce if links overlap
 
-    // use font weight keywords so it's relative to parent and simplifies to one
-    // of four weights; see https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#meaning_of_relative_weights
-    // TODO: lighter turns into 100 which is awkwardly thin in most fonts
-    textWeightLight: 'lighter',
-    textWeight: 'normal',
-    textWeightHeavy: 'bolder',
+    textWeightLight: 300,
+    textWeight: 400,
+    textWeightMedium: 500,
+    textWeightHeavy: 700,
 
     paragraphLeadTextSize: '1.3em',
     paragraphLeadTextWeight: (x) => x.textWeightLight,
