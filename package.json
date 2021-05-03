@@ -40,10 +40,5 @@
         }
       }
     ]
-  },
-  "renovate": {
-    "extends": [
-      "@wearegenki"
-    ]
   }
 }
