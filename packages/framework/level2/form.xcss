@@ -26,12 +26,6 @@ input::-webkit-inner-spin-button {
   display: block; // make label appear above inputs
   margin-bottom: ${x.input.paddingY};
   font-weight: ${x.textWeightHeavy};
-
-  .radio + &,
-  .checkbox + & {
-    display: inline-block;
-    margin-bottom: 0;
-  }
 }
 
 .input,
