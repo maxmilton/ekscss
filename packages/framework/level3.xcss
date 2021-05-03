@@ -16,6 +16,7 @@
 // Level 3 - Addons
 @import './addons/type-hyphens.xcss';
 @import './addons/pretty.xcss';
+@import './addons/button.xcss';
 @import './addons/tag.xcss';
 @import './addons/alert.xcss';
 @import './addons/code.xcss';

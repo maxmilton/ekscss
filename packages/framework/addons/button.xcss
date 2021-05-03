@@ -1,0 +1,61 @@
+/*
+* Fancy button styles
+*/
+
+// TODO: Colours should be customisable and make use of x.color.primary, x.color.danger, etc.
+
+.button {
+  font-weight: ${x.textWeightMedium};
+  background-image: linear-gradient(${x.color.white}, ${x.color.light4});
+
+  &:hover,
+  &:focus,
+  &:active {
+    // TODO: Hmmm... a way to get box-shadow or outline to appear above close elements but very dodgy
+    position: relative;
+    z-index: 1;
+  }
+
+  &:hover {
+    background-color: ${x.color.light1};
+    outline: none;
+    box-shadow: 0 0 0 3px ${x.input.hoverBorderColor};
+
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+    box-shadow: 0 0 0 3px ${x.input.activeBorderColor};
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus,
+  :disabled {
+    background-color: transparent;
+    background-image: none;
+    border-color: ${x.color.gray5};
+    box-shadow: none;
+  }
+}
+
+.button-primary {
+  color: ${x.color.white};
+  border-color: ${x.color.blue2};
+  background-image: linear-gradient(${x.color.blue3}, ${x.color.blue2});
+
+  &:hover {
+    background-image: linear-gradient(${x.color.blue2}, ${x.color.blue1});
+  }
+}
+
+.button-danger {
+  color: ${x.color.white};
+  border-color: ${x.color.red2};
+  background-image: linear-gradient(${x.color.red4}, ${x.color.red3});
+
+  &:hover {
+    background-image: linear-gradient(${x.color.red3}, ${x.color.red2});
+  }
+}
