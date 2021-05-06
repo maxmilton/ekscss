@@ -207,8 +207,6 @@ module.exports = {
     hrMargin: '1.2rem 0',
     hrColor: (x) => x.fn.color(x.color.dark5).alpha(0.15),
 
-    linkClickArea: '0.4em', // XXX: Reduce if links overlap
-
     textWeightLight: 300,
     textWeight: 400,
     textWeightMedium: 500,
@@ -312,5 +310,7 @@ module.exports = {
       marginY: '5rem',
       textColor: (x) => x.color.muted,
     },
+
+    linkClickArea: '0.4em', // XXX: Reduce if links overlap
   },
 };

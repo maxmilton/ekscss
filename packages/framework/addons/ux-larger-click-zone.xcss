@@ -1,11 +1,4 @@
-// TODO: Rename file
-
 /* Links */
-
-${x.fn.default({
-  // TODO: Document to reduce if links overlap
-  linkClickArea: '0.4em',
-})}
 
 /* Larger link click area size */
 a {
