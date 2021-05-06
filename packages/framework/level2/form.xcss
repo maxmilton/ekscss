@@ -60,25 +60,6 @@ input::-webkit-inner-spin-button {
   }
 }
 
-// FIXME: Incorporate into config.js
-${x.fn.default({
-  // selectZindex: 4,
-  // selectBackgroundColor: x.light1,
-  // selectShadow: x.shadow, x.color.shadowDeep,
-  // selectSelectedTextColor: x.light1,
-  // selectSelectedBackgroundColor: x.linkColor,
-  // selectCaretColor: x.input.textColor,
-  // selectCaretColor: x.color.text,
-  selectCaretColor: x.color.dark2,
-  // selectCaretSize: '0.3em',
-  selectCaretSize: '5px',
-  // selectAnimateSpeedIn: x.animateSpeedIn,
-  // selectAnimateSpeedOut: x.animateSpeedOut,
-  // selectDisabledTextColor: x.input.disabledTextColor,
-  // selectDisabledCaretColor: x.input.disabledTextColor,
-  selectDisabledCaretColor: x.color.light1,
-})}
-
 .select {
   position: relative;
   appearance: none;
