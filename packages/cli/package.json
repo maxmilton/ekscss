@@ -19,9 +19,9 @@
     "*.js"
   ],
   "dependencies": {
-    "colorette": "^1.2.2",
     "ekscss": "workspace:^0.0.4",
     "joycon": "^3.0.1",
+    "kleur": "^4.1.4",
     "sade": "^1.7.4"
   },
   "devDependencies": {

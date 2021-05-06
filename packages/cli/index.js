@@ -1,10 +1,10 @@
 'use strict';
 
 const childProc = require('child_process');
-const colors = require('colorette');
 const xcss = require('ekscss');
 const fs = require('fs');
 const JoyCon = require('joycon').default;
+const colors = require('kleur/colors');
 const path = require('path');
 const { performance } = require('perf_hooks');
 

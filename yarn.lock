@@ -37,9 +37,9 @@ __metadata:
   resolution: "@ekscss/cli@workspace:packages/cli"
   dependencies:
     "@types/sade": 1.7.2
-    colorette: ^1.2.2
     ekscss: "workspace:^0.0.4"
     joycon: ^3.0.1
+    kleur: ^4.1.4
     sade: ^1.7.4
   bin:
     ekscss: bin.js
@@ -1889,6 +1889,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"kleur@npm:^4.1.4":
+  version: 4.1.4
+  resolution: "kleur@npm:4.1.4"
+  checksum: 18e52c52a0138448dea0137d09ace853e096f1bbc32b99d8781254258b892214718f5f7c2bc25f25d5fb84b4086bca465a4c0b7562e27ae3a25116f77ea6436f
+  languageName: node
+  linkType: hard
+
 "levn@npm:^0.4.1":
   version: 0.4.1
   resolution: "levn@npm:0.4.1"
@@ -2973,9 +2980,9 @@ fsevents@~2.3.1:
   version: 0.0.0-use.local
   resolution: "svelte-ekscss@workspace:packages/svelte-ekscss"
   dependencies:
-    colorette: ^1.2.2
     ekscss: "workspace:*"
     joycon: ^3.0.1
+    kleur: ^4.1.4
     svelte: 3.38.1
     typescript: 4.2.4
   peerDependencies:
