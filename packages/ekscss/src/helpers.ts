@@ -75,7 +75,7 @@ export function globalsProxy<
   T extends Record<string, unknown> | UndefinedProperty,
 >(obj: T, parentPath: string): T {
   for (const key in obj) {
-    if (!has.call(obj, key)) {
+    if (has.call(obj, key)) {
       const val = obj[key];
 
       if (isObject(val)) {
