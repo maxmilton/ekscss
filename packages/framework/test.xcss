@@ -74,7 +74,7 @@ ${null}
 // .df { display: flex; }
 // .dg { display: grid; }
 
-// ${x.fn.entries(x.media, ([bp, query]) => xcss`
+// ${x.fn.each(x.media, (bp, query) => xcss`
 //   @media ${query} {
 //     .${bp}-dn { display: none; }
 //     .${bp}-db { display: block; }

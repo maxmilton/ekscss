@@ -58,7 +58,7 @@
 .order9 { order: 9; }
 .order-unset { order: unset; }
 
-${x.fn.entries(x.media, ([bp, query]) => xcss`
+${x.fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-dfc {
       display: flex;

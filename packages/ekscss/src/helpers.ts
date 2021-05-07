@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-plusplus, no-restricted-syntax */
 
 import type {
   Context,
@@ -178,29 +178,53 @@ export function applyDefault(
 /**
  * Iterate over an array's items then combine the result.
  */
-export function combineMap<T>(
+export function map<T>(
   arr: T[],
-  callback: (value: T, index: number, array: T[]) => string,
+  callback: (value: T, index: number) => string,
 ): string {
   if (!Array.isArray(arr)) {
     ctx.warnings.push({
-      code: 'map-invalid-arr',
+      code: 'map-invalid-array',
       message: `Expected array but got ${Object.prototype.toString.call(arr)}`,
     });
     return 'INVALID';
   }
 
-  return arr.map(callback).join('');
+  const len = arr.length;
+  let index = 0;
+  let result = '';
+
+  for (; index < len; index++) {
+    result = callback(arr[index], index) || '';
+  }
+
+  return result;
 }
 
 /**
- * Iterate over an object's property keys and values then combine the result.
+ * Iterate over each of an object's properties then combine the result.
  */
-export function combineEntries<T>(
-  obj: { [key: string]: T } | ArrayLike<T>,
-  callback: (entries_: [string, T]) => string,
+export function each<T>(
+  obj: { [key: string]: T },
+  callback: (key: string, value: T) => string,
 ): string {
-  return Object.entries(obj).map(callback).join('');
+  if (!isObject(obj)) {
+    ctx.warnings.push({
+      code: 'each-invalid-object',
+      message: `Expected object but got ${Object.prototype.toString.call(obj)}`,
+    });
+    return 'INVALID';
+  }
+
+  let result = '';
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      result += callback(key, obj[key]) || '';
+    }
+  }
+
+  return result;
 }
 
 /**

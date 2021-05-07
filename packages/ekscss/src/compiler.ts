@@ -3,11 +3,11 @@
 import * as stylis from 'stylis';
 import {
   applyDefault,
-  combineEntries,
-  combineMap,
   ctx,
+  each,
   globalsProxy,
   interpolate,
+  map as _map,
   xcssTag,
 } from './helpers';
 import { compileSourceMap } from './sourcemap';
@@ -37,8 +37,8 @@ function mergeDefaultGlobals(globals: Partial<XCSSGlobals>) {
     ...globals,
     fn: {
       default: applyDefault,
-      entries: combineEntries,
-      map: combineMap,
+      each,
+      map: _map,
       ...(globals.fn || {}),
     },
   };
