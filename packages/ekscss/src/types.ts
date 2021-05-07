@@ -28,11 +28,6 @@ export interface Context {
 
   dependencies: string[];
   from?: string;
-  /**
-   * Raw globals which are not proxied and will not generate warnings when
-   * looking up undefined props.
-   */
-  rawX: XCSSGlobals;
   rootDir: string;
   warnings: Warning[];
   x: XCSSGlobals;

@@ -1,11 +1,6 @@
 /* eslint-disable no-plusplus, no-restricted-syntax */
 
-import type {
-  Context,
-  XCSSExpression,
-  XCSSGlobals,
-  XCSSTemplateFn,
-} from './types';
+import type { Context, XCSSExpression, XCSSTemplateFn } from './types';
 
 export const ctx: Context = {
   // @ts-expect-error - initialised in compile setup phase
@@ -130,49 +125,6 @@ export function globalsProxy<
       return Reflect.set(target, prop, proxiedValue, receiver);
     },
   });
-}
-
-/**
- * Assign properties from an object to another but only if those properties are
- * nullish. Mutates the `to` object in place.
- */
-function assignNullish(
-  to: Record<string, unknown>,
-  from: Record<string, unknown>,
-): void {
-  // eslint-disable-next-line guard-for-in, no-param-reassign
-  for (const prop in from) to[prop] ??= from[prop];
-}
-
-function isObject(val: unknown): val is Record<string, unknown> {
-  return val != null && typeof val === 'object' && Array.isArray(val) === false;
-}
-
-/**
- * Recursively set default values in global properties.
- *
- * Will only set a property value if one does not already exist.
- */
-export function applyDefault(globals: Partial<XCSSGlobals>): void;
-export function applyDefault(
-  globals: Partial<XCSSGlobals>,
-  x: Partial<XCSSGlobals>,
-): void;
-export function applyDefault(
-  globals: Partial<XCSSGlobals>,
-  x: Partial<XCSSGlobals> = ctx.rawX,
-): void {
-  assignNullish(x, globals);
-
-  // eslint-disable-next-line guard-for-in
-  for (const key in globals) {
-    const from = globals[key];
-    const to = x[key];
-
-    if (isObject(from) && isObject(to)) {
-      applyDefault(from, to);
-    }
-  }
 }
 
 /**
