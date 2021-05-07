@@ -76,7 +76,8 @@ export function compile(
       } catch (err) {
         warnings.push({
           code: 'plugin-load-error',
-          message: `Failed to load plugin "${plugin.toString()}"; ${(err as Error).toString()}`,
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          message: `Failed to load plugin "${plugin}"; ${err}`,
           file: __filename,
         });
         plugin = noop;
@@ -106,7 +107,7 @@ export function compile(
     } else {
       warnings.push({
         code: 'browser-no-sourcemap',
-        message: 'Browser bundle does not support sourcemaps',
+        message: 'Browser ekscss does not support sourcemaps',
       });
     }
   }

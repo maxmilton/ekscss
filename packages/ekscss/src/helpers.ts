@@ -2,19 +2,19 @@
 
 import type { Context, XCSSExpression, XCSSTemplateFn } from './types';
 
+// @ts-expect-error - initialised at runtime
 export const ctx: Context = {
-  // @ts-expect-error - initialised in compile setup phase
-  dependencies: undefined,
-  from: undefined,
-  // @ts-expect-error - initialised in compile setup phase
-  x: undefined,
-  // @ts-expect-error - initialised in compile setup phase
-  rawX: undefined,
-  // @ts-expect-error - initialised in compile setup phase
-  rootDir: undefined,
-  // @ts-expect-error - initialised in compile setup phase
-  warnings: undefined,
+  // dependencies: undefined,
+  // from: undefined,
+  // x: undefined,
+  // rootDir: undefined,
+  // warnings: undefined,
 };
+
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const has = Object.prototype.hasOwnProperty;
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const toStr = Object.prototype.toString;
 
 /**
  * Interpolative template engine for XCSS.
@@ -25,6 +25,10 @@ export function interpolate(template: string): XCSSTemplateFn {
   // @ts-expect-error - Function constructor is not type aware
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   return new Function('xcss', 'x', `'use strict'; return xcss\`${template}\``);
+}
+
+export function isObject(val: unknown): val is Record<string, unknown> {
+  return toStr.call(val) === '[object Object]';
 }
 
 /**
@@ -70,21 +74,20 @@ class UndefinedProperty {
 export function globalsProxy<
   T extends Record<string, unknown> | UndefinedProperty,
 >(obj: T, parentPath: string): T {
-  if (Object.prototype.toString.call(obj) !== '[object Object]') {
-    return obj;
-  }
-
   for (const key in obj) {
-    if (typeof obj[key] === 'object') {
-      // @ts-expect-error - FIXME: Account for `UndefinedProperty`
-      // eslint-disable-next-line no-param-reassign
-      obj[key] = globalsProxy(obj[key], `${parentPath}.${key}`);
+    if (!has.call(obj, key)) {
+      const val = obj[key];
+
+      if (isObject(val)) {
+        // eslint-disable-next-line no-param-reassign
+        obj[key] = globalsProxy(val, `${parentPath}.${key}`);
+      }
     }
   }
 
   return new Proxy(obj, {
     get(target, prop, receiver) {
-      if (!Object.prototype.hasOwnProperty.call(target, prop)) {
+      if (!has.call(target, prop)) {
         const propPath = `${parentPath}.${String(prop)}`;
 
         ctx.warnings.push({
@@ -118,7 +121,7 @@ export function globalsProxy<
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const proxiedValue = typeof value === 'object'
+      const proxiedValue = isObject(value)
         ? globalsProxy(value, `${parentPath}.${String(prop)}`)
         : value;
 
@@ -137,7 +140,7 @@ export function map<T>(
   if (!Array.isArray(arr)) {
     ctx.warnings.push({
       code: 'map-invalid-array',
-      message: `Expected array but got ${Object.prototype.toString.call(arr)}`,
+      message: `Expected array but got ${toStr.call(arr)}`,
     });
     return 'INVALID';
   }
@@ -163,7 +166,7 @@ export function each<T>(
   if (!isObject(obj)) {
     ctx.warnings.push({
       code: 'each-invalid-object',
-      message: `Expected object but got ${Object.prototype.toString.call(obj)}`,
+      message: `Expected object but got ${toStr.call(obj)}`,
     });
     return 'INVALID';
   }
@@ -171,7 +174,7 @@ export function each<T>(
   let result = '';
 
   for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+    if (has.call(obj, key)) {
       result += callback(key, obj[key]) || '';
     }
   }
@@ -198,13 +201,13 @@ export const xcssTag = () => function xcss(
       val = val(ctx.x);
     }
 
-    if (typeof val === 'object' && val !== null) {
+    if (val != null && typeof val === 'object') {
       if (typeof val.toString === 'function') {
         val = val.toString();
       } else {
         ctx.warnings.push({
           code: 'expression-invalid',
-          message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${Object.prototype.toString.call(
+          message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${toStr.call(
             val,
           )}`,
           file: ctx.from,
