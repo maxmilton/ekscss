@@ -16,3 +16,5 @@
 // console.log(isObject([]));
 // console.log(isObject(undefined));
 // console.log(isObject(null));
+
+export {};
