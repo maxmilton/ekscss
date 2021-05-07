@@ -150,7 +150,7 @@ export function map<T>(
   let result = '';
 
   for (; index < len; index++) {
-    result = callback(arr[index], index) || '';
+    result += callback(arr[index], index) || '';
   }
 
   return result;
