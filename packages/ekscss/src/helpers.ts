@@ -87,7 +87,8 @@ export function globalsProxy<
 
   return new Proxy(obj, {
     get(target, prop, receiver) {
-      if (!has.call(target, prop)) {
+      // bypass Symbol.toStringTag because it's used in isObject
+      if (!has.call(target, prop) && prop !== Symbol.toStringTag) {
         const propPath = `${parentPath}.${String(prop)}`;
 
         ctx.warnings.push({
