@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/framework",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Progressive CSS framework powered by ekscss",
   "license": "MIT",
   "repository": "maxmilton/ekscss",
@@ -24,7 +24,7 @@
     "xcss.config.js"
   ],
   "peerDependencies": {
-    "ekscss": "^0.0.4"
+    "ekscss": "^0.0.5"
   },
   "dependencies": {
     "@ekscss/plugin-apply": "workspace:^0.0.1",

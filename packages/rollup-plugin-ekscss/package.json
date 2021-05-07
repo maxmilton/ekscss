@@ -14,7 +14,7 @@
     "src"
   ],
   "peerDependencies": {
-    "ekscss": "^0.0.4",
+    "ekscss": "^0.0.5",
     "rollup": "^2.0.0"
   },
   "dependencies": {

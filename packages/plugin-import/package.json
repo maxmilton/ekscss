@@ -18,7 +18,7 @@
     "src"
   ],
   "peerDependencies": {
-    "ekscss": "^0.0.4"
+    "ekscss": "^0.0.5"
   },
   "dependencies": {
     "stylis": "^4.0.10"
