@@ -105,18 +105,12 @@ export function globalsProxy<
     },
 
     set(target, prop, value, receiver) {
-      if (
-        Reflect.has(target, prop)
-        // TODO: Should we provide a warning when the prop was accessed before
-        // it was set (when it's UndefinedProxy here)? Might be annoying if code
-        // actually relies on that behaviour
-        && !(Reflect.get(target, prop) instanceof UndefinedProperty)
-      ) {
-        const propPath = `${parentPath}.${String(prop)}`;
-
+      if (has.call(target, prop)) {
         ctx.warnings.push({
           code: 'prop-override',
-          message: `Overriding existing value of property "${propPath}"`,
+          message: `Overriding existing property "${parentPath}.${String(
+            prop,
+          )}"`,
           file: ctx.from,
         });
       }
