@@ -2,7 +2,7 @@
   "name": "@ekscss/monorepo",
   "private": true,
   "scripts": {
-    "__REMOVE__docs-link": "echo 'FIXME: Link microdoc files'",
+    "docs": "ln -s ../packages/framework/dist docs && sirv docs --dev --cors",
     "build": "yarn build",
     "rebuild": "yarn build --ignore-cache",
     "lint": "yarn lint:css && yarn lint:js && yarn lint:ts",
@@ -23,6 +23,7 @@
     "eslint-plugin-import": "2.22.1",
     "prettier": "2.2.1",
     "prettier-plugin-package2": "0.6.0",
+    "sirv-cli": "1.0.11",
     "typescript": "4.2.4"
   },
   "prettier": {

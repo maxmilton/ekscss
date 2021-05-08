@@ -1,6 +1,6 @@
 *.log
 /test/coverage/
-dist/
+dist
 node_modules/
 package-lock.json*
 

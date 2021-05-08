@@ -1,0 +1,38 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>ekscss Docs</title>
+<meta name=description content="A simple, fast, and powerful CSS preprocessor">
+<meta name=viewport content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href=favicon.ico>
+<link href=/dist/level3.css rel=stylesheet>
+<link href=https://cdn.jsdelivr.net/npm/microdoc/dist/index.css rel=stylesheet>
+<script src=https://cdn.jsdelivr.net/npm/microdoc/dist/index.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/microdoc/dist/plugins/search.js defer></script>
+<script>
+  var microdoc = {
+    // root: '.',
+    routes: [
+      "overview.md",
+      { path: "framework", children: [
+        "introduction.md"
+      ]},
+      { path: "compiler", children: [
+        "usage.md",
+        { name: "CLI", path: "cli.md" },
+        "plugins.md"
+      ]},
+      { path: "plugins", children: [
+        "apply.md",
+        "import.md",
+        "prefix.md"
+      ]},
+      { path: "build-tools", children: [
+        { name: "esbuild-plugin-ekscss", path: "esbuild-plugin-ekscss.md" },
+        { name: "rollup-plugin-clean", path: "rollup-plugin-clean.md" },
+        { name: "rollup-plugin-css", path: "rollup-plugin-css.md" },
+        { name: "rollup-plugin-ekscss", path: "rollup-plugin-ekscss.md" },
+        { name: "svelte-ekscss", path: "svelte-ekscss.md" },
+      ]},
+    ]
+  }
+</script>
