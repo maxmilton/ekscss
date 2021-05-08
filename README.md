@@ -4,7 +4,7 @@
 
 `ekscss` (pronounced X-C-S-S) is a simple, fast, and powerful CSS preprocessor.
 
-[Try it out online in the REPL app](https://ekscss-repl.web.app/).
+[Try it online in the REPL app](https://ekscss-repl.web.app/).
 
 <!--
 ## 'JS in CSS' style preprocessor
