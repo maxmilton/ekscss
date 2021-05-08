@@ -9,11 +9,12 @@
   "main": "level2.xcss",
   "style": "dist/index.css",
   "scripts": {
-    "build": "yarn prebuild && xcss level1.xcss dist/level1.css --map && xcss level2.xcss dist/level2.css --map && xcss level3.xcss dist/level3.css --map",
-    "build__REMOVE_ME": "yarn prebuild && xcss level1.xcss dist/level1.css --map; xcss level2.xcss dist/level2.css --map; xcss level3.xcss dist/level3.css --map",
-    "build__TEST": "xcss test/test.xcss dist/test.css",
-    "build__TEST2": "xcss --config test/test2.config.js test/test2.xcss dist/test2.css",
-    "prebuild": "rm -rf dist; mkdir dist"
+    "_build__TEST": "xcss test/test.xcss dist/test.css",
+    "_build__TEST2": "xcss --config test/test2.config.js test/test2.xcss dist/test2.css",
+    "build": "yarn prebuild && yarn run build-levels && yarn run build-addons",
+    "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addons/*.xcss); do xcss --map addons/$f.xcss dist/addons/$f.css;done'",
+    "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss --map $f.xcss dist/$f.css;done'",
+    "prebuild": "rm -rf dist; mkdir -p dist/addons"
   },
   "files": [
     "*.xcss",

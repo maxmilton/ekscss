@@ -7,7 +7,20 @@
 * great without needing to explicitly set CSS classes this package is for you.
 */
 
-${null}
+// XXX: Prevent errors in standalone build
+${xcss`
+  .table,
+  .blockquote,
+  .code,
+  .label,
+  .input,
+  .select,
+  .textarea,
+  .radio,
+  .checkbox,
+  .range,
+  .button {}
+`}
 
 /* Typography */
 
