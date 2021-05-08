@@ -15,6 +15,7 @@ const { importPlugin } = require('@ekscss/plugin-import');
 const { prefixPlugin } = require('@ekscss/plugin-prefix');
 const color = require('color');
 const { xcssTag } = require('ekscss');
+const pkg = require('./package.json');
 
 // FIXME: Remove if unused + remove framework/mixins/*
 // const { triangle } = require('./mixins/triangle');
@@ -27,7 +28,7 @@ const xcss = xcssTag();
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
   banner: `/*!
-* XCSS Framework - https://github.com/MaxMilton/ekscss
+* XCSS Framework v${pkg.version} - https://github.com/MaxMilton/ekscss
 * (c) 2021 Max Milton
 * MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
 */`,
