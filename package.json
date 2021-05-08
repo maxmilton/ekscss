@@ -2,7 +2,7 @@
   "name": "@ekscss/monorepo",
   "private": true,
   "scripts": {
-    "docs": "ln -s ../packages/framework/dist docs && sirv docs --dev --cors",
+    "docs": "ln -s ../packages/framework/dist docs; sirv docs --dev --cors",
     "build": "yarn build",
     "rebuild": "yarn build --ignore-cache",
     "lint": "yarn lint:css && yarn lint:js && yarn lint:ts",
