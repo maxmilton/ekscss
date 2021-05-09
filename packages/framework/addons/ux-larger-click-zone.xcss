@@ -5,4 +5,9 @@ a {
   display: inline-block;
   margin: -${x.linkClickArea};
   padding: ${x.linkClickArea};
+
+  // FIXME: Links with .button
+  // TODO: Only inject these styles if "packages/framework/level2/button.xcss"
+  // is in ctx.dependencies
+  // &.button {}
 }
