@@ -27,6 +27,7 @@ export function interpolate(template: string): XCSSTemplateFn {
   return new Function('xcss', 'x', `'use strict'; return xcss\`${template}\``);
 }
 
+// TODO: Does this need additional checks anywhere it's used? Ref: https://github.com/jonschlinkert/is-plain-object/blob/master/is-plain-object.js
 export function isObject(val: unknown): val is Record<string, unknown> {
   return toStr.call(val) === '[object Object]';
 }
