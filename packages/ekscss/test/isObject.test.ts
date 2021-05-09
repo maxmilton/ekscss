@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 // class Foo{}
 
 // https://github.com/jonschlinkert/isobject/blob/master/test.js
