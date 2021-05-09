@@ -22,7 +22,14 @@
 @import './addons/code.xcss';
 @import './addons/card.xcss';
 @import './addons/app-footer.xcss';
-@import './addons/dark.xcss';
-// TODO: These should probably be commented out; not included in the prebuilt CSS; or document properly
+
+// TODO: These should probably be commented out; not included in the prebuilt
+// CSS; or document properly
 @import './addons/ux-larger-click-zone.xcss';
 @import './addons/native.xcss';
+
+// TODO: Should also probably not be enabled by default unless it's fully
+// compatible with the default colours + at least everything in level 1 + 2
+@media (prefers-color-scheme: dark) {
+  @import './addons/dark.xcss';
+}
