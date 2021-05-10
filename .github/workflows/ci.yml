@@ -23,6 +23,7 @@ jobs:
         with:
           name: build-output
           path: packages/*/dist/**
+          if-no-files-found: error
   test:
     needs: build
     runs-on: ubuntu-latest
