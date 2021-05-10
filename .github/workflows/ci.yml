@@ -79,6 +79,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install --immutable
       # FIXME: REMOVE DEBUG CODE!!
+      - run: ls -la
       - run: ls -la packages/ekscss/dist
       - run: ls -la packages/framework/dist
       - run: ls -la packages/plugin-import/dist
