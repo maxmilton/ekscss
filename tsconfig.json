@@ -31,5 +31,5 @@
     // "suppressExcessPropertyErrors": true,
     // "suppressImplicitAnyIndexErrors": true,
   },
-  "exclude": ["**/dist/*", "**/node_modules/*", "node_modules", "test/coverage"]
+  "exclude": ["**/dist/*", "**/node_modules/*", "coverage", "node_modules"]
 }

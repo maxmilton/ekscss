@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple, fast, and powerful CSS preprocessor",
   "license": "MIT",
   "repository": "maxmilton/ekscss",
@@ -19,9 +19,9 @@
     "*.js"
   ],
   "dependencies": {
-    "colorette": "^1.2.2",
-    "ekscss": "workspace:^0.0.1",
+    "ekscss": "workspace:^0.0.5",
     "joycon": "^3.0.1",
+    "kleur": "^4.1.4",
     "sade": "^1.7.4"
   },
   "devDependencies": {

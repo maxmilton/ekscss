@@ -80,12 +80,24 @@ export default function rollupPlugin({
       });
 
       for (const warning of compiled.warnings) {
-        // TODO: Show warning origin location -- rollup has no way to define file in pos
+        // FIXME: Show warning origin location -- rollup has no way to define file in pos
+
         // this.warn(warning.message, {
         //   column: warning.column,
         //   line: warning.line,
         // });
         this.warn(warning.message);
+
+        console.warn('XCSS Warning:', warning.message || warning);
+
+        if (warning.file) {
+          console.log(
+            '  at',
+            [warning.file, warning.line, warning.column]
+              .filter(Boolean)
+              .join(':'),
+          );
+        }
       }
 
       // if (id.endsWith('web-app/src/css/index.xcss')) {

@@ -15,7 +15,7 @@ ${x.fn.map(x.spacingValues, (value, i) => xcss`
   .pb${i} { padding-bottom: ${value}; }
   .pl${i} { padding-left: ${value}; }
 
-  ${x.fn.entries(x.media, ([bp, query]) => xcss`
+  ${x.fn.each(x.media, (bp, query) => xcss`
     @media ${query} {
       .${bp}-ma${i} { margin: ${value}; }
       .${bp}-mh${i} { margin-right: ${value}; margin-left: ${value}; }
@@ -87,7 +87,7 @@ ${x.fn.map(x.spacingValues, (value, i) => xcss`
 .mbu { margin-bottom: unset; }
 .mlu { margin-left: unset; }
 
-${x.fn.entries(x.media, ([bp, query]) => xcss`
+${x.fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-mh-auto { margin-right: auto; margin-left: auto; }
     .${bp}-mv-auto { margin-top: auto; margin-bottom: auto; }

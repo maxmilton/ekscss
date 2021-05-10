@@ -70,7 +70,7 @@ ${x.fn.map(x.colSteps, (step, i) => xcss`
   .w${step} { grid-column-end: span ${step}; }
 `)}
 
-${x.fn.entries(x.media, ([bp, query]) => xcss`
+${x.fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     ${x.fn.map(x.colSteps, (step, i) => xcss`
       .${bp}-x${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
@@ -86,7 +86,7 @@ ${x.fn.map(x.rowSteps, (step, i) => xcss`
   .h${step} { grid-row-end: span ${step}; }
 `)}
 
-${x.fn.entries(x.media, ([bp, query]) => xcss`
+${x.fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     ${x.fn.map(x.rowSteps, (step, i) => xcss`
       .${bp}-y${step} { grid-template-rows: repeat(${step}, auto); }

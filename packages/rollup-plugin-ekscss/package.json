@@ -14,7 +14,7 @@
     "src"
   ],
   "peerDependencies": {
-    "ekscss": "^0.0.1",
+    "ekscss": "^0.0.5",
     "rollup": "^2.0.0"
   },
   "dependencies": {
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "rollup": "2.45.2",
+    "rollup": "2.47.0",
     "typescript": "4.2.4"
   }
 }

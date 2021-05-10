@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 
-import * as colors from 'colorette';
 import { compile, XCSSCompileOptions } from 'ekscss';
 import JoyCon from 'joycon';
+import colors from 'kleur/colors';
 import type { Preprocessor, PreprocessorGroup } from './types';
 // import type { Preprocessor, PreprocessorGroup } from 'svelte/types/compiler/preprocess';
 

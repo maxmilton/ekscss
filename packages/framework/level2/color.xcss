@@ -4,13 +4,13 @@
 
 /* Foreground colours */
 
-${x.fn.entries(x.color, ([key, value]) => xcss`
+${x.fn.each(x.color, (key, value) => xcss`
   .${key} { color: ${value}; }
 `)}
 
 /* Background colours */
 
-${x.fn.entries(x.color, ([key, value]) => xcss`
+${x.fn.each(x.color, (key, value) => xcss`
   .bg-${key} { background-color: ${value}; }
 `)}
 

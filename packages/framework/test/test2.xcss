@@ -1,0 +1,5 @@
+main {
+  ${x.fn.each(x.media, (bp, query) => xcss`
+    t: ${bp};
+  `)}
+}

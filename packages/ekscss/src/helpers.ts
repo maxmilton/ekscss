@@ -1,25 +1,20 @@
-/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-plusplus, no-restricted-syntax */
 
-import type {
-  Context,
-  XCSSExpression,
-  XCSSGlobals,
-  XCSSTemplateFn,
-} from './types';
+import type { Context, XCSSExpression, XCSSTemplateFn } from './types';
 
+// @ts-expect-error - initialised at runtime
 export const ctx: Context = {
-  // @ts-expect-error - initialised in compile setup phase
-  dependencies: undefined,
-  from: undefined,
-  // @ts-expect-error - initialised in compile setup phase
-  x: undefined,
-  // @ts-expect-error - initialised in compile setup phase
-  rawX: undefined,
-  // @ts-expect-error - initialised in compile setup phase
-  rootDir: undefined,
-  // @ts-expect-error - initialised in compile setup phase
-  warnings: undefined,
+  // dependencies: undefined,
+  // from: undefined,
+  // x: undefined,
+  // rootDir: undefined,
+  // warnings: undefined,
 };
+
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const has = Object.prototype.hasOwnProperty;
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const toStr = Object.prototype.toString;
 
 /**
  * Interpolative template engine for XCSS.
@@ -30,6 +25,11 @@ export function interpolate(template: string): XCSSTemplateFn {
   // @ts-expect-error - Function constructor is not type aware
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   return new Function('xcss', 'x', `'use strict'; return xcss\`${template}\``);
+}
+
+// TODO: Does this need additional checks anywhere it's used? Ref: https://github.com/jonschlinkert/is-plain-object/blob/master/is-plain-object.js
+export function isObject(val: unknown): val is Record<string, unknown> {
+  return toStr.call(val) === '[object Object]';
 }
 
 /**
@@ -75,21 +75,21 @@ class UndefinedProperty {
 export function globalsProxy<
   T extends Record<string, unknown> | UndefinedProperty,
 >(obj: T, parentPath: string): T {
-  if (Object.prototype.toString.call(obj) !== '[object Object]') {
-    return obj;
-  }
-
   for (const key in obj) {
-    if (typeof obj[key] === 'object') {
-      // @ts-expect-error - FIXME: Account for `UndefinedProperty`
-      // eslint-disable-next-line no-param-reassign
-      obj[key] = globalsProxy(obj[key], `${parentPath}.${key}`);
+    if (has.call(obj, key)) {
+      const val = obj[key];
+
+      if (isObject(val)) {
+        // eslint-disable-next-line no-param-reassign
+        obj[key] = globalsProxy(val, `${parentPath}.${key}`);
+      }
     }
   }
 
   return new Proxy(obj, {
     get(target, prop, receiver) {
-      if (!Object.prototype.hasOwnProperty.call(target, prop)) {
+      // bypass Symbol.toStringTag because it's used in isObject
+      if (!has.call(target, prop) && prop !== Symbol.toStringTag) {
         const propPath = `${parentPath}.${String(prop)}`;
 
         ctx.warnings.push({
@@ -106,24 +106,18 @@ export function globalsProxy<
     },
 
     set(target, prop, value, receiver) {
-      if (
-        Reflect.has(target, prop)
-        // TODO: Should we provide a warning when the prop was accessed before
-        // it was set (when it's UndefinedProxy here)? Might be annoying if code
-        // actually relies on that behaviour
-        && !(Reflect.get(target, prop) instanceof UndefinedProperty)
-      ) {
-        const propPath = `${parentPath}.${String(prop)}`;
-
+      if (has.call(target, prop)) {
         ctx.warnings.push({
           code: 'prop-override',
-          message: `Overriding existing value of property "${propPath}"`,
+          message: `Overriding existing property "${parentPath}.${String(
+            prop,
+          )}"`,
           file: ctx.from,
         });
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const proxiedValue = typeof value === 'object'
+      const proxiedValue = isObject(value)
         ? globalsProxy(value, `${parentPath}.${String(prop)}`)
         : value;
 
@@ -133,74 +127,55 @@ export function globalsProxy<
 }
 
 /**
- * Assign properties from an object to another but only if those properties are
- * nullish. Mutates the `to` object in place.
- */
-function assignNullish(
-  to: Record<string, unknown>,
-  from: Record<string, unknown>,
-): void {
-  // eslint-disable-next-line guard-for-in, no-param-reassign
-  for (const prop in from) to[prop] ??= from[prop];
-}
-
-function isObject(val: unknown): val is Record<string, unknown> {
-  return val != null && typeof val === 'object' && Array.isArray(val) === false;
-}
-
-/**
- * Recursively set default values in global properties.
- *
- * Will only set a property value if one does not already exist.
- */
-export function applyDefault(globals: Partial<XCSSGlobals>): void;
-export function applyDefault(
-  globals: Partial<XCSSGlobals>,
-  x: Partial<XCSSGlobals>,
-): void;
-export function applyDefault(
-  globals: Partial<XCSSGlobals>,
-  x: Partial<XCSSGlobals> = ctx.rawX,
-): void {
-  assignNullish(x, globals);
-
-  // eslint-disable-next-line guard-for-in
-  for (const key in globals) {
-    const from = globals[key];
-    const to = x[key];
-
-    if (isObject(from) && isObject(to)) {
-      applyDefault(from, to);
-    }
-  }
-}
-
-/**
  * Iterate over an array's items then combine the result.
  */
-export function combineMap<T>(
+export function map<T>(
   arr: T[],
-  callback: (value: T, index: number, array: T[]) => string,
+  callback: (value: T, index: number) => string,
 ): string {
   if (!Array.isArray(arr)) {
     ctx.warnings.push({
-      code: 'map-invalid-arr',
-      message: `Expected array but got ${Object.prototype.toString.call(arr)}`,
+      code: 'map-invalid-array',
+      message: `Expected array but got ${toStr.call(arr)}`,
     });
     return 'INVALID';
   }
 
-  return arr.map(callback).join('');
+  const len = arr.length;
+  let index = 0;
+  let result = '';
+
+  for (; index < len; index++) {
+    result += callback(arr[index], index) || '';
+  }
+
+  return result;
 }
 
 /**
- * Iterate over an object's property keys and values then combine the result.
+ * Iterate over each of an object's properties then combine the result.
  */
-export function combineEntries<T>(
-  obj: { [key: string]: T } | ArrayLike<T>,
-  callback: (entries_: [string, T]) => string,
+export function each<T>(
+  obj: { [key: string]: T },
+  callback: (key: string, value: T) => string,
 ): string {
-  return Object.entries(obj).map(callback).join('');
+  if (!isObject(obj)) {
+    ctx.warnings.push({
+      code: 'each-invalid-object',
+      message: `Expected object but got ${toStr.call(obj)}`,
+    });
+    return 'INVALID';
+  }
+
+  let result = '';
+
+  for (const key in obj) {
+    if (has.call(obj, key)) {
+      result += callback(key, obj[key]) || '';
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -222,14 +197,15 @@ export const xcssTag = () => function xcss(
       val = val(ctx.x);
     }
 
-    if (typeof val === 'object' && val !== null) {
+    if (val != null && typeof val === 'object') {
       if (typeof val.toString === 'function') {
         val = val.toString();
       } else {
         ctx.warnings.push({
           code: 'expression-invalid',
-          message: `Invalid XCSS template expression. Must be string, object with toString() method,
-number, or falsely but got ${Object.prototype.toString.call(val)}`,
+          message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${toStr.call(
+            val,
+          )}`,
           file: ctx.from,
         });
 

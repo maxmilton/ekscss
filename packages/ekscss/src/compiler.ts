@@ -2,12 +2,11 @@
 
 import * as stylis from 'stylis';
 import {
-  applyDefault,
-  combineEntries,
-  combineMap,
   ctx,
+  each,
   globalsProxy,
   interpolate,
+  map as _map,
   xcssTag,
 } from './helpers';
 import { compileSourceMap } from './sourcemap';
@@ -36,9 +35,8 @@ function mergeDefaultGlobals(globals: Partial<XCSSGlobals>) {
   return {
     ...globals,
     fn: {
-      default: applyDefault,
-      entries: combineEntries,
-      map: combineMap,
+      each,
+      map: _map,
       ...(globals.fn || {}),
     },
   };
@@ -56,14 +54,13 @@ export function compile(
   }: XCSSCompileOptions = {},
 ): XCSSCompileResult {
   const dependencies: string[] = [];
-  if (from) dependencies.push(from);
   const warnings: Warning[] = [];
-  const rawX = mergeDefaultGlobals(globals);
-  const x = globalsProxy(rawX, 'x');
+  const x = globalsProxy(mergeDefaultGlobals(globals), 'x');
+
+  if (from) dependencies.push(from);
 
   ctx.dependencies = dependencies;
   ctx.from = from;
-  ctx.rawX = rawX;
   ctx.rootDir = rootDir;
   ctx.warnings = warnings;
   ctx.x = x;
@@ -79,7 +76,8 @@ export function compile(
       } catch (err) {
         warnings.push({
           code: 'plugin-load-error',
-          message: `Failed to load plugin "${plugin.toString()}"; ${(err as Error).toString()}`,
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+          message: `Failed to load plugin "${plugin}"; ${err}`,
           file: __filename,
         });
         plugin = noop;
@@ -97,14 +95,21 @@ export function compile(
 
   // @ts-expect-error - reset for next compile
   // eslint-disable-next-line no-multi-assign
-  ctx.dependencies = ctx.from = ctx.rawX = ctx.rootDir = ctx.warnings = ctx.x = undefined;
+  ctx.dependencies = ctx.from = ctx.rootDir = ctx.warnings = ctx.x = undefined;
 
   for (const fn of afterBuildFns) fn();
 
   let sourceMap;
 
   if (map) {
-    sourceMap = compileSourceMap(ast, rootDir, from, to);
+    if (!process.env.BROWSER) {
+      sourceMap = compileSourceMap(ast, rootDir, from, to);
+    } else {
+      warnings.push({
+        code: 'browser-no-sourcemap',
+        message: 'Browser ekscss does not support sourcemaps',
+      });
+    }
   }
 
   return {

@@ -15,6 +15,7 @@ const { importPlugin } = require('@ekscss/plugin-import');
 const { prefixPlugin } = require('@ekscss/plugin-prefix');
 const color = require('color');
 const { xcssTag } = require('ekscss');
+const pkg = require('./package.json');
 
 // FIXME: Remove if unused + remove framework/mixins/*
 // const { triangle } = require('./mixins/triangle');
@@ -27,7 +28,7 @@ const xcss = xcssTag();
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
   banner: `/*!
-* XCSS Framework - https://github.com/MaxMilton/ekscss
+* XCSS Framework v${pkg.version} - https://github.com/MaxMilton/ekscss
 * (c) 2021 Max Milton
 * MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
 */`,
@@ -207,14 +208,10 @@ module.exports = {
     hrMargin: '1.2rem 0',
     hrColor: (x) => x.fn.color(x.color.dark5).alpha(0.15),
 
-    linkClickArea: '0.4em', // XXX: Reduce if links overlap
-
-    // use font weight keywords so it's relative to parent and simplifies to one
-    // of four weights; see https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#meaning_of_relative_weights
-    // TODO: lighter turns into 100 which is awkwardly thin in most fonts
-    textWeightLight: 'lighter',
-    textWeight: 'normal',
-    textWeightHeavy: 'bolder',
+    textWeightLight: 300,
+    textWeight: 400,
+    textWeightMedium: 500,
+    textWeightHeavy: 700,
 
     paragraphLeadTextSize: '1.3em',
     paragraphLeadTextWeight: (x) => x.textWeightLight,
@@ -314,5 +311,7 @@ module.exports = {
       marginY: '5rem',
       textColor: (x) => x.color.muted,
     },
+
+    linkClickArea: '0.4em', // XXX: Reduce if links overlap
   },
 };

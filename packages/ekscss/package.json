@@ -1,12 +1,13 @@
 {
   "name": "ekscss",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "A simple, fast, and powerful CSS preprocessor",
   "license": "MIT",
   "repository": "maxmilton/ekscss",
   "author": "Max Milton <max@happycode.ltd>",
   "homepage": "https://maxmilton.github.io/ekscss",
   "main": "dist/index.js",
+  "browser": "dist/browser.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "yarn prebuild && NODE_ENV=production yarn node build.mjs && yarn postbuild",
@@ -24,7 +25,7 @@
     "stylis": "^4.0.10"
   },
   "devDependencies": {
-    "esbuild": "0.11.15",
+    "esbuild": "0.11.20",
     "typescript": "4.2.4"
   }
 }

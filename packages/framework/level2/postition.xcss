@@ -19,7 +19,7 @@
   left: 0;
 }
 
-${x.fn.entries(x.media, ([bp, query]) => xcss`
+${x.fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-t0 { top: 0; }
     .${bp}-r0 { right: 0; }
