@@ -78,4 +78,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn install --immutable
+      # FIXME: REMOVE DEBUG CODE!!
+      - run: ls -la packages/ekscss/dist
+      - run: ls -la packages/framework/dist
+      - run: ls -la packages/plugin-import/dist
+
       - run: yarn run lint
