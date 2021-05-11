@@ -1,4 +1,6 @@
 .code-block {
+  display: block; // makes it easy to add to a <code> element
+  max-width: 100%;
   padding: 0.5em 1em;
   border-radius: ${x.code.radius};
   color: ${x.code.textColor};
