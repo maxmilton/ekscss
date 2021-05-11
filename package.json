@@ -10,7 +10,7 @@
     "lint:js": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.jsx,.mjs,.cjs .",
     "lint:ts": "tsc --noEmit",
     "test": "c8 uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'",
-    "test-nox": "uvu packages '\\/test\\/.+\\.test-nox\\.js$'"
+    "test-nn": "uvu packages '\\/test\\/.+\\.test-nn\\.js$'"
   },
   "workspaces": [
     "packages/*"
