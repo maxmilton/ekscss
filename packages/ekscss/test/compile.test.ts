@@ -39,6 +39,9 @@ test('runs with complex code', () => {
   assert.snapshot(compiled.css, complexCodeResult);
 });
 
+// FIXME: Run these tests without esbuild-register so it doesn't transpile the
+// imported code since we need to verify it runs as-is on each node version
+
 test('bundled compiler runs with empty code', () => {
   // eslint-disable-next-line
   const compiled = require('../dist/index').compile('');

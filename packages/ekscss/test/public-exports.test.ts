@@ -48,6 +48,10 @@ test('does not export any private internals', () => {
   assert.is(remainingExports.length, 0);
 });
 
+// FIXME: Run the parts of this test which use "require" without
+// esbuild-register so it doesn't transpile the imported code since we need
+// to verify it runs as-is on each node version
+
 test('has no default export', () => {
   // XXX: `allExports.default` is a synthetic default created by esbuild at test runtime
 
