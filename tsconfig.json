@@ -28,10 +28,10 @@
     "useDefineForClassFields": true
   },
   "exclude": [
-    "**/coverage",
     "**/dist",
     "**/node_modules",
     "**/test",
-    "**/build.mjs"
+    "**/build.mjs",
+    "coverage"
   ]
 }
