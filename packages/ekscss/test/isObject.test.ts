@@ -48,7 +48,6 @@ const notObjects = [
   // eslint-disable-next-line no-sparse-arrays
   [, '<no value>'],
   [global, 'global'],
-  [performance, 'performance'],
 ] as const;
 
 test('exports an "isObject" function', () => {
