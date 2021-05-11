@@ -50,6 +50,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install --immutable
       - run: yarn run test
+      - run: yarn run test-nox
       - name: Report coverage
         if: ${{ matrix.node-version == 16 }}
         run: |
