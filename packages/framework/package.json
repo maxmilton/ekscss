@@ -25,7 +25,7 @@
     "xcss.config.js"
   ],
   "peerDependencies": {
-    "ekscss": "^0.0.5"
+    "ekscss": "^0.0.6"
   },
   "dependencies": {
     "@ekscss/plugin-apply": "workspace:^0.0.1",

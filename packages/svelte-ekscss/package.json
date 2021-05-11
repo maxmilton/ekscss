@@ -1,6 +1,6 @@
 {
   "name": "svelte-ekscss",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
     "src"
   ],
   "peerDependencies": {
-    "ekscss": "^0.0.5",
+    "ekscss": "^0.0.6",
     "svelte": "^3.0.0"
   },
   "dependencies": {
