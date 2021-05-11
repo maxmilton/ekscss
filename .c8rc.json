@@ -1,0 +1,5 @@
+{
+  "all": true,
+  "include": ["packages/*/src", "packages/cli"],
+  "reporter": ["text", "lcovonly"]
+}
