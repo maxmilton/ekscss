@@ -1,15 +1,14 @@
-'use strict'; // eslint-disable-line
-
 const OFF = 0;
 
-/** @type {import('eslint').Linter.Config} */
+// eslint-disable-next-line max-len
+/** @type {import('eslint').Linter.Config & { parserOptions: import('@typescript-eslint/types').ParserOptions }} */
 module.exports = {
   root: true,
   reportUnusedDisableDirectives: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
     extraFileExtensions: ['.mjs', '.cjs'],
-    project: './tsconfig.json',
+    project: ['./tsconfig.eslint.json'],
   },
   env: {
     node: true,
@@ -24,12 +23,4 @@ module.exports = {
   rules: {
     'import/prefer-default-export': OFF,
   },
-  overrides: [
-    {
-      files: ['.eslintrc.js'],
-      parserOptions: {
-        createDefaultProgram: true,
-      },
-    },
-  ],
 };

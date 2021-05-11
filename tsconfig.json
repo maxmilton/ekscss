@@ -11,8 +11,7 @@
     "allowJs": true,
     "checkJs": true,
 
-    // "noEmit": true,
-
+    "noEmit": true, // prevents errors in VS Code and ESLint
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -27,9 +26,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "useDefineForClassFields": true
-
-    // "suppressExcessPropertyErrors": true,
-    // "suppressImplicitAnyIndexErrors": true,
   },
-  "exclude": ["**/dist/*", "**/node_modules/*", "coverage", "node_modules"]
+  "exclude": [
+    "**/coverage",
+    "**/dist",
+    "**/node_modules",
+    "**/test",
+    "**/build.mjs"
+  ]
 }
