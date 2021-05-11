@@ -2,7 +2,6 @@
 
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import * as allExports from '../src/helpers';
 import { isObject } from '../src/helpers';
 
 function Func() {}
@@ -49,11 +48,6 @@ const notObjects = [
   [, '<no value>'],
   [global, 'global'],
 ] as const;
-
-test('exports an "isObject" function', () => {
-  assert.is('isObject' in allExports, true);
-  assert.type(allExports.isObject, 'function');
-});
 
 objects.forEach(([value, name]) => {
   test(`returns true for "${name}" object`, () => {
