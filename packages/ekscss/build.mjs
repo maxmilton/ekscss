@@ -16,7 +16,7 @@ esbuild
     entryPoints: ['src/index.ts'],
     outfile: 'dist/index.js',
     platform: 'node',
-    target: ['node14'],
+    target: ['node10'],
     define: {
       'process.env.BROWSER': 'false',
       'process.env.NODE_ENV': JSON.stringify(mode),
@@ -25,7 +25,7 @@ esbuild
     banner: { js: '"use strict";' },
     bundle: true,
     sourcemap: true,
-    minifySyntax: !dev,
+    minify: !dev,
     watch: dev,
     logLevel: 'debug',
   })
