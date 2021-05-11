@@ -80,8 +80,10 @@ When `dest` is not provided output CSS will be put into a file with the same fil
 
 XCSS configuration files may be in either JSON or JavaScript format. Config files will be discovered and used automatically if named appropriately and placed in your project directory:
 
+- `.xcssrc.cjs`
 - `.xcssrc.js`
 - `.xcssrc.json`
+- `xcss.config.cjs`
 - `xcss.config.js`
 - `xcss.config.json`
 - an `"xcss"` field in your `package.json`

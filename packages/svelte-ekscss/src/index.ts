@@ -16,8 +16,10 @@ interface PluginOptions {
 export const style = ({ config }: PluginOptions = {}): Preprocessor => {
   const joycon = new JoyCon({
     files: [
+      '.xcssrc.cjs',
       '.xcssrc.js',
       '.xcssrc.json',
+      'xcss.config.cjs',
       'xcss.config.js',
       'xcss.config.json',
       'package.json',

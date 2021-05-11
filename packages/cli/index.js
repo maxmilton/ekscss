@@ -15,8 +15,10 @@ function handleErr(err) {
 
 const joycon = new JoyCon({
   files: [
+    '.xcssrc.cjs',
     '.xcssrc.js',
     '.xcssrc.json',
+    'xcss.config.cjs',
     'xcss.config.js',
     'xcss.config.json',
     'package.json',

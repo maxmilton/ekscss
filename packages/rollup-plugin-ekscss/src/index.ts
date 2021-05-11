@@ -32,8 +32,10 @@ export default function rollupPlugin({
   const filter = createFilter(include, exclude);
   const joycon = new JoyCon({
     files: [
+      '.xcssrc.cjs',
       '.xcssrc.js',
       '.xcssrc.json',
+      'xcss.config.cjs',
       'xcss.config.js',
       'xcss.config.json',
       'package.json',
