@@ -30,6 +30,17 @@
     "typescript": "4.2.4",
     "uvu": "0.5.1"
   },
+  "c8":{
+    "all": true,
+    "include": [
+      "packages/*/src",
+      "packages/cli"
+    ],
+    "reporter": [
+      "text",
+      "lcovonly"
+    ]
+  },
   "prettier": {
     "arrowParens": "always",
     "endOfLine": "lf",
