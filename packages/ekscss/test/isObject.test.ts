@@ -10,7 +10,7 @@ class Cls {}
 
 const objects = [
   [{}, '{}'],
-  [{ a: 1, b: true }, '{}'],
+  [{ a: 1, b: true }, '{ a: 1, b: true }'],
   [Object.create({}), 'Object.create({})'],
   [Object.create(Object.prototype), 'Object.create(Object.prototype)'],
   [Object.create(null), 'Object.create(null)'],
