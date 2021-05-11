@@ -12,8 +12,8 @@
     "_build__TEST": "xcss test/test.xcss dist/test.css",
     "_build__TEST2": "xcss --config test/test2.config.js test/test2.xcss dist/test2.css",
     "build": "yarn prebuild && yarn run build-levels && yarn run build-addons",
-    "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addons/*.xcss); do xcss --map addons/$f.xcss dist/addons/$f.css;done'",
-    "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss --map $f.xcss dist/$f.css;done'",
+    "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addons/*.xcss); do xcss -qm addons/$f.xcss dist/addons/$f.css;done'",
+    "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css;done'",
     "prebuild": "rm -rf dist; mkdir -p dist/addons"
   },
   "files": [

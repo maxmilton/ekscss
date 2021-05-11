@@ -73,7 +73,6 @@ module.exports = async (src, dest, opts) => {
     globals: config.globals,
     plugins: config.plugins,
     rootDir,
-    // map: opts.map ?? config.map,
     map: opts.map != null ? opts.map : config.map,
   });
   const t1 = performance.now();
@@ -81,19 +80,17 @@ module.exports = async (src, dest, opts) => {
   for (const warning of compiled.warnings) {
     process.exitCode = 1;
 
-    if (!opts.quiet) {
-      console.error(colors.red('Error:'), warning.message || warning);
+    console.error(colors.red('Error:'), warning.message || warning);
 
-      if (warning.file) {
-        console.log(
-          '  at',
-          colors.dim(
-            [warning.file, warning.line, warning.column]
-              .filter(Boolean)
-              .join(':'),
-          ),
-        );
-      }
+    if (warning.file) {
+      console.log(
+        '  at',
+        colors.dim(
+          [warning.file, warning.line, warning.column]
+            .filter(Boolean)
+            .join(':'),
+        ),
+      );
     }
   }
 

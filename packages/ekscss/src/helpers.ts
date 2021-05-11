@@ -66,8 +66,8 @@ class UndefinedProperty {
  * Inject accessor helpers into the globals object.
  *
  * Generates warnings when an object property is accessed but doesn't exist
- * or when overriding an existing property value (which often leads to
- * undesirable results).
+ * or when overriding an existing property value (which is often a mistake
+ * which leads to undesirable results).
  *
  * @param obj - The object to inject accessor helpers into.
  * @param parentPath - Key path to the current location in the object.
