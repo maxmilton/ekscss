@@ -18,24 +18,24 @@ const helperPublicExports = [
 
 compilerPublicExports.forEach(([name, type]) => {
   test(`exports public "${name}" compiler ${type}`, () => {
-    assert.is(name in allExports, true);
+    assert.is(name in allExports, true, 'is exported');
     assert.type(allExports[name], type);
   });
 });
 
 helperPublicExports.forEach(([name, type]) => {
   test(`exports public "${name}" helper ${type}`, () => {
-    assert.is(name in allExports, true);
+    assert.is(name in allExports, true, 'is exported');
     assert.type(allExports[name], type);
   });
 });
 
 test('does not export any private internals', () => {
-  const allPublicExportNames = [].concat(
-    compilerPublicExports.map((x) => x[0]),
-    helperPublicExports.map((x) => x[0]),
-    ['default'], // synthetic default created by esbuild at test runtime
-  );
+  const allPublicExportNames = [
+    ...compilerPublicExports.map((x) => x[0]),
+    ...helperPublicExports.map((x) => x[0]),
+    'default', // synthetic default created by esbuild at test runtime
+  ];
   const remainingExports = Object.keys(allExports);
   assert.is(
     remainingExports.length
