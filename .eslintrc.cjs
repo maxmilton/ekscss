@@ -10,9 +10,6 @@ module.exports = {
     extraFileExtensions: ['.mjs', '.cjs'],
     project: ['./tsconfig.eslint.json'],
   },
-  env: {
-    node: true,
-  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
