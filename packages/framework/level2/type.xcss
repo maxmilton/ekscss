@@ -12,6 +12,10 @@
   border-left: 5px solid #0f96ff;
 }
 
+.break {
+  word-wrap: break-word;
+}
+
 /* Lists */
 
 /* List style none */
