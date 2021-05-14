@@ -28,9 +28,9 @@ const xcss = xcssTag();
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
   banner: `/*!
-* XCSS Framework v${pkg.version} - https://github.com/MaxMilton/ekscss
+* XCSS Framework v${pkg.version} - https://github.com/maxmilton/ekscss
 * (c) 2021 Max Milton
-* MIT Licensed - https://github.com/MaxMilton/ekscss/blob/main/LICENSE
+* MIT Licensed - https://github.com/maxmilton/ekscss/blob/main/LICENSE
 */`,
   globals: {
     fn: {

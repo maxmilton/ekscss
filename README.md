@@ -1,7 +1,7 @@
-[![Build status](https://img.shields.io/github/workflow/status/MaxMilton/ekscss/ci)](https://github.com/MaxMilton/ekscss/actions)
+[![Build status](https://img.shields.io/github/workflow/status/maxmilton/ekscss/ci)](https://github.com/maxmilton/ekscss/actions)
 [![Coverage status](https://img.shields.io/codeclimate/coverage/MaxMilton/ekscss)](https://codeclimate.com/github/MaxMilton/ekscss)
 [![NPM version](https://img.shields.io/npm/v/ekscss.svg)](https://www.npmjs.com/package/ekscss)
-[![Licence](https://img.shields.io/github/license/MaxMilton/ekscss.svg)](https://github.com/MaxMilton/ekscss/blob/master/LICENSE)
+[![Licence](https://img.shields.io/github/license/maxmilton/ekscss.svg)](https://github.com/maxmilton/ekscss/blob/master/LICENSE)
 
 # ekscss
 
@@ -75,7 +75,7 @@
 
 ## Licence
 
-`ekscss` is an MIT licensed open source project. See [LICENCE](https://github.com/MaxMilton/ekscss/blob/master/LICENCE).
+`ekscss` is an MIT licensed open source project. See [LICENCE](https://github.com/maxmilton/ekscss/blob/master/LICENCE).
 
 ---
 
