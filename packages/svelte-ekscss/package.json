@@ -4,15 +4,15 @@
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "yarn prebuild && tsc",
     "dev": "tsc --watch --preserveWatchOutput",
     "prebuild": "rm -rf dist"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "peerDependencies": {
     "ekscss": "^0.0.6",
     "svelte": "^3.0.0"

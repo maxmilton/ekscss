@@ -85,7 +85,7 @@ __metadata:
     eslint-config-airbnb-typescript: 12.3.1
     eslint-plugin-import: 2.23.2
     prettier: 2.3.0
-    prettier-plugin-package2: 0.6.0
+    prettier-plugin-pkg: 0.9.0
     sirv-cli: 1.0.11
     typescript: 4.2.4
     uvu: 0.5.1
@@ -2737,12 +2737,12 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"prettier-plugin-package2@npm:0.6.0":
-  version: 0.6.0
-  resolution: "prettier-plugin-package2@npm:0.6.0"
+"prettier-plugin-pkg@npm:0.9.0":
+  version: 0.9.0
+  resolution: "prettier-plugin-pkg@npm:0.9.0"
   peerDependencies:
-    prettier: ^2.0.0
-  checksum: e33d7eb8a042194a9098456815505fb9258ef8afe613b1652f77af6c3e9e8df4178ae3d9034e32657a40dcc4b68c289ce8105a105b6f0f31277f83051d618df8
+    prettier: ^2.0.5
+  checksum: e6da139c4b898486558667f4a221ba4d7dde3f98e6cc4cd3ac06a94451753c2a1a02bc5274798b0e27825a5668777f4ab752b19b2173ab184d6efdebb104013a
   languageName: node
   linkType: hard
 

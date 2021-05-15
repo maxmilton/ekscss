@@ -1,20 +1,20 @@
 {
   "name": "@ekscss/monorepo",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "docs": "ln -s ../packages/framework/dist docs; sirv docs --dev --cors",
     "build": "yarn build",
-    "rebuild": "yarn build --ignore-cache",
+    "docs": "ln -s ../packages/framework/dist docs; sirv docs --dev --cors",
     "lint": "yarn lint:css && yarn lint:js && yarn lint:ts",
     "lint:css": "echo 'TODO: CSS linting'; exit 0",
     "lint:js": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.jsx,.mjs,.cjs .",
     "lint:ts": "tsc --noEmit",
+    "rebuild": "yarn build --ignore-cache",
     "test": "c8 uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'",
     "test-nn": "uvu packages '\\/test\\/.+\\.test-nn\\.js$'"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
     "@types/node": "15.3.0",
     "@typescript-eslint/eslint-plugin": "4.23.0",
@@ -26,7 +26,7 @@
     "eslint-config-airbnb-typescript": "12.3.1",
     "eslint-plugin-import": "2.23.2",
     "prettier": "2.3.0",
-    "prettier-plugin-package2": "0.6.0",
+    "prettier-plugin-pkg": "0.9.0",
     "sirv-cli": "1.0.11",
     "typescript": "4.2.4",
     "uvu": "0.5.1"
