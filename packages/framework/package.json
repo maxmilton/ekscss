@@ -2,20 +2,11 @@
   "name": "@ekscss/framework",
   "version": "0.0.8",
   "description": "Progressive CSS framework powered by ekscss",
-  "license": "MIT",
   "repository": "maxmilton/ekscss",
-  "author": "Max Milton <max@happycode.ltd>",
   "homepage": "https://maxmilton.github.io/ekscss",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
   "main": "level2.xcss",
-  "style": "dist/index.css",
-  "scripts": {
-    "_build__TEST": "xcss test/test.xcss dist/test.css",
-    "_build__TEST2": "xcss --config test/test2.config.js test/test2.xcss dist/test2.css",
-    "build": "yarn prebuild && yarn run build-levels && yarn run build-addons",
-    "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addons/*.xcss); do xcss -qm addons/$f.xcss dist/addons/$f.css;done'",
-    "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css;done'",
-    "prebuild": "rm -rf dist; mkdir -p dist/addons"
-  },
   "files": [
     "*.xcss",
     "addons",
@@ -24,6 +15,14 @@
     "level2",
     "xcss.config.js"
   ],
+  "scripts": {
+    "_build__TEST": "xcss test/test.xcss dist/test.css",
+    "_build__TEST2": "xcss --config test/test2.config.js test/test2.xcss dist/test2.css",
+    "build": "yarn prebuild && yarn run build-levels && yarn run build-addons",
+    "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addons/*.xcss); do xcss -qm addons/$f.xcss dist/addons/$f.css;done'",
+    "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css;done'",
+    "prebuild": "rm -rf dist; mkdir -p dist/addons"
+  },
   "peerDependencies": {
     "ekscss": "^0.0.6"
   },
@@ -38,5 +37,6 @@
     "@ekscss/cli": "workspace:*",
     "@types/color": "3.0.1",
     "ekscss": "workspace:*"
-  }
+  },
+  "style": "dist/index.css"
 }

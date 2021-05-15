@@ -2,19 +2,19 @@
   "name": "@ekscss/cli",
   "version": "0.0.4",
   "description": "A simple, fast, and powerful CSS preprocessor",
-  "license": "MIT",
   "repository": "maxmilton/ekscss",
-  "author": "Max Milton <max@happycode.ltd>",
   "homepage": "https://maxmilton.github.io/ekscss",
+  "author": "Max Milton <max@happycode.ltd>",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
   "bin": {
     "ekscss": "bin.js",
     "xcss": "bin.js"
   },
   "main": "index.js",
   "types": "types.d.ts",
-  "engines": {
-    "node": ">= 10"
-  },
   "files": [
     "*.js"
   ],
