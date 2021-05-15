@@ -26,7 +26,7 @@ jobs:
           if-no-files-found: error
   test:
     needs: build
-    name: test node v${{ matrix.node-version }}
+    name: test (node v${{ matrix.node-version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
