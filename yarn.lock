@@ -500,14 +500,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.0.1":
-  version: 8.3.0
-  resolution: "ajv@npm:8.3.0"
+  version: 8.4.0
+  resolution: "ajv@npm:8.4.0"
   dependencies:
     fast-deep-equal: ^3.1.1
     json-schema-traverse: ^1.0.0
     require-from-string: ^2.0.2
     uri-js: ^4.2.2
-  checksum: 95a98cc9cb0223f05530dd9e0d43e958d3a2e555a15f40bdcaafebe63254f6c53f88afcb4bec22344ae0f5fc0a87889ce3826973fc63e25ae159afadf1887c74
+  checksum: 0dcdfe0ecaafca2de60d01601c041853a1057f26bcb24de79484a3f6947486cad7b84d2779f93a9a315345451248aca14ed4996213905b42fac4ec11c7a76a6c
   languageName: node
   linkType: hard
 
@@ -948,6 +948,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"debug@npm:^3.2.7":
+  version: 3.2.7
+  resolution: "debug@npm:3.2.7"
+  dependencies:
+    ms: ^2.1.1
+  checksum: 9fc1277e666db3af31df89e9e41f5c83da6e9de56d4a95b37e095d47ba1958238b8c7b49d4327b516465d46b6340bee723a97a7b2f28c5c7563f8b0a8fc9458a
+  languageName: node
+  linkType: hard
+
 "deep-is@npm:^0.1.3":
   version: 0.1.3
   resolution: "deep-is@npm:0.1.3"
@@ -1138,21 +1147,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.11.21":
+"esbuild@npm:0.11.21, esbuild@npm:^0.11.5":
   version: 0.11.21
   resolution: "esbuild@npm:0.11.21"
   bin:
     esbuild: bin/esbuild
   checksum: 5b122d678a0c00b746f8862a8e51656a268d3416487bfe61006ebb893519ee512d0a66639c23c1aeb89d454812b3f7c6e60e7c5a0859dcebfa8e2fe52ac8bdb4
-  languageName: node
-  linkType: hard
-
-"esbuild@npm:^0.11.5":
-  version: 0.11.20
-  resolution: "esbuild@npm:0.11.20"
-  bin:
-    esbuild: bin/esbuild
-  checksum: 553f88218a18d018d690f6512b10f4a37b6e7545b48aad02a1ed77e4b7a01d0261dc4213557d694c55f9e130527a064ed1db872c878a2133a0b3a90122299c82
   languageName: node
   linkType: hard
 
@@ -1223,12 +1223,12 @@ __metadata:
   linkType: hard
 
 "eslint-module-utils@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "eslint-module-utils@npm:2.6.0"
+  version: 2.6.1
+  resolution: "eslint-module-utils@npm:2.6.1"
   dependencies:
-    debug: ^2.6.9
+    debug: ^3.2.7
     pkg-dir: ^2.0.0
-  checksum: f584af176480a702eedcdb3f610797f8b8d1293c3835ed71fadb579ec28400b91ded5283729418f63d48dc27c6358bd66f2bd839614d565a1b78d3c3440ee8f7
+  checksum: 3de93ecfd7a0b803a2cd91afd5cbb32dca559f58c22e92f95ec4700ff75e008035587ee032b9196d6565fbd73f799992122a8dc8ea0b979c07229b51735a8bed
   languageName: node
   linkType: hard
 
@@ -2360,7 +2360,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"ms@npm:^2.0.0":
+"ms@npm:^2.0.0, ms@npm:^2.1.1":
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
   checksum: 6e721e648a544154d5de4c114b32f573d8027ca8ec505cf6c1105e505986d6ac46934a1256735aa0eece8eb2f5b2a1230503b2dddd3b100f9f016fd8a4f15f33
@@ -3308,8 +3308,8 @@ fsevents@~2.3.1:
   linkType: hard
 
 "table@npm:^6.0.4":
-  version: 6.7.0
-  resolution: "table@npm:6.7.0"
+  version: 6.7.1
+  resolution: "table@npm:6.7.1"
   dependencies:
     ajv: ^8.0.1
     lodash.clonedeep: ^4.5.0
@@ -3317,7 +3317,7 @@ fsevents@~2.3.1:
     slice-ansi: ^4.0.0
     string-width: ^4.2.0
     strip-ansi: ^6.0.0
-  checksum: 87ab315355fb76e42be583c0e6cfbf4a0359e2a3360125f50292e3a063e7e4b382c0a51107a227d9549680d5008abdb900dfe6b79d20312cab950c2f9d327d98
+  checksum: 66107046b7226051552d53c1260facfed03f4050373d3888620af7b1353f6a5429d9a4a5fb796c56c29b9dd5ffca7b661a815f42ec392cb5956432585578772a
   languageName: node
   linkType: hard
 
