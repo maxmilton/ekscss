@@ -86,6 +86,7 @@ __metadata:
     eslint-plugin-import: 2.23.2
     prettier: 2.3.0
     prettier-plugin-pkg: 0.9.0
+    prettier-plugin-sh: 0.6.1
     sirv-cli: 1.0.11
     typescript: 4.2.4
     uvu: 0.5.1
@@ -2379,6 +2380,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"mvdan-sh@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "mvdan-sh@npm:0.5.0"
+  checksum: d24ca84d21eb6c4550de1ca38e42550fd87005ce9b36fdf3eb0968d7c496d7015d612ecd2efc5135f676d579d8397d885dafcc3c8fb91f65d0c152a7c6881032
+  languageName: node
+  linkType: hard
+
 "nanoid@npm:^3.1.23":
   version: 3.1.23
   resolution: "nanoid@npm:3.1.23"
@@ -2743,6 +2751,17 @@ fsevents@~2.3.1:
   peerDependencies:
     prettier: ^2.0.5
   checksum: e6da139c4b898486558667f4a221ba4d7dde3f98e6cc4cd3ac06a94451753c2a1a02bc5274798b0e27825a5668777f4ab752b19b2173ab184d6efdebb104013a
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-sh@npm:0.6.1":
+  version: 0.6.1
+  resolution: "prettier-plugin-sh@npm:0.6.1"
+  dependencies:
+    mvdan-sh: ^0.5.0
+  peerDependencies:
+    prettier: ^2.0.5
+  checksum: c5d6a9610ab041b7e298115db5b749573959bf7c34dcb7f01667a8ed156cefe4fd99844c05898b2d3de66c174ac17538a33ef5a12b27db5b48b36a3c3aeab640
   languageName: node
   linkType: hard
 
