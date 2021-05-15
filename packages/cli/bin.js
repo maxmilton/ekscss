@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const sade = require('sade');
-const boot = require('./index.js');
+const boot = require('./index');
 const pkg = require('./package.json');
 
 sade('xcss [src] [dest]')

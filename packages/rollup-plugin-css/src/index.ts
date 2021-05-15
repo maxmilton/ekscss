@@ -3,8 +3,8 @@
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
 import csso from 'csso';
 import path from 'path';
-import type { Plugin } from 'rollup';
 import { SourceMapConsumer, SourceNode, SourceMapGenerator } from 'source-map';
+import type { Plugin } from 'rollup';
 
 export interface PluginOptions {
   /**

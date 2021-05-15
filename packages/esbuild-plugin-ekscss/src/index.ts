@@ -2,9 +2,9 @@
 // https://esbuild.github.io/plugins/
 
 import { compile, XCSSCompileOptions } from 'ekscss';
-import type { Plugin } from 'esbuild';
 import fs from 'fs';
 import JoyCon from 'joycon';
+import type { Plugin } from 'esbuild';
 
 export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
 

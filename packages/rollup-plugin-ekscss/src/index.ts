@@ -2,8 +2,8 @@
 
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
 import { compile, XCSSCompileOptions } from 'ekscss';
-import type { Plugin } from 'rollup';
 import JoyCon from 'joycon';
+import type { Plugin } from 'rollup';
 
 export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
 
