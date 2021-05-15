@@ -79,7 +79,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 4.23.0
     "@typescript-eslint/parser": 4.23.0
     c8: 7.7.2
-    esbuild: 0.11.21
+    esbuild: 0.11.22
     esbuild-register: 2.5.0
     eslint: 7.26.0
     eslint-config-airbnb-typescript: 12.3.1
@@ -1034,7 +1034,7 @@ __metadata:
   resolution: "ekscss@workspace:packages/ekscss"
   dependencies:
     "@types/stylis": ^4.0.0
-    esbuild: 0.11.21
+    esbuild: 0.11.22
     source-map: ^0.7.3
     stylis: ^4.0.10
     typescript: 4.2.4
@@ -1147,7 +1147,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.11.21, esbuild@npm:^0.11.5":
+"esbuild@npm:0.11.22":
+  version: 0.11.22
+  resolution: "esbuild@npm:0.11.22"
+  bin:
+    esbuild: bin/esbuild
+  checksum: eb448d8793058197996bf71b3a2d648e6f9d2751e1b0a195c72a555c4ad8098db91771f73c7bc68802eb02d89301fe962b2abda9c328e5d3c60da33bc279ff3b
+  languageName: node
+  linkType: hard
+
+"esbuild@npm:^0.11.5":
   version: 0.11.21
   resolution: "esbuild@npm:0.11.21"
   bin:
