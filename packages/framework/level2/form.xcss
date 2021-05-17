@@ -128,11 +128,9 @@ input::-webkit-inner-spin-button {
   color: ${x.form.helpTextColor};
 }
 
-// TODO: The :invalid state can be tricky to work with... maybe better if we
-// provide a form validation solution/s
-.input:invalid:not(:placeholder-shown),
-.select:invalid,
-.textarea:invalid,
+.input.dirty:invalid,
+.select.dirty:invalid,
+.textarea.dirty:invalid,
 .invalid {
   border-color: ${x.input.invalidBorder};
   box-shadow: 0 0 0 2px ${x.input.invalidColor};
