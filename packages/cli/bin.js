@@ -11,6 +11,6 @@ sade('xcss [src] [dest]')
   .example('-q')
   .option('-c, --config', 'Use specified config file')
   .option('-m, --map', 'Generate a source map', false)
-  .option('-q, --quiet', "Don't print result or stats; only errors")
+  .option('-q, --quiet', "Don't print result or stats; only errors", false)
   .action(boot)
   .parse(process.argv);
