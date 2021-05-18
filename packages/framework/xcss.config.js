@@ -14,7 +14,10 @@ const { applyPlugin } = require('@ekscss/plugin-apply');
 const { importPlugin } = require('@ekscss/plugin-import');
 const { prefixPlugin } = require('@ekscss/plugin-prefix');
 const color = require('color');
-const { xcssTag } = require('ekscss');
+const {
+  ctx, interpolate, onBeforeBuild, xcssTag,
+} = require('ekscss');
+const stylis = require('stylis'); // eslint-disable-line import/no-extraneous-dependencies
 const pkg = require('./package.json');
 
 // FIXME: Remove if unused + remove framework/mixins/*
@@ -23,6 +26,19 @@ const pkg = require('./package.json');
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
 const xcss = xcssTag();
+
+onBeforeBuild(() => {
+  // pre-populate ctx.applyRefs in applyPlugin for #apply use in native addon
+  if (ctx.from.endsWith('framework/addon/native.xcss')) {
+    const code = "@import '../level2.xcss';";
+    const interpolated = interpolate(code)(xcss, ctx.x);
+    const ast = stylis.compile(interpolated);
+    stylis.serialize(
+      ast,
+      stylis.middleware([importPlugin, applyPlugin, () => ' ']),
+    );
+  }
+});
 
 /** @type {import('@ekscss/cli').XCSSConfig} */
 module.exports = {

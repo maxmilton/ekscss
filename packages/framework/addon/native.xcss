@@ -7,24 +7,18 @@
 * great without needing to explicitly set CSS classes this package is for you.
 */
 
-// XXX: Prevent errors in standalone build
-${xcss`
-  .table,
-  .blockquote,
-  .code,
-  .label,
-  .input,
-  .select,
-  .textarea,
-  .radio,
-  .checkbox,
-  .range,
-  .button {}
-`}
+${null}
 
 /* Typography */
 
-table { #apply: .table; }
+table {
+  #apply: .table;
+  & > thead { #apply: .table>thead; }
+  & > tbody { #apply: .table>tbody; }
+  th,
+  td { #apply: .table td; }
+  th { #apply: .table th; }
+}
 blockquote { #apply: .blockquote; }
 code { #apply: .code; }
 
@@ -34,10 +28,42 @@ label { #apply: .label; }
 input { #apply: .input; }
 select { #apply: .select; }
 textarea { #apply: .textarea; }
-input[type='radio'] { #apply: .radio; }
+// FIXME: Uncomment after we add .radio styles
+// input[type='radio'] { #apply: .radio; }
 input[type='checkbox'] { #apply: .checkbox; }
-input[type='range'] { #apply: .range; }
+// FIXME: Uncomment after we add .range styles
+// input[type='range'] { #apply: .range; }
 
 /* Button */
 
 button { #apply: .button; }
+
+// FIXME: Bellow rules should be automated in "@ekscss/plugin-apply" and removed here
+
+input,
+select,
+textarea {
+  &:hover { #apply: '.input:hover'; }
+  &:focus,
+  &:active { #apply: '.input:focus'; }
+  &[disabled] { #apply: .input[disabled]; }
+}
+
+// FIXME: Uncomment after we add .radio:checked styles
+// input[type='radio'] {
+//   &:checked { #apply: '.radio:checked'; }
+// }
+
+input[type='checkbox'] {
+  &:checked { #apply: '.checkbox:checked'; }
+}
+
+button {
+  &:hover { #apply: '.button:hover'; }
+  &:focus,
+  &:active { #apply: '.button:focus'; }
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus,
+  &:disabled { #apply: .button[disabled]; }
+}
