@@ -115,7 +115,7 @@ module.exports = {
       light3: '#e1e8ed',
       light4: '#ebf1f5',
       light5: '#f5f8fa',
-      white: '#ffffff',
+      white: '#fff',
       // Core colors
       blue1: '#0e5a8a',
       blue2: '#106ba3',
@@ -198,7 +198,7 @@ module.exports = {
       disabled: (x) => x.color.gray3,
       background: (x) => x.color.light5,
       shadow: (x) => x.fn.color(x.color.dark4).alpha(0.1),
-      shadowDeep: (x) => x.color.shadow, // FIXME:
+      shadowDeep: (x) => x.color.shadow, // FIXME: Remove?
       // text: '#212529',
       text: (x) => x.color.dark2,
       // link: '#2d3436',
@@ -303,7 +303,7 @@ module.exports = {
       hoverHoverShadow: (x) => x.color.shadowDeep,
       bodyMargin: '1.2rem 2rem',
       buttonTextColor: 'inherit',
-      buttonBorder: (x) => `1px solid ${x.fn.color(x.color.light3).alpha(0.5)}`,
+      buttonBorder: (x) => xcss`1px solid ${x.fn.color(x.color.light3).alpha(0.5)}`,
     },
 
     alert: {
