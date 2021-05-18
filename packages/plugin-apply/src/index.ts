@@ -16,9 +16,11 @@
 // TODO: Document plugin does not currently automagically also apply
 // pseudo-classes or pseudo-elements
 
-// TODO: Automagically apply pseudo-classes (and pseudo-elements?)
-
-// TODO: Handle selector refs with multiple parts and/or spaces
+// TODO: Automagically apply pseudo-classes (and pseudo-elements?) and
+// attributes (e.g., .x[disabled])?
+//  ↳ new RegExp(`${target}(\S)`) ... $1 ??
+//    ↳ Looping so much to match keys in ctx.applyRefs will be expensive (?)
+//    ↳ Likely to produce unwanted matches like target>x (?)
 
 import {
   ctx, Element, Middleware, onAfterBuild, onBeforeBuild,
@@ -54,32 +56,46 @@ export const applyPlugin: Middleware = (
   }
 
   if (element.type === stylis.DECLARATION && element.props === '#apply') {
-    // @ts-expect-error - stylis types don't differentiate by node.type
-    const targets = stylis.tokenize(element.children);
+    // stylis types don't differentiate by element.type hence the cast
+    const targets = (element.children as string)
+      .split(',')
+      .map((x) => x.trim().replace(/^['"]/, '').replace(/['"]$/, ''));
     const decls: Element[] = [];
 
     for (const target of targets) {
-      if (target !== ' ' && target !== ',') {
-        const refs = (ctx.applyRefs as ApplyRefs)[target];
+      const refs = (ctx.applyRefs as ApplyRefs)[target];
 
-        if (refs) {
-          for (const ref of refs) {
-            // @ts-expect-error - stylis types don't differentiate by node.type
-            decls.push(...ref.children);
-          }
-        } else {
-          ctx.warnings.push({
-            code: 'apply-no-match',
-            message: `Unable to #apply "${target}", no matching rule`,
-            file: ctx.from,
-            line: element.line,
-            column: element.column,
-          });
+      if (refs) {
+        for (const ref of refs) {
+          // @ts-expect-error - stylis types don't differentiate by node.type
+          decls.push(...ref.children);
         }
+      } else {
+        ctx.warnings.push({
+          code: 'apply-no-match',
+          message: `Unable to #apply "${target}", no matching rule`,
+          file: ctx.from,
+          line: element.line,
+          column: element.column,
+        });
       }
     }
 
     element.return = stylis.serialize(decls, callback);
+
+    if (element.return === '') {
+      // empty value so declaration is removed in stringify
+      element.value = '';
+
+      ctx.warnings.push({
+        code: 'apply-no-decls',
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        message: `#apply "${targets}" result empty`,
+        file: ctx.from,
+        line: element.line,
+        column: element.column,
+      });
+    }
   }
 };
 
