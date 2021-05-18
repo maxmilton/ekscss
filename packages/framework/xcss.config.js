@@ -17,6 +17,7 @@ const color = require('color');
 const {
   ctx, interpolate, onBeforeBuild, xcssTag,
 } = require('ekscss');
+const path = require('path');
 const stylis = require('stylis'); // eslint-disable-line import/no-extraneous-dependencies
 const pkg = require('./package.json');
 
@@ -26,8 +27,12 @@ const pkg = require('./package.json');
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
 const xcss = xcssTag();
+let bundleName;
 
 onBeforeBuild(() => {
+  bundleName = (ctx.from.includes('/addon/') ? 'addon/' : '')
+    + path.basename(ctx.from, '.xcss');
+
   // pre-populate ctx.applyRefs in applyPlugin for #apply use in native addon
   if (ctx.from.endsWith('framework/addon/native.xcss')) {
     const code = "@import '../level2.xcss';";
@@ -43,11 +48,13 @@ onBeforeBuild(() => {
 /** @type {import('@ekscss/cli').XCSSConfig} */
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
-  banner: `/*!
-* XCSS Framework v${pkg.version} - https://github.com/maxmilton/ekscss
+  get banner() {
+    return `/*!
+* XCSS Framework [${bundleName}] v${pkg.version} - https://github.com/maxmilton/ekscss
 * (c) 2021 Max Milton
 * MIT Licensed - https://github.com/maxmilton/ekscss/blob/main/LICENSE
-*/`,
+*/`;
+  },
   globals: {
     fn: {
       /**
