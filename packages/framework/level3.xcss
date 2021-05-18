@@ -14,22 +14,22 @@
 @import './level2.xcss';
 
 // Level 3 - Addons
-@import './addons/type-hyphens.xcss';
-@import './addons/pretty.xcss';
-@import './addons/button.xcss';
-@import './addons/tag.xcss';
-@import './addons/alert.xcss';
-@import './addons/code.xcss';
-@import './addons/card.xcss';
-@import './addons/app-footer.xcss';
+@import './addon/type-hyphens.xcss';
+@import './addon/pretty.xcss';
+@import './addon/button.xcss';
+@import './addon/tag.xcss';
+@import './addon/alert.xcss';
+@import './addon/code.xcss';
+@import './addon/card.xcss';
+@import './addon/app-footer.xcss';
 
 // TODO: These should probably be commented out; not included in the prebuilt
 // CSS; or document properly
-@import './addons/ux-larger-click-zone.xcss';
-@import './addons/native.xcss';
+@import './addon/ux-larger-click-zone.xcss';
+@import './addon/native.xcss';
 
 // TODO: Should also probably not be enabled by default unless it's fully
 // compatible with the default colours + at least everything in level 1 + 2
 @media (prefers-color-scheme: dark) {
-  @import './addons/dark.xcss';
+  @import './addon/dark.xcss';
 }
