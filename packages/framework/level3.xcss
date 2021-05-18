@@ -1,9 +1,3 @@
-/*!
-* XCSS Framework Level 3 - https://github.com/maxmilton/ekscss
-* (c) 2021 Max Milton
-* MIT Licensed - https://github.com/maxmilton/ekscss/blob/main/LICENSE
-*/
-
 // FIXME: Add clear notice about our recommendation NOT to use level 3 directly,
 // but rather level 2 + the specific addons you need for your project
 
