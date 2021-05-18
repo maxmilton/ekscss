@@ -29,7 +29,7 @@ const pkg = require('./package.json');
 const xcss = xcssTag();
 let bundleName;
 
-export function preloadApply(code = "@import '../level2.xcss';") {
+function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
   const interpolated = interpolate(code)(xcss, ctx.x);
   const ast = stylis.compile(interpolated);
   stylis.serialize(
@@ -50,6 +50,9 @@ onBeforeBuild(() => {
 
 /** @type {import('@ekscss/cli').XCSSConfig} */
 module.exports = {
+  // for special use cases
+  preloadApply,
+
   plugins: [importPlugin, applyPlugin, prefixPlugin],
   get banner() {
     return `/*!
