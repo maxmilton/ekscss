@@ -6,7 +6,7 @@ const { ctx, interpolate, xcssTag } = require('ekscss');
 const stylis = require('stylis');
 
 /**
- * Preload apply references without including the actual content in your final
+ * Preload #apply references without including the actual content in your final
  * build result. By default it will include everything in level2.
  *
  * Note: If other plugins modify or depend upon ctx values they may break when
