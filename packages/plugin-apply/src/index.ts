@@ -14,13 +14,14 @@
 // benchmarks to verify)
 
 // TODO: Document plugin does not currently automagically also apply
-// pseudo-classes or pseudo-elements
+// pseudo-classes, pseudo-elements, at-rules, etc.
 
-// TODO: Automagically apply pseudo-classes (and pseudo-elements?) and
-// attributes (e.g., .x[disabled])?
+// TODO: Automagically apply related rules e.g., pseudo-classes,
+// pseudo-elements, at-rules, and attributes (e.g., .x[disabled])
 //  ↳ new RegExp(`${target}(\S)`) ... $1 ??
-//    ↳ Looping so much to match keys in ctx.applyRefs will be expensive (?)
-//    ↳ Likely to produce unwanted matches like target>x (?)
+//    ↳ Looping so much to match keys in ctx.applyRefs will be expensive
+//    ↳ Likely to produce unwanted matches like target>x
+//  ↳ Might actually be better to stay non-magical and have very simple logic
 
 import {
   ctx, Element, Middleware, onAfterBuild, onBeforeBuild,
