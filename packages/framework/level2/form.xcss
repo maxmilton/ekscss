@@ -2,9 +2,9 @@
  * FORMS
  */
 
-// TODO: Move validation into new "addons/form-validation.xcss"
+// TODO: Move validation into new "addon/form-validation.xcss"
 
-// TODO: Create search input styles in "addons/form-search.xcss"
+// TODO: Create search input styles in "addon/form-search.xcss"
 
 // hide the up/down buttons in <input type=number> as they're confusing, but
 // still allow use of the type=number; makes number input more usable on phones
@@ -76,8 +76,10 @@ input::-webkit-inner-spin-button {
   height: auto;
 }
 
-// TODO: Create more custom radio input styles
-.radio {}
+// TODO: Custom radio input styles
+.radio {
+  &:checked {}
+}
 
 .checkbox {
   width: 1.5em;
@@ -100,7 +102,7 @@ input::-webkit-inner-spin-button {
   }
 }
 
-// TODO: Create more custom range input styles
+// TODO: Custom range input styles
 .range {}
 
 /* Grouped form elements */

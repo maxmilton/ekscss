@@ -65,7 +65,7 @@
   &[disabled],
   &[disabled]:hover,
   &[disabled]:focus,
-  :disabled {
+  &:disabled {
     color: ${x.button.disabledTextColor};
     background-color: ${x.button.disabledBackgroundColor};
     border-color: ${x.button.disabledBorder};
