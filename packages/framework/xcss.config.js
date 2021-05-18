@@ -29,19 +29,22 @@ const pkg = require('./package.json');
 const xcss = xcssTag();
 let bundleName;
 
+export function preloadApply(code = "@import '../level2.xcss';") {
+  const interpolated = interpolate(code)(xcss, ctx.x);
+  const ast = stylis.compile(interpolated);
+  stylis.serialize(
+    ast,
+    stylis.middleware([importPlugin, applyPlugin, () => ' ']),
+  );
+}
+
 onBeforeBuild(() => {
   bundleName = (ctx.from.includes('/addon/') ? 'addon/' : '')
     + path.basename(ctx.from, '.xcss');
 
   // pre-populate ctx.applyRefs in applyPlugin for #apply use in native addon
   if (ctx.from.endsWith('framework/addon/native.xcss')) {
-    const code = "@import '../level2.xcss';";
-    const interpolated = interpolate(code)(xcss, ctx.x);
-    const ast = stylis.compile(interpolated);
-    stylis.serialize(
-      ast,
-      stylis.middleware([importPlugin, applyPlugin, () => ' ']),
-    );
+    preloadApply();
   }
 });
 
