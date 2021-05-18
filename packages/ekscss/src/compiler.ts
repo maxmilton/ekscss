@@ -91,13 +91,13 @@ export function compile(
 
   const interpolated = interpolate(code)(xcssTag(), x);
   const ast = stylis.compile(interpolated);
-  const output = stylis.serialize(ast, stylis.middleware(middlewares));
+  const css = stylis.serialize(ast, stylis.middleware(middlewares));
+
+  for (const fn of afterBuildFns) fn();
 
   // @ts-expect-error - reset for next compile
   // eslint-disable-next-line no-multi-assign
   ctx.dependencies = ctx.from = ctx.rootDir = ctx.warnings = ctx.x = undefined;
-
-  for (const fn of afterBuildFns) fn();
 
   let sourceMap;
 
@@ -113,7 +113,7 @@ export function compile(
   }
 
   return {
-    css: output,
+    css,
     dependencies,
     map: sourceMap,
     warnings,
