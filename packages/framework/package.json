@@ -10,9 +10,11 @@
   "files": [
     "*.xcss",
     "addon",
+    "config.js",
     "dist",
     "level1",
     "level2",
+    "utils.js",
     "xcss.config.js"
   ],
   "scripts": {
