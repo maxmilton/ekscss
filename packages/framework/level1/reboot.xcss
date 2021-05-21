@@ -1,4 +1,12 @@
 /*
+* Reboot
+*
+* Additional "fixes" on top of 'cssremedy/css/remedy.css' which enhance the
+* default browser styles. The goal is to set the styles to what you would
+* naturally expect/assume to be default.
+*/
+
+/*
 * Display full page height
 * See: https://github.com/jensimmons/cssremedy/issues/70
 */
@@ -28,14 +36,6 @@ select {
 // allow resize but not horizontally to prevent breaking layout
 textarea {
   resize: vertical;
-}
-
-/* Images */
-
-// responsive down-scaling by default
-img {
-  max-width: 100%;
-  height: auto;
 }
 
 /* Tables */

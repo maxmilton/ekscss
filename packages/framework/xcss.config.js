@@ -23,7 +23,14 @@ onBeforeBuild(() => {
   }
 });
 
-/** @type {import('@ekscss/cli').XCSSConfig} */
+/**
+ * XCSS config specifically for building the @ekscss/framework dist files.
+ *
+ * Note: This config **should not be reused** in other projects. What you probably
+ * want is `@ekscss/framework/config`.
+ *
+ * @type {import('@ekscss/cli').XCSSConfig}
+ */
 module.exports = {
   ...baseConfig,
   get banner() {
