@@ -1,27 +1,25 @@
 /* eslint-disable no-param-reassign, no-restricted-syntax */
 
-// FIXME: Valid but empty serialize result should also remove the #apply decl,
-// ideally without clearing the value like we do in importPlugin (would be
-// nice to fix there too!)
-
 // TODO: Documentation: #apply as decl with value of rule selectors to inline
 //  ↳ Selectors can be separated by comma and/or whitespace (including new
 //    lines), both OK
 //  ↳ Add note about why we use decl with "#"; the way stylis (+ brief note
 //    about what stylis is) parser creates AST nodes and how stringify works
+//  ↳ Selectors with a ":" must be wrapped in commas
+
+// TODO: Documentation: plugin only applies the rules from selectors you give
+// it. It will not create or modify other rule sets, i.e., it does not
+// automagically also apply pseudo-classes, pseudo-elements, at-rules,
+// attributes, etc. It's an intentional design choice to keep the code simple
+// and have better performance. Although the consumer maintenence overhead can
+// be higher it also has the bonus of better visibility into what's going on
+// and no unexpected results (which often leads to logically incorrect or hugely
+// bloated code in SASS for example.)
+//  ↳ Give examples how to use in common scenarios + link to addon/native.xcss
 
 // TODO: Document build performance impact (about 10% extra time, but do
 // benchmarks to verify)
-
-// TODO: Document plugin does not currently automagically also apply
-// pseudo-classes, pseudo-elements, at-rules, etc.
-
-// TODO: Automagically apply related rules e.g., pseudo-classes,
-// pseudo-elements, at-rules, and attributes (e.g., .x[disabled])
-//  ↳ new RegExp(`${target}(\S)`) ... $1 ??
-//    ↳ Looping so much to match keys in ctx.applyRefs will be expensive
-//    ↳ Likely to produce unwanted matches like target>x
-//  ↳ Might actually be better to stay non-magical and have very simple logic
+//  ↳ Impact of including this plugin and impact of actual #apply use
 
 import {
   ctx, Element, Middleware, onAfterBuild, onBeforeBuild,

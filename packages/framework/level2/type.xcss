@@ -47,6 +47,8 @@ dd {
   -webkit-overflow-scrolling: touch;
 }
 
+// Note: Also update 'packages/framework/addon/native.xcss' if making any
+// changes to the nested selectors
 .table {
   width: 100%;
   vertical-align: middle;

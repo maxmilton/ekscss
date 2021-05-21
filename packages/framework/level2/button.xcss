@@ -4,6 +4,8 @@
 
 // Buttons should look correct on <button>, <a>, <div>, etc.
 
+// Note: Also update 'packages/framework/addon/native.xcss' if making any
+// changes to the nested selectors
  .button {
   display: inline-block;
   padding: ${x.button.paddingY} ${x.button.paddingX};

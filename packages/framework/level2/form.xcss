@@ -28,6 +28,8 @@ input::-webkit-inner-spin-button {
   font-weight: ${x.textWeightHeavy};
 }
 
+// Note: Also update 'packages/framework/addon/native.xcss' if making any
+// changes to the nested selectors
 .input,
 .select,
 .textarea {

@@ -29,16 +29,16 @@ input { #apply: .input; }
 select { #apply: .select; }
 textarea { #apply: .textarea; }
 // FIXME: Uncomment after we add .radio styles
-// input[type='radio'] { #apply: .radio; }
-input[type='checkbox'] { #apply: .checkbox; }
+// input[type='radio'] {
+//   #apply: .radio;
+//   &:checked { #apply: '.radio:checked'; }
+// }
+input[type='checkbox'] {
+  #apply: .checkbox;
+  &:checked { #apply: '.checkbox:checked'; }
+}
 // FIXME: Uncomment after we add .range styles
 // input[type='range'] { #apply: .range; }
-
-/* Button */
-
-button { #apply: .button; }
-
-// FIXME: Bellow rules should be automated in "@ekscss/plugin-apply" and removed here
 
 input,
 select,
@@ -49,16 +49,10 @@ textarea {
   &[disabled] { #apply: .input[disabled]; }
 }
 
-// FIXME: Uncomment after we add .radio:checked styles
-// input[type='radio'] {
-//   &:checked { #apply: '.radio:checked'; }
-// }
-
-input[type='checkbox'] {
-  &:checked { #apply: '.checkbox:checked'; }
-}
+/* Button */
 
 button {
+  #apply: .button;
   &:hover { #apply: '.button:hover'; }
   &:focus,
   &:active { #apply: '.button:focus'; }
