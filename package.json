@@ -16,7 +16,7 @@
     "test-nn": "uvu packages '\\/test\\/.+\\.test-nn\\.js$'"
   },
   "devDependencies": {
-    "@types/node": "15.3.0",
+    "@types/node": "15.6.0",
     "@typescript-eslint/eslint-plugin": "4.24.0",
     "@typescript-eslint/parser": "4.24.0",
     "c8": "7.7.2",
@@ -24,7 +24,7 @@
     "esbuild-register": "2.5.0",
     "eslint": "7.26.0",
     "eslint-config-airbnb-typescript": "12.3.1",
-    "eslint-plugin-import": "2.23.2",
+    "eslint-plugin-import": "2.23.3",
     "prettier": "2.3.0",
     "prettier-plugin-pkg": "0.9.0",
     "prettier-plugin-sh": "0.6.1",
