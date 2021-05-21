@@ -9,24 +9,28 @@ const stylis = require('stylis');
  * Preload #apply references without including the actual content in your final
  * build result. By default it will include everything in level2.
  *
- * Note: If other plugins modify or depend upon ctx values they may break when
- * used together with this function.
- *
  * Use by calling this function in `onBeforeBuild`:
  *
  * @example
  * const { onBeforeBuild } = require('ekscss');
  * const { preloadApply } = require('@ekscss/framework/utils');
  * onBeforeBuild(preloadApply);
+ *
+ * @param code - The XCSS code to preload, default is `"@import '@ekscss/framework/level2.xcss';"`.
  */
 function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
+  const oldDependencies = ctx.dependencies.slice();
+  const oldWarnings = ctx.warnings.slice();
+
   const interpolated = interpolate(code)(xcssTag(), ctx.x);
   const ast = stylis.compile(interpolated);
   stylis.serialize(ast, stylis.middleware([importPlugin, applyPlugin]));
+
   // reset ctx values which may have changed in importPlugin or applyPlugin
   ctx.dependencies.length = 0;
+  ctx.dependencies.push(...oldDependencies);
   ctx.warnings.length = 0;
-  if (ctx.from) ctx.dependencies.push(ctx.from);
+  ctx.warnings.push(...oldWarnings);
 }
 
 exports.preloadApply = preloadApply;
