@@ -3,6 +3,8 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      yarn-cache-dir: ${{ steps.yarn-cache-dir-path.outputs.dir }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -42,7 +44,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: actions/cache@v2
         with:
-          path: ${{ needs.build.outputs.yarn-cache-dir-path.outputs.dir }}
+          path: ${{ needs.build.outputs.yarn-cache-dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -72,7 +74,7 @@ jobs:
           node-version: 16
       - uses: actions/cache@v2
         with:
-          path: ${{ needs.build.outputs.yarn-cache-dir-path.outputs.dir }}
+          path: ${{ needs.build.outputs.yarn-cache-dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
