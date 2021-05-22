@@ -46,31 +46,30 @@
 #### Drawbacks
 
 - Opinionated; not many options; speed comes at a cost
-- Best used for build-time processing. Although it can run in the browser, the XCSS compiler uses `new Function()` to eval code, which is fine in a trusted context like local development or a CI pipeline, however on the web it introduces potential for abuse.
+- Best used for build-time processing. Although it can run in the browser, the XCSS compiler uses `new Function()` to eval code, which may be fine in a trusted context like local development or a CI pipeline, however on the web it may introduce potential for abuse.
+  - Link to REPL for example of browser use.
 
 ### To Do
 
-- Fix source map mapping for XCSS template expressions and cli header option
+- Fix source map mapping for XCSS template expressions
 - Add READMEs to remaining packages
-- `@apply` middleware package
-- Add `joycon` config loading to `esbuild-plugin-ekscss` and `svelte-ekscss`
-- Better typescript support for `g`
-- A way to remove unused styles
+- Add proper typescript support for `x` global
+- An official way to remove unused styles
 - Webpack plugin
 - PostCSS syntax plugin then (related):
   - Stylelint plugin
   - Prettier plugin
   - VS Code syntax
-- Add finer details to compiler warnings; line, column, etc.
 - Documentation:
-  - Templates in XCSS (`${...}`) are still evaluated when they're in a _CSS comment_; to disable them it's necessary to comment out the code _inside the template_
-  - compiler browser bundle (browser compatible but no sourcemap support) + reinforce the potential security risk since the compiler uses a kind of eval
+  - Currently, templates in XCSS (`${...}`) are still evaluated when they're in a _CSS comment_; ~to disable them it's necessary to comment out the code _inside the template_~ it's tricky to comment out XCSS code, so provide a solution or at least solid examples
+  - Compiler browser bundle (browser compatible but no sourcemap support) + reinforce the potential security risk since the compiler uses a kind of eval
+  - Architectural designations and goals + an overview of how compile works (especially the steps involved)
 - Explain the "ekscss" name
 - Add benchmarks:
   - Vs other CSS preprocessors
+  - Overhead compared to raw stylis
   - Source map overhead
   - Overhead for each plugin
-- List some places it's already in use: new-tab, trackx
 -->
 
 ## Licence

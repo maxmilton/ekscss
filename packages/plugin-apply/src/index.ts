@@ -6,6 +6,8 @@
 //  ↳ Add note about why we use decl with "#"; the way stylis (+ brief note
 //    about what stylis is) parser creates AST nodes and how stringify works
 //  ↳ Selectors with a ":" must be wrapped in commas
+//  ↳ Selector refs are minified, the same as what the output CSS would be; so
+//    for '.a > .b {}' the ref would be '.a>.b' + show examples
 
 // TODO: Documentation: plugin only applies the rules from selectors you give
 // it. It will not create or modify other rule sets, i.e., it does not
