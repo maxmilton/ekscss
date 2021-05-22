@@ -42,7 +42,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: actions/cache@v2
         with:
-          path: ${{ jobs.build.steps.yarn-cache-dir-path.outputs.dir }}
+          path: ${{ needs.build.outputs.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
@@ -72,7 +72,7 @@ jobs:
           node-version: 16
       - uses: actions/cache@v2
         with:
-          path: ${{ jobs.build.steps.yarn-cache-dir-path.outputs.dir }}
+          path: ${{ needs.build.outputs.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
