@@ -70,9 +70,9 @@ export const importPlugin: Middleware = (
 
   // TODO: Document this behaviour
   if (!from.endsWith('.xcss')) {
-    // Escape backticks to prevent unexpected errors when importing non-XCSS
-    // aware code e.g., 3rd party frameworks
-    code = code.replace(/`/g, '\\`');
+    // Escape backtick "`" and template expression placeholder "${" to prevent
+    // unexpected errors when importing non-XCSS aware or 3rd party code
+    code = code.replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
   }
 
   const interpolated = interpolate(code)(xcssTag(), ctx.x);
