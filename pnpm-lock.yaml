@@ -16,7 +16,7 @@ importers:
       prettier: 2.3.0
       prettier-plugin-pkg: 0.9.0
       prettier-plugin-sh: 0.6.1
-      sirv-cli: 1.0.11
+      sirv-cli: 1.0.12
       typescript: 4.2.4
       uvu: 0.5.1
     devDependencies:
@@ -32,7 +32,7 @@ importers:
       prettier: 2.3.0
       prettier-plugin-pkg: 0.9.0_prettier@2.3.0
       prettier-plugin-sh: 0.6.1_prettier@2.3.0
-      sirv-cli: 1.0.11
+      sirv-cli: 1.0.12
       typescript: 4.2.4
       uvu: 0.5.1
 
@@ -1934,8 +1934,8 @@ packages:
       is-arrayish: 0.3.2
     dev: false
 
-  /sirv-cli/1.0.11:
-    resolution: {integrity: sha512-L8NILoRSBd38VcfFcERYCaVCnWPBLo9G6u/a37UJ8Ysv4DfjizMbFBcM+SswNnndJienhR6qy8KFuAEaeL4g8Q==}
+  /sirv-cli/1.0.12:
+    resolution: {integrity: sha512-Rs5PvF3a48zuLmrl8vcqVv9xF/WWPES19QawVkpdzqx7vD5SMZS07+ece1gK4umbslXN43YeIksYtQM5csgIzQ==}
     engines: {node: '>= 10'}
     hasBin: true
     dependencies:
