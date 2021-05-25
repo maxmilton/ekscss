@@ -53,6 +53,9 @@ jobs:
             ${{ runner.os }}-pnpm-
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test
+        if: ${{ matrix.node-version >= 10 }}
+      - run: pnpm run test-oldnode
+        if: ${{ matrix.node-version < 10 }}
       - run: pnpm run test-nn
       - name: Report coverage
         if: ${{ matrix.node-version == 16 }}
