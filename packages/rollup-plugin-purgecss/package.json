@@ -9,7 +9,7 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn prebuild && tsc",
+    "build": "pnpm run prebuild && tsc",
     "dev": "tsc --watch --preserveWatchOutput",
     "prebuild": "rm -rf dist"
   },
@@ -18,6 +18,7 @@
     "purgecss": "^4.0.3"
   },
   "devDependencies": {
+    "rollup": "2.49.0",
     "typescript": "4.2.4"
   }
 }

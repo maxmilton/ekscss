@@ -97,7 +97,7 @@ module.exports = async (src, dest, opts) => {
   }
 
   const css = `${config.banner ? `${config.banner}\n` : ''}${compiled.css}`;
-  /** @type {import('source-map').SourceMapGenerator | undefined | string} */
+  /** @type {typeof compiled.map | string} */
   let sourcemap = compiled.map;
 
   if (sourcemap) {

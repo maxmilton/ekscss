@@ -18,7 +18,7 @@
     "xcss.config.js"
   ],
   "scripts": {
-    "build": "yarn prebuild && yarn run build-levels && yarn run build-addons",
+    "build": "pnpm run prebuild && pnpm run build-levels && pnpm run build-addons",
     "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css;done'",
     "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css;done'",
     "prebuild": "rm -rf dist; mkdir -p dist/addon"
@@ -31,7 +31,8 @@
     "@ekscss/plugin-import": "workspace:^0.0.3",
     "@ekscss/plugin-prefix": "workspace:^0.0.2",
     "color": "^3.1.3",
-    "cssremedy": "github:jensimmons/cssremedy#468e31a7eda599eea2003ed7983c190828ffb5fd"
+    "cssremedy": "github:jensimmons/cssremedy#468e31a7eda599eea2003ed7983c190828ffb5fd",
+    "stylis": "^4.0.10"
   },
   "devDependencies": {
     "@ekscss/cli": "workspace:*",

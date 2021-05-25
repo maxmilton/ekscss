@@ -1,13 +1,6 @@
+*.lock
 *.log
-/coverage/
+/coverage
 dist
-node_modules/
+node_modules
 package-lock.json*
-
-# Yarn v2
-/.yarn/*
-!/.yarn/releases
-!/.yarn/plugins
-!/.yarn/sdks
-# no zero-installs
-/.pnp.*
