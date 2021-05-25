@@ -38,7 +38,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@3
+      - run: npx pnpm@3 add -g pnpm@3
         if: ${{ matrix.node-version == 8 }}
       - run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@5
         if: ${{ matrix.node-version == 10 }}
