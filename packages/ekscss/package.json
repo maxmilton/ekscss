@@ -17,8 +17,8 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn prebuild && NODE_ENV=production yarn node build.mjs && yarn postbuild",
-    "dev": "NODE_ENV=development yarn node build.mjs",
+    "build": "pnpm run prebuild && NODE_ENV=production node build.mjs && pnpm run postbuild",
+    "dev": "NODE_ENV=development node build.mjs",
     "postbuild": "tsc --emitDeclarationOnly",
     "prebuild": "rm -rf dist"
   },

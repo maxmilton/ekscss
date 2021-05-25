@@ -1,17 +1,13 @@
 {
   "name": "@ekscss/monorepo",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "build": "yarn build",
+    "build": "pnpm run -r build",
     "docs": "ln -s ../packages/framework/dist docs; sirv docs --dev --cors",
-    "lint": "yarn lint:css && yarn lint:js && yarn lint:ts",
+    "lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:ts",
     "lint:css": "echo 'TODO: CSS linting'; exit 0",
     "lint:js": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.jsx,.mjs,.cjs .",
     "lint:ts": "tsc --noEmit",
-    "rebuild": "yarn build --ignore-cache",
     "test": "c8 uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'",
     "test-nn": "uvu packages '\\/test\\/.+\\.test-nn\\.js$'"
   },
@@ -51,7 +47,8 @@
     "overrides": [
       {
         "files": [
-          "*.yml"
+          "*.yml",
+          "*.yaml"
         ],
         "options": {
           "singleQuote": false

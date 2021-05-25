@@ -18,7 +18,7 @@ onBeforeBuild(() => {
 
     // pre-populate ctx.applyRefs in applyPlugin for #apply use in native addon
     if (ctx.from.endsWith('framework/addon/native.xcss')) {
-      preloadApply();
+      preloadApply("@import './level2.xcss';");
     }
   }
 });
