@@ -5,9 +5,8 @@ import * as assert from 'uvu/assert';
 import { isObject } from '../src/helpers';
 
 const isOldNode = +/^v(\d+)/.exec(process.version)[1] <= 8;
-console.log('!!!!! isOldNode', isOldNode);
 
-if (!isOldNode) {
+if (isOldNode) {
   // @ts-expect-error - stub for node v8 and bellow
   global.BigInt = function BigInt() {};
 }
