@@ -29,8 +29,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # node-version: [8, 10, 12, 14, 16]
-        node-version: [10, 12, 14, 16]
+        node-version: [8, 10, 12, 14, 16]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
