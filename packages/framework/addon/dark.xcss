@@ -1,5 +1,8 @@
 // TODO: Dark mode
 
+// @media (prefers-color-scheme: light) {}
+// @media (prefers-color-scheme: dark) {}
+
 .dark {
   // TODO: dark mode text
   -webkit-font-smoothing: antialiased;

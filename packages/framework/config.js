@@ -185,7 +185,7 @@ module.exports = {
     containerNarrowWidthMax: '30rem',
     itemSize: '1fr',
     autoRows: 'auto',
-    autoCols: (x) => x.itemSize,
+    autoCols: 'auto',
     rowSteps: [1, 2, 3, 4, 5, 6],
     colSteps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     gutterRow: '1em',

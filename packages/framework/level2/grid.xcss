@@ -1,3 +1,5 @@
+/* Container */
+
 .con {
   max-width: ${x.containerWidthMax};
   margin-right: auto;
@@ -28,7 +30,6 @@
   ${x.autoRows !== 'auto' && xcss`
     grid-auto-rows: ${x.autoRows};
   `}
-
   ${x.autoCols !== 'auto' && xcss`
     grid-auto-columns: ${x.autoCols};
   `}
@@ -37,8 +38,6 @@
     grid-gap: ${x.gutterRowLarge} ${x.gutterColLarge};
   }
 }
-
-.col-fluid { grid-template-columns: auto; }
 
 /*
   .<RESPONSIVE><BASE><MOD>
@@ -63,21 +62,10 @@
 
 */
 
-/* TODO: Optimise loops for best compression */
 ${x.fn.map(x.colSteps, (step, i) => xcss`
   .x${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
   .c${step} { grid-column-start: ${step}; }
   .w${step} { grid-column-end: span ${step}; }
-`)}
-
-${x.fn.each(x.media, (bp, query) => xcss`
-  @media ${query} {
-    ${x.fn.map(x.colSteps, (step, i) => xcss`
-      .${bp}-x${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
-      .${bp}-c${step} { grid-column-start: ${step}; }
-      .${bp}-w${step} { grid-column-end: span ${step}; }
-    `)}
-  }
 `)}
 
 ${x.fn.map(x.rowSteps, (step, i) => xcss`
@@ -88,6 +76,14 @@ ${x.fn.map(x.rowSteps, (step, i) => xcss`
 
 ${x.fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
+    .${bp}-x-auto { grid-template-columns: auto; }
+
+    ${x.fn.map(x.colSteps, (step, i) => xcss`
+      .${bp}-x${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
+      .${bp}-c${step} { grid-column-start: ${step}; }
+      .${bp}-w${step} { grid-column-end: span ${step}; }
+    `)}
+
     ${x.fn.map(x.rowSteps, (step, i) => xcss`
       .${bp}-y${step} { grid-template-rows: repeat(${step}, auto); }
       .${bp}-r${step} { grid-row-start: ${step}; }
