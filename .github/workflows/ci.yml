@@ -9,12 +9,6 @@ jobs:
         with:
           node-version: 16
       - run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@6
-      - uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
       - uses: actions/upload-artifact@v2
@@ -45,12 +39,6 @@ jobs:
         if: ${{ matrix.node-version == 10 }}
       - run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@6
         if: ${{ matrix.node-version > 10 }}
-      - uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test
         if: ${{ matrix.node-version >= 10 }}
@@ -79,11 +67,5 @@ jobs:
         with:
           node-version: 16
       - run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@6
-      - uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
       - run: pnpm install --frozen-lockfile
       - run: pnpm run lint
