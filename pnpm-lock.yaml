@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@types/node': 15.6.0
+      '@types/node': 15.6.1
       '@typescript-eslint/eslint-plugin': 4.25.0
       '@typescript-eslint/parser': 4.25.0
       c8: 7.7.2
@@ -20,7 +20,7 @@ importers:
       typescript: 4.2.4
       uvu: 0.5.1
     devDependencies:
-      '@types/node': 15.6.0
+      '@types/node': 15.6.1
       '@typescript-eslint/eslint-plugin': 4.25.0_6fb86b31e39dbd15f93824c03ca6ca0c
       '@typescript-eslint/parser': 4.25.0_eslint@7.27.0+typescript@4.2.4
       c8: 7.7.2
@@ -317,8 +317,8 @@ packages:
     resolution: {integrity: sha512-fMl88ZoZXOB7VKazJ6wUMpZc9QIn+jcigSFRf2K/rrw4DcXn+/uGxlWX8DDlcE7JkwgIZ7BDH+JgxZPlc/Ap3g==}
     dev: true
 
-  /@types/node/15.6.0:
-    resolution: {integrity: sha512-gCYSfQpy+LYhOFTKAeE8BkyGqaxmlFxe+n4DKM6DR0wzw/HISUE/hAmkC/KT8Sw5PCJblqg062b3z9gucv3k0A==}
+  /@types/node/15.6.1:
+    resolution: {integrity: sha512-7EIraBEyRHEe7CH+Fm1XvgqU6uwZN8Q7jppJGcqjROMT29qhAuuOxYB1uEY5UMYQKEmA5D+5tBnhdaPXSsLONA==}
     dev: true
 
   /@types/sade/1.7.2:
