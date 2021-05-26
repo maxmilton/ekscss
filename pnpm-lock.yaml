@@ -17,23 +17,23 @@ importers:
       prettier-plugin-pkg: 0.9.0
       prettier-plugin-sh: 0.6.1
       sirv-cli: 1.0.12
-      typescript: 4.2.4
+      typescript: 4.3.2
       uvu: 0.5.1
     devDependencies:
       '@types/node': 15.6.1
-      '@typescript-eslint/eslint-plugin': 4.25.0_6fb86b31e39dbd15f93824c03ca6ca0c
-      '@typescript-eslint/parser': 4.25.0_eslint@7.27.0+typescript@4.2.4
+      '@typescript-eslint/eslint-plugin': 4.25.0_ec7770e83475322b368bff30b543badb
+      '@typescript-eslint/parser': 4.25.0_eslint@7.27.0+typescript@4.3.2
       c8: 7.7.2
       esbuild: 0.12.3
       esbuild-register: 2.5.0
       eslint: 7.27.0
-      eslint-config-airbnb-typescript: 12.3.1_569bdf7b069dfff0275e845e52130681
+      eslint-config-airbnb-typescript: 12.3.1_c8aaadcb5888635247fddab913f3e875
       eslint-plugin-import: 2.23.3_eslint@7.27.0
       prettier: 2.3.0
       prettier-plugin-pkg: 0.9.0_prettier@2.3.0
       prettier-plugin-sh: 0.6.1_prettier@2.3.0
       sirv-cli: 1.0.12
-      typescript: 4.2.4
+      typescript: 4.3.2
       uvu: 0.5.1
 
   packages/cli:
@@ -57,25 +57,25 @@ importers:
       esbuild: 0.12.3
       source-map: ^0.7.3
       stylis: ^4.0.10
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       '@types/stylis': 4.0.0
       source-map: 0.7.3
       stylis: 4.0.10
     devDependencies:
       esbuild: 0.12.3
-      typescript: 4.2.4
+      typescript: 4.3.2
 
   packages/esbuild-plugin-ekscss:
     specifiers:
       ekscss: workspace:*
       joycon: ^3.0.1
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       joycon: 3.0.1
     devDependencies:
       ekscss: link:../ekscss
-      typescript: 4.2.4
+      typescript: 4.3.2
 
   packages/framework:
     specifiers:
@@ -104,34 +104,34 @@ importers:
     specifiers:
       ekscss: workspace:*
       stylis: ^4.0.10
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       stylis: 4.0.10
     devDependencies:
       ekscss: link:../ekscss
-      typescript: 4.2.4
+      typescript: 4.3.2
 
   packages/plugin-import:
     specifiers:
       ekscss: workspace:*
       stylis: ^4.0.10
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       stylis: 4.0.10
     devDependencies:
       ekscss: link:../ekscss
-      typescript: 4.2.4
+      typescript: 4.3.2
 
   packages/plugin-prefix:
     specifiers:
       ekscss: workspace:*
       stylis: ^4.0.10
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       stylis: 4.0.10
     devDependencies:
       ekscss: link:../ekscss
-      typescript: 4.2.4
+      typescript: 4.3.2
 
   packages/rollup-plugin-css:
     specifiers:
@@ -140,7 +140,7 @@ importers:
       csso: ^4.2.0
       rollup: 2.50.0
       source-map: ^0.7.3
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       '@rollup/pluginutils': 4.1.0_rollup@2.50.0
       csso: 4.2.0
@@ -148,7 +148,7 @@ importers:
     devDependencies:
       '@types/csso': 3.5.1
       rollup: 2.50.0
-      typescript: 4.2.4
+      typescript: 4.3.2
 
   packages/rollup-plugin-ekscss:
     specifiers:
@@ -156,27 +156,27 @@ importers:
       ekscss: workspace:*
       joycon: ^3.0.1
       rollup: 2.50.0
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       '@rollup/pluginutils': 4.1.0_rollup@2.50.0
       joycon: 3.0.1
     devDependencies:
       ekscss: link:../ekscss
       rollup: 2.50.0
-      typescript: 4.2.4
+      typescript: 4.3.2
 
   packages/rollup-plugin-purgecss:
     specifiers:
       '@rollup/pluginutils': ^4.1.0
       purgecss: ^4.0.3
       rollup: 2.50.0
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       '@rollup/pluginutils': 4.1.0_rollup@2.50.0
       purgecss: 4.0.3
     devDependencies:
       rollup: 2.50.0
-      typescript: 4.2.4
+      typescript: 4.3.2
 
   packages/svelte-ekscss:
     specifiers:
@@ -184,14 +184,14 @@ importers:
       joycon: ^3.0.1
       kleur: ^4.1.4
       svelte: 3.38.2
-      typescript: 4.2.4
+      typescript: 4.3.2
     dependencies:
       joycon: 3.0.1
       kleur: 4.1.4
     devDependencies:
       ekscss: link:../ekscss
       svelte: 3.38.2
-      typescript: 4.2.4
+      typescript: 4.3.2
 
 packages:
 
@@ -331,7 +331,7 @@ packages:
     resolution: {integrity: sha512-DB1wPXVDfTTyLO9tr4wTeAptinTGd+EemFDDJTdCfsLedYXuF1mRWpJtU74Rucqx7N7HecBmMwEERbPpLt1tGA==}
     dev: false
 
-  /@typescript-eslint/eslint-plugin/4.25.0_6fb86b31e39dbd15f93824c03ca6ca0c:
+  /@typescript-eslint/eslint-plugin/4.25.0_ec7770e83475322b368bff30b543badb:
     resolution: {integrity: sha512-Qfs3dWkTMKkKwt78xp2O/KZQB8MPS1UQ5D3YW2s6LQWBE1074BE+Rym+b1pXZIX3M3fSvPUDaCvZLKV2ylVYYQ==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -342,8 +342,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/experimental-utils': 4.25.0_eslint@7.27.0+typescript@4.2.4
-      '@typescript-eslint/parser': 4.25.0_eslint@7.27.0+typescript@4.2.4
+      '@typescript-eslint/experimental-utils': 4.25.0_eslint@7.27.0+typescript@4.3.2
+      '@typescript-eslint/parser': 4.25.0_eslint@7.27.0+typescript@4.3.2
       '@typescript-eslint/scope-manager': 4.25.0
       debug: 4.3.1
       eslint: 7.27.0
@@ -351,13 +351,13 @@ packages:
       lodash: 4.17.21
       regexpp: 3.1.0
       semver: 7.3.5
-      tsutils: 3.21.0_typescript@4.2.4
-      typescript: 4.2.4
+      tsutils: 3.21.0_typescript@4.3.2
+      typescript: 4.3.2
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@typescript-eslint/experimental-utils/4.25.0_eslint@7.27.0+typescript@4.2.4:
+  /@typescript-eslint/experimental-utils/4.25.0_eslint@7.27.0+typescript@4.3.2:
     resolution: {integrity: sha512-f0doRE76vq7NEEU0tw+ajv6CrmPelw5wLoaghEHkA2dNLFb3T/zJQqGPQ0OYt5XlZaS13MtnN+GTPCuUVg338w==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -366,7 +366,7 @@ packages:
       '@types/json-schema': 7.0.7
       '@typescript-eslint/scope-manager': 4.25.0
       '@typescript-eslint/types': 4.25.0
-      '@typescript-eslint/typescript-estree': 4.25.0_typescript@4.2.4
+      '@typescript-eslint/typescript-estree': 4.25.0_typescript@4.3.2
       eslint: 7.27.0
       eslint-scope: 5.1.1
       eslint-utils: 2.1.0
@@ -375,7 +375,7 @@ packages:
       - typescript
     dev: true
 
-  /@typescript-eslint/parser/4.25.0_eslint@7.27.0+typescript@4.2.4:
+  /@typescript-eslint/parser/4.25.0_eslint@7.27.0+typescript@4.3.2:
     resolution: {integrity: sha512-OZFa1SKyEJpAhDx8FcbWyX+vLwh7OEtzoo2iQaeWwxucyfbi0mT4DijbOSsTgPKzGHr6GrF2V5p/CEpUH/VBxg==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -387,10 +387,10 @@ packages:
     dependencies:
       '@typescript-eslint/scope-manager': 4.25.0
       '@typescript-eslint/types': 4.25.0
-      '@typescript-eslint/typescript-estree': 4.25.0_typescript@4.2.4
+      '@typescript-eslint/typescript-estree': 4.25.0_typescript@4.3.2
       debug: 4.3.1
       eslint: 7.27.0
-      typescript: 4.2.4
+      typescript: 4.3.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -408,7 +408,7 @@ packages:
     engines: {node: ^8.10.0 || ^10.13.0 || >=11.10.1}
     dev: true
 
-  /@typescript-eslint/typescript-estree/4.25.0_typescript@4.2.4:
+  /@typescript-eslint/typescript-estree/4.25.0_typescript@4.3.2:
     resolution: {integrity: sha512-1B8U07TGNAFMxZbSpF6jqiDs1cVGO0izVkf18Q/SPcUAc9LhHxzvSowXDTvkHMWUVuPpagupaW63gB6ahTXVlg==}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
@@ -423,8 +423,8 @@ packages:
       globby: 11.0.3
       is-glob: 4.0.1
       semver: 7.3.5
-      tsutils: 3.21.0_typescript@4.2.4
-      typescript: 4.2.4
+      tsutils: 3.21.0_typescript@4.3.2
+      typescript: 4.3.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -852,10 +852,10 @@ packages:
       object.entries: 1.1.3
     dev: true
 
-  /eslint-config-airbnb-typescript/12.3.1_569bdf7b069dfff0275e845e52130681:
+  /eslint-config-airbnb-typescript/12.3.1_c8aaadcb5888635247fddab913f3e875:
     resolution: {integrity: sha512-ql/Pe6/hppYuRp4m3iPaHJqkBB7dgeEmGPQ6X0UNmrQOfTF+dXw29/ZjU2kQ6RDoLxaxOA+Xqv07Vbef6oVTWw==}
     dependencies:
-      '@typescript-eslint/parser': 4.25.0_eslint@7.27.0+typescript@4.2.4
+      '@typescript-eslint/parser': 4.25.0_eslint@7.27.0+typescript@4.3.2
       eslint-config-airbnb: 18.2.1_e1d32e199fdbc181e1cf73c4a5ab8423
       eslint-config-airbnb-base: 14.2.1_e1d32e199fdbc181e1cf73c4a5ab8423
     transitivePeerDependencies:
@@ -2135,14 +2135,14 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tsutils/3.21.0_typescript@4.2.4:
+  /tsutils/3.21.0_typescript@4.3.2:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: 1.14.1
-      typescript: 4.2.4
+      typescript: 4.3.2
     dev: true
 
   /type-check/0.4.0:
@@ -2162,8 +2162,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /typescript/4.2.4:
-    resolution: {integrity: sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==}
+  /typescript/4.3.2:
+    resolution: {integrity: sha512-zZ4hShnmnoVnAHpVHWpTcxdv7dWP60S2FsydQLV8V5PbS3FifjWFFRiHSWpDJahly88PRyV5teTSLoq4eG7mKw==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
