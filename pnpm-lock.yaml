@@ -138,16 +138,16 @@ importers:
       '@rollup/pluginutils': ^4.1.0
       '@types/csso': 3.5.1
       csso: ^4.2.0
-      rollup: 2.50.3
+      rollup: 2.50.4
       source-map: ^0.7.3
       typescript: 4.3.2
     dependencies:
-      '@rollup/pluginutils': 4.1.0_rollup@2.50.3
+      '@rollup/pluginutils': 4.1.0_rollup@2.50.4
       csso: 4.2.0
       source-map: 0.7.3
     devDependencies:
       '@types/csso': 3.5.1
-      rollup: 2.50.3
+      rollup: 2.50.4
       typescript: 4.3.2
 
   packages/rollup-plugin-ekscss:
@@ -155,27 +155,27 @@ importers:
       '@rollup/pluginutils': ^4.1.0
       ekscss: workspace:*
       joycon: ^3.0.1
-      rollup: 2.50.3
+      rollup: 2.50.4
       typescript: 4.3.2
     dependencies:
-      '@rollup/pluginutils': 4.1.0_rollup@2.50.3
+      '@rollup/pluginutils': 4.1.0_rollup@2.50.4
       joycon: 3.0.1
     devDependencies:
       ekscss: link:../ekscss
-      rollup: 2.50.3
+      rollup: 2.50.4
       typescript: 4.3.2
 
   packages/rollup-plugin-purgecss:
     specifiers:
       '@rollup/pluginutils': ^4.1.0
       purgecss: ^4.0.3
-      rollup: 2.50.3
+      rollup: 2.50.4
       typescript: 4.3.2
     dependencies:
-      '@rollup/pluginutils': 4.1.0_rollup@2.50.3
+      '@rollup/pluginutils': 4.1.0_rollup@2.50.4
       purgecss: 4.0.3
     devDependencies:
-      rollup: 2.50.3
+      rollup: 2.50.4
       typescript: 4.3.2
 
   packages/svelte-ekscss:
@@ -264,7 +264,7 @@ packages:
     resolution: {integrity: sha512-15spi3V28QdevleWBNXE4pIls3nFZmBbUGrW9IVPwiQczuSb9n76TCB4bsk8TSel+I1OkHEdPhu5QKMfY6rQHA==}
     dev: true
 
-  /@rollup/pluginutils/4.1.0_rollup@2.50.3:
+  /@rollup/pluginutils/4.1.0_rollup@2.50.4:
     resolution: {integrity: sha512-TrBhfJkFxA+ER+ew2U2/fHbebhLT/l/2pRk0hfj9KusXUuRXd2v0R58AfaZK9VXDQ4TogOSEmICVrQAA3zFnHQ==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
@@ -272,7 +272,7 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.0
-      rollup: 2.50.3
+      rollup: 2.50.4
     dev: false
 
   /@types/color-convert/2.0.0:
@@ -1863,8 +1863,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /rollup/2.50.3:
-    resolution: {integrity: sha512-58KiHnaCzZn6F5yRMjHe7WTZuFj6r4iJVJz5UwvKD6f/xfTy2IdtbR2AVHN6cyfK1tBy//hJ66ebXy6Y1h7HlQ==}
+  /rollup/2.50.4:
+    resolution: {integrity: sha512-mBQa9O6bdqur7a6R+TXcbdYgfO2arXlDG+rSrWfwAvsiumpJjD4OS23R9QuhItuz8ysWb8mZ91CFFDQUhJY+8Q==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
