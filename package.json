@@ -1,5 +1,4 @@
 {
-  "name": "@ekscss/monorepo",
   "private": true,
   "scripts": {
     "build": "pnpm run -r build",
@@ -9,8 +8,8 @@
     "lint:js": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.jsx,.mjs,.cjs .",
     "lint:ts": "tsc --noEmit",
     "test": "c8 uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'",
-    "test-oldnode": "uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'",
-    "test-nn": "uvu packages '\\/test\\/.+\\.test-nn\\.js$'"
+    "test-nn": "uvu packages '\\/test\\/.+\\.test-nn\\.js$'",
+    "test-oldnode": "uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'"
   },
   "devDependencies": {
     "@types/node": "15.6.1",
@@ -45,16 +44,9 @@
     "endOfLine": "lf",
     "singleQuote": true,
     "trailingComma": "all",
-    "overrides": [
-      {
-        "files": [
-          "*.yml",
-          "*.yaml"
-        ],
-        "options": {
-          "singleQuote": false
-        }
-      }
+    "plugins": [
+      "./node_modules/prettier-plugin-pkg",
+      "./node_modules/prettier-plugin-sh"
     ]
   }
 }
