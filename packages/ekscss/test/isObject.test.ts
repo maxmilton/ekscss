@@ -20,9 +20,9 @@ const objects = [
   [Object.create({}), 'Object.create({})'],
   [Object.create(Object.prototype), 'Object.create(Object.prototype)'],
   [Object.create(null), 'Object.create(null)'],
-  // @ts-expect-error - implisit any is ok
+  // @ts-expect-error - implicit any is ok
   [new Func(), 'new Func'],
-  // @ts-expect-error - implisit any is ok
+  // @ts-expect-error - implicit any is ok
   [new Func(), 'new Func()'],
   [new Cls(), 'new Cls'],
   [new Cls(), 'new Cls()'],
