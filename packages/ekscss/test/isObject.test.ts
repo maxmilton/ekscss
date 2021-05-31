@@ -4,7 +4,7 @@ import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { isObject } from '../src/helpers';
 
-const isOldNode = +/^v(\d+)/.exec(process.version)[1] <= 8;
+const isOldNode = +/^v(\d+)/.exec(process.version)![1] <= 8;
 
 if (isOldNode) {
   // @ts-expect-error - stub for node v8 and bellow
@@ -20,7 +20,9 @@ const objects = [
   [Object.create({}), 'Object.create({})'],
   [Object.create(Object.prototype), 'Object.create(Object.prototype)'],
   [Object.create(null), 'Object.create(null)'],
+  // @ts-expect-error - implisit any is ok
   [new Func(), 'new Func'],
+  // @ts-expect-error - implisit any is ok
   [new Func(), 'new Func()'],
   [new Cls(), 'new Cls'],
   [new Cls(), 'new Cls()'],

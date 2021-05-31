@@ -16,8 +16,6 @@
     "declarationMap": true,
     "sourceMap": true,
 
-    // "importHelpers": true,
-
     "strict": true,
     "allowUnreachableCode": false,
     "forceConsistentCasingInFileNames": true,

@@ -8,7 +8,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     extraFileExtensions: ['.mjs', '.cjs'],
-    project: ['./tsconfig.eslint.json'],
+    project: ['./tsconfig.lint.json'],
   },
   extends: [
     'eslint:recommended',
