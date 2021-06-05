@@ -13,7 +13,7 @@ importers:
       eslint: 7.28.0
       eslint-config-airbnb-typescript: 12.3.1
       eslint-plugin-import: 2.23.4
-      prettier: 2.3.0
+      prettier: 2.3.1
       prettier-plugin-pkg: 0.9.0
       prettier-plugin-sh: 0.6.1
       sirv-cli: 1.0.12
@@ -29,9 +29,9 @@ importers:
       eslint: 7.28.0
       eslint-config-airbnb-typescript: 12.3.1_75473f0babdc4ff1c55efce786fd63eb
       eslint-plugin-import: 2.23.4_eslint@7.28.0
-      prettier: 2.3.0
-      prettier-plugin-pkg: 0.9.0_prettier@2.3.0
-      prettier-plugin-sh: 0.6.1_prettier@2.3.0
+      prettier: 2.3.1
+      prettier-plugin-pkg: 0.9.0_prettier@2.3.1
+      prettier-plugin-sh: 0.6.1_prettier@2.3.1
       sirv-cli: 1.0.12
       typescript: 4.3.2
       uvu: 0.5.1
@@ -1763,25 +1763,25 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-pkg/0.9.0_prettier@2.3.0:
+  /prettier-plugin-pkg/0.9.0_prettier@2.3.1:
     resolution: {integrity: sha512-Wpxe5KuNMGriJl96Zs5GookaDxs+byl3qcDq4+qMOabxeK8un0am5yGNpyuVsSEWdTTEQ96chC8fPRxl/n+euA==}
     peerDependencies:
       prettier: ^2.0.5
     dependencies:
-      prettier: 2.3.0
+      prettier: 2.3.1
     dev: true
 
-  /prettier-plugin-sh/0.6.1_prettier@2.3.0:
+  /prettier-plugin-sh/0.6.1_prettier@2.3.1:
     resolution: {integrity: sha512-Weelg53FBb1Z5Q1/GpQIb4s//BdhmPAABjJfe6VTQ3m8upQjM36sVVboNOUVvYn3K+LMwzW4vkxhqLQ+vvfBKQ==}
     peerDependencies:
       prettier: ^2.0.5
     dependencies:
       mvdan-sh: 0.5.0
-      prettier: 2.3.0
+      prettier: 2.3.1
     dev: true
 
-  /prettier/2.3.0:
-    resolution: {integrity: sha512-kXtO4s0Lz/DW/IJ9QdWhAf7/NmPWQXkFr/r/WkR3vyI+0v8amTDxiaQSLzs8NBlytfLWX/7uQUMIW677yLKl4w==}
+  /prettier/2.3.1:
+    resolution: {integrity: sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
