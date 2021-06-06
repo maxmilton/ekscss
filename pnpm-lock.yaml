@@ -138,16 +138,16 @@ importers:
       '@rollup/pluginutils': ^4.1.0
       '@types/csso': 3.5.1
       csso: ^4.2.0
-      rollup: 2.50.6
+      rollup: 2.51.0
       source-map: ^0.7.3
       typescript: 4.3.2
     dependencies:
-      '@rollup/pluginutils': 4.1.0_rollup@2.50.6
+      '@rollup/pluginutils': 4.1.0_rollup@2.51.0
       csso: 4.2.0
       source-map: 0.7.3
     devDependencies:
       '@types/csso': 3.5.1
-      rollup: 2.50.6
+      rollup: 2.51.0
       typescript: 4.3.2
 
   packages/rollup-plugin-ekscss:
@@ -155,27 +155,27 @@ importers:
       '@rollup/pluginutils': ^4.1.0
       ekscss: workspace:*
       joycon: ^3.0.1
-      rollup: 2.50.6
+      rollup: 2.51.0
       typescript: 4.3.2
     dependencies:
-      '@rollup/pluginutils': 4.1.0_rollup@2.50.6
+      '@rollup/pluginutils': 4.1.0_rollup@2.51.0
       joycon: 3.0.1
     devDependencies:
       ekscss: link:../ekscss
-      rollup: 2.50.6
+      rollup: 2.51.0
       typescript: 4.3.2
 
   packages/rollup-plugin-purgecss:
     specifiers:
       '@rollup/pluginutils': ^4.1.0
       purgecss: ^4.0.3
-      rollup: 2.50.6
+      rollup: 2.51.0
       typescript: 4.3.2
     dependencies:
-      '@rollup/pluginutils': 4.1.0_rollup@2.50.6
+      '@rollup/pluginutils': 4.1.0_rollup@2.51.0
       purgecss: 4.0.3
     devDependencies:
-      rollup: 2.50.6
+      rollup: 2.51.0
       typescript: 4.3.2
 
   packages/svelte-ekscss:
@@ -264,7 +264,7 @@ packages:
     resolution: {integrity: sha512-15spi3V28QdevleWBNXE4pIls3nFZmBbUGrW9IVPwiQczuSb9n76TCB4bsk8TSel+I1OkHEdPhu5QKMfY6rQHA==}
     dev: true
 
-  /@rollup/pluginutils/4.1.0_rollup@2.50.6:
+  /@rollup/pluginutils/4.1.0_rollup@2.51.0:
     resolution: {integrity: sha512-TrBhfJkFxA+ER+ew2U2/fHbebhLT/l/2pRk0hfj9KusXUuRXd2v0R58AfaZK9VXDQ4TogOSEmICVrQAA3zFnHQ==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
@@ -272,7 +272,7 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.0
-      rollup: 2.50.6
+      rollup: 2.51.0
     dev: false
 
   /@types/color-convert/2.0.0:
@@ -460,8 +460,8 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /ajv/8.5.0:
-    resolution: {integrity: sha512-Y2l399Tt1AguU3BPRP9Fn4eN+Or+StUGWCUpbnFyXSo8NZ9S4uj+AG2pjs5apK+ZMOwYOz1+a+VKvKH7CudXgQ==}
+  /ajv/8.6.0:
+    resolution: {integrity: sha512-cnUG4NSBiM4YFBxgZIj/In3/6KX+rQ2l2YPRVcvAMQGWEPKuXoPIhxzwqh31jA3IPbI4qEOp/5ILI4ynioXsGQ==}
     dependencies:
       fast-deep-equal: 3.1.3
       json-schema-traverse: 1.0.0
@@ -1866,8 +1866,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /rollup/2.50.6:
-    resolution: {integrity: sha512-6c5CJPLVgo0iNaZWWliNu1Kl43tjP9LZcp6D/tkf2eLH2a9/WeHxg9vfTFl8QV/2SOyaJX37CEm9XuGM0rviUg==}
+  /rollup/2.51.0:
+    resolution: {integrity: sha512-ITLt9sScNCBVspSHauw/W49lEZ0vjN8LyCzSNsNaqT67vTss2lYEfOyxltX8hjrhr1l/rQwmZ2wazzEqhZ/fUg==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -2080,7 +2080,7 @@ packages:
     resolution: {integrity: sha512-ZGum47Yi6KOOFDE8m223td53ath2enHcYLgOCjGr5ngu8bdIARQk6mN/wRMv4yMRcHnCSnHbCEha4sobQx5yWg==}
     engines: {node: '>=10.0.0'}
     dependencies:
-      ajv: 8.5.0
+      ajv: 8.6.0
       lodash.clonedeep: 4.5.0
       lodash.truncate: 4.4.2
       slice-ansi: 4.0.0
