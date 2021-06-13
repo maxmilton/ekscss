@@ -3,8 +3,8 @@
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
 import csso from 'csso';
 import path from 'path';
-import { SourceMapConsumer, SourceNode, SourceMapGenerator } from 'source-map';
 import type { Plugin } from 'rollup';
+import { SourceMapConsumer, SourceMapGenerator, SourceNode } from 'source-map';
 
 export interface PluginOptions {
   /**
@@ -42,7 +42,7 @@ export default function rollupPlugin({
   let useSourceMaps: boolean | 'inline' | 'hidden';
 
   return {
-    name: 'xcss-css',
+    name: 'ekscss-css',
 
     renderStart(outputOptions) {
       useSourceMaps = outputOptions.sourcemap;
@@ -56,13 +56,6 @@ export default function rollupPlugin({
       if (useSourceMaps) {
         sourcemaps.set(id, this.getCombinedSourcemap());
       }
-
-      // if (id.endsWith('web-app/src/components/Debug.xcss')) {
-      // if (id.endsWith('web-app/src/css/index.xcss')) {
-      //   console.log('!! ROLLUP CSS ID', id);
-      //   console.log('!! ROLLUP CSS MAP', sourcemaps.get(id));
-      //   // console.log('!! MODULE INFO', this.getModuleInfo(id));
-      // }
 
       return {
         code: '',
@@ -105,6 +98,12 @@ export default function rollupPlugin({
         minifiedMap = minified.map as SourceMapGenerator;
       }
 
+      const assetFileId = this.emitFile({
+        name: `${assetName}.css`,
+        source: css,
+        type: 'asset',
+      });
+
       if (outputOpts.sourcemap) {
         const mapNodes = [];
 
@@ -138,23 +137,30 @@ export default function rollupPlugin({
             'utf8',
           ).toString('base64')} */`;
         } else {
+          const assetFileName = this.getFileName(assetFileId);
+
           this.emitFile({
-            name: `${assetName}.css.map`,
+            fileName: `${assetFileName}.map`,
             source: map.map.toString(),
             type: 'asset',
           });
 
           if (outputOpts.sourcemap !== 'hidden') {
-            css += `\n/*# sourceMappingURL=${assetName}.css.map */`;
+            css += `\n/*# sourceMappingURL=${assetFileName}.map */`;
+
+            // FIXME: Can't getFileName before setting CSS source; Overwriting
+            // like this causes a warning: The emitted file "app-c3ca2dbc.css"
+            // overwrites a previously emitted file of the same name.
+            this.emitFile({
+              fileName: assetFileName,
+              source: css,
+              type: 'asset',
+            });
+            //  ↳ Can't getFileName before setAssetSource :(
+            // this.setAssetSource(assetFileId, css);
           }
         }
       }
-
-      this.emitFile({
-        name: `${assetName}.css`,
-        source: css,
-        type: 'asset',
-      });
     },
   };
 }
