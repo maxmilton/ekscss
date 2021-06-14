@@ -1,8 +1,10 @@
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
 import fs from 'fs';
 import path from 'path';
-import { PurgeCSS } from 'purgecss';
+import { defaultOptions, PurgeCSS } from 'purgecss';
 import type { OutputAsset, Plugin } from 'rollup';
+
+type PurgeCSSOptions = Partial<typeof defaultOptions>;
 
 export interface PluginOptions {
   /**
@@ -17,6 +19,8 @@ export interface PluginOptions {
    * @default /\.css$/
    */
   include?: FilterPattern;
+  /** PurgeCSS options. */
+  options?: Omit<PurgeCSSOptions, 'css' | 'stdin' | 'stdout'>;
   /**
    * PurgeCSS, which this plugin uses under the hood, does not support source
    * maps. After purging unused CSS your source maps will be invalid. By setting
@@ -31,6 +35,7 @@ const reMapRef = /\n?\/\*# sourceMappingURL=(.*) \*\//g;
 export default function rollupPlugin({
   exclude = [],
   include = /\.css$/,
+  options = {},
   removeInvalidSourceMaps,
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
@@ -47,19 +52,29 @@ export default function rollupPlugin({
       for (const filename in bundle) {
         if (filter(filename)) {
           const asset = bundle[filename] as OutputAsset;
+          const purgecssOpts = {
+            // default options
+            safelist: ['html', 'body'],
+            // user defined options
+            ...options,
+            // enforced options
+            content: [
+              ...Object.entries(bundle)
+                .filter(([key]) => key.endsWith('.html') || key.endsWith('.js'))
+                .map(([key, value]) => ({
+                  extension: path.extname(key),
+                  raw:
+                    value.type === 'chunk'
+                      ? value.code
+                      : value.source.toString(),
+                })),
+              ...(options.content ? options.content : []),
+            ],
+            css: [{ raw: asset.source.toString() }],
+          };
 
           // eslint-disable-next-line no-await-in-loop
-          const purged = await new PurgeCSS().purge({
-            content: Object.entries(bundle)
-              .filter(([key]) => key.endsWith('.html') || key.endsWith('.js'))
-              .map(([key, value]) => ({
-                extension: path.extname(key),
-                raw:
-                  value.type === 'chunk' ? value.code : value.source.toString(),
-              })),
-            css: [{ raw: asset.source.toString() }],
-            safelist: [':root', 'html', 'body'],
-          });
+          const purged = await new PurgeCSS().purge(purgecssOpts);
 
           let { css } = purged[0];
 
