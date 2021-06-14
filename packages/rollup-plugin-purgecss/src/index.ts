@@ -17,11 +17,21 @@ export interface PluginOptions {
    * @default /\.css$/
    */
   include?: FilterPattern;
+  /**
+   * PurgeCSS, which this plugin uses under the hood, does not support source
+   * maps. After purging unused CSS your source maps will be invalid. By setting
+   * this option to `true` these invalid source maps will be deleted.
+   * @default false
+   */
+  removeInvalidSourceMaps?: boolean;
 }
+
+const reMapRef = /\n?\/\*# sourceMappingURL=(.*) \*\//g;
 
 export default function rollupPlugin({
   exclude = [],
   include = /\.css$/,
+  removeInvalidSourceMaps,
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
 
@@ -51,16 +61,36 @@ export default function rollupPlugin({
             safelist: [':root', 'html', 'body'],
           });
 
-          // eslint-disable-next-line no-await-in-loop
-          await fs.promises.writeFile(
-            path.join(process.cwd(), outputOpts.dir, filename),
-            purged[0].css,
-            'utf8',
-          );
+          let { css } = purged[0];
 
           if (outputOpts.sourcemap) {
             this.warn('PurgeCSS does not support sourcemaps.');
+
+            if (removeInvalidSourceMaps) {
+              let match: RegExpExecArray | null;
+
+              // eslint-disable-next-line no-cond-assign
+              while ((match = reMapRef.exec(css)) !== null) {
+                try {
+                  // eslint-disable-next-line no-await-in-loop
+                  await fs.promises.rm(
+                    path.join(process.cwd(), outputOpts.dir, match[1]),
+                  );
+                } catch (err) {
+                  /* noop */
+                }
+              }
+
+              css = css.replace(/\n?\/\*# sourceMappingURL=.*\*\//g, '');
+            }
           }
+
+          // eslint-disable-next-line no-await-in-loop
+          await fs.promises.writeFile(
+            path.join(process.cwd(), outputOpts.dir, filename),
+            css,
+            'utf8',
+          );
         }
       }
     },
