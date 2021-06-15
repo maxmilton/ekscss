@@ -37,12 +37,14 @@ ${x.fn.each(x.media, (bp, query) => xcss`
 .bold { font-weight: ${x.textWeightHeavy}; }
 .italic { font-style: italic; }
 
+.underline { text-decoration: underline; }
+
 .normal {
   font-style: normal;
   font-weight: ${x.textWeight};
+  text-decoration: none;
 }
 
-.underline { text-decoration: underline; }
 
 .fss { font-size: 90%; }
 .fsl { font-size: 140%; }
