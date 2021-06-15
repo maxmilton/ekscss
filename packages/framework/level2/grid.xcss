@@ -49,12 +49,12 @@
     l- = large screen breakpoint
 
   BASE
-    x = number of columns in grid
-    y = number of rows in grid
-    c = starting column
-    r = starting row
-    w = item width
-    h = item height
+    gx = number of columns in grid
+    gy = number of rows in grid
+    gc = starting column
+    gr = starting row
+    gw = grid item width
+    gh = grid item height
 
   MOD
     cols = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
@@ -63,31 +63,31 @@
 */
 
 ${x.fn.map(x.colSteps, (step, i) => xcss`
-  .x${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
-  .c${step} { grid-column-start: ${step}; }
-  .w${step} { grid-column-end: span ${step}; }
+  .gx${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
+  .gc${step} { grid-column-start: ${step}; }
+  .gw${step} { grid-column-end: span ${step}; }
 `)}
 
 ${x.fn.map(x.rowSteps, (step, i) => xcss`
-  .y${step} { grid-template-rows: repeat(${step}, auto); }
-  .r${step} { grid-row-start: ${step}; }
-  .h${step} { grid-row-end: span ${step}; }
+  .gy${step} { grid-template-rows: repeat(${step}, auto); }
+  .gr${step} { grid-row-start: ${step}; }
+  .gh${step} { grid-row-end: span ${step}; }
 `)}
 
 ${x.fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
-    .${bp}-x-auto { grid-template-columns: auto; }
+    .${bp}-gx-auto { grid-template-columns: auto; }
 
     ${x.fn.map(x.colSteps, (step, i) => xcss`
-      .${bp}-x${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
-      .${bp}-c${step} { grid-column-start: ${step}; }
-      .${bp}-w${step} { grid-column-end: span ${step}; }
+      .${bp}-gx${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
+      .${bp}-gc${step} { grid-column-start: ${step}; }
+      .${bp}-gw${step} { grid-column-end: span ${step}; }
     `)}
 
     ${x.fn.map(x.rowSteps, (step, i) => xcss`
-      .${bp}-y${step} { grid-template-rows: repeat(${step}, auto); }
-      .${bp}-r${step} { grid-row-start: ${step}; }
-      .${bp}-h${step} { grid-row-end: span ${step}; }
+      .${bp}-gy${step} { grid-template-rows: repeat(${step}, auto); }
+      .${bp}-gr${step} { grid-row-start: ${step}; }
+      .${bp}-gh${step} { grid-row-end: span ${step}; }
     `)}
   }
 `)}
