@@ -73,13 +73,13 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
       }
     }
 
-    const { dependencies } = compiled;
+    const { css, dependencies, map } = compiled;
     if (configPath) dependencies.push(configPath);
 
     return {
-      code: compiled.css,
+      code: css,
       dependencies,
-      map: compiled.map?.toJSON(),
+      map: map?.toJSON(),
     };
   };
 };

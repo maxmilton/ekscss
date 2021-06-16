@@ -6,6 +6,7 @@
     "@typescript-eslint/no-var-requires": 0,
     "no-console": 0,
     "no-restricted-syntax": 0,
-    "strict": 0
+    "strict": 0,
+    "unicorn/no-process-exit": 0
   }
 }

@@ -19,8 +19,8 @@ const stylis = require('stylis');
  * @param code - The XCSS code to preload, default is `"@import '@ekscss/framework/level2.xcss';"`.
  */
 function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
-  const oldDependencies = ctx.dependencies.slice();
-  const oldWarnings = ctx.warnings.slice();
+  const oldDependencies = [...ctx.dependencies];
+  const oldWarnings = [...ctx.warnings];
 
   const interpolated = interpolate(code)(xcssTag(), ctx.x);
   const ast = stylis.compile(interpolated);

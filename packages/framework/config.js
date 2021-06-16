@@ -8,7 +8,7 @@
 
 // FIXME: ekscss compiler types issues which need the eslint disable comments above
 
-'use strict'; // eslint-disable-line
+'use strict'; // eslint-disable-line strict, lines-around-directive
 
 const { applyPlugin } = require('@ekscss/plugin-apply');
 const { importPlugin } = require('@ekscss/plugin-import');
@@ -53,14 +53,14 @@ module.exports = {
       'sans-serif',
       'Apple Color Emoji',
       'Segoe UI Emoji',
-    ].join(),
+    ].join(','),
     fontStackMonospace: [
       'SFMono-Regular',
       'Consolas',
       'Liberation Mono',
       'Menlo',
       'monospace',
-    ].join(),
+    ].join(','),
     textSize: '1.25em', // 20px
     color: {
       /**
