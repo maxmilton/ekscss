@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-'use strict'; // eslint-disable-line
+'use strict'; // eslint-disable-line strict, lines-around-directive
 
 const { ctx, onBeforeBuild } = require('ekscss');
 const path = require('path');

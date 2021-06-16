@@ -91,7 +91,7 @@ export default function rollupPlugin({
                   await fs.promises.rm(
                     path.join(process.cwd(), outputOpts.dir, match[1]),
                   );
-                } catch (err) {
+                } catch {
                   /* noop */
                 }
               }

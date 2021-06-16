@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies, no-restricted-syntax */
 
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
@@ -16,19 +16,19 @@ const helperPublicExports = [
   ['xcssTag', 'function'],
 ] as const;
 
-compilerPublicExports.forEach(([name, type]) => {
+for (const [name, type] of compilerPublicExports) {
   test(`exports public "${name}" compiler ${type}`, () => {
     assert.is(name in allExports, true, 'is exported');
     assert.type(allExports[name], type);
   });
-});
+}
 
-helperPublicExports.forEach(([name, type]) => {
+for (const [name, type] of helperPublicExports) {
   test(`exports public "${name}" helper ${type}`, () => {
     assert.is(name in allExports, true, 'is exported');
     assert.type(allExports[name], type);
   });
-});
+}
 
 test('does not export any private internals', () => {
   const allPublicExportNames = [
@@ -42,9 +42,9 @@ test('does not export any private internals', () => {
       >= compilerPublicExports.length + helperPublicExports.length,
     true,
   );
-  allPublicExportNames.forEach((name) => {
+  for (const name of allPublicExportNames) {
     remainingExports.splice(remainingExports.indexOf(name), 1);
-  });
+  }
   assert.is(remainingExports.length, 0);
 });
 
@@ -53,8 +53,8 @@ test('has no default export', () => {
 
   // @ts-expect-error - created by esbuild at runtime
   assert.is(allExports.default.default, undefined); // eslint-disable-line
-  assert.type(require('../dist/index'), 'object'); // eslint-disable-line
-  assert.is(require('../dist/index').default, undefined); // eslint-disable-line
+  assert.type(require('../dist/index.js'), 'object'); // eslint-disable-line
+  assert.is(require('../dist/index.js').default, undefined); // eslint-disable-line
 });
 
 test.run();

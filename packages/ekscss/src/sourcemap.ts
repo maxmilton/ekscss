@@ -1,5 +1,5 @@
 // eslint-disable-next-line max-len
-/* eslint-disable no-cond-assign, no-param-reassign, no-plusplus, no-restricted-syntax, no-underscore-dangle */
+/* eslint-disable no-cond-assign, no-param-reassign, no-plusplus, no-restricted-syntax, no-underscore-dangle, unicorn/no-array-callback-reference, unicorn/no-array-reduce */
 
 // TODO: Documentation:
 // - Explain our template engine and link to supporting docs:

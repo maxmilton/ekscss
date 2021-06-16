@@ -60,7 +60,7 @@ export const applyPlugin: Middleware = (
     // stylis types don't differentiate by element.type hence the cast
     const targets = (element.children as string)
       .split(',')
-      .map((x) => x.trim().replace(/^['"]/, '').replace(/['"]$/, ''));
+      .map((x) => x.trim().replace(/^["']/, '').replace(/["']$/, ''));
     const decls: Element[] = [];
 
     for (const target of targets) {

@@ -31,8 +31,8 @@ export const importPlugin: Middleware = (
 
   const importPath = stylis
     .tokenize(element.value)[3]
-    .replace(/^['"]/, '')
-    .replace(/['"]$/, '');
+    .replace(/^["']/, '')
+    .replace(/["']$/, '');
 
   if (importPath === 'url') return;
 
@@ -72,7 +72,7 @@ export const importPlugin: Middleware = (
   if (!from.endsWith('.xcss')) {
     // Escape backtick "`" and template expression placeholder "${" to prevent
     // unexpected errors when importing non-XCSS aware or 3rd party code
-    code = code.replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
+    code = code.replace(/`/g, '\\`').replace(/\${/g, '\\${');
   }
 
   const interpolated = interpolate(code)(xcssTag(), ctx.x);

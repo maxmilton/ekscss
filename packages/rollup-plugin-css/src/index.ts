@@ -64,7 +64,7 @@ export default function rollupPlugin({
     },
 
     async generateBundle(outputOpts) {
-      if (!styles.size) return;
+      if (styles.size === 0) return;
 
       let css = '';
 

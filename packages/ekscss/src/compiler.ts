@@ -73,11 +73,11 @@ export function compile(
         const mod = require(plugin);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         plugin = (mod.default || mod) as Middleware;
-      } catch (err) {
+      } catch (error) {
         warnings.push({
           code: 'plugin-load-error',
           // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-          message: `Failed to load plugin "${plugin}"; ${err}`,
+          message: `Failed to load plugin "${plugin}"; ${error}`,
           file: __filename,
         });
         plugin = noop;

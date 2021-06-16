@@ -57,7 +57,7 @@ class UndefinedProperty {
 
     Object.defineProperty(this, Symbol.toPrimitive, {
       enumerable: false,
-      value: () => undefined,
+      value: () => {},
     });
   }
 }
@@ -184,10 +184,12 @@ export function each<T>(
  * XCSS template expressions which return `null`, `undefined`, or `false` will
  * return an empty string to make clean templates simpler.
  */
+// eslint-disable-next-line unicorn/consistent-function-scoping
 export const xcssTag = () => function xcss(
   strings: TemplateStringsArray,
   ...expressions: XCSSExpression[]
 ): string {
+  // eslint-disable-next-line unicorn/no-array-reduce
   return strings.raw.reduce((code, current, index) => {
     let val = expressions[index - 1];
 

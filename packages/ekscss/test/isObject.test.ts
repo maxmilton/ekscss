@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies, no-restricted-syntax */
 
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
@@ -34,8 +34,12 @@ const notObjects = [
   [1, '1'],
   [0, '0'],
   [-1, '-1'],
+  // eslint-disable-next-line unicorn/prefer-number-properties
   [Infinity, 'Infinity'],
+  // eslint-disable-next-line unicorn/prefer-number-properties
   [-Infinity, '-Infinity'],
+  [Number.POSITIVE_INFINITY, 'Infinity'],
+  [Number.NEGATIVE_INFINITY, '-Infinity'],
   [BigInt(Number.MAX_SAFE_INTEGER), 'BigInt(Number.MAX_SAFE_INTEGER)'],
   [true, 'true'],
   [false, 'false'],
@@ -58,16 +62,16 @@ const notObjects = [
   [global, 'global'],
 ] as const;
 
-objects.forEach(([value, name]) => {
+for (const [value, name] of objects) {
   test(`returns true for "${name}" object`, () => {
     assert.is(isObject(value), true);
   });
-});
+}
 
-notObjects.forEach(([value, name]) => {
+for (const [value, name] of notObjects) {
   test(`returns false for "${name}" non-object`, () => {
     assert.is(isObject(value), false);
   });
-});
+}
 
 test.run();
