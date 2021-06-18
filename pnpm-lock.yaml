@@ -8,7 +8,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.27.0
       '@typescript-eslint/parser': 4.27.0
       c8: 7.7.3
-      esbuild: 0.12.8
+      esbuild: 0.12.9
       esbuild-register: 2.6.0
       eslint: 7.29.0
       eslint-config-airbnb-typescript: 12.3.1
@@ -25,7 +25,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.27.0_273f8d3692ec2c33d0dc65d843b46055
       '@typescript-eslint/parser': 4.27.0_eslint@7.29.0+typescript@4.3.3
       c8: 7.7.3
-      esbuild: 0.12.8
+      esbuild: 0.12.9
       esbuild-register: 2.6.0
       eslint: 7.29.0
       eslint-config-airbnb-typescript: 12.3.1_f4162edf515a167d4be4bc0fa4fe4ac2
@@ -56,7 +56,7 @@ importers:
   packages/ekscss:
     specifiers:
       '@types/stylis': ^4.0.0
-      esbuild: 0.12.8
+      esbuild: 0.12.9
       source-map: ^0.7.3
       stylis: ^4.0.10
       typescript: 4.3.3
@@ -65,7 +65,7 @@ importers:
       source-map: 0.7.3
       stylis: 4.0.10
     devDependencies:
-      esbuild: 0.12.8
+      esbuild: 0.12.9
       typescript: 4.3.3
 
   packages/esbuild-plugin-ekscss:
@@ -1069,6 +1069,12 @@ packages:
 
   /esbuild/0.12.8:
     resolution: {integrity: sha512-sx/LwlP/SWTGsd9G4RlOPrXnIihAJ2xwBUmzoqe2nWwbXORMQWtAGNJNYLBJJqa3e9PWvVzxdrtyFZJcr7D87g==}
+    hasBin: true
+    requiresBuild: true
+    dev: true
+
+  /esbuild/0.12.9:
+    resolution: {integrity: sha512-MWRhAbMOJ9RJygCrt778rz/qNYgA4ZVj6aXnNPxFjs7PmIpb0fuB9Gmg5uWrr6n++XKwwm/RmSz6RR5JL2Ocsw==}
     hasBin: true
     requiresBuild: true
     dev: true
