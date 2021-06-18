@@ -28,7 +28,7 @@
     "stylis": "^4.0.10"
   },
   "devDependencies": {
-    "esbuild": "0.12.8",
+    "esbuild": "0.12.9",
     "typescript": "4.3.3"
   }
 }
