@@ -51,6 +51,7 @@
 
 ### To Do
 
+- Add "extends" feature to config
 - Fix source map mapping for XCSS template expressions
 - Add READMEs to remaining packages
 - Add proper typescript support for `x` global
