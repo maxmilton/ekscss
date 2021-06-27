@@ -16,7 +16,7 @@ importers:
       eslint-plugin-unicorn: 33.0.1
       prettier: 2.3.2
       prettier-plugin-pkg: 0.10.0
-      prettier-plugin-sh: 0.7.0
+      prettier-plugin-sh: 0.7.1
       sirv-cli: 1.0.12
       typescript: 4.3.4
       uvu: 0.5.1
@@ -33,7 +33,7 @@ importers:
       eslint-plugin-unicorn: 33.0.1_eslint@7.29.0
       prettier: 2.3.2
       prettier-plugin-pkg: 0.10.0_prettier@2.3.2
-      prettier-plugin-sh: 0.7.0_prettier@2.3.2
+      prettier-plugin-sh: 0.7.1_prettier@2.3.2
       sirv-cli: 1.0.12
       typescript: 4.3.4
       uvu: 0.5.1
@@ -2160,8 +2160,8 @@ packages:
       prettier: 2.3.2
     dev: true
 
-  /prettier-plugin-sh/0.7.0_prettier@2.3.2:
-    resolution: {integrity: sha512-SrbVCyDp1XxOY/VnvRbfDWgrZH8U4A2J2gFWO9xm52BBnzTUSgHSMjOQFpRvm45BxYpRm5MaC42iy2+2aqk1yA==}
+  /prettier-plugin-sh/0.7.1_prettier@2.3.2:
+    resolution: {integrity: sha512-2MWRdGOSz0yf/z2kTKF1AqxDuH9MZD8faoDAz5ySGphxssi9oyM3Ys+jp7AfqsCXvGUDbRA4EJOlKS0yZKAW6w==}
     peerDependencies:
       prettier: ^2.0.5
     dependencies:
