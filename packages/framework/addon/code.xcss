@@ -7,4 +7,5 @@
   background-color: ${x.code.backgroundColor};
   overflow: auto;
   white-space: pre;
+  user-select: all; // select all contained text for easy copy
 }
