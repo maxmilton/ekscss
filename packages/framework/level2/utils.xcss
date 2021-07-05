@@ -58,6 +58,8 @@ ${x.fn.each(x.media, (bp, query) => xcss`
 
 /* Text wrapping */
 
+.wsp { white-space: pre; }
+.wspw { white-space: pre-wrap; }
 .wsn { white-space: nowrap; }
 .wsu { white-space: unset; }
 
