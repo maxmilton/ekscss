@@ -1,6 +1,7 @@
 name: ci
 on: push
 jobs:
+  # build has its own job because otherwise building would fail in test jobs with old node versions
   build:
     runs-on: ubuntu-latest
     steps:
