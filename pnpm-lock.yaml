@@ -40,7 +40,7 @@ importers:
 
   packages/cli:
     specifiers:
-      '@types/sade': 1.7.2
+      '@types/sade': 1.7.3
       ekscss: workspace:^0.0.7
       joycon: ^3.0.1
       kleur: ^4.1.4
@@ -51,7 +51,7 @@ importers:
       kleur: 4.1.4
       sade: 1.7.4
     devDependencies:
-      '@types/sade': 1.7.2
+      '@types/sade': 1.7.3
 
   packages/ekscss:
     specifiers:
@@ -557,8 +557,8 @@ packages:
     resolution: {integrity: sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==}
     dev: true
 
-  /@types/sade/1.7.2:
-    resolution: {integrity: sha512-qVHZ70gLk2tCAqRanVOBVKM8og7eBhnWx1cdHMj8J3t4QF+PzIS9+pzZWZEx9ghsO1DDeGOTgyq5aQd5Bt/2dw==}
+  /@types/sade/1.7.3:
+    resolution: {integrity: sha512-OFZ2ZotV3+kA3utubCtPDDM8PTdqmpgmEM+hqxyqzfX2ACpUtTnFUxDCSJIJ/249JbIyfjKWyO0FFtIlrLS9YA==}
     dependencies:
       '@types/mri': 1.1.0
     dev: true
