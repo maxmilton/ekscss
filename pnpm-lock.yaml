@@ -138,7 +138,7 @@ importers:
   packages/rollup-plugin-css:
     specifiers:
       '@rollup/pluginutils': ^4.1.0
-      '@types/csso': 3.5.1
+      '@types/csso': 3.5.2
       csso: ^4.2.0
       rollup: 2.52.7
       source-map: ^0.7.3
@@ -148,7 +148,7 @@ importers:
       csso: 4.2.0
       source-map: 0.7.3
     devDependencies:
-      '@types/csso': 3.5.1
+      '@types/csso': 3.5.2
       rollup: 2.52.7
       typescript: 4.3.5
 
@@ -527,8 +527,8 @@ packages:
     resolution: {integrity: sha512-3uTnqSdmUGrTRoGT8UjzpYSbK2EtrTTJTpdFr6MdMj6wMOSAdjHW1V+YqOgUzVrQsi3AwH+LHcBtXEuy0Sn/LQ==}
     dev: true
 
-  /@types/csso/3.5.1:
-    resolution: {integrity: sha512-NnALC1ZR5H4kg/9wUOa8/U2HOAwN4O71Av90HClgCteuwj6UHBEr37I0Cl10EY2gHd5p/JtsbY2r0WbOhYN+gw==}
+  /@types/csso/3.5.2:
+    resolution: {integrity: sha512-Ou6PegjBPB4Jdz4w1NkrBAximhK9MJE4k3ii8qbtW/ypvzF4RrMIYgac8naLLp+opCgOgZ8LDx3NmdYLNhWhFA==}
     dependencies:
       '@types/css-tree': 1.0.5
     dev: true
