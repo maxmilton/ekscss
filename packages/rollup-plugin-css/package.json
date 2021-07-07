@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/csso": "3.5.2",
-    "rollup": "2.52.7",
+    "rollup": "2.52.8",
     "typescript": "4.3.5"
   }
 }
