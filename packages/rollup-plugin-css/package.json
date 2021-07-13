@@ -22,7 +22,7 @@
     "source-map": "^0.7.3"
   },
   "devDependencies": {
-    "@types/csso": "3.5.2",
+    "@types/csso": "4.2.0",
     "rollup": "2.53.1",
     "typescript": "4.3.5"
   }
