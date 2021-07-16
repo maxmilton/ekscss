@@ -17,13 +17,13 @@
     "rollup": "^2.0.0"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^4.1.0",
+    "@rollup/pluginutils": "^4.1.1",
     "csso": "^4.2.0",
     "source-map": "^0.7.3"
   },
   "devDependencies": {
     "@types/csso": "4.2.0",
-    "rollup": "2.53.1",
+    "rollup": "2.53.2",
     "typescript": "4.3.5"
   }
 }

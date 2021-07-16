@@ -12,7 +12,7 @@
     "test-oldnode": "uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'"
   },
   "devDependencies": {
-    "@types/node": "15.12.5",
+    "@types/node": "16.3.3",
     "@typescript-eslint/eslint-plugin": "4.28.3",
     "@typescript-eslint/parser": "4.28.3",
     "c8": "7.7.3",

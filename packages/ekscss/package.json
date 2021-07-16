@@ -23,7 +23,7 @@
     "prebuild": "rm -rf dist"
   },
   "dependencies": {
-    "@types/stylis": "^4.0.0",
+    "@types/stylis": "^4.0.1",
     "source-map": "^0.7.3",
     "stylis": "^4.0.10"
   },
