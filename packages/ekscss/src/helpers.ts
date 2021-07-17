@@ -138,9 +138,11 @@ export function map<T>(
   callback: (value: T, index: number) => string,
 ): string {
   if (!Array.isArray(arr)) {
+    // TODO: Populate "line" and "column"
     ctx.warnings.push({
       code: 'map-invalid-array',
       message: `Expected array but got ${toStr.call(arr)}`,
+      file: ctx.from,
     });
     return 'INVALID';
   }
@@ -164,9 +166,11 @@ export function each<T>(
   callback: (key: string, value: T) => string,
 ): string {
   if (!isObject(obj)) {
+    // TODO: Populate "line" and "column"
     ctx.warnings.push({
       code: 'each-invalid-object',
       message: `Expected object but got ${toStr.call(obj)}`,
+      file: ctx.from,
     });
     return 'INVALID';
   }
@@ -207,6 +211,7 @@ export const xcssTag = () => function xcss(
       if (typeof val.toString === 'function') {
         val = val.toString();
       } else {
+        // TODO: Populate  "line" and "column"
         ctx.warnings.push({
           code: 'expression-invalid',
           message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${toStr.call(
