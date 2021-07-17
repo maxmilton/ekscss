@@ -35,7 +35,7 @@ export function isObject(val: unknown): val is Record<string, unknown> {
 /**
  * A transparent placeholder for an object's undefined property.
  *
- * Intended to be used in `globalsProxy()` as a way to both allow safe deep
+ * Intended to be used in `accessorsProxy()` as a way to both allow safe deep
  * object lookups and still report back a string value. This results in
  * non-crashing builds and better visibility into what's wrong to users.
  *
@@ -63,16 +63,18 @@ class UndefinedProperty {
 }
 
 /**
- * Inject accessor helpers into the globals object.
+ * Proxy an object to deeply inject accessor helpers.
  *
  * Generates warnings when an object property is accessed but doesn't exist
  * or when overriding an existing property value (which is often a mistake
- * which leads to undesirable results).
+ * which leads to undesirable results). Also prevents errors from crashing the
+ * build and will instead leave behind tokens to provide hints to users at what
+ * went wrong.
  *
  * @param obj - The object to inject accessor helpers into.
  * @param parentPath - Key path to the current location in the object.
  */
-export function globalsProxy<
+export function accessorsProxy<
   T extends Record<string, unknown> | UndefinedProperty,
 >(obj: T, parentPath: string): T {
   for (const key in obj) {
@@ -81,7 +83,7 @@ export function globalsProxy<
 
       if (isObject(val)) {
         // eslint-disable-next-line no-param-reassign
-        obj[key] = globalsProxy(val, `${parentPath}.${key}`);
+        obj[key] = accessorsProxy(val, `${parentPath}.${key}`);
       }
     }
   }
@@ -98,7 +100,7 @@ export function globalsProxy<
           file: ctx.from,
         });
 
-        return globalsProxy(new UndefinedProperty(), propPath);
+        return accessorsProxy(new UndefinedProperty(), propPath);
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -118,7 +120,7 @@ export function globalsProxy<
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const proxiedValue = isObject(value)
-        ? globalsProxy(value, `${parentPath}.${String(prop)}`)
+        ? accessorsProxy(value, `${parentPath}.${String(prop)}`)
         : value;
 
       return Reflect.set(target, prop, proxiedValue, receiver);

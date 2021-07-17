@@ -2,9 +2,9 @@
 
 import * as stylis from 'stylis';
 import {
+  accessorsProxy,
   ctx,
   each,
-  globalsProxy,
   interpolate,
   map as _map,
   xcssTag,
@@ -55,7 +55,7 @@ export function compile(
 ): XCSSCompileResult {
   const dependencies: string[] = [];
   const warnings: Warning[] = [];
-  const x = globalsProxy(mergeDefaultGlobals(globals), 'x');
+  const x = accessorsProxy(mergeDefaultGlobals(globals), 'x');
 
   if (from) dependencies.push(from);
 

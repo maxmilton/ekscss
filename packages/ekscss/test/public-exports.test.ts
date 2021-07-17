@@ -10,9 +10,9 @@ const compilerPublicExports = [
   ['compile', 'function'],
 ] as const;
 const helperPublicExports = [
+  ['accessorsProxy', 'function'],
   ['ctx', 'object'],
   ['interpolate', 'function'],
-  ['globalsProxy', 'function'],
   ['xcssTag', 'function'],
 ] as const;
 
