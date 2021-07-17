@@ -16,6 +16,8 @@ const has = Object.prototype.hasOwnProperty;
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const toStr = Object.prototype.toString;
 
+export const noop = (): void => {};
+
 /**
  * Interpolative template engine for XCSS.
  *
@@ -57,7 +59,7 @@ class UndefinedProperty {
 
     Object.defineProperty(this, Symbol.toPrimitive, {
       enumerable: false,
-      value: () => {},
+      value: noop,
     });
   }
 }

@@ -7,6 +7,7 @@ import {
   each,
   interpolate,
   map as _map,
+  noop,
   xcssTag,
 } from './helpers';
 import { compileSourceMap } from './sourcemap';
@@ -21,7 +22,6 @@ import type {
 
 const beforeBuildFns: BuildHookFn[] = [];
 const afterBuildFns: BuildHookFn[] = [];
-const noop = () => {};
 
 export function onBeforeBuild(callback: BuildHookFn): void {
   beforeBuildFns.push(callback);
