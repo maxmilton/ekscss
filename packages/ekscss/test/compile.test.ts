@@ -33,6 +33,7 @@ test('returns expected result with empty code', () => {
 });
 
 // TODO: Write more tests here!!
+// - Validate warnings are generated in expected scenarios and file, line, column are correct
 
 test('runs with complex code', () => {
   const compiled = compile(complexCodeFixture);

@@ -2,6 +2,10 @@
 
 import type { Context, XCSSExpression, XCSSTemplateFn } from './types';
 
+/**
+ * Compiler context. For internal and advanced use cases only.
+ * @private No guarantee API will remain the same between versions!
+ */
 // @ts-expect-error - initialised at runtime
 export const ctx: Context = {
   // dependencies: undefined,
@@ -35,7 +39,7 @@ export function isObject(val: unknown): val is Record<string, unknown> {
 }
 
 /**
- * A transparent placeholder for an object's undefined property.
+ * A transparent placeholder token for an object's undefined property.
  *
  * Intended to be used in `accessorsProxy()` as a way to both allow safe deep
  * object lookups and still report back a string value. This results in
@@ -49,9 +53,9 @@ class UndefinedProperty {
   UNDEFINED = 'UNDEFINED';
 
   constructor() {
-    // These own funtions must be non-enumerable so when an UndefinedProxy
-    // instance is used with enumerating Object static functions, these own
-    // functions are not included (e.g. `Object.keys()`)
+    // These "own functions" must be non-enumerable so when an UndefinedProxy
+    // instance's properties are enumerated these functions are not included
+    // e.g., `Object.keys(...)`
     Object.defineProperty(this, 'toString', {
       enumerable: false,
       value: () => this.UNDEFINED,
