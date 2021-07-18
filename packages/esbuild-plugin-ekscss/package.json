@@ -14,7 +14,7 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.7",
+    "ekscss": "^0.0.8",
     "esbuild": "^0.12.0"
   },
   "dependencies": {

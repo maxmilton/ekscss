@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/plugin-apply",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "XCSS plugin to inline the properties of referenced rules",
   "repository": "maxmilton/ekscss",
   "homepage": "https://maxmilton.github.io/ekscss",
@@ -18,7 +18,7 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.7"
+    "ekscss": "^0.0.8"
   },
   "dependencies": {
     "stylis": "^4.0.10"

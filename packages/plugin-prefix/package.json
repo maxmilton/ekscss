@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/plugin-prefix",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "XCSS plugin to add vendor prefixes",
   "repository": "maxmilton/ekscss",
   "homepage": "https://maxmilton.github.io/ekscss",
@@ -18,7 +18,7 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.7"
+    "ekscss": "^0.0.8"
   },
   "dependencies": {
     "stylis": "^4.0.10"
