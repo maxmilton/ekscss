@@ -2,11 +2,12 @@
 
 import * as stylis from 'stylis';
 import {
+  accessorsProxy,
   ctx,
   each,
-  globalsProxy,
   interpolate,
   map as _map,
+  noop,
   xcssTag,
 } from './helpers';
 import { compileSourceMap } from './sourcemap';
@@ -21,7 +22,6 @@ import type {
 
 const beforeBuildFns: BuildHookFn[] = [];
 const afterBuildFns: BuildHookFn[] = [];
-const noop = () => {};
 
 export function onBeforeBuild(callback: BuildHookFn): void {
   beforeBuildFns.push(callback);
@@ -55,7 +55,7 @@ export function compile(
 ): XCSSCompileResult {
   const dependencies: string[] = [];
   const warnings: Warning[] = [];
-  const x = globalsProxy(mergeDefaultGlobals(globals), 'x');
+  const x = accessorsProxy(mergeDefaultGlobals(globals), 'x');
 
   if (from) dependencies.push(from);
 

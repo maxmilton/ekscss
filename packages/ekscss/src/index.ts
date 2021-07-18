@@ -1,5 +1,5 @@
 export { compile, onAfterBuild, onBeforeBuild } from './compiler';
 export {
-  ctx, globalsProxy, interpolate, xcssTag,
+  accessorsProxy, ctx, interpolate, xcssTag,
 } from './helpers';
 export * from './types';

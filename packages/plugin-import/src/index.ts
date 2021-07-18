@@ -13,13 +13,13 @@ import * as stylis from 'stylis';
 // it's a url() import, so if developers want to @import a local file and not
 // have it inlined they can use `@import url('file:...')` e.g., for dev/testing
 
-function isRelative(filename: string): boolean {
-  // 46 = .
-  return stylis.charat(filename, 0) === 46;
-}
+// 46 = .
+const isRelative = (filePath: string) => stylis.charat(filePath, 0) === 46;
 
 /**
  * XCSS plugin to inline the contents of `@import` statements.
+ *
+ * Only works with the filesystem; will not inline `url(...)`.
  */
 export const importPlugin: Middleware = (
   element: Element,

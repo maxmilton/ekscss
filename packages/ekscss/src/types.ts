@@ -4,17 +4,24 @@ import type { xcssTag } from './helpers';
 
 export type { Middleware };
 
-// TODO: Remove?
 export interface Element extends _Element {
-  /** AST for constructing source maps. Only on `@import` nodes. */
+  /**
+   * AST for constructing source maps.
+   *
+   * Only on `@import` nodes when the import plugin is used.
+   */
   __ast?: Element[];
-  /** From path for constructing source maps. Only on `@import` nodes. */
+  /**
+   * From path for constructing source maps.
+   *
+   * Only on `@import` nodes when the import plugin is used.
+   */
   __from?: string;
   root: Element;
 }
 
 export interface Warning {
-  /** A kebab cased reference code/name of the warning. */
+  /** Warning reference code name. Must be kebab case. */
   code: string;
   message: string;
   file?: string;

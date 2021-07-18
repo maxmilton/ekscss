@@ -7,7 +7,8 @@ const stylis = require('stylis');
 
 /**
  * Preload #apply references without including the actual content in your final
- * build result. By default it will include everything in level2.
+ * build result. This allows you to use #apply in any file even when a reference
+ * doesn't exist in the file. By default it will include everything in level2.
  *
  * Use by calling this function in `onBeforeBuild`:
  *
