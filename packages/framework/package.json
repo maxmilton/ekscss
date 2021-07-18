@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/framework",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Progressive CSS framework powered by ekscss",
   "repository": "maxmilton/ekscss",
   "homepage": "https://maxmilton.github.io/ekscss",
@@ -27,9 +27,9 @@
     "ekscss": "^0.0.8"
   },
   "dependencies": {
-    "@ekscss/plugin-apply": "workspace:^0.0.3",
-    "@ekscss/plugin-import": "workspace:^0.0.3",
-    "@ekscss/plugin-prefix": "workspace:^0.0.2",
+    "@ekscss/plugin-apply": "workspace:^",
+    "@ekscss/plugin-import": "workspace:^",
+    "@ekscss/plugin-prefix": "workspace:^",
     "color": "^4.0.0",
     "cssremedy": "github:jensimmons/cssremedy#468e31a7eda599eea2003ed7983c190828ffb5fd",
     "stylis": "^4.0.10"

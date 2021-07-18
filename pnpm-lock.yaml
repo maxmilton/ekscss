@@ -41,7 +41,7 @@ importers:
   packages/cli:
     specifiers:
       '@types/sade': 1.7.3
-      ekscss: workspace:^0.0.7
+      ekscss: workspace:^
       joycon: ^3.0.1
       kleur: ^4.1.4
       sade: ^1.7.4
@@ -82,9 +82,9 @@ importers:
   packages/framework:
     specifiers:
       '@ekscss/cli': workspace:*
-      '@ekscss/plugin-apply': workspace:^0.0.3
-      '@ekscss/plugin-import': workspace:^0.0.3
-      '@ekscss/plugin-prefix': workspace:^0.0.2
+      '@ekscss/plugin-apply': workspace:^
+      '@ekscss/plugin-import': workspace:^
+      '@ekscss/plugin-prefix': workspace:^
       '@types/color': 3.0.2
       color: ^4.0.0
       cssremedy: github:jensimmons/cssremedy#468e31a7eda599eea2003ed7983c190828ffb5fd
