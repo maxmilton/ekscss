@@ -17,7 +17,7 @@ importers:
       prettier: 2.3.2
       prettier-plugin-pkg: 0.10.0
       prettier-plugin-sh: 0.7.1
-      sirv-cli: 1.0.12
+      sirv-cli: 1.0.14
       typescript: 4.3.5
       uvu: 0.5.1
     devDependencies:
@@ -34,7 +34,7 @@ importers:
       prettier: 2.3.2
       prettier-plugin-pkg: 0.10.0_prettier@2.3.2
       prettier-plugin-sh: 0.7.1_prettier@2.3.2
-      sirv-cli: 1.0.12
+      sirv-cli: 1.0.14
       typescript: 4.3.5
       uvu: 0.5.1
 
@@ -492,8 +492,8 @@ packages:
       fastq: 1.11.1
     dev: true
 
-  /@polka/url/1.0.0-next.15:
-    resolution: {integrity: sha512-15spi3V28QdevleWBNXE4pIls3nFZmBbUGrW9IVPwiQczuSb9n76TCB4bsk8TSel+I1OkHEdPhu5QKMfY6rQHA==}
+  /@polka/url/1.0.0-next.17:
+    resolution: {integrity: sha512-0p1rCgM3LLbAdwBnc7gqgnvjHg9KpbhcSphergHShlkWz8EdPawoMJ3/VbezI0mGC5eKCDzMaPgF9Yca6cKvrg==}
     dev: true
 
   /@rollup/pluginutils/4.1.1:
@@ -2384,8 +2384,8 @@ packages:
       is-arrayish: 0.3.2
     dev: false
 
-  /sirv-cli/1.0.12:
-    resolution: {integrity: sha512-Rs5PvF3a48zuLmrl8vcqVv9xF/WWPES19QawVkpdzqx7vD5SMZS07+ece1gK4umbslXN43YeIksYtQM5csgIzQ==}
+  /sirv-cli/1.0.14:
+    resolution: {integrity: sha512-yyUTNr984ANKDloqepkYbBSqvx3buwYg2sQKPWjSU+IBia5loaoka2If8N9CMwt8AfP179cdEl7kYJ//iWJHjQ==}
     engines: {node: '>= 10'}
     hasBin: true
     dependencies:
@@ -2395,15 +2395,15 @@ packages:
       local-access: 1.1.0
       sade: 1.7.4
       semiver: 1.1.0
-      sirv: 1.0.12
+      sirv: 1.0.14
       tinydate: 1.3.0
     dev: true
 
-  /sirv/1.0.12:
-    resolution: {integrity: sha512-+jQoCxndz7L2tqQL4ZyzfDhky0W/4ZJip3XoOuxyQWnAwMxindLl3Xv1qT4x1YX/re0leShvTm8Uk0kQspGhBg==}
+  /sirv/1.0.14:
+    resolution: {integrity: sha512-czTFDFjK9lXj0u9mJ3OmJoXFztoilYS+NdRPcJoT182w44wSEkHSiO7A2517GLJ8wKM4GjCm2OXE66Dhngbzjg==}
     engines: {node: '>= 10'}
     dependencies:
-      '@polka/url': 1.0.0-next.15
+      '@polka/url': 1.0.0-next.17
       mime: 2.5.2
       totalist: 1.1.0
     dev: true
