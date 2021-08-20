@@ -6,7 +6,7 @@
 
 // Note: Also update 'packages/framework/addon/native.xcss' if making any
 // changes to the nested selectors
- .button {
+.button {
   display: inline-block;
   padding: ${x.button.paddingY} ${x.button.paddingX};
   color: ${x.button.textColor};
