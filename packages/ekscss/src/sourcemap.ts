@@ -107,6 +107,7 @@ export function compileSourceMap(
   const rootNode = new SourceNode(null, null, null, nodes);
   const pathTo = to || from;
   const sourceRoot = pathTo ? path.dirname(pathTo) : rootDir;
+  // @ts-expect-error - FIXME: file should take undefined
   const result = rootNode.toStringWithSourceMap({
     file: pathTo && path.relative(sourceRoot, pathTo),
     sourceRoot,

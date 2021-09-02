@@ -27,6 +27,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
     let configData: XCSSConfig;
     let configPath: string | undefined;
 
+    // @ts-expect-error - FIXME: warnings[].location* should take undefined
     build.onLoad({ filter: /\.xcss$/ }, async (args) => {
       const code = await fs.promises.readFile(args.path, 'utf-8');
       const warnings = [];

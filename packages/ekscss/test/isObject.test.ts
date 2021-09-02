@@ -69,6 +69,8 @@ for (const [value, name] of objects) {
 }
 
 for (const [value, name] of notObjects) {
+  // FIXME: @typescript-eslint/parser doesn't pick up the sparse array correctly
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   test(`returns false for "${name}" non-object`, () => {
     assert.is(isObject(value), false);
   });

@@ -29,6 +29,7 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
   let configData: XCSSConfig;
   let configPath: string | undefined;
 
+  // @ts-expect-error - FIXME: The returned map should take undefined
   return async ({ attributes, content, filename }) => {
     if (attributes.lang !== 'xcss') return null;
 

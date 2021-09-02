@@ -68,6 +68,7 @@ export default function rollupPlugin({
       }
     },
 
+    // @ts-expect-error - FIXME: The returned map should take undefined
     transform(code, id) {
       if (!filter(id)) return null;
 
