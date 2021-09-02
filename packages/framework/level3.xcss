@@ -15,6 +15,8 @@
 @import './addon/alert.xcss';
 @import './addon/code.xcss';
 @import './addon/card.xcss';
+@import './addon/spinner.xcss';
+@import './addon/app-nav.xcss';
 @import './addon/app-footer.xcss';
 
 // Addons with a high chance of unexpected side effects

@@ -67,7 +67,7 @@ module.exports = {
        * Based on palantir/blueprint colors
        * Copyright 2015 Palantir Technologies, Inc. All rights reserved.
        * Licensed under the Apache License, Version 2.0.
-       * @see https://github.com/palantir/blueprint/blob/develop/packages/core/src/common/_colors.scss
+       * @see https://github.com/palantir/blueprint/blob/d4c772931b861ec60a0f4ef2032fb296746f8d9b/packages/core/src/common/_colors.scss
        */
       // Gray scale
       black: '#10161a',
@@ -257,26 +257,7 @@ module.exports = {
       disabledBorder: (x) => x.input.disabledBorder,
     },
 
-    code: {
-      textColor: (x) => x.color.light3,
-      backgroundColor: (x) => x.color.dark3,
-      radius: (x) => x.radius,
-    },
-
-    card: {
-      backgroundColor: (x) => x.color.white,
-      shadow: (x) => xcss`0 0.125em 0.5em 1px ${x.color.shadow}`,
-      hoverZIndex: 1,
-      hoverTextColor: (x) => x.color.text,
-      hoverShadow: (x) => x.color.shadow,
-      hoverAnimateSpeedIn: (x) => x.animateSpeedIn,
-      hoverAnimateSpeedOut: (x) => x.animateSpeedOut,
-      hoverHoverShadow: (x) => x.color.shadowDeep,
-      bodyMargin: '1.2rem 2rem',
-      buttonTextColor: 'inherit',
-      buttonBorder: (x) => xcss`1px solid ${x.fn.color(x.color.light3).alpha(0.5)}`,
-    },
-
+    /* Addon: alert.xcss */
     alert: {
       padding: '1em',
       marginY: '2em',
@@ -292,6 +273,45 @@ module.exports = {
       errorBorderColor: (x) => x.color.red4,
     },
 
+    /* Addon: app-footer.xcss */
+    footer: {
+      marginY: '5rem',
+      textColor: (x) => x.color.muted,
+    },
+
+    /* Addon: card.xcss */
+    card: {
+      backgroundColor: (x) => x.color.white,
+      shadow: (x) => xcss`0 0.125em 0.5em 1px ${x.color.shadow}`,
+      hoverZIndex: 1,
+      hoverTextColor: (x) => x.color.text,
+      hoverShadow: (x) => x.color.shadow,
+      hoverAnimateSpeedIn: (x) => x.animateSpeedIn,
+      hoverAnimateSpeedOut: (x) => x.animateSpeedOut,
+      hoverHoverShadow: (x) => x.color.shadowDeep,
+      bodyMargin: '1.2rem 2rem',
+      buttonTextColor: 'inherit',
+      buttonBorder: (x) => xcss`1px solid ${x.fn.color(x.color.light3).alpha(0.5)}`,
+    },
+
+    /* Addon: code.xcss */
+    code: {
+      textColor: (x) => x.color.light3,
+      backgroundColor: (x) => x.color.dark3,
+      radius: (x) => x.radius,
+    },
+
+    /* Addon: spinner.xcss */
+    spinner: {
+      size: '64px',
+      width: '8px',
+      color: (x) => x.color.primary,
+      backgroundColor: (x) => x.color.light3,
+      animateSpeed: '528ms',
+      animateTiming: 'linear',
+    },
+
+    /* Addon: tag.xcss */
     tag: {
       padding: '0.2em 0.4em',
       textSize: '0.9em',
@@ -301,11 +321,7 @@ module.exports = {
       marginBetween: '1em',
     },
 
-    footer: {
-      marginY: '5rem',
-      textColor: (x) => x.color.muted,
-    },
-
+    /* Addon: ux-larger-click-zone.xcss */
     linkClickArea: '0.4em', // XXX: Reduce if links overlap
   },
 };

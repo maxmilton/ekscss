@@ -1,0 +1,39 @@
+/**
+* XCSS Addon: Round Loading Spinner
+*
+* TODO: Write short overview.
+*
+* EXAMPLE:
+*
+*   <div class="spinner-wrapper">
+*     <div class="spinner"></div>
+*   </div>
+*/
+
+@keyframes spinner {
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.spinner {
+  position: relative;
+  width: ${x.spinner.size};
+  height: ${x.spinner.size};
+
+  &::before {
+    position: absolute;
+    width: ${x.spinner.size};
+    height: ${x.spinner.size};
+    border: ${x.spinner.width} solid ${x.spinner.backgroundColor};
+    border-top-color: ${x.spinner.color};
+    border-radius: 50%;
+    animation: spinner ${x.spinner.animateSpeed} ${x.spinner.animateTiming} infinite;
+    content: '';
+  }
+}
+
+.spinner-wrapper {
+  box-sizing: content-box;
+  height: ${x.spinner.size}; // prevent page jump once spinner shows
+}

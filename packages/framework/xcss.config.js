@@ -16,7 +16,7 @@ onBeforeBuild(() => {
     bundleName = (ctx.from.includes('/addon/') ? 'addon/' : '')
       + path.basename(ctx.from, '.xcss');
 
-    // pre-populate ctx.applyRefs in applyPlugin for #apply use in native addon
+    // pre-populate applyPlugin ctx.applyRefs for #apply in addon/native.xcss
     if (ctx.from.endsWith('framework/addon/native.xcss')) {
       preloadApply("@import './level2.xcss';");
     }
@@ -26,7 +26,7 @@ onBeforeBuild(() => {
 /**
  * XCSS config specifically for building the @ekscss/framework dist files.
  *
- * Note: This config **should not be reused** in other projects. What you probably
+ * Note: This config **should not be reused** in other projects. What you likely
  * want is `@ekscss/framework/config`.
  *
  * @type {import('@ekscss/cli').XCSSConfig}
