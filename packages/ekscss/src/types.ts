@@ -24,9 +24,9 @@ export interface Warning {
   /** Warning reference code name. Must be kebab case. */
   code: string;
   message: string;
-  file?: string;
-  line?: number;
-  column?: number;
+  file?: string | undefined;
+  line?: number | undefined;
+  column?: number | undefined;
 }
 
 export interface Context {
@@ -34,7 +34,7 @@ export interface Context {
   [key: string]: unknown;
 
   dependencies: string[];
-  from?: string;
+  from: string | undefined;
   rootDir: string;
   warnings: Warning[];
   x: XCSSGlobals;
@@ -66,16 +66,16 @@ export type XCSSGlobals = {
 
 export interface XCSSCompileOptions {
   /** Input file path. Without this top level relative `@import`s may fail. */
-  from?: string;
+  from?: string | undefined;
   /** Output file path. Only used in source maps. */
-  to?: string;
+  to?: string | undefined;
   /**
    * Generate source map.
    *
    * @default false
    */
-  map?: boolean;
-  globals?: Partial<XCSSGlobals>;
+  map?: boolean | undefined;
+  globals?: Partial<XCSSGlobals> | undefined;
   /**
    * XCSS plugins or package names of XCSS plugins.
    *
@@ -84,13 +84,13 @@ export interface XCSSCompileOptions {
    *
    * @default []
    */
-  plugins?: Array<Middleware | string>;
+  plugins?: Array<Middleware | string> | undefined;
   /**
    * Root directory path to use when resolving file paths e.g., in `@import`.
    *
    * @default process.cwd()
    */
-  rootDir?: string;
+  rootDir?: string | undefined;
 }
 
 export type BuildHookFn = () => void;
@@ -103,6 +103,6 @@ export type XCSSTemplateFn = (
 export interface XCSSCompileResult {
   css: string;
   dependencies: string[];
-  map?: SourceMapGenerator;
+  map: SourceMapGenerator | undefined;
   warnings: Warning[];
 }
