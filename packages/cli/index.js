@@ -8,7 +8,7 @@ const colors = require('kleur/colors');
 const path = require('path');
 const { performance } = require('perf_hooks');
 
-/** @param {Error?} err */
+/** @param {NodeJS.ErrnoException | null} err */
 function handleErr(err) {
   if (err) throw err;
 }
