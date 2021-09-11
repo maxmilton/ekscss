@@ -12,7 +12,7 @@
     "test-oldnode": "uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'"
   },
   "devDependencies": {
-    "@types/node": "16.7.10",
+    "@types/node": "16.9.1",
     "@typescript-eslint/eslint-plugin": "4.31.0",
     "@typescript-eslint/parser": "4.31.0",
     "c8": "7.9.0",
@@ -22,7 +22,7 @@
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-airbnb-typescript": "14.0.0",
     "eslint-plugin-import": "2.24.2",
-    "eslint-plugin-unicorn": "35.0.0",
+    "eslint-plugin-unicorn": "36.0.0",
     "prettier": "2.4.0",
     "prettier-plugin-pkg": "0.10.0",
     "prettier-plugin-sh": "0.7.1",
