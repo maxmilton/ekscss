@@ -37,7 +37,7 @@ function mergeDefaultGlobals(globals: Partial<XCSSGlobals>) {
     fn: {
       each,
       map: _map,
-      ...(globals.fn || {}),
+      ...globals.fn,
     },
   };
 }
