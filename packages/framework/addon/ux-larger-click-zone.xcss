@@ -2,7 +2,6 @@
 
 /* Larger link click area size */
 a {
-  display: inline-block;
   margin: -${x.linkClickArea};
   padding: ${x.linkClickArea};
 

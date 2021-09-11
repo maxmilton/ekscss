@@ -14,26 +14,6 @@ ${x.fn.map(x.spacingValues, (value, i) => xcss`
   .pr${i} { padding-right: ${value}; }
   .pb${i} { padding-bottom: ${value}; }
   .pl${i} { padding-left: ${value}; }
-
-  ${x.fn.each(x.media, (bp, query) => xcss`
-    @media ${query} {
-      .${bp}-ma${i} { margin: ${value}; }
-      .${bp}-mh${i} { margin-right: ${value}; margin-left: ${value}; }
-      .${bp}-mv${i} { margin-top: ${value}; margin-bottom: ${value}; }
-      .${bp}-mt${i} { margin-top: ${value}; }
-      .${bp}-mr${i} { margin-right: ${value}; }
-      .${bp}-mb${i} { margin-bottom: ${value}; }
-      .${bp}-ml${i} { margin-left: ${value}; }
-
-      .${bp}-pa${i} { padding: ${value}; }
-      .${bp}-ph${i} { padding-right: ${value}; padding-left: ${value}; }
-      .${bp}-pv${i} { padding-top: ${value}; padding-bottom: ${value}; }
-      .${bp}-pt${i} { padding-top: ${value}; }
-      .${bp}-pr${i} { padding-right: ${value}; }
-      .${bp}-pb${i} { padding-bottom: ${value}; }
-      .${bp}-pl${i} { padding-left: ${value}; }
-    }
-  `)}
 `)}
 
 /* Auto margin */
@@ -86,6 +66,28 @@ ${x.fn.map(x.spacingValues, (value, i) => xcss`
 .mru { margin-right: unset; }
 .mbu { margin-bottom: unset; }
 .mlu { margin-left: unset; }
+
+${x.fn.map(x.spacingValues, (value, i) => xcss`
+  ${x.fn.each(x.media, (bp, query) => xcss`
+    @media ${query} {
+      .${bp}-ma${i} { margin: ${value}; }
+      .${bp}-mh${i} { margin-right: ${value}; margin-left: ${value}; }
+      .${bp}-mv${i} { margin-top: ${value}; margin-bottom: ${value}; }
+      .${bp}-mt${i} { margin-top: ${value}; }
+      .${bp}-mr${i} { margin-right: ${value}; }
+      .${bp}-mb${i} { margin-bottom: ${value}; }
+      .${bp}-ml${i} { margin-left: ${value}; }
+
+      .${bp}-pa${i} { padding: ${value}; }
+      .${bp}-ph${i} { padding-right: ${value}; padding-left: ${value}; }
+      .${bp}-pv${i} { padding-top: ${value}; padding-bottom: ${value}; }
+      .${bp}-pt${i} { padding-top: ${value}; }
+      .${bp}-pr${i} { padding-right: ${value}; }
+      .${bp}-pb${i} { padding-bottom: ${value}; }
+      .${bp}-pl${i} { padding-left: ${value}; }
+    }
+  `)}
+`)}
 
 ${x.fn.each(x.media, (bp, query) => xcss`
   @media ${query} {

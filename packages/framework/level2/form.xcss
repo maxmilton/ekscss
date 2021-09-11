@@ -104,6 +104,9 @@ input::-webkit-inner-spin-button {
   }
 }
 
+// TODO: Custom file input styles
+.file {}
+
 // TODO: Custom range input styles
 .range {}
 
