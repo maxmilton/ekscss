@@ -1,10 +1,16 @@
+.code-inline {
+  padding: ${x.codeInline.padding};
+  color: ${x.codeInline.textColor};
+  background-color: ${x.codeInline.backgroundColor};
+}
+
 .code-block {
   display: block; // makes it easy to add to a <code> element
   max-width: 100%;
   padding: 0.5em 1em;
-  border-radius: ${x.code.radius};
-  color: ${x.code.textColor};
-  background-color: ${x.code.backgroundColor};
+  border-radius: ${x.codeBlock.radius};
+  color: ${x.codeBlock.textColor};
+  background-color: ${x.codeBlock.backgroundColor};
   overflow: auto;
   white-space: pre;
   user-select: all; // select all contained text for easy copy

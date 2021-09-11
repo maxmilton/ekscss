@@ -295,7 +295,12 @@ module.exports = {
     },
 
     /* Addon: code.xcss */
-    code: {
+    codeInline: {
+      padding: '0 3px',
+      textColor: (x) => x.color.forest1,
+      backgroundColor: (x) => x.fn.color(x.color.forest5).lighten(0.58),
+    },
+    codeBlock: {
       textColor: (x) => x.color.light3,
       backgroundColor: (x) => x.color.dark3,
       radius: (x) => x.radius,
