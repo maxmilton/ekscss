@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "svelte": "3.42.5",
+    "svelte": "3.42.6",
     "typescript": "4.4.3"
   }
 }
