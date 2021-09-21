@@ -1,5 +1,16 @@
 // FIXME: Rename this file to something better
 
+/*
+* Enable font subpixel anti-aliasing but only on hi-pixel density screens,
+* using a technique from Twitter.
+* @see https://www.zachleat.com/web/font-smooth/
+*/
+// @media screen and (-webkit-min-device-pixel-ratio: 2),
+//   screen and (min-resolution: 2dppx) {
+//   -moz-osx-font-smoothing: grayscale;
+//   -webkit-font-smoothing: antialiased;
+// }
+
 h1,
 h2 {
   font-weight: 500;

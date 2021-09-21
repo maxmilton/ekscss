@@ -8,36 +8,18 @@
   font-weight: ${x.textWeightMedium};
   background-image: linear-gradient(${x.color.white}, ${x.color.light4});
 
-  // FIXME: This can lead to unexpected results, replace with a better way to
-  // get box-shadow or outline to appear above close elements
-  // &:hover,
-  // &:focus,
-  // &:active {
-  //   position: relative;
-  //   z-index: 1;
-  // }
-
   &:hover {
     background-color: ${x.color.light1};
-    outline: none;
-    box-shadow: 0 0 0 3px ${x.input.hoverBorderColor};
-
+    background-image: none;
   }
 
-  &:focus,
-  &:active {
-    outline: none;
-    box-shadow: 0 0 0 3px ${x.input.activeBorderColor};
-  }
 
   &[disabled],
   &[disabled]:hover,
   &[disabled]:focus,
   &:disabled {
-    background-color: transparent;
+    font-weight: unset;
     background-image: none;
-    border-color: ${x.color.gray5};
-    box-shadow: none;
   }
 }
 

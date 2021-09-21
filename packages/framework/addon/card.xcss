@@ -3,7 +3,6 @@
  */
 
 .card {
-  word-wrap: break-word;
   background-color: ${x.card.backgroundColor};
   border-radius: ${x.radiusLarge};
   box-shadow: ${x.card.shadow};
@@ -66,7 +65,6 @@
 }
 
 .card-body {
-  display: inline-block; /* prevents margin collapsing */
   margin: ${x.card.bodyMargin};
 }
 

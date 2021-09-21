@@ -9,7 +9,6 @@
   padding: ${x.tag.padding};
   color: ${x.tag.textColor};
   font-size: ${x.tag.textSize};
-  vertical-align: middle;
   background-color: ${x.tag.backgroundColor};
   border-radius: ${x.tag.borderRadius};
 }
