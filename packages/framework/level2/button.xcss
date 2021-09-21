@@ -7,6 +7,7 @@
 // Note: Also update 'packages/framework/addon/native.xcss' if making any
 // changes to the nested selectors
 .button {
+  z-index: 1;
   display: inline-block;
   padding: ${x.button.paddingY} ${x.button.paddingX};
   color: ${x.button.textColor};
@@ -19,55 +20,26 @@
   border-radius: ${x.button.radius};
   user-select: none;
 
-  // FIXME:
-  // background-image: linear-gradient(${x.color.white}, ${x.color.light4});
-  // background-image: linear-gradient(${x.color.white}, ${x.color.light5});
-  // background-image: linear-gradient(${x.button.backgroundColor}, ${x.fn.color(x.button.backgroundColor).darken(0.05).alpha(0.5).rgb()});
-
-  // &:hover,
-  // &:focus {
-  //   color: inherit;
-  //   text-decoration: none;
-  //   background-color: ${x.button.hoverBackgroundColor};
-  // }
-
-  // &:active {
-  //   background-color: ${x.button.activeBackgroundColor};
-  // }
-
-  // &:hover {
-  //   text-decoration: none;
-  //   // background-color: ${x.color.light1};
-  //   outline: none;
-  //   box-shadow: 0 0 0 3px ${x.input.hoverBorderColor};
-  // }
-  &:hover,
-  &:focus,
-  &:active {
+  &:hover {
+    z-index: 3;
     text-decoration: none;
-    // background-color: ${x.color.light1};
     outline: none;
-    box-shadow: 0 0 0 3px ${x.input.hoverBorderColor};
+    box-shadow: 0 0 0 ${x.button.outlineSize} ${x.button.hoverBorderColor};
   }
 
   &:focus,
   &:active {
-    // outline: none;
-    box-shadow: 0 0 0 3px ${x.input.activeBorderColor};
+    z-index: 2;
+    text-decoration: none;
+    outline: none;
+    box-shadow: 0 0 0 ${x.button.outlineSize} ${x.button.activeBorderColor};
   }
 
-  // &[disabled],
-  // &[disabled]:hover,
-  // &[disabled]:focus,
-  // &:disabled {
-  //   color: ${x.button.disabledTextColor};
-  //   background-color: ${x.button.disabledBackgroundColor};
-  //   border-color: ${x.button.disabledBorder};
-  // }
   &[disabled],
   &[disabled]:hover,
   &[disabled]:focus,
   &:disabled {
+    z-index: auto;
     color: ${x.button.disabledTextColor};
     background-color: ${x.button.disabledBackgroundColor};
     border-color: ${x.button.disabledBorder};
@@ -79,7 +51,6 @@
 
 .button-clear {
   background: transparent;
-  // border: 0;
   border-color: transparent;
 
   &:hover,
@@ -107,7 +78,7 @@
     border-radius: 0;
 
     & + .button {
-      border-left: none;
+      margin-left: -1px;
     }
 
     &:first-of-type {

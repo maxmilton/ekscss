@@ -50,10 +50,12 @@ body {
 a {
   color: ${x.color.link};
 
-  &:hover,
-  &:focus {
-    color: ${x.color.linkHover};
-  }
+  ${x.color.linkHover !== x.color.link && xcss`
+    &:hover,
+    &:focus {
+      color: ${x.color.linkHover};
+    }
+  `}
 }
 
 small {
@@ -72,6 +74,7 @@ pre {
 .code,
 code {
   font-family: ${x.fontStackMonospace};
+  font-variant-ligatures: none;
 }
 
 /* Lists */

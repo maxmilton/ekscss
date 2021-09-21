@@ -44,14 +44,14 @@ input::-webkit-inner-spin-button {
   &:hover {
     border-color: ${x.input.hoverBorderColor};
     outline: none;
-    box-shadow: 0 0 0 2px ${x.input.hoverBorderColor};
+    box-shadow: 0 0 0 ${x.input.outlineSize} ${x.input.hoverBorderColor};
   }
 
   &:focus,
   &:active {
     border-color: ${x.input.activeBorderColor};
     outline: none;
-    box-shadow: 0 0 0 2px ${x.input.activeBorderColor};
+    box-shadow: 0 0 0 ${x.input.outlineSize} ${x.input.activeBorderColor};
   }
 
   &[disabled] {
@@ -65,9 +65,10 @@ input::-webkit-inner-spin-button {
 .select {
   position: relative;
   appearance: none;
+  color: ${x.input.textColor};
 
   padding-right: 26px;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+  background-image: ${x.form.selectCaret} !important;
   background-repeat: no-repeat;
   background-position: right 6px center;
   background-size: 16px 12px;
@@ -88,19 +89,15 @@ input::-webkit-inner-spin-button {
   height: 1.5em;
   margin: 0 0.8em 0 0;
   appearance: none;
-  border: ${x.input.border};
-  // FIXME: Use variables
-  border: 2px solid ${x.color.gray3};
-  border-radius: ${x.input.radius};
+  border: ${x.form.checkboxBorder};
+  border-radius: ${x.form.checkboxRadius};
   vertical-align: middle;
   cursor: pointer;
 
   &:checked {
-    // FIXME: Use variables
-    background-color: ${x.color.blue3};
-    border-color: ${x.color.blue2};
-
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23fff' d='M12 5a1 1 0 00-.71.29L7 9.59l-2.29-2.3a1 1 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1 1 0 0012 5z'/%3e%3c/svg%3e");
+    background-color: ${x.form.checkboxCheckedBackgroundColor};
+    border-color: ${x.form.checkboxCheckedBorderColor};
+    background-image: ${x.form.checkboxTick};
   }
 }
 
