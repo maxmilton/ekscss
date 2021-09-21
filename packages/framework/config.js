@@ -218,11 +218,13 @@ module.exports = {
       selectCaret: (x) => `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${encodeURIComponent(
         xcss`${x.color.text}`,
       )}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e")`,
+      checkboxSize: '1.4rem',
       checkboxBorder: (x) => xcss`2px solid ${x.color.gray3}`,
       checkboxRadius: (x) => x.input.radius,
       checkboxCheckedBackgroundColor: (x) => x.color.blue3,
       checkboxCheckedBorderColor: (x) => x.color.blue2,
-      checkboxTick: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3e%3cpath fill=\'%23fff\' d=\'M12 5a1 1 0 00-.71.29L7 9.59l-2.29-2.3a1 1 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1 1 0 0012 5z\'/%3e%3c/svg%3e")',
+      checkboxTick:
+        "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23fff' d='M12 5a1 1 0 00-.71.29L7 9.59l-2.29-2.3a1 1 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1 1 0 0012 5z'/%3e%3c/svg%3e\")",
     },
 
     input: {

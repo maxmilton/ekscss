@@ -65,12 +65,11 @@ input::-webkit-inner-spin-button {
 .select {
   position: relative;
   appearance: none;
-  color: ${x.input.textColor};
-
   padding-right: 26px;
+  color: ${x.input.textColor};
   background-image: ${x.form.selectCaret} !important;
   background-repeat: no-repeat;
-  background-position: right 6px center;
+  background-position: right 8px center;
   background-size: 16px 12px;
 }
 
@@ -85,13 +84,13 @@ input::-webkit-inner-spin-button {
 }
 
 .checkbox {
-  width: 1.5em;
-  height: 1.5em;
+  flex-shrink: 0;
+  width: ${x.form.checkboxSize};
+  height: ${x.form.checkboxSize};
   margin: 0 0.8em 0 0;
   appearance: none;
   border: ${x.form.checkboxBorder};
   border-radius: ${x.form.checkboxRadius};
-  vertical-align: middle;
   cursor: pointer;
 
   &:checked {
