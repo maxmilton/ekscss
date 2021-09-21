@@ -1,0 +1,31 @@
+/**
+* XCSS Addon: Float Layout
+*
+* Control layout using float. This technique is outdated and typically only
+* used when supporting very old browsers.
+*
+* For modern browsers use flexbox and CSS grid.
+* @see https://caniuse.com/flexbox
+* @see https://caniuse.com/css-grid
+*/
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+// http://nicolasgallagher.com/micro-clearfix-hack/
+.clear:before,
+.clear:after {
+  content: '';
+  display: table;
+}
+.clear:after {
+  clear: both;
+}
+.clear {
+  *zoom: 1; // IE 6/7 (trigger hasLayout)
+}
