@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "ekscss": "^0.0.8",
-    "esbuild": "^0.12.0"
+    "esbuild": "^0.12.0 || ^0.13.0"
   },
   "dependencies": {
     "joycon": "^3.0.1"
