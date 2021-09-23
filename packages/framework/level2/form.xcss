@@ -98,6 +98,11 @@ input::-webkit-inner-spin-button {
     border-color: ${x.form.checkboxCheckedBorderColor};
     background-image: ${x.form.checkboxTick};
   }
+
+  & + .label {
+    margin-bottom: 0;
+    font-weight: ${x.textWeightMedium};
+  }
 }
 
 // TODO: Custom file input styles
