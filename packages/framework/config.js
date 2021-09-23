@@ -39,11 +39,20 @@ module.exports = {
       // triangle,
     },
     media: {
-      ns: '(min-width: 30.01em)',
-      m: '(min-width: 30.01em) and (max-width: 60em)',
-      l: '(min-width: 60.01em)',
+      ns: '(min-width: 30.01rem)',
+      m: '(min-width: 30.01rem) and (max-width: 60rem)',
+      l: '(min-width: 60.01rem)',
     },
-    spacingValues: ['0', '0.25em', '0.5em', '1em', '2em', '4em', '8em', '16em'],
+    spacingValues: [
+      '0',
+      '0.25rem',
+      '0.5rem',
+      '1rem',
+      '2rem',
+      '4rem',
+      '8rem',
+      '16rem',
+    ],
     fontStack: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -189,10 +198,10 @@ module.exports = {
     autoCols: 'auto',
     rowSteps: [1, 2, 3, 4, 5, 6],
     colSteps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    gutterRow: '1em',
-    gutterCol: '0.5em',
-    gutterRowLarge: '1em',
-    gutterColLarge: '1em',
+    gutterRow: '1rem',
+    gutterCol: '0.5rem',
+    gutterRowLarge: '1rem',
+    gutterColLarge: '1rem',
 
     radius: '4px',
     radiusLarge: '5px',
@@ -212,7 +221,7 @@ module.exports = {
     paragraphLeadTextWeight: (x) => x.textWeightLight,
 
     form: {
-      groupMargin: '1em',
+      groupMargin: '1rem',
       helpMargin: (x) => x.input.paddingY,
       helpTextColor: (x) => x.color.dark3,
       selectCaret: (x) => `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${encodeURIComponent(
@@ -228,8 +237,8 @@ module.exports = {
     },
 
     input: {
-      paddingX: '1em',
-      paddingY: '0.4em',
+      paddingX: '1rem',
+      paddingY: '0.4rem',
       textColor: 'inherit',
       backgroundColor: (x) => x.color.white,
       outlineSize: '2px',
@@ -274,8 +283,8 @@ module.exports = {
 
     /* Addon: alert.xcss */
     alert: {
-      padding: '1em',
-      marginY: '2em',
+      padding: '1rem',
+      marginY: '2rem',
       backgroundColor: (x) => x.color.light3,
       borderSize: '0.4rem',
       infoTextColor: (x) => x.color.blue1,
@@ -297,7 +306,7 @@ module.exports = {
     /* Addon: card.xcss */
     card: {
       backgroundColor: (x) => x.color.white,
-      shadow: (x) => xcss`0 0.125em 0.5em 1px ${x.color.shadow}`,
+      shadow: (x) => xcss`0 0.125rem 0.5rem 1px ${x.color.shadow}`,
       hoverZIndex: 1,
       hoverTextColor: (x) => x.color.text,
       hoverShadow: (x) => x.color.shadow,
