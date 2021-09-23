@@ -88,14 +88,14 @@ code {
 
 ol ol,
 ul ol {
-  list-style-type: lower-roman;
+  list-style-type: lower-alpha;
 }
 
 ul ul ol,
 ul ol ol,
 ol ul ol,
 ol ol ol {
-  list-style-type: lower-alpha;
+  list-style-type: lower-roman;
 }
 
 dd {
