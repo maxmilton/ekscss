@@ -278,14 +278,14 @@ module.exports = {
       marginY: '2em',
       backgroundColor: (x) => x.color.light3,
       borderSize: '0.4rem',
-      tipTextColor: (x) => x.color.green1,
-      tipBorderColor: (x) => x.color.green4,
       infoTextColor: (x) => x.color.blue1,
       infoBorderColor: (x) => x.color.blue4,
+      successTextColor: (x) => x.color.green1,
+      successBorderColor: (x) => x.color.green4,
       warningTextColor: (x) => x.color.orange1,
       warningBorderColor: (x) => x.color.orange4,
-      errorTextColor: (x) => x.color.red1,
-      errorBorderColor: (x) => x.color.red4,
+      dangerTextColor: (x) => x.color.red1,
+      dangerBorderColor: (x) => x.color.red4,
     },
 
     /* Addon: app-footer.xcss */

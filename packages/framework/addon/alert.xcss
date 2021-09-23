@@ -14,24 +14,24 @@
   }
 }
 
-.alert-tip {
-  color: ${x.alert.tipTextColor};
-  border-color: ${x.alert.tipBorderColor};
-}
-
 .alert-info {
   color: ${x.alert.infoTextColor};
   border-color: ${x.alert.infoBorderColor};
 }
 
-.alert-warn {
+.alert-success {
+  color: ${x.alert.successTextColor};
+  border-color: ${x.alert.successBorderColor};
+}
+
+.alert-warning {
   color: ${x.alert.warningTextColor};
   border-color: ${x.alert.warningBorderColor};
 }
 
-.alert-error {
-  color: ${x.alert.errorTextColor};
-  border-color: ${x.alert.errorBorderColor};
+.alert-danger {
+  color: ${x.alert.dangerTextColor};
+  border-color: ${x.alert.dangerBorderColor};
 }
 
 /* Close button */
