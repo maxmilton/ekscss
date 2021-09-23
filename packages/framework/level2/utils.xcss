@@ -6,6 +6,7 @@
 
 /* Width */
 
+.mw100 { max-width: 100%; }
 .w100 { width: 100%; }
 .wi { width: initial; }
 
@@ -44,7 +45,6 @@ ${x.fn.each(x.media, (bp, query) => xcss`
   font-weight: ${x.textWeight};
   text-decoration: none;
 }
-
 
 .fss { font-size: 90%; }
 .fsl { font-size: 140%; }
