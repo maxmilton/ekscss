@@ -15,6 +15,7 @@
 @import './addon/tag.xcss';
 @import './addon/alert.xcss';
 @import './addon/code.xcss';
+@import './addon/validation.xcss';
 @import './addon/card.xcss';
 @import './addon/spinner.xcss';
 @import './addon/app-nav.xcss';

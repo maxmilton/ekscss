@@ -135,21 +135,3 @@ input::-webkit-inner-spin-button {
   margin-top: ${x.form.helpMargin};
   color: ${x.form.helpTextColor};
 }
-
-.input.dirty:invalid,
-.select.dirty:invalid,
-.textarea.dirty:invalid,
-.invalid {
-  border-color: ${x.input.invalidBorder};
-  box-shadow: 0 0 0 2px ${x.input.invalidColor};
-}
-
-.invalid-feedback {
-  display: none;
-  margin-top: ${x.form.helpMargin};
-  color: ${x.input.invalidColor};
-
-  .invalid + & {
-    display: block;
-  }
-}
