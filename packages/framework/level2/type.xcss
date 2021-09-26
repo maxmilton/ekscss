@@ -71,3 +71,9 @@ dd {
     text-align: inherit;
   }
 }
+
+.table-zebra {
+  tr:nth-child(even) {
+    background-color: ${x.color.zebraBackground};
+  }
+}

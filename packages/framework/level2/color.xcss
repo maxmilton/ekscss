@@ -17,7 +17,7 @@ ${x.fn.each(x.color, (key, value) => xcss`
 /* Zebra stripes (alternating coloured backgrounds) */
 
 .bg-zebra:nth-child(even) {
-  background-color: ${x.color.light4};
+  background-color: ${x.color.zebraBackground};
 }
 
 /* Transparency */

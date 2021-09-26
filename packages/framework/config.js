@@ -188,6 +188,7 @@ module.exports = {
       // linkHover: (x) => x.color.primary,
       // linkHover: 'inherit',
       linkHover: (x) => x.color.primary,
+      zebraBackground: (x) => x.color.light4,
     },
 
     /* Grid */
