@@ -1,12 +1,12 @@
 /**
- * FORMS
- */
+* FORMS
+*/
 
-// TODO: Move validation into new "addon/form-validation.xcss"
+* {
+  accent-color: ${x.color.primary};
+}
 
-// TODO: Create search input styles in "addon/form-search.xcss"
-
-// hide the up/down buttons in <input type=number> as they're confusing, but
+// Hide the up/down buttons in <input type=number> as they're confusing, but
 // still allow use of the type=number; makes number input more usable on phones
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -91,6 +91,7 @@ input::-webkit-inner-spin-button {
   appearance: none;
   border: ${x.form.checkboxBorder};
   border-radius: ${x.form.checkboxRadius};
+  // vertial-align: text-bottom;
   cursor: pointer;
 
   &:checked {
@@ -100,6 +101,7 @@ input::-webkit-inner-spin-button {
   }
 
   & + .label {
+    // display: inline;
     margin-bottom: 0;
     font-weight: ${x.textWeightMedium};
   }
