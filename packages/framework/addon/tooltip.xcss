@@ -1,0 +1,51 @@
+/**
+* XCSS Addon: Tooltip
+*
+* TODO: Write short overview.
+*
+* EXAMPLE:
+*
+*   <span aria-label="I'm a tooltip!" data-tooltip>hover me</span>
+*/
+
+[data-tooltip][aria-label] {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+    right: 50%;
+    opacity: 0;
+    // visibility: hidden;
+    pointer-events: none;
+    transform: translateX(50%);
+    transition: opacity ${x.tooltip.animateSpeed} ${x.tooltip.animateTiming};
+  }
+
+  &::before {
+    content: attr(aria-label);
+    bottom: calc(0.5rem + 100%);
+    padding: ${x.tooltip.paddingY} ${x.tooltip.paddingX};
+    color: ${x.tooltip.color};
+    font-size: ${x.tooltip.textSize};
+    font-weight: ${x.tooltip.textWeight};
+    white-space: pre;
+    background: ${x.tooltip.backgroundColor};
+  }
+
+  &::after {
+    content: '';
+    bottom: 100%;
+    // width: 0;
+    // height: 0;
+    border: solid;
+    border-width: 0.5rem 0.5rem 0;
+    border-color: ${x.tooltip.backgroundColor} transparent;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    // visibility: visible;
+    opacity: 1;
+  }
+}

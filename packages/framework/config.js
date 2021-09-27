@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 // FIXME: ekscss compiler types issues which need the eslint disable comments above
@@ -349,6 +348,17 @@ module.exports = {
       backgroundColor: (x) => x.color.light3,
       borderRadius: (x) => x.radius,
       marginBetween: '1em',
+    },
+
+    tooltip: {
+      paddingX: (x) => x.input.paddingX,
+      paddingY: (x) => x.input.paddingY,
+      textSize: '1.1rem',
+      textWeight: (x) => x.textWeight,
+      color: (x) => x.color.text,
+      backgroundColor: (x) => x.color.black,
+      animateSpeed: '176ms',
+      animateTiming: 'ease-in-out',
     },
 
     /* Addon: ux-larger-click-zone.xcss */

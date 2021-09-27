@@ -18,6 +18,7 @@
 @import './addon/validation.xcss';
 @import './addon/card.xcss';
 @import './addon/spinner.xcss';
+@import './addon/tooltip.xcss';
 @import './addon/app-nav.xcss';
 @import './addon/app-footer.xcss';
 
