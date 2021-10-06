@@ -35,7 +35,12 @@ ${x.fn.each(x.media, (bp, query) => xcss`
 
 /* Font variants and decoration */
 
+.fwl { font-weight: ${x.textWeightLight}; }
+.fwn { font-weight: ${x.textWeight}; }
+.fwm { font-weight: ${x.textWeightMedium}; }
+.fwh,
 .bold { font-weight: ${x.textWeightHeavy}; }
+
 .italic { font-style: italic; }
 
 .underline { text-decoration: underline; }
