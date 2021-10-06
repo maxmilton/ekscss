@@ -11,7 +11,7 @@
   "scripts": {
     "build": "pnpm run prebuild && tsc",
     "dev": "tsc --watch --preserveWatchOutput",
-    "prebuild": "rm -rf dist || true"
+    "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
     "ekscss": "^0.0.8",
