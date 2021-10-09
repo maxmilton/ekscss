@@ -7,9 +7,9 @@
     "lint:css": "echo 'TODO: CSS linting'; exit 0",
     "lint:js": "eslint --ignore-path .gitignore --ext .cjs,.js,.jsx,.mjs,.ts,.tsx .",
     "lint:ts": "tsc --project ./tsconfig.lint.json --noEmit",
-    "test": "c8 uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'",
+    "test": "c8 uvu -r tsm packages '\\/test\\/.+\\.test\\.ts$'",
     "test-nn": "uvu packages '\\/test\\/.+\\.test-nn\\.js$'",
-    "test-oldnode": "uvu -r esbuild-register packages '\\/test\\/.+\\.test\\.ts$'"
+    "test-oldnode": "uvu -r tsm packages '\\/test\\/.+\\.test\\.ts$'"
   },
   "devDependencies": {
     "@types/node": "16.10.3",
@@ -17,7 +17,6 @@
     "@typescript-eslint/parser": "4.33.0",
     "c8": "7.10.0",
     "esbuild": "0.13.4",
-    "esbuild-register": "3.0.0",
     "eslint": "7.32.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-airbnb-typescript": "14.0.0",
@@ -27,6 +26,7 @@
     "prettier-plugin-pkg": "0.10.0",
     "prettier-plugin-sh": "0.7.1",
     "sirv-cli": "1.0.14",
+    "tsm": "2.1.0",
     "typescript": "4.4.3",
     "uvu": "0.5.2"
   },
