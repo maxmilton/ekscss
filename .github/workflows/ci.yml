@@ -1,24 +1,7 @@
 name: ci
 on: push
 jobs:
-  # build has its own job because otherwise building would fail in test jobs with old node versions
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: npm install --global pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
-      - uses: actions/upload-artifact@v2
-        with:
-          name: build-output
-          path: packages/*/dist/**
-          if-no-files-found: error
   test:
-    needs: build
     name: test (node v${{ matrix.node-version }})
     runs-on: ubuntu-latest
     strategy:
@@ -27,15 +10,12 @@ jobs:
         node-version: [12, 14, 16]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-output
-          path: packages
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install --global pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
       - run: pnpm run test
       - run: pnpm run test-raw
       - name: Report coverage
@@ -48,17 +28,13 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   lint:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-output
-          path: packages
       - uses: actions/setup-node@v2
         with:
           node-version: 16
       - run: npm install --global pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
       - run: pnpm run lint
