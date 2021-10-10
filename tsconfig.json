@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    // "target": "nodenext",
+    "target": "esnext",
+    // "module": "nodenext",
     "module": "commonjs",
+    // "moduleResolution": "nodenext",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
     "isolatedModules": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "allowJs": true,
     "checkJs": true,
+    "noEmit": true,
 
-    "noEmit": true, // prevents errors in VS Code and ESLint
     "declaration": true,
-    "declarationMap": true,
     "sourceMap": true,
 
     "strict": true,
@@ -24,8 +25,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "useDefineForClassFields": true
+    "noUnusedParameters": true
   },
   "exclude": [
     "**/dist",
