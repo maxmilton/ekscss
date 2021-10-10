@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [8, 10, 12, 14, 16]
+        node-version: [12, 14, 16]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
@@ -34,18 +34,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install --global pnpm@3
-        if: ${{ matrix.node-version == 8 }}
-      - run: npm install --global pnpm@5
-        if: ${{ matrix.node-version == 10 }}
       - run: npm install --global pnpm
-        if: ${{ matrix.node-version > 10 }}
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test
-        if: ${{ matrix.node-version >= 10 }}
-      - run: pnpm run test-oldnode
-        if: ${{ matrix.node-version < 10 }}
-      - run: pnpm run test-nn
+      - run: pnpm run test-raw
       - name: Report coverage
         if: ${{ matrix.node-version == 16 }}
         run: |
