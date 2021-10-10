@@ -6,15 +6,11 @@
   "homepage": "https://maxmilton.github.io/ekscss",
   "author": "Max Milton <max@happycode.ltd>",
   "license": "MIT",
-  "engines": {
-    "node": ">= 10"
-  },
   "main": "dist/index.js",
   "browser": "dist/browser.mjs",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "pnpm run prebuild && NODE_ENV=production node build.mjs && pnpm run postbuild",

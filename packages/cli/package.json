@@ -6,9 +6,6 @@
   "homepage": "https://maxmilton.github.io/ekscss",
   "author": "Max Milton <max@happycode.ltd>",
   "license": "MIT",
-  "engines": {
-    "node": ">=10"
-  },
   "bin": {
     "ekscss": "bin.js",
     "xcss": "bin.js"
@@ -16,7 +13,8 @@
   "main": "index.js",
   "types": "types.d.ts",
   "files": [
-    "*.js"
+    "*.js",
+    "types.d.ts"
   ],
   "dependencies": {
     "ekscss": "workspace:^",
