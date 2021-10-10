@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable import/no-extraneous-dependencies */
 
 import esbuild from 'esbuild';
@@ -8,6 +9,13 @@ const dev = mode === 'development';
 /** @param {Error|null} err */
 function handleErr(err) {
   if (err) throw err;
+}
+
+/** @param {esbuild.BuildResult} buildResult */
+async function analyzeMeta(buildResult) {
+  if (buildResult.metafile) {
+    console.log(await esbuild.analyzeMetafile(buildResult.metafile));
+  }
 }
 
 // Standard node CJS bundle
@@ -27,8 +35,10 @@ esbuild
     sourcemap: true,
     minify: !dev,
     watch: dev,
+    metafile: process.stdout.isTTY,
     logLevel: 'debug',
   })
+  .then(analyzeMeta)
   .catch(handleErr);
 
 // Browser compatible ESM bundle (without sourcemap support)
@@ -48,6 +58,7 @@ esbuild
     sourcemap: true,
     minifySyntax: !dev,
     watch: dev,
+    metafile: process.stdout.isTTY,
     logLevel: 'debug',
     plugins: [
       {
@@ -64,4 +75,5 @@ esbuild
       },
     ],
   })
+  .then(analyzeMeta)
   .catch(handleErr);
