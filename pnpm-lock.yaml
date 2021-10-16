@@ -187,14 +187,14 @@ importers:
       ekscss: workspace:*
       joycon: ^3.0.1
       kleur: ^4.1.4
-      svelte: 3.43.1
+      svelte: 3.43.2
       typescript: 4.4.4
     dependencies:
       joycon: 3.0.1
       kleur: 4.1.4
     devDependencies:
       ekscss: link:../ekscss
-      svelte: 3.43.1
+      svelte: 3.43.2
       typescript: 4.4.4
 
 packages:
@@ -2789,8 +2789,8 @@ packages:
       has-flag: 4.0.0
     dev: true
 
-  /svelte/3.43.1:
-    resolution: {integrity: sha512-nvPIaKx4HLzYlSdquISZpgG1Kqr2VAWQjZOt3Iwm3UhbqmA0LnSx4k1YpRMEhjQYW3ZCqQoK8Egto9tv4YewMA==}
+  /svelte/3.43.2:
+    resolution: {integrity: sha512-Lj+TJfSeod8UGnoG2opysdlCy4MCck/hHQsZwtNPXdYTwLTz+WC37QwewPhZtd+h3dpfps4h9QzFxWGVI4tzQw==}
     engines: {node: '>= 8'}
     dev: true
 
