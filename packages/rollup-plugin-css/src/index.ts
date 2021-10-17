@@ -3,7 +3,7 @@
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
 import csso from 'csso';
 import path from 'path';
-import type { Plugin } from 'rollup';
+import type { Plugin, SourceMap } from 'rollup';
 import { SourceMapConsumer, SourceMapGenerator, SourceNode } from 'source-map';
 
 export interface PluginOptions {
@@ -37,8 +37,8 @@ export default function rollupPlugin({
   minify,
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
-  const styles = new Map();
-  const sourcemaps = new Map();
+  const styles = new Map<string, string>();
+  const sourcemaps = new Map<string, SourceMap>();
   let useSourceMaps: boolean | 'inline' | 'hidden';
 
   return {
@@ -109,9 +109,9 @@ export default function rollupPlugin({
 
         for (const id of sourcemaps.keys()) {
           // eslint-disable-next-line no-await-in-loop
-          const consumer = await new SourceMapConsumer(sourcemaps.get(id));
+          const consumer = await new SourceMapConsumer(sourcemaps.get(id)!);
           const node = SourceNode.fromStringWithSourceMap(
-            styles.get(id),
+            styles.get(id)!,
             consumer,
           );
           mapNodes.push(node);
