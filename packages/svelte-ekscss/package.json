@@ -13,7 +13,7 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.8",
+    "ekscss": "workspace:^",
     "svelte": "^3.0.0"
   },
   "dependencies": {

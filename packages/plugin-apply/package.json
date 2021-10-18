@@ -17,7 +17,7 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.8"
+    "ekscss": "workspace:^"
   },
   "dependencies": {
     "stylis": "^4.0.10"

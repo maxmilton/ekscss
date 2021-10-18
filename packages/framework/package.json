@@ -24,7 +24,7 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.8"
+    "ekscss": "workspace:^"
   },
   "dependencies": {
     "@ekscss/plugin-apply": "workspace:^",

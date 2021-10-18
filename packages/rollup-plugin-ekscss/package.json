@@ -13,7 +13,7 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "^0.0.8",
+    "ekscss": "workspace:^",
     "rollup": "^2.0.0"
   },
   "dependencies": {
