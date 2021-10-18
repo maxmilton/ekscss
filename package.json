@@ -2,7 +2,6 @@
   "private": true,
   "scripts": {
     "build": "pnpm run -r build",
-    "docs": "ln -s ../packages/framework/dist docs; sirv docs --dev --cors",
     "lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:ts",
     "lint:css": "echo 'TODO: CSS linting'",
     "lint:js": "eslint --ignore-path .gitignore --ext .cjs,.js,.jsx,.mjs,.ts,.tsx .",
@@ -24,7 +23,6 @@
     "prettier": "2.4.1",
     "prettier-plugin-pkg": "0.10.0",
     "prettier-plugin-sh": "0.7.1",
-    "sirv-cli": "1.0.14",
     "tsm": "2.1.2",
     "typescript": "4.4.4",
     "uvu": "0.5.2"
