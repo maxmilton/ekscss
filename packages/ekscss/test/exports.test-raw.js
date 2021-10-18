@@ -2,12 +2,12 @@
 
 const { test } = require('uvu');
 const assert = require('uvu/assert');
-const ekscssBundle = require('../dist/index');
+const bundle = require('../dist/index');
 
 test('has no default export', () => {
-  assert.type(ekscssBundle, 'object');
+  assert.type(bundle, 'object');
   // @ts-expect-error - intentionally access undefined prop
-  assert.is(ekscssBundle.default, undefined);
+  assert.is(bundle.default, undefined);
 });
 
 test.run();
