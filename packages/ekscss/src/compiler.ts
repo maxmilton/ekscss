@@ -66,7 +66,7 @@ export function compile(
   ctx.x = x;
 
   const middlewares = plugins.map((plugin) => {
-    // load plugins which are package name strings (e.g., from JSON configs)
+    // load plugins which are a package name string (e.g., from JSON configs)
     if (typeof plugin === 'string') {
       try {
         // eslint-disable-next-line

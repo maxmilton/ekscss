@@ -95,7 +95,7 @@ export function compileSourceMap(
         const srcFrom = node.root?.__from || from;
         const srcPath = srcFrom ? path.relative(rootDir, srcFrom) : '<unknown>';
         nodes.push(
-          new SourceNode(node.line!, node.column!, srcPath, node.return),
+          new SourceNode(node.line, node.column, srcPath, node.return),
         );
       }
     }

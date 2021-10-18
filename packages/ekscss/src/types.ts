@@ -17,7 +17,7 @@ export interface Element extends _Element {
    * Only on `@import` nodes when the import plugin is used.
    */
   __from?: string;
-  root: Element;
+  root: Element | null;
 }
 
 export interface Warning {

@@ -2,7 +2,6 @@
 
 export interface Processed {
   code: string;
-  // eslint-disable-next-line @typescript-eslint/ban-types
   map?: string | object;
   dependencies?: string[];
   toString?: () => string;
