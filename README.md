@@ -1,18 +1,3 @@
-[![Build status](https://img.shields.io/github/workflow/status/maxmilton/ekscss/ci)](https://github.com/maxmilton/ekscss/actions)
-[![Coverage status](https://img.shields.io/codeclimate/coverage/MaxMilton/ekscss)](https://codeclimate.com/github/MaxMilton/ekscss)
-[![NPM version](https://img.shields.io/npm/v/ekscss.svg)](https://www.npmjs.com/package/ekscss)
-[![License](https://img.shields.io/github/license/maxmilton/ekscss.svg)](https://github.com/maxmilton/ekscss/blob/master/LICENSE)
-
-# ekscss
-
-> Warning: This is experimental alpha software. Test thoroughly before using in production! Please report any bugs you find! Before version `1.0.0` there may be backwards incompatible changes.
-
-`ekscss` (pronounced X-C-S-S) is a simple, fast, and powerful CSS preprocessor.
-
-[Try ekscss online in the REPL](https://ekscss-repl.web.app)
-
-[Read the docs](https://ekscss.js.org)
-
 <!--
 ## 'JS in CSS' style preprocessor
 
@@ -75,9 +60,34 @@
   - Overhead for each plugin
 -->
 
+[![Build status](https://img.shields.io/github/workflow/status/maxmilton/ekscss/ci)](https://github.com/maxmilton/ekscss/actions)
+[![Coverage status](https://img.shields.io/codeclimate/coverage/MaxMilton/ekscss)](https://codeclimate.com/github/MaxMilton/ekscss)
+[![NPM version](https://img.shields.io/npm/v/ekscss.svg)](https://www.npmjs.com/package/ekscss)
+[![License](https://img.shields.io/github/license/maxmilton/ekscss.svg)](https://github.com/maxmilton/ekscss/blob/master/LICENSE)
+
+# ekscss
+
+> Warning: This is experimental alpha software. Test thoroughly before using in production! Please report any bugs you find! Before version `1.0.0` there may be backwards incompatible changes.
+
+`ekscss` (pronounced X-C-S-S) is a simple, fast, and powerful CSS preprocessor.
+
+[Try ekscss online in the REPL](https://ekscss-repl.web.app)
+
+## Usage
+
+Check out our docs, visit <https://ekscss.js.org>.
+
+## Bugs
+
+Please report any bugs you encounter on the [GitHub issue tracker](https://github.com/maxmilton/ekscss/issues).
+
+## Changelog
+
+See [releases on GitHub](https://github.com/maxmilton/ekscss/releases).
+
 ## License
 
-`ekscss` is an MIT licensed open source project. See [LICENSE](https://github.com/maxmilton/ekscss/blob/master/LICENSE).
+MIT license. See [LICENSE](https://github.com/maxmilton/ekscss/blob/master/LICENSE).
 
 ---
 
