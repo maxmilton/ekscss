@@ -2,12 +2,13 @@ name: ci
 on: push
 jobs:
   test:
-    name: test (node v${{ matrix.node-version }})
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         node-version: [12, 14, 16]
+        platform: [ubuntu, windows, macos]
+    name: test (node v${{ matrix.node-version }} ${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -19,7 +20,7 @@ jobs:
       - run: pnpm run test
       - run: pnpm run test-raw
       - name: Report coverage
-        if: ${{ matrix.node-version == 16 }}
+        if: ${{ matrix.node-version == 16 && matrix.platform == ubuntu }}
         run: |
           curl -Lo ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod +x ./cc-test-reporter
