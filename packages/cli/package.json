@@ -13,7 +13,7 @@
   "main": "index.js",
   "types": "types.d.ts",
   "files": [
-    "*.js",
+    "bin.js",
     "types.d.ts"
   ],
   "dependencies": {
