@@ -4,7 +4,7 @@
     "build": "pnpm run -r build",
     "docs": "ln -s ../packages/framework/dist docs; sirv docs --dev --cors",
     "lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:ts",
-    "lint:css": "echo 'TODO: CSS linting'; exit 0",
+    "lint:css": "echo 'TODO: CSS linting'",
     "lint:js": "eslint --ignore-path .gitignore --ext .cjs,.js,.jsx,.mjs,.ts,.tsx .",
     "lint:ts": "tsc --project tsconfig.lint.json",
     "test": "c8 uvu -r tsm packages '\\/test\\/.+\\.test\\.ts$'",
