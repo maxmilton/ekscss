@@ -19,8 +19,8 @@
   ],
   "scripts": {
     "build": "pnpm run prebuild && pnpm run build-levels && pnpm run build-addons",
-    "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css;done'",
-    "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css;done'",
+    "build-addons": "for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css; done",
+    "build-levels": "for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css; done",
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
