@@ -1,17 +1,11 @@
 'use strict';
 
-const childProc = require('child_process');
 const xcss = require('ekscss');
 const fs = require('fs');
 const JoyCon = require('joycon').default;
 const colors = require('kleur/colors');
 const path = require('path');
 const { performance } = require('perf_hooks');
-
-/** @param {NodeJS.ErrnoException | null} err */
-function handleErr(err) {
-  if (err) throw err;
-}
 
 const joycon = new JoyCon({
   files: [
@@ -100,6 +94,8 @@ module.exports = async (src, dest, opts) => {
   /** @type {typeof compiled.map | string} */
   let sourcemap = compiled.map;
 
+  await fs.promises.mkdir(path.dirname(destFile), { recursive: true });
+
   if (sourcemap) {
     if (config.banner) {
       const bannerLineCount = config.banner.split('\n').length;
@@ -108,41 +104,43 @@ module.exports = async (src, dest, opts) => {
       sourcemap = JSON.stringify(map);
     }
 
-    fs.writeFile(
-      destFile,
-      `${css}\n/*# sourceMappingURL=${path.basename(destFile)}.map */`,
-      'utf8',
-      handleErr,
-    );
-    fs.writeFile(`${destFile}.map`, sourcemap.toString(), 'utf8', handleErr);
+    await Promise.all([
+      fs.promises.writeFile(
+        destFile,
+        `${css}\n/*# sourceMappingURL=${path.basename(destFile)}.map */`,
+        'utf8',
+      ),
+      fs.promises.writeFile(`${destFile}.map`, sourcemap.toString(), 'utf8'),
+    ]);
   } else {
-    fs.writeFile(destFile, css, 'utf8', handleErr);
+    await fs.promises.writeFile(destFile, css, 'utf8');
   }
 
   if (!opts.quiet) {
+    const memMB = process.memoryUsage().heapUsed / 1024 / 1024;
     // highlight potential code issues
     const cssHighlighted = css.replace(
       /null|undefined|UNDEFINED|INVALID|NaN|#apply:/g,
       colors.bold(colors.red('$&')),
     );
     const bytes = Buffer.byteLength(css, 'utf8');
-    const gzBytes = childProc.execSync(
-      `echo "${css}" | gzip --stdout - | wc --bytes`,
-    );
-    const memMB = process.memoryUsage().heapUsed / 1024 / 1024;
-    const time = `${(t1 - t0).toFixed(2)}ms`;
-    const timeTotal = `${Math.round(performance.now())}ms total`;
+    // eslint-disable-next-line global-require
+    const gzBytes = require('zlib').gzipSync(css).byteLength;
+    const timeCompile = `${(t1 - t0).toFixed(2)}ms`;
+    const timeTotal = `${Math.ceil(performance.now())}ms total`;
 
-    console.log('');
-    console.log(`@@\n@@ ${destFile}\n@@`);
-    console.log('');
-    console.log(cssHighlighted);
-    console.log('');
-    console.log(`time:  ${time} (${timeTotal})`);
-    console.log(`mem:   ${memMB.toFixed(2)} MB`);
-    console.log(`chars: ${compiled.css.length}`);
-    console.log(`bytes: ${bytes} B, ${`${(bytes / 1024).toFixed(2)} kB`}`);
-    console.log(`gz:    ${+gzBytes} B, ${(+gzBytes / 1024).toFixed(2)} kB`);
-    console.log('');
+    console.log(`
+@@
+@@ ${destFile}
+@@
+
+${cssHighlighted}
+
+time:  ${timeCompile} (${timeTotal})
+mem:   ${memMB.toFixed(2)} MB
+chars: ${compiled.css.length}
+bytes: ${bytes} B, ${(bytes / 1000).toFixed(2)} kB
+gz:    ${gzBytes} B, ${(gzBytes / 1000).toFixed(2)} kB
+`);
   }
 };
