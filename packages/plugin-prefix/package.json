@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "XCSS plugin to add vendor prefixes",
   "repository": "maxmilton/ekscss",
-  "homepage": "https://maxmilton.github.io/ekscss",
+  "homepage": "https://ekscss.js.org",
   "author": "Max Milton <max@happycode.ltd>",
   "license": "MIT",
   "main": "dist/index.js",
