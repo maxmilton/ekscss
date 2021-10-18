@@ -4,12 +4,12 @@
   "configurations": [
     {
       "name": "Attach by Process ID",
+      "type": "pwa-node",
       "processId": "${command:PickProcess}",
       "request": "attach",
       "sourceMaps": true,
       "skipFiles": ["<node_internals>/**"],
-      "smartStep": true,
-      "type": "pwa-node"
+      "smartStep": true
     },
     // https://github.com/Microsoft/vscode-recipes/tree/master/debugging-jest-tests
     {
@@ -17,14 +17,12 @@
       "type": "pwa-node",
       "request": "launch",
       "sourceMaps": true,
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/.bin/uvu",
-      "args": [
-        "-r",
-        "esbuild-register",
-        "./packages",
-        "\\/test\\/.+\\.test\\.ts$"
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/uvu/**"
       ],
+      "program": "${workspaceFolder}/node_modules/.bin/uvu",
+      "args": ["-r", "tsm", "./packages", "\\/test\\/.+\\.test\\.ts$"],
       "console": "integratedTerminal",
       // "internalConsoleOptions": "neverOpen",
       "windows": {
@@ -36,8 +34,11 @@
       "type": "pwa-node",
       "request": "launch",
       "sourceMaps": true,
-      "skipFiles": ["<node_internals>/**"],
-      "args": ["-r", "esbuild-register", "${relativeFile}"],
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/uvu/**"
+      ],
+      "args": ["-r", "tsm", "${relativeFile}"],
       "console": "integratedTerminal"
     }
   ]
