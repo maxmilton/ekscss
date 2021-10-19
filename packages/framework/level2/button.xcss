@@ -60,9 +60,9 @@
   }
 }
 
-/* Fix link whitespace when next to \`.button\` */
+/* Same whitespace as a button for other elements like anchors (links) */
 
-.button-link {
+.link-button {
   display: inline-block;
   margin: 0;
   padding: ${x.button.paddingY} ${x.button.paddingX};

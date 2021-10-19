@@ -1,10 +1,18 @@
-// TODO: Dark mode
+// TODO: Dark mode -- when "dark" class added to document.body the colours
+// switch to a "dark mode" -- investigate the best approach
+//  ↳ Custom properties (CSS variables)? We don't currently have a stance on
+//    cross-browser support but it may be overstepping the boundary by limiting
+//    to newer browsers only -- fallbacks are possible but at a high byte cost
+//  ↳ No explicit transition/animation, it's superfluous and distracting
 
+// XXX: Assuming colour preference from what the OS or browser is telling you
+// is not always not the expectation from a user perspective, often it's much
+// better to use JS + a toggle button allowing the user to choose themselves
 // @media (prefers-color-scheme: light) {}
 // @media (prefers-color-scheme: dark) {}
 
 .dark {
-  // TODO: dark mode text
+  // Better text clarity on macOS text rendering engine (dark backgrounds only!)
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
