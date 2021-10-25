@@ -82,11 +82,6 @@ input::-webkit-inner-spin-button {
   height: auto;
 }
 
-// TODO: Custom radio input styles
-.radio {
-  &:checked {}
-}
-
 .checkbox {
   flex-shrink: 0;
   width: ${x.form.checkboxSize};
@@ -110,6 +105,13 @@ input::-webkit-inner-spin-button {
     box-shadow: 0 0 0 ${x.input.outlineSize} ${x.input.hoverBorderColor};
   }
 
+  &:focus,
+  &:active {
+    border-color: ${x.input.activeBorderColor};
+    outline: none;
+    box-shadow: 0 0 0 ${x.input.outlineSize} ${x.input.activeBorderColor};
+  }
+
   &[disabled],
   &[disabled]:hover,
   &[disabled]:focus,
@@ -127,6 +129,9 @@ input::-webkit-inner-spin-button {
     font-weight: ${x.textWeightMedium};
   }
 }
+
+// TODO: Custom radio input styles
+.radio {}
 
 // TODO: Custom file input styles
 .file {}

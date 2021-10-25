@@ -22,34 +22,43 @@ table {
 blockquote { #apply: .blockquote; }
 code { #apply: .code; }
 
-/* Form */
+/* Forms */
 
 label { #apply: .label; }
 input { #apply: .input; }
 select { #apply: .select; }
 textarea { #apply: .textarea; }
-// FIXME: Uncomment after we add .radio styles
-// input[type='radio'] {
-//   #apply: .radio;
-//   &:checked { #apply: '.radio:checked'; }
-// }
-input[type='checkbox'] {
-  #apply: .checkbox;
-  &:checked { #apply: '.checkbox:checked'; }
-}
-// FIXME: Uncomment after we add .range styles
-// input[type='range'] { #apply: .range; }
-
 input,
 select,
 textarea {
   &:hover { #apply: '.input:hover'; }
   &:focus,
   &:active { #apply: '.input:focus'; }
-  &[disabled] { #apply: .input[disabled]; }
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus,
+  &:disabled { #apply: .input[disabled]; }
 }
+input[type='checkbox'] {
+  #apply: .checkbox;
+  &:checked { #apply: '.checkbox:checked'; }
+  &:hover { #apply: '.checkbox:hover'; }
+  &:focus,
+  &:active { #apply: '.checkbox:focus'; }
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus,
+  &:disabled { #apply: .checkbox[disabled]; }
+  & + label { #apply: '.checkbox+.label'; }
+}
+// TODO: Add .radio styles
+// input[type='radio'] {}
+// TODO: Add .file input styles
+// input[type='file'] {}
+// TODO: Add .range input styles
+// input[type='range'] {}
 
-/* Button */
+/* Buttons */
 
 button {
   #apply: .button;
