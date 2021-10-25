@@ -54,11 +54,15 @@ input::-webkit-inner-spin-button {
     box-shadow: 0 0 0 ${x.input.outlineSize} ${x.input.activeBorderColor};
   }
 
-  &[disabled] {
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus,
+  &:disabled {
     color: ${x.input.disabledTextColor};
     background-color: ${x.input.disabledBackgroundColor};
-    border: ${x.input.disabledBorder};
+    border-color: ${x.input.disabledBorder};
     outline: none;
+    box-shadow: none;
   }
 }
 
@@ -98,6 +102,23 @@ input::-webkit-inner-spin-button {
     background-color: ${x.form.checkboxCheckedBackgroundColor};
     border-color: ${x.form.checkboxCheckedBorderColor};
     background-image: ${x.form.checkboxTick};
+  }
+
+  &:hover {
+    border-color: ${x.input.hoverBorderColor};
+    outline: none;
+    box-shadow: 0 0 0 ${x.input.outlineSize} ${x.input.hoverBorderColor};
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus,
+  &:disabled {
+    color: ${x.input.disabledTextColor};
+    background-color: ${x.input.disabledBackgroundColor};
+    border-color: ${x.input.disabledBorder};
+    outline: none;
+    box-shadow: none;
   }
 
   & + .label {

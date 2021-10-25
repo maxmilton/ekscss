@@ -23,6 +23,7 @@
   &:hover {
     z-index: 3;
     text-decoration: none;
+    border-color: ${x.button.hoverBorderColor};
     outline: none;
     box-shadow: 0 0 0 ${x.button.outlineSize} ${x.button.hoverBorderColor};
   }
@@ -31,6 +32,7 @@
   &:active {
     z-index: 2;
     text-decoration: none;
+    border-color: ${x.button.activeBorderColor};
     outline: none;
     box-shadow: 0 0 0 ${x.button.outlineSize} ${x.button.activeBorderColor};
   }
