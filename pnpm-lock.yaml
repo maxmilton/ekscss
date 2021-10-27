@@ -140,7 +140,7 @@ importers:
       '@rollup/pluginutils': ^4.1.1
       '@types/csso': 4.2.0
       csso: ^4.2.0
-      rollup: 2.58.1
+      rollup: 2.58.3
       source-map: ^0.7.3
       typescript: 4.4.4
     dependencies:
@@ -149,7 +149,7 @@ importers:
       source-map: 0.7.3
     devDependencies:
       '@types/csso': 4.2.0
-      rollup: 2.58.1
+      rollup: 2.58.3
       typescript: 4.4.4
 
   packages/rollup-plugin-ekscss:
@@ -157,27 +157,27 @@ importers:
       '@rollup/pluginutils': ^4.1.1
       ekscss: workspace:*
       joycon: ^3.0.1
-      rollup: 2.58.1
+      rollup: 2.58.3
       typescript: 4.4.4
     dependencies:
       '@rollup/pluginutils': 4.1.1
       joycon: 3.0.1
     devDependencies:
       ekscss: link:../ekscss
-      rollup: 2.58.1
+      rollup: 2.58.3
       typescript: 4.4.4
 
   packages/rollup-plugin-purgecss:
     specifiers:
       '@rollup/pluginutils': ^4.1.1
       purgecss: ^4.0.3
-      rollup: 2.58.1
+      rollup: 2.58.3
       typescript: 4.4.4
     dependencies:
       '@rollup/pluginutils': 4.1.1
       purgecss: 4.0.3
     devDependencies:
-      rollup: 2.58.1
+      rollup: 2.58.3
       typescript: 4.4.4
 
   packages/svelte-ekscss:
@@ -2380,8 +2380,8 @@ packages:
       glob: 7.2.0
     dev: true
 
-  /rollup/2.58.1:
-    resolution: {integrity: sha512-dNhchlN/3k3EKtyPXWdEEI7wiPQ07WInzsklWFm/6dUZspF63nj0O1A9PTsMxbmtQziwnOOl5oR+BgWNjTEYLA==}
+  /rollup/2.58.3:
+    resolution: {integrity: sha512-ei27MSw1KhRur4p87Q0/Va2NAYqMXOX++FNEumMBcdreIRLURKy+cE2wcDJKBn0nfmhP2ZGrJkP1XPO+G8FJQw==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
