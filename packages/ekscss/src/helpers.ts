@@ -153,13 +153,13 @@ export function map<T>(
 
   const len = arr.length;
   let index = 0;
-  let result = '';
+  let out = '';
 
   for (; index < len; index++) {
-    result += callback(arr[index], index) || '';
+    out += callback(arr[index], index) || '';
   }
 
-  return result;
+  return out;
 }
 
 /**
@@ -179,15 +179,15 @@ export function each<T>(
     return 'INVALID';
   }
 
-  let result = '';
+  let out = '';
 
   for (const key in obj) {
     if (has.call(obj, key)) {
-      result += callback(key, obj[key]) || '';
+      out += callback(key, obj[key]) || '';
     }
   }
 
-  return result;
+  return out;
 }
 
 /**
@@ -198,11 +198,15 @@ export function each<T>(
  */
 // eslint-disable-next-line unicorn/consistent-function-scoping
 export const xcssTag = () => function xcss(
-  strings: TemplateStringsArray,
+  template: TemplateStringsArray,
   ...expressions: XCSSExpression[]
 ): string {
-  // eslint-disable-next-line unicorn/no-array-reduce
-  return strings.raw.reduce((code, current, index) => {
+  const strings = template.raw;
+  const len = strings.length;
+  let index = 0;
+  let out = '';
+
+  for (; index < len; index++) {
     let val = expressions[index - 1];
 
     // Reduce XCSS function expressions to their final value
@@ -228,9 +232,9 @@ export const xcssTag = () => function xcss(
       }
     }
 
-    return (
     // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-      code + (val || (val == null || val === false ? '' : val)) + current
-    );
-  });
-};
+    out += (val || (val == null || val === false ? '' : val)) + strings[index];
+  }
+
+  return out;
+}
