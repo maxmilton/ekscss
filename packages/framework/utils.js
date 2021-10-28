@@ -2,7 +2,7 @@
 
 const { applyPlugin } = require('@ekscss/plugin-apply');
 const { importPlugin } = require('@ekscss/plugin-import');
-const { ctx, interpolate, xcssTag } = require('ekscss');
+const { ctx, interpolate, xcss } = require('ekscss');
 const stylis = require('stylis');
 
 /**
@@ -23,7 +23,7 @@ function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
   const oldDependencies = [...ctx.dependencies];
   const oldWarnings = [...ctx.warnings];
 
-  const interpolated = interpolate(code)(xcssTag(), ctx.x);
+  const interpolated = interpolate(code)(xcss, ctx.x);
   const ast = stylis.compile(interpolated);
   stylis.serialize(ast, stylis.middleware([importPlugin, applyPlugin]));
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign, no-underscore-dangle */
 
 import {
-  ctx, Element, interpolate, Middleware, xcssTag,
+  ctx, Element, interpolate, Middleware, xcss,
 } from 'ekscss';
 import fs from 'fs';
 import path from 'path';
@@ -68,14 +68,14 @@ export const importPlugin: Middleware = (
 
   let code = fs.readFileSync(from, 'utf-8');
 
-  // TODO: Document this behaviour
+  // TODO: Document this behaviour + look into impact on source maps
   if (!from.endsWith('.xcss')) {
     // Escape backtick "`" and template expression placeholder "${" to prevent
     // unexpected errors when importing non-XCSS aware or 3rd party code
     code = code.replace(/`/g, '\\`').replace(/\${/g, '\\${');
   }
 
-  const interpolated = interpolate(code)(xcssTag(), ctx.x);
+  const interpolated = interpolate(code)(xcss, ctx.x);
   const ast = stylis.compile(interpolated);
   element.return = stylis.serialize(ast, callback);
 

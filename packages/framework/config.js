@@ -13,14 +13,13 @@ const { applyPlugin } = require('@ekscss/plugin-apply');
 const { importPlugin } = require('@ekscss/plugin-import');
 const { prefixPlugin } = require('@ekscss/plugin-prefix');
 const color = require('color');
-const { xcssTag } = require('ekscss');
+const { xcss } = require('ekscss');
 
 // FIXME: Remove if unused + remove framework/mixins/*
 // const { triangle } = require('./mixins/triangle');
 
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
-const xcss = xcssTag();
 
 /** @type {import('@ekscss/cli').XCSSConfig} */
 module.exports = {

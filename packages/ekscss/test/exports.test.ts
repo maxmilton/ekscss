@@ -14,7 +14,7 @@ const helperPublicExports = [
   ['accessorsProxy', 'function'],
   ['ctx', 'object'],
   ['interpolate', 'function'],
-  ['xcssTag', 'function'],
+  ['xcss', 'function'],
 ] as const;
 
 for (const [name, type] of compilerPublicExports) {

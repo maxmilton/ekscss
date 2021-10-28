@@ -1,6 +1,6 @@
 import type { SourceMapGenerator } from 'source-map';
 import type { Element as _Element, Middleware } from 'stylis';
-import type { xcssTag } from './helpers';
+import type { xcss as _xcss } from './helpers';
 
 export type { Middleware };
 
@@ -95,10 +95,7 @@ export interface XCSSCompileOptions {
 
 export type BuildHookFn = () => void;
 
-export type XCSSTemplateFn = (
-  xcss: ReturnType<typeof xcssTag>,
-  x: XCSSGlobals,
-) => string;
+export type XCSSTemplateFn = (xcss: typeof _xcss, x: XCSSGlobals) => string;
 
 export interface XCSSCompileResult {
   css: string;

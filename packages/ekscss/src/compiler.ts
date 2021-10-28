@@ -8,7 +8,7 @@ import {
   interpolate,
   map as _map,
   noop,
-  xcssTag,
+  xcss,
 } from './helpers';
 import { compileSourceMap } from './sourcemap';
 import type {
@@ -89,7 +89,7 @@ export function compile(
 
   for (const fn of beforeBuildFns) fn();
 
-  const interpolated = interpolate(code)(xcssTag(), x);
+  const interpolated = interpolate(code)(xcss, x);
   const ast = stylis.compile(interpolated);
   const css = stylis.serialize(ast, stylis.middleware(middlewares));
 

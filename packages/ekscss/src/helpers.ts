@@ -196,8 +196,7 @@ export function each<T>(
  * XCSS template expressions which return `null`, `undefined`, or `false` will
  * return an empty string to make clean templates simpler.
  */
-// eslint-disable-next-line unicorn/consistent-function-scoping
-export const xcssTag = () => function xcss(
+export function xcss(
   template: TemplateStringsArray,
   ...expressions: XCSSExpression[]
 ): string {
