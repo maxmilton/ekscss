@@ -12,6 +12,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
   name: 'xcss',
 
   setup(build) {
+    const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
     const joycon = new JoyCon({
       files: [
         '.xcssrc.cjs',
@@ -66,6 +67,16 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
             column: warning.column,
           },
           detail: warning,
+        });
+      }
+
+      if (reBadValue.test(compiled.css)) {
+        warnings.push({
+          text: 'Output may contain unwanted value',
+          location: {
+            namespace: 'xcss',
+            file: args.path,
+          },
         });
       }
 

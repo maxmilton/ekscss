@@ -30,6 +30,7 @@ export default function rollupPlugin({
   include = /\.xcss$/,
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
+  const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
   const joycon = new JoyCon({
     files: [
       '.xcssrc.cjs',
@@ -101,6 +102,10 @@ export default function rollupPlugin({
               .join(':'),
           );
         }
+      }
+
+      if (reBadValue.test(compiled.css)) {
+        this.warn('Output may contain unwanted value');
       }
 
       // if (id.endsWith('web-app/src/css/index.xcss')) {

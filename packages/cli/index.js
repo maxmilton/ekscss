@@ -29,7 +29,7 @@ const joycon = new JoyCon({
  * @param {boolean} [opts.quiet]
  */
 module.exports = async (src, dest, opts) => {
-  // load user defined config or fall back to default file locations
+  // Load user defined config or fall back to default file locations
   const result = await joycon.load(opts.config ? [opts.config] : undefined);
 
   if (!result.path && !opts.quiet) {
@@ -116,11 +116,16 @@ module.exports = async (src, dest, opts) => {
     await fs.promises.writeFile(destFile, css, 'utf8');
   }
 
+  if (/UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/.test(css)) {
+    process.exitCode = 1;
+    console.error(colors.red('Error:'), 'Output may contain unwanted value');
+  }
+
   if (!opts.quiet) {
     const memMB = process.memoryUsage().heapUsed / 1024 / 1024;
-    // highlight potential code issues
+    // Highlight potential code issues
     const cssHighlighted = css.replace(
-      /null|undefined|UNDEFINED|INVALID|NaN|#apply:/g,
+      /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/g,
       colors.bold(colors.red('$&')),
     );
     const bytes = Buffer.byteLength(css, 'utf8');

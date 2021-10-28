@@ -14,6 +14,7 @@ interface PluginOptions {
 }
 
 export const style = ({ config }: PluginOptions = {}): Preprocessor => {
+  const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
   const joycon = new JoyCon({
     files: [
       '.xcssrc.cjs',
@@ -72,6 +73,13 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
           ),
         );
       }
+    }
+
+    if (reBadValue.test(compiled.css)) {
+      console.warn(
+        colors.yellow('Warning:'),
+        'XCSS output may contain unwanted value',
+      );
     }
 
     const { css, dependencies, map } = compiled;
