@@ -13,7 +13,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "pnpm run prebuild && NODE_ENV=production node build.mjs && pnpm run postbuild",
+    "build": "pnpm run prebuild && node build.mjs && pnpm run postbuild",
     "dev": "NODE_ENV=development node build.mjs",
     "postbuild": "tsc --emitDeclarationOnly",
     "prebuild": "rm -rf dist"

@@ -75,7 +75,6 @@ module.exports = async (src, dest, opts) => {
 
   for (const warning of compiled.warnings) {
     process.exitCode = 1;
-
     console.error(colors.red('Error:'), warning.message || warning);
 
     if (warning.file) {

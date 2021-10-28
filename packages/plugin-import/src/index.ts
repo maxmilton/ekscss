@@ -58,7 +58,7 @@ export const importPlugin: Middleware = (
   // TODO: Document this behaviour
   // Avoid importing files more than once
   if (ctx.dependencies.includes(from)) {
-    // empty value so at-rule is removed in stringify
+    // Set empty value so at-rule is removed in stringify
     element.value = '';
     return;
   }
@@ -66,25 +66,23 @@ export const importPlugin: Middleware = (
   const oldCtxFrom = ctx.from;
   ctx.from = from;
 
+  const ext = path.extname(from);
   let code = fs.readFileSync(from, 'utf-8');
 
-  // TODO: Document this behaviour + look into impact on source maps
-  if (!from.endsWith('.xcss')) {
-    // Escape backtick "`" and template expression placeholder "${" to prevent
-    // unexpected errors when importing non-XCSS aware or 3rd party code
-    code = code.replace(/`/g, '\\`').replace(/\${/g, '\\${');
+  // TODO: Document this behaviour
+  if (ext === '.xcss' || !ext) {
+    code = interpolate(code)(xcss, ctx.x);
   }
 
-  const interpolated = interpolate(code)(xcss, ctx.x);
-  const ast = stylis.compile(interpolated);
+  const ast = stylis.compile(code);
   element.return = stylis.serialize(ast, callback);
 
-  // expose data for constructing source maps
+  // Expose data for constructing source maps
   element.__ast = ast;
   element.__from = from;
 
   if (element.return === '') {
-    // empty value so at-rule is removed in stringify
+    // Set empty value so at-rule is removed in stringify
     element.value = '';
 
     ctx.warnings.push({

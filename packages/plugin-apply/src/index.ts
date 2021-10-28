@@ -49,15 +49,14 @@ export const applyPlugin: Middleware = (
 ): void => {
   if (element.type === stylis.RULESET) {
     for (const selector of element.props) {
-      (ctx.applyRefs as ApplyRefs)[selector] ??= [];
-      (ctx.applyRefs as ApplyRefs)[selector].push(element);
+      ((ctx.applyRefs as ApplyRefs)[selector] ??= []).push(element);
     }
 
     return;
   }
 
   if (element.type === stylis.DECLARATION && element.props === '#apply') {
-    // stylis types don't differentiate by element.type hence the cast
+    // TODO: Remove type cast; stylis types don't differentiate by element.type
     const targets = (element.children as string)
       .split(',')
       .map((x) => x.trim().replace(/^["']/, '').replace(/["']$/, ''));
@@ -68,8 +67,8 @@ export const applyPlugin: Middleware = (
 
       if (refs) {
         for (const ref of refs) {
-          // @ts-expect-error - stylis types don't differentiate by node.type
-          decls.push(...ref.children);
+          // TODO: Remove type cast; stylis types don't differentiate by element.type
+          decls.push(...(ref.children as Element[]));
         }
       } else {
         ctx.warnings.push({
@@ -85,11 +84,11 @@ export const applyPlugin: Middleware = (
     element.return = stylis.serialize(decls, callback);
 
     if (element.return === '') {
-      // empty value so declaration is removed in stringify
+      // Set empty value so declaration is removed in stringify
       element.value = '';
 
       ctx.warnings.push({
-        code: 'apply-no-decls',
+        code: 'apply-empty',
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         message: `#apply "${targets}" result empty`,
         file: ctx.from,
