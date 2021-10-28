@@ -76,7 +76,7 @@ export function compileSourceMap(
         if (sourceMapRef) {
           // eslint-disable-next-line no-console
           console.debug(
-            'ekscss does not currently apply input source maps; URL:',
+            'ekscss does not currently apply input source maps\n  ref:',
             sourceMapRef,
           );
         }

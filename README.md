@@ -44,13 +44,15 @@
 - Add proper typescript support for `x` global
 - An official way to remove unused styles
 - Webpack plugin
+- Also test rollup plugin against vite
+  - If there are some particular benifits, make a separate vite plugin, potentially just reexporting the rollup plugin
 - PostCSS syntax plugin then (related):
   - Stylelint plugin
   - Prettier plugin
   - VS Code syntax
 - Documentation:
   - Currently, templates in XCSS (`${...}`) are still evaluated when they're in a _CSS comment_; ~to disable them it's necessary to comment out the code _inside the template_~ it's tricky to comment out XCSS code, so provide a solution or at least solid examples
-  - Compiler browser bundle (browser compatible but no sourcemap support) + reinforce the potential security risk since the compiler uses a kind of eval
+  - Compiler browser bundle (browser compatible but no source map support) + reinforce the potential security risk since the compiler uses a kind of eval
   - Architectural designations and goals + an overview of how compile works (especially the steps involved)
 - Explain the "ekscss" name
 - Add benchmarks:
