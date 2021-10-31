@@ -320,8 +320,8 @@ module.exports = {
     /* Addon: code.xcss */
     codeInline: {
       padding: '0 3px',
-      textColor: (x) => x.color.forest1,
-      backgroundColor: (x) => x.fn.color(x.color.forest5).lighten(0.58),
+      textColor: (x) => x.color.rose1,
+      backgroundColor: (x) => x.fn.color(x.color.rose5).lighten(0.41),
     },
     codeBlock: {
       textColor: (x) => x.color.light3,

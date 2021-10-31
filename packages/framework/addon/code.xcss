@@ -1,5 +1,6 @@
 .code-inline {
   padding: ${x.codeInline.padding};
+  word-wrap: break-word;
   color: ${x.codeInline.textColor};
   background-color: ${x.codeInline.backgroundColor};
 }
