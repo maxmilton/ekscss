@@ -331,11 +331,11 @@ module.exports = {
 
     /* Addon: spinner.xcss */
     spinner: {
-      size: '64px',
-      width: '8px',
+      size: '48px',
+      width: '5px',
       color: (x) => x.color.primary,
       backgroundColor: (x) => x.color.light3,
-      animateSpeed: '528ms',
+      animateSpeed: '496ms',
       animateTiming: 'linear',
     },
 
