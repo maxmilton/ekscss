@@ -3,6 +3,7 @@
   word-wrap: break-word;
   color: ${x.codeInline.textColor};
   background-color: ${x.codeInline.backgroundColor};
+  user-select: all; // for easy copy
 }
 
 .code-block {
@@ -14,5 +15,5 @@
   background-color: ${x.codeBlock.backgroundColor};
   overflow: auto;
   white-space: pre;
-  user-select: all; // select all contained text for easy copy
+  user-select: contain; // avoid accidental copying outside of the code block
 }
