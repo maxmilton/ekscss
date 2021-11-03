@@ -15,5 +15,4 @@
   background-color: ${x.codeBlock.backgroundColor};
   overflow: auto;
   white-space: pre;
-  user-select: contain; // avoid accidental copying outside of the code block
 }
