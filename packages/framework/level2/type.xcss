@@ -7,9 +7,9 @@
 
 .blockquote {
   margin: 0 0 1rem;
-  padding: 20px 30px;
-  background-color: #eff6ff;
-  border-left: 5px solid #0f96ff;
+  padding: 1rem 1.5rem;
+  background-color: ${x.alert.backgroundColor};
+  border-left: 5px solid ${x.alert.infoBorderColor};
 }
 
 a,
