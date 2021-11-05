@@ -2,6 +2,7 @@ import type { SourceMapGenerator } from 'source-map';
 import type { Element as _Element, Middleware } from 'stylis';
 import type { xcss as _xcss } from './helpers';
 
+// eslint-disable-next-line unicorn/prefer-export-from
 export type { Middleware };
 
 export interface Element extends _Element {
