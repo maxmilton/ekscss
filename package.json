@@ -19,7 +19,7 @@
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-airbnb-typescript": "15.0.0",
     "eslint-plugin-import": "2.25.3",
-    "eslint-plugin-unicorn": "38.0.0",
+    "eslint-plugin-unicorn": "38.0.1",
     "prettier": "2.4.1",
     "prettier-plugin-pkg": "0.10.0",
     "prettier-plugin-sh": "0.7.1",
