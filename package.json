@@ -10,7 +10,7 @@
     "test-raw": "uvu packages '\\/test\\/.+\\.test-raw\\.js$'"
   },
   "devDependencies": {
-    "@types/node": "16.11.6",
+    "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "5.3.1",
     "@typescript-eslint/parser": "5.3.1",
     "c8": "7.10.0",
