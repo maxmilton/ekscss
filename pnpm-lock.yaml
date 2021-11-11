@@ -11,7 +11,7 @@ importers:
       esbuild: 0.13.12
       eslint: 7.32.0
       eslint-config-airbnb-base: 14.2.1
-      eslint-config-airbnb-typescript: 14.0.2
+      eslint-config-airbnb-typescript: 15.0.0
       eslint-plugin-import: 2.25.3
       eslint-plugin-unicorn: 38.0.0
       prettier: 2.4.1
@@ -28,7 +28,7 @@ importers:
       esbuild: 0.13.12
       eslint: 7.32.0
       eslint-config-airbnb-base: 14.2.1_a820dc868cc8cd66d8297be6779b9035
-      eslint-config-airbnb-typescript: 14.0.2_a3e0c1d12d1d1c185428170d0020881c
+      eslint-config-airbnb-typescript: 15.0.0_a3e0c1d12d1d1c185428170d0020881c
       eslint-plugin-import: 2.25.3_eslint@7.32.0
       eslint-plugin-unicorn: 38.0.0_eslint@7.32.0
       prettier: 2.4.1
@@ -1254,11 +1254,11 @@ packages:
       object.entries: 1.1.5
     dev: true
 
-  /eslint-config-airbnb-typescript/14.0.2_a3e0c1d12d1d1c185428170d0020881c:
-    resolution: {integrity: sha512-oaVR63DqpRUiOOeSVxIzhD3FXbqJRH+7Lt9GCMsS9SKgrRW3XpZINN2FO4JEsnaHEGkktumd0AHE9K7KQNuXSQ==}
+  /eslint-config-airbnb-typescript/15.0.0_a3e0c1d12d1d1c185428170d0020881c:
+    resolution: {integrity: sha512-DTWGwqytbTnB8kSKtmkrGkRf3xwTs2l15shSH0w/3Img47AQwCCrIA/ON/Uj0XXBxP31LHyEItPXeuH3mqCNLA==}
     peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^4.29.3
-      '@typescript-eslint/parser': ^4.29.3
+      '@typescript-eslint/eslint-plugin': ^5.0.0
+      '@typescript-eslint/parser': ^5.0.0
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.3.1_4daca2483796bdceece3758b04dba2a1
       '@typescript-eslint/parser': 5.3.1_eslint@7.32.0+typescript@4.4.4
