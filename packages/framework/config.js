@@ -62,10 +62,12 @@ module.exports = {
       'Segoe UI Emoji',
     ].join(','),
     fontStackMonospace: [
+      'ui-monospace',
       'SFMono-Regular',
+      'SF Mono',
+      'Menlo',
       'Consolas',
       'Liberation Mono',
-      'Menlo',
       'monospace',
     ].join(','),
     textSize: '1.25em', // 20px
