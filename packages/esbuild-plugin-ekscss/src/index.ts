@@ -2,7 +2,7 @@
 // https://esbuild.github.io/plugins/
 
 import { compile, XCSSCompileOptions } from 'ekscss';
-import type { Plugin } from 'esbuild';
+import type { PartialMessage, Plugin } from 'esbuild';
 import fs from 'fs';
 import JoyCon from 'joycon';
 
@@ -28,14 +28,13 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
     let configData: XCSSConfig;
     let configPath: string | undefined;
 
-    // @ts-expect-error - FIXME: warnings[].location* should take undefined
     build.onLoad({ filter: /\.xcss$/ }, async (args) => {
       const code = await fs.promises.readFile(args.path, 'utf-8');
-      const warnings = [];
+      const warnings: PartialMessage[] = [];
 
       if (!configData) {
         if (!config || typeof config === 'string') {
-          // load user defined config or fall back to default file locations
+          // Load user defined config or fall back to default file locations
           const result = await joycon.load(config ? [config] : undefined);
           configData = (result.data as XCSSConfig) || {};
           configPath = result.path;
@@ -60,6 +59,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
       for (const warning of compiled.warnings) {
         warnings.push({
           text: warning.message,
+          // @ts-expect-error - FIXME: location* should take undefined -- submit a PR to esbuild
           location: {
             namespace: 'xcss',
             file: warning.file,
@@ -70,6 +70,9 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
         });
       }
 
+      // TODO: Get the location.line and location.column of matches to make it
+      // far easier to debug or even know what's going on for users (otherwise
+      // the warning is a bit cryptic!)
       if (reBadValue.test(compiled.css)) {
         warnings.push({
           text: 'Output may contain unwanted value',
