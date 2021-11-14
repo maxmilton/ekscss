@@ -26,10 +26,14 @@
     content: attr(aria-label);
     bottom: calc(0.5rem + 100%);
     padding: ${x.tooltip.paddingY} ${x.tooltip.paddingX};
+    max-width: ${x.tooltip.widthMax};
+    width: max-content;
     color: ${x.tooltip.color};
     font-size: ${x.tooltip.textSize};
     font-weight: ${x.tooltip.textWeight};
-    white-space: pre;
+    white-space: pre-line; // support \n
+    text-align: center;
+    hyphens: manual; // don't break words in awkward places
     background: ${x.tooltip.backgroundColor};
   }
 

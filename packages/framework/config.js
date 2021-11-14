@@ -339,6 +339,7 @@ module.exports = {
     tooltip: {
       paddingX: (x) => x.input.paddingX,
       paddingY: (x) => x.input.paddingY,
+      widthMax: '16rem',
       textSize: '1.1rem',
       textWeight: (x) => x.textWeight,
       color: (x) => x.color.text,
