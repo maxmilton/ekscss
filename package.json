@@ -17,7 +17,7 @@
     "esbuild": "0.13.13",
     "eslint": "8.2.0",
     "eslint-config-airbnb-base": "15.0.0",
-    "eslint-config-airbnb-typescript": "15.0.0",
+    "eslint-config-airbnb-typescript": "16.0.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-unicorn": "38.0.1",
     "prettier": "2.4.1",
