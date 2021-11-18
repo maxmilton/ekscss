@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@types/node': 16.11.7
+      '@types/node': 16.11.8
       '@typescript-eslint/eslint-plugin': 5.4.0
       '@typescript-eslint/parser': 5.4.0
       c8: 7.10.0
@@ -21,7 +21,7 @@ importers:
       typescript: 4.5.2
       uvu: 0.5.2
     devDependencies:
-      '@types/node': 16.11.7
+      '@types/node': 16.11.8
       '@typescript-eslint/eslint-plugin': 5.4.0_d6f2571581882eb2d6c9d9867e002185
       '@typescript-eslint/parser': 5.4.0_eslint@8.2.0+typescript@4.5.2
       c8: 7.10.0
@@ -536,8 +536,8 @@ packages:
     resolution: {integrity: sha512-nJOuiTlsvmClSr3+a/trTSx4DTuY/VURsWGKSf/eeavh0LRMqdsK60ti0TlwM5iHiGOK3/Ibkxsbr7i9rzGreA==}
     dev: true
 
-  /@types/node/16.11.7:
-    resolution: {integrity: sha512-QB5D2sqfSjCmTuWcBWyJ+/44bcjO7VbjSbOE0ucoVbAsSNQc4Lt6QkgkVXkTDwkL4z/beecZNDvVX15D4P8Jbw==}
+  /@types/node/16.11.8:
+    resolution: {integrity: sha512-hmT5gfpRkkHr7DZZHMf3jBe/zNcVGN+jXSL2f8nAsYfBPxQFToKwQlS/zES4Sjp488Bi73i+p6bvrNRRGU0x9Q==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
