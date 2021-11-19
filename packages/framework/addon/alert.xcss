@@ -37,7 +37,7 @@
 /* Close button */
 
 .button-close {
-  margin: -${x.alert.padding};
+  margin: -${x.alert.paddingY} -${x.alert.paddingX};
   color: inherit;
 
   &:hover,
