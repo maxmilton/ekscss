@@ -1,5 +1,5 @@
 .code-inline {
-  padding: ${x.codeInline.padding};
+  padding: ${x.codeInline.paddingY} ${x.codeInline.paddingX};
   word-wrap: break-word;
   color: ${x.codeInline.textColor};
   background-color: ${x.codeInline.backgroundColor};
@@ -9,7 +9,7 @@
 .code-block {
   display: block; // makes it easy to add to a <code> element
   max-width: 100%;
-  padding: 0.5rem 1rem;
+  padding: ${x.codeBlock.paddingY} ${x.codeBlock.paddingX};
   border-radius: ${x.codeBlock.radius};
   color: ${x.codeBlock.textColor};
   background-color: ${x.codeBlock.backgroundColor};

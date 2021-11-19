@@ -5,7 +5,7 @@
 .alert {
   margin-top: ${x.alert.marginY};
   margin-bottom: ${x.alert.marginY};
-  padding: ${x.alert.padding};
+  padding: ${x.alert.paddingY} ${x.alert.paddingX};
   background-color: ${x.alert.backgroundColor};
   border-left: ${x.alert.borderSize} solid;
 

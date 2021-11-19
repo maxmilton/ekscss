@@ -269,7 +269,8 @@ module.exports = {
 
     /* Addon: alert.xcss */
     alert: {
-      padding: '1rem',
+      paddingX: '1rem',
+      paddingY: '1rem',
       marginY: '2rem',
       backgroundColor: (x) => x.color.light3,
       borderSize: '0.4rem',
@@ -306,11 +307,14 @@ module.exports = {
 
     /* Addon: code.xcss */
     codeInline: {
-      padding: '0 3px',
+      paddingX: '3px',
+      paddingY: '0',
       textColor: (x) => x.color.rose1,
       backgroundColor: (x) => x.fn.color(x.color.rose5).lighten(0.41),
     },
     codeBlock: {
+      paddingX: '1rem',
+      paddingY: '0.5rem',
       textColor: (x) => x.color.light3,
       backgroundColor: (x) => x.color.dark3,
       radius: (x) => x.radius,
@@ -328,7 +332,8 @@ module.exports = {
 
     /* Addon: tag.xcss */
     tag: {
-      padding: '0.2em 0.4em',
+      paddingX: '0.4em',
+      paddingY: '0.2em',
       textSize: '0.9em',
       textColor: (x) => x.color.dark2,
       backgroundColor: (x) => x.color.light3,
