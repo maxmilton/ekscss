@@ -1,5 +1,6 @@
 const OFF = 0;
 const WARN = 1;
+const ERROR = 2;
 
 // TODO: Types
 // eslint-disable-next-line max-len
@@ -9,8 +10,11 @@ module.exports = {
   reportUnusedDisableDirectives: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    // FIXME: Remove once TS 4.6+ is released and typescript-eslint has support
+    //  ↳ https://github.com/typescript-eslint/typescript-eslint/issues/3950
     extraFileExtensions: ['.mjs', '.cjs'],
     project: ['./tsconfig.lint.json'],
+    tsconfigRootDir: __dirname,
   },
   extends: [
     'eslint:recommended',
@@ -22,6 +26,7 @@ module.exports = {
     'plugin:unicorn/recommended',
   ],
   rules: {
+    '@typescript-eslint/explicit-module-boundary-types': ERROR,
     'import/prefer-default-export': OFF,
     'unicorn/filename-case': OFF,
     'unicorn/no-abusive-eslint-disable': WARN,
