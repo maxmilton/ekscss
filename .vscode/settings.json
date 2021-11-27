@@ -14,6 +14,4 @@
   "js/ts.implicitProjectConfig.checkJs": true,
   "prettier.ignorePath": ".gitignore",
   "scss.validate": false
-  // "stylelint.enable": true,
-  // "stylelint.reportNeedlessDisables": true
 }
