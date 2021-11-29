@@ -1,8 +1,8 @@
 /* Paragraphs */
 
 .lead {
-  font-size: ${x.paragraphLeadTextSize};
-  font-weight: ${x.paragraphLeadTextWeight};
+  font-size: ${x.leadTextSize};
+  font-weight: ${x.leadTextWeight};
 }
 
 .blockquote {

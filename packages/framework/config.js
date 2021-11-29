@@ -36,11 +36,13 @@ module.exports = {
       // FIXME: Remove if unused + remove framework/mixins/*
       // triangle,
     },
+
     media: {
       ns: '(min-width: 30.01rem)',
       m: '(min-width: 30.01rem) and (max-width: 60rem)',
       l: '(min-width: 60.01rem)',
     },
+
     spacingValues: [
       '0',
       '0.25rem',
@@ -51,6 +53,8 @@ module.exports = {
       '8rem',
       '16rem',
     ],
+
+    /* Text */
     fontStack: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -71,6 +75,13 @@ module.exports = {
       'monospace',
     ].join(','),
     textSize: '1.25em', // 20px
+    textWeightLight: 300,
+    textWeight: 400,
+    textWeightMedium: 500,
+    textWeightHeavy: 700,
+    leadTextSize: '1.3em',
+    leadTextWeight: (x) => x.textWeightLight,
+
     color: {
       /**
        * Based on palantir/blueprint colors
@@ -204,14 +215,6 @@ module.exports = {
 
     hrMargin: '1.2rem 0',
     hrColor: (x) => x.fn.color(x.color.dark5).alpha(0.15),
-
-    textWeightLight: 300,
-    textWeight: 400,
-    textWeightMedium: 500,
-    textWeightHeavy: 700,
-
-    paragraphLeadTextSize: '1.3em',
-    paragraphLeadTextWeight: (x) => x.textWeightLight,
 
     form: {
       groupMargin: '1rem',
