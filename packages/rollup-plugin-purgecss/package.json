@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.1",
-    "purgecss": "^4.0.3"
+    "purgecss": "^4.1.1"
   },
   "devDependencies": {
     "rollup": "2.60.1",

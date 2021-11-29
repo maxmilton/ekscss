@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "ekscss": "workspace:^",
-    "joycon": "^3.0.1",
+    "joycon": "^3.1.0",
     "kleur": "^4.1.4",
     "sade": "^1.7.4"
   },

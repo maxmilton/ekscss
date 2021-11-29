@@ -17,7 +17,7 @@
     "esbuild": "^0.13.0 || ^0.14.0"
   },
   "dependencies": {
-    "joycon": "^3.0.1"
+    "joycon": "^3.1.0"
   },
   "devDependencies": {
     "ekscss": "workspace:*",
