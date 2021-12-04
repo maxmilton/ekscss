@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
-import csso from 'csso';
+import * as csso from 'csso';
 import path from 'path';
 import type { Plugin, SourceMap } from 'rollup';
 import { SourceMapConsumer, SourceMapGenerator, SourceNode } from 'source-map';
