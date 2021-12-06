@@ -91,7 +91,7 @@ XCSS configuration files may be in either JSON or JavaScript format. Config file
 
 ## Notes
 
-This package is intended to be simple and lightweight. If you need features like watching for file changes use [rollup](https://rollupjs.org) together with [rollup-plugin-ekscss](https://github.com/maxmilton/ekscss/tree/master/packages/rollup-plugin-ekscss) and [@ekscss/rollup-plugin-css](../rollup-plugin-css). Alternatively, for simple projects or when build speed is important, use [esbuild](https://esbuild.github.io) with [esbuild-plugin-ekscss](https://github.com/maxmilton/ekscss/tree/master/packages/esbuild-plugin-ekscss).
+This package is intended to be simple and lightweight. If you need features like watching for file changes use [rollup](https://rollupjs.org) together with [rollup-plugin-ekscss](https://github.com/maxmilton/ekscss/tree/master/packages/rollup-plugin-ekscss) and [@maxmilton/rollup-plugin-css](../rollup-plugin-css). Alternatively, for simple projects or when build speed is important, use [esbuild](https://esbuild.github.io) with [esbuild-plugin-ekscss](https://github.com/maxmilton/ekscss/tree/master/packages/esbuild-plugin-ekscss).
 
 This package registers the CLI executable binaries `xcss` and `ekscss` which are both equivalent.
 
