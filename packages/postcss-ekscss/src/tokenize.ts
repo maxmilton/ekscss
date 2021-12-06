@@ -1,5 +1,8 @@
 // Based on https://github.com/postcss/postcss-scss/blob/1c1c2621eff21b0c3d11a70d71beff3f10bd6cfd/lib/scss-tokenize.js
 
+// FIXME: Can't handle complex XCSS expressions
+//  ↳ But should still parse template literals within XCSS expressions!
+
 import type { Input } from 'postcss';
 
 const SINGLE_QUOTE = 39; // '

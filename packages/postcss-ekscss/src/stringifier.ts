@@ -10,7 +10,7 @@
 import type { AnyNode, Comment, Declaration } from 'postcss';
 import Stringifier from 'postcss/lib/stringifier';
 
-export class EkscssStringifier extends Stringifier {
+export class XCSSStringifier extends Stringifier {
   override comment(node: Comment): void {
     const left = this.raw(node, 'left', 'commentLeft');
     const right = this.raw(node, 'right', 'commentRight');

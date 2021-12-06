@@ -8,12 +8,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck - TODO: Too many broken types
 
-import { AnyNode, Comment } from 'postcss';
+import { Comment, type AnyNode } from 'postcss';
 import Parser from 'postcss/lib/parser';
 import { NestedDeclaration } from './nested-declaration';
-import { Token, tokenize } from './tokenize';
+import { tokenize, type Token } from './tokenize';
 
-export class EkscssParser extends Parser {
+export class XCSSParser extends Parser {
   override createTokenizer(): void {
     this.tokenizer = tokenize(this.input);
   }
