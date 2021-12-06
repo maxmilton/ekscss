@@ -8,14 +8,14 @@
 .blockquote {
   margin: 0 0 1rem;
   padding: 1rem 1.5rem;
-  background-color: ${x.alert.backgroundColor};
   border-left: 5px solid ${x.alert.infoBorderColor};
+  background-color: ${x.alert.backgroundColor};
 }
 
 a,
 .break {
-  word-wrap: break-word; // fallback for old browsers and Safari
   word-break: break-word;
+  word-wrap: break-word; // fallback for old browsers and Safari
   overflow-wrap: anywhere;
 }
 
@@ -50,8 +50,8 @@ dd {
 // Note: Also update 'packages/framework/addon/native.xcss' if making any
 // changes to the nested selectors
 .table {
-  width: 100%;
   vertical-align: middle;
+  width: 100%;
 
   & > thead {
     vertical-align: bottom;

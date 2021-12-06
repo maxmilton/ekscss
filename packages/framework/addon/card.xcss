@@ -3,8 +3,8 @@
  */
 
 .card {
-  background-color: ${x.card.backgroundColor};
   border-radius: ${x.radiusLarge};
+  background-color: ${x.card.backgroundColor};
   box-shadow: ${x.card.shadow};
 }
 
@@ -16,18 +16,6 @@
   padding: 0;
   color: ${x.card.hoverTextColor};
   box-shadow: ${x.card.hoverShadow};
-
-  a& {
-    font-weight: ${x.textWeight};
-    text-decoration: none;
-
-    /* override anchor pseudo state style as cards already have visual cues */
-    &:hover,
-    &:focus {
-      color: ${x.card.hoverTextColor};
-      text-decoration: unset;
-    }
-  }
 
   /**
    * Don't include a hover state on small screens as they typically don't have
@@ -41,15 +29,27 @@
       height: 100%;
       border-radius: ${x.radiusLarge};
       box-shadow: ${x.card.hoverHoverShadow};
+      content: '';
       opacity: 0;
       transition: opacity ${x.card.hoverAnimateSpeedOut} ease-out;
-      content: '';
     }
 
     &:hover::after,
     &:focus::after {
       opacity: 1;
       transition-duration: ${x.card.hoverAnimateSpeedIn};
+    }
+  }
+
+  a& {
+    font-weight: ${x.textWeight};
+    text-decoration: none;
+
+    /* override anchor pseudo state style as cards already have visual cues */
+    &:hover,
+    &:focus {
+      color: ${x.card.hoverTextColor};
+      text-decoration: unset;
     }
   }
 }
@@ -71,10 +71,10 @@
 .card-button {
   margin: auto 0 0;
   padding: ${x.button.paddingY} ${x.button.paddingX};
-  color: ${x.card.buttonTextColor};
-  font-weight: ${x.button.textWeight};
-  text-align: center;
   border-top: ${x.card.buttonBorder};
   border-bottom-right-radius: ${x.radiusLarge};
   border-bottom-left-radius: ${x.radiusLarge};
+  color: ${x.card.buttonTextColor};
+  font-weight: ${x.button.textWeight};
+  text-align: center;
 }

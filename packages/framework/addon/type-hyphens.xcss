@@ -10,15 +10,15 @@ h5,
 h6,
 p,
 .hyphenate {
-  -webkit-hyphenate-limit-before: 3;
-  -webkit-hyphenate-limit-after: 3;
-  -webkit-hyphenate-limit-chars: 6 3 3;
-  -webkit-hyphenate-limit-lines: 2;
-  -webkit-hyphenate-limit-last: always;
-  -webkit-hyphenate-limit-zone: 8%;
   hyphens: auto;
+  -webkit-hyphenate-limit-after: 3;
+  -webkit-hyphenate-limit-before: 3;
+  -webkit-hyphenate-limit-chars: 6 3 3;
   hyphenate-limit-chars: 6 3 3;
-  hyphenate-limit-lines: 2;
+  -webkit-hyphenate-limit-last: always;
   hyphenate-limit-last: always;
+  -webkit-hyphenate-limit-lines: 2;
+  hyphenate-limit-lines: 2;
+  -webkit-hyphenate-limit-zone: 8%;
   hyphenate-limit-zone: 8%;
 }

@@ -8,11 +8,11 @@
 
 .code-block {
   display: block; // makes it easy to add to a <code> element
+  overflow: auto;
   max-width: 100%;
   padding: ${x.codeBlock.paddingY} ${x.codeBlock.paddingX};
-  overflow: auto;
+  border-radius: ${x.codeBlock.radius};
   color: ${x.codeBlock.textColor};
   white-space: pre;
   background-color: ${x.codeBlock.backgroundColor};
-  border-radius: ${x.codeBlock.radius};
 }

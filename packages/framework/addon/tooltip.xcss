@@ -14,13 +14,13 @@
   &::before,
   &::after {
     position: absolute;
-    right: 50%;
     z-index: 1;
-    // visibility: hidden;
+    right: 50%;
     opacity: 0;
-    transition: opacity ${x.tooltip.animateSpeed} ${x.tooltip.animateTiming};
-    transform: translateX(50%);
     pointer-events: none;
+    transform: translateX(50%);
+    transition: opacity ${x.tooltip.animateSpeed} ${x.tooltip.animateTiming};
+    // visibility: hidden;
   }
 
   &::before {
@@ -31,8 +31,8 @@
     color: ${x.tooltip.color};
     font-size: ${x.tooltip.textSize};
     font-weight: ${x.tooltip.textWeight};
-    white-space: pre-line; // support \n
     text-align: center;
+    white-space: pre-line; // support \n
     hyphens: manual; // don't break words in awkward places
     background: ${x.tooltip.backgroundColor};
     content: attr(aria-label);
@@ -43,14 +43,14 @@
     // width: 0;
     // height: 0;
     border: solid;
-    border-color: ${x.tooltip.backgroundColor} transparent;
     border-width: 0.5rem 0.5rem 0;
+    border-color: ${x.tooltip.backgroundColor} transparent;
     content: '';
   }
 
   &:hover::before,
   &:hover::after {
-    // visibility: visible;
     opacity: 1;
+    // visibility: visible;
   }
 }

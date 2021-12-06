@@ -5,10 +5,10 @@
 .tag {
   display: inline-block;
   padding: ${x.tag.paddingY} ${x.tag.paddingX};
+  border-radius: ${x.tag.borderRadius};
   color: ${x.tag.textColor};
   font-size: ${x.tag.textSize};
   background-color: ${x.tag.backgroundColor};
-  border-radius: ${x.tag.borderRadius};
 }
 
 /* Whitespace between tags */

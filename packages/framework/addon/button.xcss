@@ -23,9 +23,9 @@
 }
 
 .button-primary {
+  border-color: ${x.color.blue2};
   color: ${x.color.white};
   background-image: linear-gradient(${x.color.blue3}, ${x.color.blue2});
-  border-color: ${x.color.blue2};
 
   &:hover {
     background-image: linear-gradient(${x.color.blue2}, ${x.color.blue1});
@@ -33,9 +33,9 @@
 }
 
 .button-danger {
+  border-color: ${x.color.red2};
   color: ${x.color.white};
   background-image: linear-gradient(${x.color.red4}, ${x.color.red3});
-  border-color: ${x.color.red2};
 
   &:hover {
     background-image: linear-gradient(${x.color.red3}, ${x.color.red2});

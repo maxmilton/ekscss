@@ -9,32 +9,32 @@
 .button {
   z-index: 1;
   display: inline-block;
+  vertical-align: middle;
   padding: ${x.button.paddingY} ${x.button.paddingX};
+  border: ${x.button.border};
+  border-radius: ${x.button.radius};
   color: ${x.button.textColor};
   font-weight: ${x.button.textWeight};
   text-align: center;
   text-decoration: none;
-  vertical-align: middle;
   background-color: ${x.button.backgroundColor};
-  border: ${x.button.border};
-  border-radius: ${x.button.radius};
   user-select: none;
 
   &:hover {
     z-index: 3;
-    text-decoration: none;
     border-color: ${x.button.hoverBorderColor};
-    outline: none;
+    text-decoration: none;
     box-shadow: 0 0 0 ${x.button.outlineSize} ${x.button.hoverBorderColor};
+    outline: none;
   }
 
   &:focus,
   &:active {
     z-index: 2;
-    text-decoration: none;
     border-color: ${x.button.activeBorderColor};
-    outline: none;
+    text-decoration: none;
     box-shadow: 0 0 0 ${x.button.outlineSize} ${x.button.activeBorderColor};
+    outline: none;
   }
 
   &[disabled],
@@ -42,9 +42,9 @@
   &[disabled]:focus,
   &:disabled {
     z-index: auto;
+    border-color: ${x.button.disabledBorder};
     color: ${x.button.disabledTextColor};
     background-color: ${x.button.disabledBackgroundColor};
-    border-color: ${x.button.disabledBorder};
     box-shadow: none;
   }
 }
@@ -52,8 +52,8 @@
 /* Remove browser default \`<button>\` styles */
 
 .button-clear {
-  background: transparent;
   border-color: transparent;
+  background: transparent;
 
   &:hover,
   &:focus {

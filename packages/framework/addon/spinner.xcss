@@ -26,8 +26,8 @@
     width: ${x.spinner.size};
     height: ${x.spinner.size};
     border: ${x.spinner.width} solid ${x.spinner.backgroundColor};
-    border-top-color: ${x.spinner.color};
     border-radius: 50%;
+    border-top-color: ${x.spinner.color};
     animation: spinner ${x.spinner.animateSpeed} ${x.spinner.animateTiming} infinite;
     content: '';
   }
