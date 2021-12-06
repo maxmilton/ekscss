@@ -1,3 +1,7 @@
+/**
+* Better hyphenation; improved word flow, especially on small screens.
+* @see http://clagnut.com/blog/2395
+*/
 h1,
 h2,
 h3,
@@ -6,10 +10,6 @@ h5,
 h6,
 p,
 .hyphenate {
-  /**
-  * Better hyphenation; improved word flow, especially on small screens.
-  * @see http://clagnut.com/blog/2395
-  */
   -webkit-hyphenate-limit-before: 3;
   -webkit-hyphenate-limit-after: 3;
   -webkit-hyphenate-limit-chars: 6 3 3;

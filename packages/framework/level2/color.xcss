@@ -36,4 +36,4 @@ ${x.fn.each(x.color, (key, value) => xcss`
 .muted { color: ${x.color.muted}; }
 .bg-muted { background-color: ${x.color.muted}; }
 .inherit { color: inherit; }
-.inherit-i { color: inherit !important; } /* stylelint-disable-line declaration-no-important */
+.inherit-i { color: inherit !important; }

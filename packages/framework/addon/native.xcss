@@ -8,13 +8,12 @@
 */
 
 ${null}
-
 /* Typography */
-
 table {
   #apply: .table;
   & > thead { #apply: .table>thead; }
   & > tbody { #apply: .table>tbody; }
+
   th,
   td { #apply: .table td; }
   th { #apply: .table th; }
@@ -28,23 +27,29 @@ label { #apply: .label; }
 input { #apply: .input; }
 select { #apply: .select; }
 textarea { #apply: .textarea; }
+
 input,
 select,
 textarea {
   &:hover { #apply: '.input:hover'; }
+
   &:focus,
   &:active { #apply: '.input:focus'; }
+
   &[disabled],
   &[disabled]:hover,
   &[disabled]:focus,
   &:disabled { #apply: .input[disabled]; }
 }
+
 input[type='checkbox'] {
   #apply: .checkbox;
   &:checked { #apply: '.checkbox:checked'; }
   &:hover { #apply: '.checkbox:hover'; }
+
   &:focus,
   &:active { #apply: '.checkbox:focus'; }
+
   &[disabled],
   &[disabled]:hover,
   &[disabled]:focus,
@@ -63,8 +68,10 @@ input[type='checkbox'] {
 button {
   #apply: .button;
   &:hover { #apply: '.button:hover'; }
+
   &:focus,
   &:active { #apply: '.button:focus'; }
+
   &[disabled],
   &[disabled]:hover,
   &[disabled]:focus,

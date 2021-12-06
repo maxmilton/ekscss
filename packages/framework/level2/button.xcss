@@ -57,7 +57,7 @@
 
   &:hover,
   &:focus {
-    /* prevent change when applied to links */
+    // prevent change when applied to links
     color: unset;
   }
 }
@@ -87,6 +87,7 @@
       border-top-left-radius: ${x.button.radius};
       border-bottom-left-radius: ${x.button.radius};
     }
+
     &:last-of-type {
       border-top-right-radius: ${x.button.radius};
       border-bottom-right-radius: ${x.button.radius};

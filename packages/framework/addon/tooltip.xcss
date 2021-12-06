@@ -13,22 +13,21 @@
 
   &::before,
   &::after {
-    z-index: 1;
     position: absolute;
     right: 50%;
-    opacity: 0;
+    z-index: 1;
     // visibility: hidden;
-    pointer-events: none;
-    transform: translateX(50%);
+    opacity: 0;
     transition: opacity ${x.tooltip.animateSpeed} ${x.tooltip.animateTiming};
+    transform: translateX(50%);
+    pointer-events: none;
   }
 
   &::before {
-    content: attr(aria-label);
     bottom: calc(0.5rem + 100%);
-    padding: ${x.tooltip.paddingY} ${x.tooltip.paddingX};
-    max-width: ${x.tooltip.widthMax};
     width: max-content;
+    max-width: ${x.tooltip.widthMax};
+    padding: ${x.tooltip.paddingY} ${x.tooltip.paddingX};
     color: ${x.tooltip.color};
     font-size: ${x.tooltip.textSize};
     font-weight: ${x.tooltip.textWeight};
@@ -36,16 +35,17 @@
     text-align: center;
     hyphens: manual; // don't break words in awkward places
     background: ${x.tooltip.backgroundColor};
+    content: attr(aria-label);
   }
 
   &::after {
-    content: '';
     bottom: 100%;
     // width: 0;
     // height: 0;
     border: solid;
-    border-width: 0.5rem 0.5rem 0;
     border-color: ${x.tooltip.backgroundColor} transparent;
+    border-width: 0.5rem 0.5rem 0;
+    content: '';
   }
 
   &:hover::before,

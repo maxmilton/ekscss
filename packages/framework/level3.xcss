@@ -32,5 +32,5 @@
 // TODO: Should also probably not be enabled by default unless it's fully
 // compatible with the default colours + at least everything in level 1 + 2
 @media (prefers-color-scheme: dark) {
-  @import './addon/dark.xcss';
+  @import './addon/dark.xcss'; // stylelint-disable-line no-invalid-position-at-import-rule
 }

@@ -1,15 +1,17 @@
-// TODO:
+// TODO:!
 ${null}
 
 // Offset scroll (e.g., when using the browser's in-page search or an in-page
 // #link) to prevent fixed position navbars etc. covering the target
-:root { scroll-padding-top: 4rem; }
+:root {
+  scroll-padding-top: 4rem;
+}
 
 .app-nav {
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  position: fixed;
 }
 
-.app-nav-item {}
+// .app-nav-item {}

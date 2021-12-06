@@ -17,9 +17,9 @@ nav ul {
 * See: https://unfetteredthoughts.net/2017/09/26/voiceover-and-list-style-type-none/
 * See: https://github.com/jensimmons/cssremedy/blob/master/css/reminders.css
 */
-nav li:before {
-  content: '\200B';
+nav li::before {
   position: absolute;
+  content: '\200B';
 }
 
 /* Reduced Motion
@@ -35,12 +35,12 @@ nav li:before {
   *,
   ::before,
   ::after {
-    animation-delay: -1ms !important;
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
     background-attachment: initial !important;
-    scroll-behavior: auto !important;
     transition-delay: 0s !important;
     transition-duration: 0s !important;
+    animation-duration: 1ms !important;
+    animation-delay: -1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 }

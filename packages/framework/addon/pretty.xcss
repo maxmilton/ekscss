@@ -20,7 +20,7 @@ h2 {
 
 hr {
   margin: ${x.hrMargin};
-  color: ${x.hrColor}
+  color: ${x.hrColor};
 }
 
 /* Smooth scrolling */

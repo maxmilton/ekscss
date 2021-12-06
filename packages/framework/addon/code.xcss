@@ -1,7 +1,7 @@
 .code-inline {
   padding: ${x.codeInline.paddingY} ${x.codeInline.paddingX};
-  word-wrap: break-word;
   color: ${x.codeInline.textColor};
+  word-wrap: break-word;
   background-color: ${x.codeInline.backgroundColor};
   user-select: all; // for easy copy
 }
@@ -10,9 +10,9 @@
   display: block; // makes it easy to add to a <code> element
   max-width: 100%;
   padding: ${x.codeBlock.paddingY} ${x.codeBlock.paddingX};
-  border-radius: ${x.codeBlock.radius};
-  color: ${x.codeBlock.textColor};
-  background-color: ${x.codeBlock.backgroundColor};
   overflow: auto;
+  color: ${x.codeBlock.textColor};
   white-space: pre;
+  background-color: ${x.codeBlock.backgroundColor};
+  border-radius: ${x.codeBlock.radius};
 }

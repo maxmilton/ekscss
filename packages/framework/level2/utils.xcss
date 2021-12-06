@@ -38,6 +38,7 @@ ${x.fn.each(x.media, (bp, query) => xcss`
 .fwl { font-weight: ${x.textWeightLight}; }
 .fwn { font-weight: ${x.textWeight}; }
 .fwm { font-weight: ${x.textWeightMedium}; }
+
 .fwh,
 .bold { font-weight: ${x.textWeightHeavy}; }
 
@@ -68,7 +69,6 @@ ${x.fn.each(x.media, (bp, query) => xcss`
 .wsn { white-space: nowrap; }
 .wsu { white-space: unset; }
 
-
 /* Mouse */
 
 .pen { pointer-events: none; }
@@ -88,7 +88,6 @@ ${x.fn.each(x.media, (bp, query) => xcss`
 /* Borders */
 
 .rounded { border-radius: ${x.radius}; }
-
 
 /* Cursors */
 

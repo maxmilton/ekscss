@@ -18,14 +18,16 @@
 }
 
 // http://nicolasgallagher.com/micro-clearfix-hack/
-.clear:before,
-.clear:after {
-  content: '';
+.clear::before,
+.clear::after {
   display: table;
+  content: '';
 }
-.clear:after {
+
+.clear::after {
   clear: both;
 }
+
 .clear {
   *zoom: 1; // IE 6/7 (trigger hasLayout)
 }
