@@ -3,13 +3,14 @@
   "scripts": {
     "build": "pnpm run -r build",
     "lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:ts",
-    "lint:css": "echo 'TODO: CSS linting'",
+    "lint:css": "stylelint --ignore-path .gitignore '**/*.{css,xcss}'",
     "lint:js": "eslint --ignore-path .gitignore --ext .cjs,.js,.jsx,.mjs,.ts,.tsx .",
     "lint:ts": "tsc --project tsconfig.lint.json",
     "test": "c8 uvu -r tsm packages '\\/test\\/.+\\.test\\.ts$'",
     "test-raw": "uvu packages '\\/test\\/.+\\.test-raw\\.js$'"
   },
   "devDependencies": {
+    "@maxmilton/stylelint-config": "0.0.3",
     "@types/node": "16.11.11",
     "@typescript-eslint/eslint-plugin": "5.5.0",
     "@typescript-eslint/parser": "5.5.0",
@@ -20,9 +21,12 @@
     "eslint-config-airbnb-typescript": "16.1.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-unicorn": "39.0.0",
+    "postcss-ekscss": "workspace:*",
     "prettier": "2.5.1",
     "prettier-plugin-pkg": "0.11.1",
     "prettier-plugin-sh": "0.8.1",
+    "stylelint": "14.1.0",
+    "stylelint-config-standard": "24.0.0",
     "tsm": "2.2.1",
     "typescript": "4.5.2",
     "uvu": "0.5.2"
@@ -46,6 +50,31 @@
     "plugins": [
       "./node_modules/prettier-plugin-pkg",
       "./node_modules/prettier-plugin-sh"
+    ]
+  },
+  "stylelint": {
+    "reportInvalidScopeDisables": true,
+    "reportNeedlessDisables": true,
+    "extends": [
+      "stylelint-config-standard",
+      "@maxmilton/stylelint-config"
+    ],
+    "ignoreFiles": [
+      "**/dist/**",
+      "**/node_modules/**",
+      "packages/framework/test/**",
+      "packages/framework/addon/alert.xcss",
+      "packages/framework/addon/app-nav.xcss",
+      "packages/framework/addon/ux-larger-click-zone.xcss",
+      "packages/framework/level1/type.xcss",
+      "packages/framework/level2/color.xcss",
+      "packages/framework/level2/display.xcss",
+      "packages/framework/level2/flex.xcss",
+      "packages/framework/level2/form.xcss",
+      "packages/framework/level2/grid.xcss",
+      "packages/framework/level2/postition.xcss",
+      "packages/framework/level2/spacing.xcss",
+      "packages/framework/level2/utils.xcss"
     ]
   }
 }
