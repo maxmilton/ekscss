@@ -4,3 +4,6 @@
 dist
 node_modules
 package-lock.json*
+
+# auto-generated
+packages/framework/*.d.ts

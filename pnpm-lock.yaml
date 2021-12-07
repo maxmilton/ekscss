@@ -98,6 +98,7 @@ importers:
       cssremedy: github:jensimmons/cssremedy#468e31a
       ekscss: workspace:*
       stylis: ^4.0.10
+      typescript: 4.5.2
     dependencies:
       '@ekscss/plugin-apply': link:../plugin-apply
       '@ekscss/plugin-import': link:../plugin-import
@@ -109,6 +110,7 @@ importers:
       '@ekscss/cli': link:../cli
       '@types/color': 3.0.2
       ekscss: link:../ekscss
+      typescript: 4.5.2
 
   packages/plugin-apply:
     specifiers:

@@ -10,17 +10,19 @@
   "files": [
     "*.xcss",
     "addon",
+    "config.d.ts",
     "config.js",
     "dist",
     "level1",
     "level2",
-    "utils.js",
-    "xcss.config.js"
+    "utils.d.ts",
+    "utils.js"
   ],
   "scripts": {
-    "build": "pnpm run prebuild && pnpm run build-levels && pnpm run build-addons",
+    "build": "pnpm run prebuild && pnpm run build-levels && pnpm run build-addons && pnpm run postbuild",
     "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css; done'",
     "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css; done'",
+    "postbuild": "tsc --emitDeclarationOnly",
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@ekscss/cli": "workspace:*",
     "@types/color": "3.0.2",
-    "ekscss": "workspace:*"
+    "ekscss": "workspace:*",
+    "typescript": "4.5.2"
   }
 }
