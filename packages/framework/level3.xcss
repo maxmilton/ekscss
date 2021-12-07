@@ -19,15 +19,10 @@
 @import './addon/card.xcss';
 @import './addon/spinner.xcss';
 @import './addon/tooltip.xcss';
-@import './addon/app-nav.xcss';
-@import './addon/app-footer.xcss';
 
 // Addons with a high chance of unexpected side effects
 @import './addon/ux-larger-click-zone.xcss';
 @import './addon/native.xcss';
-
-// Addons with side effects too disruptive to enable by default
-// @import './addon/app-nav.xcss';
 
 // TODO: Should also probably not be enabled by default unless it's fully
 // compatible with the default colours + at least everything in level 1 + 2

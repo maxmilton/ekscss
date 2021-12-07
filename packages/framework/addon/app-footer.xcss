@@ -1,7 +1,0 @@
-/* Footer */
-
-.footer {
-  margin-top: ${x.footer.marginY};
-  margin-bottom: ${x.footer.marginY};
-  color: ${x.footer.textColor};
-}
