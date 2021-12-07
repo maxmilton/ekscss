@@ -18,14 +18,14 @@ const { xcss } = require('ekscss');
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
 
-/** @type {import('@ekscss/cli').XCSSConfig} */
+/** @type {import('ekscss').XCSSCompileOptions} */
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
   globals: {
     fn: {
       /**
        * @see https://github.com/Qix-/color#readme
-       * @param {any} value - A XCSS template expression or any value the
+       * @param {any} value - An XCSS template expression or any value the
        * `color` package `Color` constructor accepts.
        */
       color: (value) => color(xcss`${value}`),
