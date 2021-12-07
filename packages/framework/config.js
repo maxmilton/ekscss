@@ -281,12 +281,6 @@ module.exports = {
       dangerBorderColor: (x) => x.color.red4,
     },
 
-    /* Addon: app-footer.xcss */
-    footer: {
-      marginY: '5rem',
-      textColor: (x) => x.color.muted,
-    },
-
     /* Addon: card.xcss */
     card: {
       backgroundColor: (x) => x.color.white,

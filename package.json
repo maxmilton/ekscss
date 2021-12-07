@@ -64,7 +64,6 @@
       "**/node_modules/**",
       "packages/framework/test/**",
       "packages/framework/addon/alert.xcss",
-      "packages/framework/addon/app-nav.xcss",
       "packages/framework/addon/ux-larger-click-zone.xcss",
       "packages/framework/level1/type.xcss",
       "packages/framework/level2/color.xcss",

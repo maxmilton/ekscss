@@ -41,6 +41,7 @@ function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
 
 /**
  * Extend an XCSS configuration with your own.
+ *
  * @param {XCSSConfig} target
  * @param {XCSSConfig} source
  * @returns {XCSSConfig}
