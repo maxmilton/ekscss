@@ -18,7 +18,7 @@ const { xcss } = require('ekscss');
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
 
-/** @type {import('ekscss').XCSSCompileOptions} */
+/** @type {import('./utils').XCSSConfig} */
 module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
   globals: {

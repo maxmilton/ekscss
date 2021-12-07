@@ -2,6 +2,7 @@
 
 const { applyPlugin } = require('@ekscss/plugin-apply');
 const { importPlugin } = require('@ekscss/plugin-import');
+const { merge } = require('dset/merge');
 const { ctx, interpolate, xcss } = require('ekscss');
 const stylis = require('stylis');
 
@@ -34,4 +35,20 @@ function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
   ctx.warnings.push(...oldWarnings);
 }
 
+/**
+ * @typedef {Omit<import('ekscss').XCSSCompileOptions, 'from' | 'to'>} XCSSConfig
+ */
+
+/**
+ * Extend an XCSS configuration with your own.
+ * @param {XCSSConfig} target
+ * @param {XCSSConfig} source
+ * @returns {XCSSConfig}
+ */
+function extend(target, source) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return merge(target, source);
+}
+
 exports.preloadApply = preloadApply;
+exports.extend = extend;
