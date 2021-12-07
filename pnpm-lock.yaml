@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@maxmilton/stylelint-config': 0.0.4
+      '@maxmilton/stylelint-config': 0.0.5
       '@types/node': 16.11.11
       '@typescript-eslint/eslint-plugin': 5.6.0
       '@typescript-eslint/parser': 5.6.0
@@ -25,7 +25,7 @@ importers:
       typescript: 4.5.2
       uvu: 0.5.2
     devDependencies:
-      '@maxmilton/stylelint-config': 0.0.4_stylelint@14.1.0
+      '@maxmilton/stylelint-config': 0.0.5_stylelint@14.1.0
       '@types/node': 16.11.11
       '@typescript-eslint/eslint-plugin': 5.6.0_c73ee81e7e5a72fe329c49340cf4792a
       '@typescript-eslint/parser': 5.6.0_eslint@8.4.0+typescript@4.5.2
@@ -455,12 +455,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@maxmilton/stylelint-config/0.0.4_stylelint@14.1.0:
-    resolution: {integrity: sha512-rVEl6qIbRMM14EA8TdKzMiWH9Nkn8s718OstjYl4N6bRIGuvQRGpw2wP1V1017ZAnNMcQs7AQ54O/r8DkM5GQw==}
+  /@maxmilton/stylelint-config/0.0.5_stylelint@14.1.0:
+    resolution: {integrity: sha512-fB48RWYP+a0z9lpVz2Xwxy5t5qHr/PJBhqBQwZEg92FGcc015U6yfXHnQxfbKVbZRqzxa8Bs+zUM/I2ONYq6yA==}
     peerDependencies:
       stylelint: ^14.0.0
     dependencies:
-      postcss-ekscss: 0.0.1
+      postcss-ekscss: 0.0.2
       stylelint: 14.1.0
       stylelint-order: 5.0.0_stylelint@14.1.0
     transitivePeerDependencies:
@@ -2427,8 +2427,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /postcss-ekscss/0.0.1:
-    resolution: {integrity: sha512-k5xfKMrZtjXWUfuPZs72u1sy35N1gq2mCJl4bRjQp7MYWcH0FqaNjf3VMvlRfhKXZdDzie4/6G5mGgBgWGuJxg==}
+  /postcss-ekscss/0.0.2:
+    resolution: {integrity: sha512-MpQ5YZxvxt5n+YOjtCElFI/we0b7wuJ7M+aKYJqrPJH+ZuRIz5HHTpFt1P3MeFb7c+BCQMl2/WB28Z0zldEl4w==}
     peerDependencies:
       ekscss: ^0.0.10
       postcss: ^8.0.0
