@@ -15,9 +15,6 @@ const { prefixPlugin } = require('@ekscss/plugin-prefix');
 const color = require('color');
 const { xcss } = require('ekscss');
 
-// FIXME: Remove if unused + remove framework/mixins/*
-// const { triangle } = require('./mixins/triangle');
-
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
 
@@ -32,9 +29,6 @@ module.exports = {
        * `color` package `Color` constructor accepts.
        */
       color: (value) => color(xcss`${value}`),
-      // Mixins
-      // FIXME: Remove if unused + remove framework/mixins/*
-      // triangle,
     },
 
     media: {
