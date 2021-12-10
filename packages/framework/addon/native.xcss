@@ -11,6 +11,7 @@ ${null}
 /* Typography */
 table {
   #apply: .table;
+
   & > thead { #apply: .table>thead; }
   & > tbody { #apply: .table>tbody; }
 
@@ -44,6 +45,7 @@ textarea {
 
 input[type='checkbox'] {
   #apply: .checkbox;
+
   &:checked { #apply: '.checkbox:checked'; }
   &:hover { #apply: '.checkbox:hover'; }
 
@@ -67,6 +69,7 @@ input[type='checkbox'] {
 
 button {
   #apply: .button;
+
   &:hover { #apply: '.button:hover'; }
 
   &:focus,

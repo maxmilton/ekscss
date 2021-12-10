@@ -66,12 +66,12 @@ importers:
       '@types/stylis': ^4.0.2
       esbuild: 0.14.2
       source-map: ^0.7.3
-      stylis: ^4.0.10
+      stylis: ^4.0.11
       typescript: 4.5.3
     dependencies:
       '@types/stylis': 4.0.2
       source-map: 0.7.3
-      stylis: 4.0.10
+      stylis: 4.0.11
     devDependencies:
       esbuild: 0.14.2
       typescript: 4.5.3
@@ -98,7 +98,7 @@ importers:
       cssremedy: github:jensimmons/cssremedy#468e31a
       dset: ^3.1.1
       ekscss: workspace:*
-      stylis: ^4.0.10
+      stylis: ^4.0.11
       typescript: 4.5.3
     dependencies:
       '@ekscss/plugin-apply': link:../plugin-apply
@@ -107,7 +107,7 @@ importers:
       color: 4.1.0
       cssremedy: github.com/jensimmons/cssremedy/468e31a
       dset: 3.1.1
-      stylis: 4.0.10
+      stylis: 4.0.11
     devDependencies:
       '@ekscss/cli': link:../cli
       '@types/color': 3.0.2
@@ -117,10 +117,10 @@ importers:
   packages/plugin-apply:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.10
+      stylis: ^4.0.11
       typescript: 4.5.3
     dependencies:
-      stylis: 4.0.10
+      stylis: 4.0.11
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.5.3
@@ -128,10 +128,10 @@ importers:
   packages/plugin-import:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.10
+      stylis: ^4.0.11
       typescript: 4.5.3
     dependencies:
-      stylis: 4.0.10
+      stylis: 4.0.11
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.5.3
@@ -139,10 +139,10 @@ importers:
   packages/plugin-prefix:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.10
+      stylis: ^4.0.11
       typescript: 4.5.3
     dependencies:
-      stylis: 4.0.10
+      stylis: 4.0.11
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.5.3
@@ -785,8 +785,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001285
-      electron-to-chromium: 1.4.12
+      caniuse-lite: 1.0.30001286
+      electron-to-chromium: 1.4.15
       escalade: 3.1.1
       node-releases: 2.0.1
       picocolors: 1.0.0
@@ -842,8 +842,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /caniuse-lite/1.0.30001285:
-    resolution: {integrity: sha512-KAOkuUtcQ901MtmvxfKD+ODHH9YVDYnBt+TGYSz2KIfnq22CiArbUxXPN9067gNbgMlnNYRSwho8OPXZPALB9Q==}
+  /caniuse-lite/1.0.30001286:
+    resolution: {integrity: sha512-zaEMRH6xg8ESMi2eQ3R4eZ5qw/hJiVsO/HlLwniIwErij0JDr9P+8V4dtx1l+kLq6j3yy8l8W4fst1lBnat5wQ==}
     dev: true
 
   /chalk/2.4.2:
@@ -1046,8 +1046,8 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /electron-to-chromium/1.4.12:
-    resolution: {integrity: sha512-zjfhG9Us/hIy8AlQ5OzfbR/C4aBv1Dg/ak4GX35CELYlJ4tDAtoEcQivXvyBdqdNQ+R6PhlgQqV8UNPJmhkJog==}
+  /electron-to-chromium/1.4.15:
+    resolution: {integrity: sha512-WDw2IUL3k4QpbzInV3JZK+Zd1NjWJPDZ28oUSchWb/kf6AVj7/niaAlgcJlvojFa1d7pJSyQ/KSZsEtq5W7aGQ==}
     dev: true
 
   /emoji-regex/8.0.0:
@@ -2458,8 +2458,8 @@ packages:
       postcss: 8.4.4
     dev: true
 
-  /postcss-selector-parser/6.0.6:
-    resolution: {integrity: sha512-9LXrvaaX3+mcv5xkg5kFwqSzSH1JIObIx51PrndZwlmznwXRfxMddDvo9gve3gVR8ZTKgoFDdWkbRFmEhT4PMg==}
+  /postcss-selector-parser/6.0.7:
+    resolution: {integrity: sha512-U+b/Deoi4I/UmE6KOVPpnhS7I7AYdKbhGcat+qTQ27gycvaACvNEw11ba6RrkwVmDVRW7sigWgLj4/KbbJjeDA==}
     engines: {node: '>=4'}
     dependencies:
       cssesc: 3.0.0
@@ -2853,7 +2853,7 @@ packages:
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.1
       postcss-safe-parser: 6.0.0_postcss@8.4.4
-      postcss-selector-parser: 6.0.6
+      postcss-selector-parser: 6.0.7
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
       specificity: 0.4.1
@@ -2868,8 +2868,8 @@ packages:
       - supports-color
     dev: true
 
-  /stylis/4.0.10:
-    resolution: {integrity: sha512-m3k+dk7QeJw660eIKRRn3xPF6uuvHs/FFzjX3HQ5ove0qYsiygoAhwn5a3IYKaZPo5LrYD0rfVmtv1gNY1uYwg==}
+  /stylis/4.0.11:
+    resolution: {integrity: sha512-Q7gWFqMXrpDAnqhkFZdgBjXzybYc4WaJNtFdnQQSfww/cIiBUx/3sPGYMKFh3muXA47dhaWfYqc/HQkg8j7+ig==}
     dev: false
 
   /supports-color/5.5.0:
