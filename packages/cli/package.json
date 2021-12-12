@@ -23,6 +23,6 @@
     "sade": "^1.7.4"
   },
   "devDependencies": {
-    "@types/sade": "1.7.3"
+    "@types/sade": "1.7.4"
   }
 }
