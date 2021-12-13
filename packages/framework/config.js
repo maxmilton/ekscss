@@ -12,8 +12,8 @@
 const { applyPlugin } = require('@ekscss/plugin-apply');
 const { importPlugin } = require('@ekscss/plugin-import');
 const { prefixPlugin } = require('@ekscss/plugin-prefix');
-const color = require('color');
 const { xcss } = require('ekscss');
+const { color } = require('./utils');
 
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
@@ -23,12 +23,7 @@ module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
   globals: {
     fn: {
-      /**
-       * @see https://github.com/Qix-/color#readme
-       * @param {any} value - An XCSS template expression or any value the
-       * `color` package `Color` constructor accepts.
-       */
-      color: (value) => color(xcss`${value}`),
+      color,
     },
 
     media: {

@@ -2,9 +2,33 @@
 
 const { applyPlugin } = require('@ekscss/plugin-apply');
 const { importPlugin } = require('@ekscss/plugin-import');
+const Color = require('color');
 const { merge } = require('dset/merge');
 const { ctx, interpolate, xcss } = require('ekscss');
 const stylis = require('stylis');
+
+/** @typedef {Color | string | ArrayLike<number> | number | { [key: string]: any }} ColorParam */
+/** @typedef {import('ekscss').XCSSGlobals} XCSSGlobals */
+/** @typedef {import('ekscss').XCSSExpression} XCSSExpression */
+
+/**
+ * @see https://github.com/Qix-/color#readme
+ * @param {ColorParam | ((x: XCSSGlobals) => XCSSExpression)} value - A value
+ * the `color` package `Color` constructor accepts or an XCSS template
+ * expression function which will resolve to such a value.
+ * @param {Parameters<typeof Color>[1]} model
+ */
+function color(value, model) {
+  let val = value;
+
+  // Reduce XCSS function expressions to their final value
+  while (typeof val === 'function') {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    val = val(ctx.x);
+  }
+
+  return Color(val, model);
+}
 
 /**
  * Preload #apply references without including the actual content in your final
