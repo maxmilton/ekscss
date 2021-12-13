@@ -59,9 +59,7 @@ function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
   ctx.warnings.push(...oldWarnings);
 }
 
-/**
- * @typedef {Omit<import('ekscss').XCSSCompileOptions, 'from' | 'to'>} XCSSConfig
- */
+/** @typedef {Omit<import('ekscss').XCSSCompileOptions, 'from' | 'to'>} XCSSConfig */
 
 /**
  * Extend an XCSS configuration with your own.
@@ -75,5 +73,72 @@ function extend(target, source) {
   return merge(target, source);
 }
 
+/** @typedef {string | number | Array<string | number>} ResolvedExpression */
+/** @typedef {{ [key: string]: ResolvedExpression | ResolvedGlobals }} ResolvedGlobals */
+
+/**
+ * @param {Record<string, XCSSExpression>} obj
+ * @returns {ResolvedGlobals}
+ */
+function resolveGlobals(obj) {
+  /** @type {Record<string, XCSSExpression>} */
+  const resolved = {};
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [key, value] of Object.entries(obj)) {
+    if (value != null && typeof value === 'object' && !Array.isArray(value)) {
+      // @ts-expect-error - TODO:!
+      resolved[key] = resolveGlobals(value);
+    } else if (typeof value === 'function') {
+      /** @type {XCSSExpression} */
+      let val = value;
+
+      // Reduce XCSS function expressions to their final value
+      do {
+        val = val(ctx.x);
+      } while (typeof val === 'function');
+
+      if (val instanceof Color) {
+        val = val.toString();
+      }
+
+      resolved[key] = val;
+    } else {
+      resolved[key] = value;
+    }
+  }
+
+  // @ts-expect-error - TODO:!
+  return resolved;
+}
+
+/**
+ * Get an XCSSConfig's globals with all expressions resolved.
+ *
+ * @param {XCSSConfig} config
+ * @returns {ResolvedGlobals}
+ */
+function getGlobals(config) {
+  if (!config.globals || Object.keys(config.globals).length === 0) return {};
+
+  ctx.warnings = [];
+  // @ts-expect-error - TODO:!
+  ctx.x = config.globals || {};
+
+  const { fn, ...globals } = config.globals;
+  // @ts-expect-error - TODO:!
+  const resolved = resolveGlobals(globals);
+  // @ts-expect-error - TODO:!
+  resolved.fn = fn || {};
+
+  // @ts-expect-error - reset
+  // eslint-disable-next-line no-multi-assign
+  ctx.warnings = ctx.x = undefined;
+
+  return resolved;
+}
+
+exports.color = color;
 exports.preloadApply = preloadApply;
 exports.extend = extend;
+exports.getGlobals = getGlobals;
