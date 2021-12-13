@@ -66,12 +66,12 @@ importers:
       '@types/stylis': ^4.0.2
       esbuild: 0.14.3
       source-map: ^0.7.3
-      stylis: ^4.0.11
+      stylis: ^4.0.13
       typescript: 4.5.3
     dependencies:
       '@types/stylis': 4.0.2
       source-map: 0.7.3
-      stylis: 4.0.11
+      stylis: 4.0.13
     devDependencies:
       esbuild: 0.14.3
       typescript: 4.5.3
@@ -98,7 +98,7 @@ importers:
       cssremedy: github:jensimmons/cssremedy#468e31a
       dset: ^3.1.1
       ekscss: workspace:*
-      stylis: ^4.0.11
+      stylis: ^4.0.13
       typescript: 4.5.3
     dependencies:
       '@ekscss/plugin-apply': link:../plugin-apply
@@ -107,7 +107,7 @@ importers:
       color: 4.1.0
       cssremedy: github.com/jensimmons/cssremedy/468e31a
       dset: 3.1.1
-      stylis: 4.0.11
+      stylis: 4.0.13
     devDependencies:
       '@ekscss/cli': link:../cli
       '@types/color': 3.0.2
@@ -117,10 +117,10 @@ importers:
   packages/plugin-apply:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.11
+      stylis: ^4.0.13
       typescript: 4.5.3
     dependencies:
-      stylis: 4.0.11
+      stylis: 4.0.13
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.5.3
@@ -128,10 +128,10 @@ importers:
   packages/plugin-import:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.11
+      stylis: ^4.0.13
       typescript: 4.5.3
     dependencies:
-      stylis: 4.0.11
+      stylis: 4.0.13
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.5.3
@@ -139,10 +139,10 @@ importers:
   packages/plugin-prefix:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.11
+      stylis: ^4.0.13
       typescript: 4.5.3
     dependencies:
-      stylis: 4.0.11
+      stylis: 4.0.13
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.5.3
@@ -786,7 +786,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001286
-      electron-to-chromium: 1.4.15
+      electron-to-chromium: 1.4.16
       escalade: 3.1.1
       node-releases: 2.0.1
       picocolors: 1.0.0
@@ -1046,8 +1046,8 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /electron-to-chromium/1.4.15:
-    resolution: {integrity: sha512-WDw2IUL3k4QpbzInV3JZK+Zd1NjWJPDZ28oUSchWb/kf6AVj7/niaAlgcJlvojFa1d7pJSyQ/KSZsEtq5W7aGQ==}
+  /electron-to-chromium/1.4.16:
+    resolution: {integrity: sha512-BQb7FgYwnu6haWLU63/CdVW+9xhmHls3RCQUFiV4lvw3wimEHTVcUk2hkuZo76QhR8nnDdfZE7evJIZqijwPdA==}
     dev: true
 
   /emoji-regex/8.0.0:
@@ -1080,11 +1080,11 @@ packages:
       has-symbols: 1.0.2
       internal-slot: 1.0.3
       is-callable: 1.2.4
-      is-negative-zero: 2.0.1
+      is-negative-zero: 2.0.2
       is-regex: 1.1.4
       is-shared-array-buffer: 1.0.1
       is-string: 1.0.7
-      is-weakref: 1.0.1
+      is-weakref: 1.0.2
       object-inspect: 1.11.1
       object-keys: 1.1.1
       object.assign: 4.1.2
@@ -1906,8 +1906,8 @@ packages:
       is-extglob: 2.1.1
     dev: true
 
-  /is-negative-zero/2.0.1:
-    resolution: {integrity: sha512-2z6JzQvZRa9A2Y7xC6dQQm4FSTSTNWjKIYYTt4246eMTJmIo0Q+ZyOsU66X8lxK1AbB92dFeglPLrhwpeRKO6w==}
+  /is-negative-zero/2.0.2:
+    resolution: {integrity: sha512-dqJvarLawXsFbNDeJW7zAz8ItJ9cd28YufuuFzh0G8pNHjJMnY08Dv7sYX2uF5UpQOwieAeOExEYAWWfu7ZZUA==}
     engines: {node: '>= 0.4'}
     dev: true
 
@@ -1968,8 +1968,8 @@ packages:
     resolution: {integrity: sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=}
     dev: true
 
-  /is-weakref/1.0.1:
-    resolution: {integrity: sha512-b2jKc2pQZjaeFYWEf7ScFj+Be1I+PXmlu572Q8coTXZ+LD/QQZ7ShPMst8h16riVgyXTQwUsFEl74mDvc/3MHQ==}
+  /is-weakref/1.0.2:
+    resolution: {integrity: sha512-qctsuLZmIQ0+vSSMfoVvyFe2+GSEvnmZ2ezTup1SBse9+twCCeial6EEi3Nc2KFcf6+qz2FBPnjXsk8xhKSaPQ==}
     dependencies:
       call-bind: 1.0.2
     dev: true
@@ -2449,13 +2449,13 @@ packages:
     resolution: {integrity: sha1-Kcy8fDfe36wwTp//C/FZaz9qDk4=}
     dev: true
 
-  /postcss-safe-parser/6.0.0_postcss@8.4.4:
+  /postcss-safe-parser/6.0.0_postcss@8.4.5:
     resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.3.3
     dependencies:
-      postcss: 8.4.4
+      postcss: 8.4.5
     dev: true
 
   /postcss-selector-parser/6.0.7:
@@ -2466,25 +2466,16 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /postcss-sorting/7.0.1_postcss@8.4.4:
+  /postcss-sorting/7.0.1_postcss@8.4.5:
     resolution: {integrity: sha512-iLBFYz6VRYyLJEJsBJ8M3TCqNcckVzz4wFounSc5Oez35ogE/X+aoC5fFu103Ot7NyvjU3/xqIXn93Gp3kJk4g==}
     peerDependencies:
       postcss: ^8.3.9
     dependencies:
-      postcss: 8.4.4
+      postcss: 8.4.5
     dev: true
 
   /postcss-value-parser/4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
-    dev: true
-
-  /postcss/8.4.4:
-    resolution: {integrity: sha512-joU6fBsN6EIer28Lj6GDFoC/5yOZzLCfn0zHAn/MYXI7aPt4m4hK5KC5ovEZXy+lnCjmYIbQWngvju2ddyEr8Q==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.1.30
-      picocolors: 1.0.0
-      source-map-js: 1.0.1
     dev: true
 
   /postcss/8.4.5:
@@ -2825,8 +2816,8 @@ packages:
     peerDependencies:
       stylelint: ^14.0.0
     dependencies:
-      postcss: 8.4.4
-      postcss-sorting: 7.0.1_postcss@8.4.4
+      postcss: 8.4.5
+      postcss-sorting: 7.0.1_postcss@8.4.5
       stylelint: 14.1.0
     dev: true
 
@@ -2858,10 +2849,10 @@ packages:
       normalize-path: 3.0.0
       normalize-selector: 0.2.0
       picocolors: 1.0.0
-      postcss: 8.4.4
+      postcss: 8.4.5
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.1
-      postcss-safe-parser: 6.0.0_postcss@8.4.4
+      postcss-safe-parser: 6.0.0_postcss@8.4.5
       postcss-selector-parser: 6.0.7
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -2877,8 +2868,8 @@ packages:
       - supports-color
     dev: true
 
-  /stylis/4.0.11:
-    resolution: {integrity: sha512-Q7gWFqMXrpDAnqhkFZdgBjXzybYc4WaJNtFdnQQSfww/cIiBUx/3sPGYMKFh3muXA47dhaWfYqc/HQkg8j7+ig==}
+  /stylis/4.0.13:
+    resolution: {integrity: sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==}
     dev: false
 
   /supports-color/5.5.0:

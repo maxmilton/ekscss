@@ -20,7 +20,7 @@
     "ekscss": "workspace:^"
   },
   "dependencies": {
-    "stylis": "^4.0.11"
+    "stylis": "^4.0.13"
   },
   "devDependencies": {
     "ekscss": "workspace:*",
