@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { compile, XCSSCompileOptions } from 'ekscss';
+import { compile, type XCSSCompileOptions } from 'ekscss';
 import JoyCon from 'joycon';
 import colors from 'kleur/colors';
 import type { Preprocessor, PreprocessorGroup } from './types';

@@ -31,7 +31,7 @@
 // - Spec: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit#heading=h.lmz475t4mvbx
 
 import path from 'path';
-import { SourceMapGenerator, SourceNode } from 'source-map';
+import { SourceNode, type SourceMapGenerator } from 'source-map';
 import * as stylis from 'stylis';
 import type { Element } from './types';
 

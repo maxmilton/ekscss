@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 // https://esbuild.github.io/plugins/
 
-import { compile, XCSSCompileOptions } from 'ekscss';
+import { compile, type XCSSCompileOptions } from 'ekscss';
 import type { PartialMessage, Plugin } from 'esbuild';
 import fs from 'fs';
 import JoyCon from 'joycon';

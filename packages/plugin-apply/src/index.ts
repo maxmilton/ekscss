@@ -24,7 +24,11 @@
 //  ↳ Impact of including this plugin and impact of actual #apply use
 
 import {
-  ctx, Element, Middleware, onAfterBuild, onBeforeBuild,
+  ctx,
+  onAfterBuild,
+  onBeforeBuild,
+  type Element,
+  type Middleware,
 } from 'ekscss';
 import * as stylis from 'stylis';
 

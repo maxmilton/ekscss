@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign, no-underscore-dangle */
 
 import {
-  ctx, Element, interpolate, Middleware, xcss,
+  ctx, interpolate, xcss, type Element, type Middleware,
 } from 'ekscss';
 import fs from 'fs';
 import path from 'path';

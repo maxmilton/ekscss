@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 
 import { createFilter, FilterPattern } from '@rollup/pluginutils';
-import { compile, XCSSCompileOptions } from 'ekscss';
+import { compile, type XCSSCompileOptions } from 'ekscss';
 import JoyCon from 'joycon';
 import type { Plugin } from 'rollup';
 
