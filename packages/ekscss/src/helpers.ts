@@ -210,7 +210,6 @@ export function xcss(
 
     // Reduce XCSS function expressions to their final value
     while (typeof val === 'function') {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       val = val(ctx.x);
     }
 

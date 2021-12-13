@@ -31,15 +31,12 @@ export function onAfterBuild(callback: BuildHookFn): void {
   afterBuildFns.push(callback);
 }
 
-function mergeDefaultGlobals(globals: Partial<XCSSGlobals>) {
-  return {
-    ...globals,
-    fn: {
-      each,
-      map: _map,
-      ...globals.fn,
-    },
-  };
+// TODO: Write tests that prove this doesn't mutate the original object.
+function mergeDefaultGlobals(globals: Partial<XCSSGlobals>): XCSSGlobals {
+  const newGlobals = { ...globals, fn: { ...globals.fn } };
+  newGlobals.fn.each ??= each;
+  newGlobals.fn.map ??= _map;
+  return newGlobals as XCSSGlobals;
 }
 
 export function compile(
@@ -66,7 +63,7 @@ export function compile(
   ctx.x = x;
 
   const middlewares = plugins.map((plugin) => {
-    // load plugins which are a package name string (e.g., from JSON configs)
+    // Load plugins which are a package or file path (e.g., from JSON configs)
     if (typeof plugin === 'string') {
       try {
         // eslint-disable-next-line

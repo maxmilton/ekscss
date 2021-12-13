@@ -49,21 +49,17 @@ export type XCSSExpression =
   | false
   | null
   | undefined
-  | void
-  // FIXME: Remove (too broad; undesirable matches e.g., functions) and fix
-  // types throughout the package
-  | { toString: () => string };
+  | void;
 
 export type ExpressionOrNested =
   | XCSSExpression
   | { [key: string]: ExpressionOrNested };
 
-export type XCSSGlobals = {
+export interface XCSSGlobals {
   [key: string]: ExpressionOrNested;
-} & {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  fn: Record<string, Function>;
-};
+
+  fn: Record<string, (...args: any) => any>;
+}
 
 export interface XCSSCompileOptions {
   /** Input file path. Without this top level relative `@import`s may fail. */
