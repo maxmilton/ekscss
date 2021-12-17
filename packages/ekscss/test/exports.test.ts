@@ -45,13 +45,18 @@ test('does not export any private internals', () => {
   assert.is(scriptExports.size, 0);
 });
 
-test('has no default export', () => {
-  // @ts-expect-error - Synthetic default created by esbuild at test runtime
-  assert.type(allExports.default, 'object');
-  // @ts-expect-error - Synthetic default created by esbuild at test runtime
-  assert.is(allExports.default.default, undefined);
+test('default export is undefined', () => {
+  // Runtime build (when tests run with tsm)
+  assert.type(allExports, 'object');
+  // @ts-expect-error - default doesn't exist
+  assert.type(allExports.default, 'undefined');
+  // @ts-expect-error - default doesn't exist
+  assert.is(allExports.default, undefined);
+
+  // Pre-built
   const bundle = require('../dist/index.js'); // eslint-disable-line
   assert.type(bundle, 'object');
+  assert.type(bundle.default, 'undefined');
   assert.is(bundle.default, undefined);
 });
 
