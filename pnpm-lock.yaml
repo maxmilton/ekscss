@@ -1,8 +1,5 @@
 lockfileVersion: 5.3
 
-overrides:
-  postcss-ekscss: ./packages/postcss-ekscss
-
 importers:
 
   .:
@@ -18,7 +15,7 @@ importers:
       eslint-config-airbnb-typescript: 16.1.0
       eslint-plugin-import: 2.25.3
       eslint-plugin-unicorn: 39.0.0
-      postcss-ekscss: ./packages/postcss-ekscss
+      postcss-ekscss: workspace:*
       prettier: 2.5.1
       prettier-plugin-pkg: 0.11.1
       prettier-plugin-sh: 0.8.1
@@ -152,11 +149,9 @@ importers:
 
   packages/postcss-ekscss:
     specifiers:
-      ekscss: workspace:*
       postcss: 8.4.5
       typescript: 4.5.4
     devDependencies:
-      ekscss: link:../ekscss
       postcss: 8.4.5
       typescript: 4.5.4
 
@@ -449,7 +444,7 @@ packages:
     dependencies:
       ekscss: 0.0.12
       postcss: 8.4.5
-      postcss-ekscss: link:packages/postcss-ekscss
+      postcss-ekscss: 0.0.4_ekscss@0.0.12+postcss@8.4.5
       stylelint: 14.1.0
       stylelint-order: 5.0.0_stylelint@14.1.0
     dev: true
@@ -2423,6 +2418,16 @@ packages:
   /pluralize/8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
+    dev: true
+
+  /postcss-ekscss/0.0.4_ekscss@0.0.12+postcss@8.4.5:
+    resolution: {integrity: sha512-nWihVXSFCglewr8t4Z5rvO98MCh4s76yL6GNDzPmxGhbJUlP5cXZO1SH/HsQROWxLYfkDuv31bwZlTSJ27Z+0g==}
+    peerDependencies:
+      ekscss: ^0.0.12
+      postcss: ^8.0.0
+    dependencies:
+      ekscss: 0.0.12
+      postcss: 8.4.5
     dev: true
 
   /postcss-media-query-parser/0.2.3:

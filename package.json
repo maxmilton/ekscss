@@ -43,11 +43,6 @@
       "lcovonly"
     ]
   },
-  "pnpm": {
-    "overrides": {
-      "postcss-ekscss": "./packages/postcss-ekscss"
-    }
-  },
   "prettier": {
     "arrowParens": "always",
     "endOfLine": "lf",
