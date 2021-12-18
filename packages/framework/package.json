@@ -28,6 +28,11 @@
   "peerDependencies": {
     "ekscss": "workspace:^"
   },
+  "peerDependenciesMeta": {
+    "ekscss": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@ekscss/plugin-apply": "workspace:^",
     "@ekscss/plugin-import": "workspace:^",
