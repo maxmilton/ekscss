@@ -14,11 +14,14 @@
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {
-    "ekscss": "workspace:^",
     "postcss": "^8.0.0"
   },
+  "peerDependenciesMeta": {
+    "postcss": {
+      "optional": true
+    }
+  },
   "devDependencies": {
-    "ekscss": "workspace:*",
     "postcss": "8.4.5",
     "typescript": "4.5.4"
   }
