@@ -2,7 +2,7 @@
 * FORMS
 */
 
-* {
+:root {
   accent-color: ${x.color.primary};
 }
 
