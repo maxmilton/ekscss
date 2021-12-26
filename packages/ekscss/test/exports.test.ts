@@ -49,14 +49,11 @@ test('default export is undefined', () => {
   // Runtime build (when tests run with tsm)
   assert.type(allExports, 'object');
   // @ts-expect-error - default doesn't exist
-  assert.type(allExports.default, 'undefined');
-  // @ts-expect-error - default doesn't exist
   assert.is(allExports.default, undefined);
 
   // Pre-built
   const bundle = require('../dist/index.js'); // eslint-disable-line
   assert.type(bundle, 'object');
-  assert.type(bundle.default, 'undefined');
   assert.is(bundle.default, undefined);
 });
 
