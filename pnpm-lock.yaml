@@ -160,14 +160,14 @@ importers:
       '@rollup/pluginutils': ^4.1.2
       ekscss: workspace:*
       joycon: ^3.1.0
-      rollup: 2.62.0
+      rollup: 2.63.0
       typescript: 4.5.4
     dependencies:
       '@rollup/pluginutils': 4.1.2
       joycon: 3.1.1
     devDependencies:
       ekscss: link:../ekscss
-      rollup: 2.62.0
+      rollup: 2.63.0
       typescript: 4.5.4
 
   packages/svelte-ekscss:
@@ -2360,8 +2360,8 @@ packages:
       glob: 7.2.0
     dev: true
 
-  /rollup/2.62.0:
-    resolution: {integrity: sha512-cJEQq2gwB0GWMD3rYImefQTSjrPYaC6s4J9pYqnstVLJ1CHa/aZNVkD4Epuvg4iLeMA4KRiq7UM7awKK6j7jcw==}
+  /rollup/2.63.0:
+    resolution: {integrity: sha512-nps0idjmD+NXl6OREfyYXMn/dar3WGcyKn+KBzPdaLecub3x/LrId0wUcthcr8oZUAcZAR8NKcfGGFlNgGL1kQ==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
