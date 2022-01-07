@@ -27,6 +27,7 @@
     bottom: calc(0.5rem + 100%);
     width: max-content;
     max-width: ${x.tooltip.widthMax};
+    height: fit-content;
     padding: ${x.tooltip.paddingY} ${x.tooltip.paddingX};
     color: ${x.tooltip.color};
     font-size: ${x.tooltip.textSize};

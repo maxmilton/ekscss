@@ -12,6 +12,9 @@
 // @media (prefers-color-scheme: dark) {}
 
 .dark {
+  // TODO: Keep? Using a meta tag is better
+  // color-scheme: dark;
+
   // Better text clarity on macOS text rendering engine (dark backgrounds only!)
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
