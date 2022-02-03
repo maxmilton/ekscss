@@ -93,7 +93,7 @@ importers:
       '@ekscss/plugin-apply': workspace:^
       '@ekscss/plugin-import': workspace:^
       '@ekscss/plugin-prefix': workspace:^
-      '@types/color': 3.0.2
+      '@types/color': 3.0.3
       color: ^4.1.0
       cssremedy: github:jensimmons/cssremedy#468e31a
       dset: ^3.1.1
@@ -110,7 +110,7 @@ importers:
       stylis: 4.0.13
     devDependencies:
       '@ekscss/cli': link:../cli
-      '@types/color': 3.0.2
+      '@types/color': 3.0.3
       ekscss: link:../ekscss
       typescript: 4.5.5
 
@@ -300,8 +300,8 @@ packages:
     resolution: {integrity: sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==}
     dev: true
 
-  /@types/color/3.0.2:
-    resolution: {integrity: sha512-INiJl6sfNn8iyC5paxVzqiVUEj2boIlFki02uRTAkKwAj++7aAF+ZfEv/XrIeBa0XI/fTZuDHW8rEEcEVnON+Q==}
+  /@types/color/3.0.3:
+    resolution: {integrity: sha512-X//qzJ3d3Zj82J9sC/C18ZY5f43utPbAJ6PhYt/M7uG6etcF6MRpKdN880KBy43B0BMzSfeT96MzrsNjFI3GbA==}
     dependencies:
       '@types/color-convert': 2.0.0
     dev: true
