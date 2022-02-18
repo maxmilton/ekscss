@@ -29,7 +29,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
     let configPath: string | undefined;
 
     build.onLoad({ filter: /\.xcss$/ }, async (args) => {
-      const code = await fs.promises.readFile(args.path, 'utf-8');
+      const code = await fs.promises.readFile(args.path, 'utf8');
       const warnings: PartialMessage[] = [];
 
       if (!configData) {

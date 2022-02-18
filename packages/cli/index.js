@@ -60,7 +60,7 @@ module.exports = async (src, dest, opts) => {
   }
 
   const destFile = dest || srcFile.replace(/\.xcss$/, '.css');
-  const code = await fs.promises.readFile(srcFile, 'utf-8');
+  const code = await fs.promises.readFile(srcFile, 'utf8');
 
   const t0 = performance.now();
   const compiled = xcss.compile(code, {
