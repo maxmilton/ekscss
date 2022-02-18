@@ -23,7 +23,8 @@
     "build-addons": "/bin/sh -ec 'for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css; done'",
     "build-levels": "/bin/sh -ec 'for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css; done'",
     "postbuild": "tsc --emitDeclarationOnly",
-    "prebuild": "rm -rf dist *.d.ts"
+    "prebuild": "rm -rf dist *.d.ts",
+    "test": "xcss test/test.xcss /dev/null"
   },
   "peerDependencies": {
     "ekscss": "workspace:^"
