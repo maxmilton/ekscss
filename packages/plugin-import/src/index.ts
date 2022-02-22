@@ -67,7 +67,7 @@ export const importPlugin: Middleware = (
   ctx.from = from;
 
   const ext = path.extname(from);
-  let code = fs.readFileSync(from, 'utf-8');
+  let code = fs.readFileSync(from, 'utf8');
 
   // TODO: Document this behaviour
   if (ext === '.xcss' || !ext) {

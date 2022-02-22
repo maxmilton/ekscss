@@ -2,6 +2,10 @@
 
 ${null}
 
+.bomb {
+  content: "a̐💣👪👦🏽👨‍👩‍👧‍👦";
+}
+
 // @supports (display: grid) {
 //   div {
 //     display: grid;
