@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@maxmilton/stylelint-config': 0.0.9
+      '@maxmilton/stylelint-config': 0.0.10
       '@types/node': 17.0.21
       '@typescript-eslint/eslint-plugin': 5.13.0
       '@typescript-eslint/parser': 5.13.0
@@ -25,7 +25,7 @@ importers:
       typescript: 4.6.2
       uvu: 0.5.3
     devDependencies:
-      '@maxmilton/stylelint-config': 0.0.9_stylelint@14.5.3
+      '@maxmilton/stylelint-config': 0.0.10_stylelint@14.5.3
       '@types/node': 17.0.21
       '@typescript-eslint/eslint-plugin': 5.13.0_33fffc354ccfa91fbe7d1677b9395a0a
       '@typescript-eslint/parser': 5.13.0_eslint@8.10.0+typescript@4.6.2
@@ -249,8 +249,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@maxmilton/stylelint-config/0.0.9_stylelint@14.5.3:
-    resolution: {integrity: sha512-qoJRRhlzXX6qph47mCWKHNpFtZLgF2XMQdV/JVCNIrEykTTTDn6pLvY0+CYmSdU6jsd4qqXJF++OP8jLl4WH1A==}
+  /@maxmilton/stylelint-config/0.0.10_stylelint@14.5.3:
+    resolution: {integrity: sha512-tpYrGewpYvyxeO32K3vlrB5lHCYSr3EBkY3Q5YVWDhrA0KgTZAeg3H0SFFc+Yog33DwZ5IHq8asRJulTSFgUpA==}
     peerDependencies:
       stylelint: ^14.0.0
     dependencies:
