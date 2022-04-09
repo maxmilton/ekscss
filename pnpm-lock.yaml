@@ -14,7 +14,7 @@ importers:
       eslint-config-airbnb-base: 15.0.0
       eslint-config-airbnb-typescript: 16.1.4
       eslint-plugin-import: 2.25.4
-      eslint-plugin-unicorn: 41.0.1
+      eslint-plugin-unicorn: 42.0.0
       postcss-ekscss: workspace:*
       prettier: 2.6.0
       prettier-plugin-pkg: 0.13.0
@@ -35,7 +35,7 @@ importers:
       eslint-config-airbnb-base: 15.0.0_c30d0de178566d9b987ccaf504209400
       eslint-config-airbnb-typescript: 16.1.4_d3d47568fe2f9c7aac31bcfd006f2c8e
       eslint-plugin-import: 2.25.4_eslint@8.13.0
-      eslint-plugin-unicorn: 41.0.1_eslint@8.13.0
+      eslint-plugin-unicorn: 42.0.0_eslint@8.13.0
       postcss-ekscss: link:packages/postcss-ekscss
       prettier: 2.6.0
       prettier-plugin-pkg: 0.13.0_prettier@2.6.0
@@ -1198,8 +1198,8 @@ packages:
       tsconfig-paths: 3.13.0
     dev: true
 
-  /eslint-plugin-unicorn/41.0.1_eslint@8.13.0:
-    resolution: {integrity: sha512-gF5vo2dIj0YdNMQ/IMegiBkQdQ22GBFFVpdkJP+0og3w7XD4ypea0xQVRv6iofkLVR2w0phAdikcnU01ybd4Ow==}
+  /eslint-plugin-unicorn/42.0.0_eslint@8.13.0:
+    resolution: {integrity: sha512-ixBsbhgWuxVaNlPTT8AyfJMlhyC5flCJFjyK3oKE8TRrwBnaHvUbuIkCM1lqg8ryYrFStL/T557zfKzX4GKSlg==}
     engines: {node: '>=12'}
     peerDependencies:
       eslint: '>=8.8.0'
