@@ -17,7 +17,7 @@ importers:
       eslint-plugin-unicorn: 41.0.1
       postcss-ekscss: workspace:*
       prettier: 2.6.0
-      prettier-plugin-pkg: 0.11.1
+      prettier-plugin-pkg: 0.13.0
       prettier-plugin-sh: 0.10.1
       stylelint: 14.6.0
       stylelint-config-standard: 25.0.0
@@ -38,7 +38,7 @@ importers:
       eslint-plugin-unicorn: 41.0.1_eslint@8.13.0
       postcss-ekscss: link:packages/postcss-ekscss
       prettier: 2.6.0
-      prettier-plugin-pkg: 0.11.1_prettier@2.6.0
+      prettier-plugin-pkg: 0.13.0_prettier@2.6.0
       prettier-plugin-sh: 0.10.1_prettier@2.6.0
       stylelint: 14.6.0
       stylelint-config-standard: 25.0.0_stylelint@14.6.0
@@ -2311,8 +2311,9 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-pkg/0.11.1_prettier@2.6.0:
-    resolution: {integrity: sha512-xuSSyiZS1osFVBB5w3fTpUiqGfSS5c0Azh78nWr4Q9viA9nYJyYAiI4FcyltjowsIGMF5IFGtG58DdDkNifoFQ==}
+  /prettier-plugin-pkg/0.13.0_prettier@2.6.0:
+    resolution: {integrity: sha512-0eUQf15kmvcTT7x9L6p0ZX3BDLZMLdO47426e3Huc90rv0HLuiY9GTifVXCoDGaQw4EUjpOllNBEg0WS0xOHCw==}
+    engines: {node: '>=12.20'}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
