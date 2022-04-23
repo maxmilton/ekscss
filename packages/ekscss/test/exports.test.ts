@@ -35,7 +35,6 @@ test('does not export any private internals', () => {
   const allPublicExportNames = [
     ...compilerPublicExports.map((x) => x[0]),
     ...helperPublicExports.map((x) => x[0]),
-    'default', // synthetic default created by esbuild at test runtime
   ];
   const scriptExports = new Set(Object.keys(allExports));
   assert.ok(scriptExports.size >= allPublicExportNames.length);
