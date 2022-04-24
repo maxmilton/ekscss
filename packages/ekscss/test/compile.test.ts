@@ -1,3 +1,8 @@
+// TODO: Write more tests
+// - Add new file `sourcemap.test.ts` + write tests for source map support
+// - Validate "warnings" are generated in expected scenarios and file, line, column are correct
+// - Validate "dependencies" are added correctly
+
 /* eslint-disable import/no-extraneous-dependencies */
 
 import { test } from 'uvu';
@@ -30,14 +35,23 @@ const complexCodeResult = 'body{font-size:20px;color:coral;}.red{color:coral;}.g
 test('returns expected result with empty code', () => {
   const compiled = compile('');
   assert.is(compiled.css, '');
+  assert.is(compiled.warnings.length, 0, 'no warnings');
 });
 
-// TODO: Write more tests here!!
-// - Validate warnings are generated in expected scenarios and file, line, column are correct
+test('returns expected object shape', () => {
+  const compiled = compile('');
+  assert.equal(compiled, {
+    css: '',
+    dependencies: [],
+    map: undefined,
+    warnings: [],
+  });
+});
 
 test('runs with complex code', () => {
   const compiled = compile(complexCodeFixture);
   assert.snapshot(compiled.css, complexCodeResult);
+  assert.is(compiled.warnings.length, 0, 'no warnings');
 });
 
 test.run();
