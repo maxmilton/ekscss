@@ -1,3 +1,8 @@
+/**
+ * Internal XCSS configuration to build the framework. When importing a base
+ * config into your own project, you should use `config.js` not this file.
+ */
+
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 'use strict'; // eslint-disable-line strict, lines-around-directive

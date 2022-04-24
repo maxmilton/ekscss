@@ -63,7 +63,7 @@ module.exports = {
       'Liberation Mono',
       'monospace',
     ].join(','),
-    textSize: '1.25em', // 20px
+    textSize: '1.25em', // 20px; browser default 16px * 1.25
     textWeightLight: 300,
     textWeight: 400,
     textWeightMedium: 500,
