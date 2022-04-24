@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@maxmilton/stylelint-config': 0.0.10
-      '@types/node': 17.0.25
+      '@types/node': 17.0.26
       '@typescript-eslint/eslint-plugin': 5.20.0
       '@typescript-eslint/parser': 5.20.0
       c8: 7.11.2
@@ -26,7 +26,7 @@ importers:
       uvu: 0.5.3
     devDependencies:
       '@maxmilton/stylelint-config': 0.0.10_stylelint@14.7.1
-      '@types/node': 17.0.25
+      '@types/node': 17.0.26
       '@typescript-eslint/eslint-plugin': 5.20.0_81f0d1a74f014d44d273bd1612c85fd9
       '@typescript-eslint/parser': 5.20.0_eslint@8.14.0+typescript@4.6.3
       c8: 7.11.2
@@ -66,12 +66,12 @@ importers:
       '@types/stylis': ^4.0.2
       esbuild: 0.14.38
       source-map: ~0.8.0-beta.0
-      stylis: ^4.0.13
+      stylis: ^4.1.1
       typescript: 4.6.3
     dependencies:
       '@types/stylis': 4.0.2
       source-map: 0.8.0-beta.0
-      stylis: 4.1.0
+      stylis: 4.1.1
     devDependencies:
       esbuild: 0.14.38
       typescript: 4.6.3
@@ -98,7 +98,7 @@ importers:
       cssremedy: github:jensimmons/cssremedy#468e31a
       dset: ^3.1.1
       ekscss: workspace:*
-      stylis: ^4.0.13
+      stylis: ^4.1.1
       typescript: 4.6.3
     dependencies:
       '@ekscss/plugin-apply': link:../plugin-apply
@@ -107,7 +107,7 @@ importers:
       color: 4.2.3
       cssremedy: github.com/jensimmons/cssremedy/468e31a
       dset: 3.1.1
-      stylis: 4.1.0
+      stylis: 4.1.1
     devDependencies:
       '@ekscss/cli': link:../cli
       '@types/color': 3.0.3
@@ -117,10 +117,10 @@ importers:
   packages/plugin-apply:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.13
+      stylis: ^4.1.1
       typescript: 4.6.3
     dependencies:
-      stylis: 4.1.0
+      stylis: 4.1.1
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.6.3
@@ -128,10 +128,10 @@ importers:
   packages/plugin-import:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.13
+      stylis: ^4.1.1
       typescript: 4.6.3
     dependencies:
-      stylis: 4.1.0
+      stylis: 4.1.1
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.6.3
@@ -139,10 +139,10 @@ importers:
   packages/plugin-prefix:
     specifiers:
       ekscss: workspace:*
-      stylis: ^4.0.13
+      stylis: ^4.1.1
       typescript: 4.6.3
     dependencies:
-      stylis: 4.1.0
+      stylis: 4.1.1
     devDependencies:
       ekscss: link:../ekscss
       typescript: 4.6.3
@@ -354,8 +354,8 @@ packages:
     resolution: {integrity: sha512-nJOuiTlsvmClSr3+a/trTSx4DTuY/VURsWGKSf/eeavh0LRMqdsK60ti0TlwM5iHiGOK3/Ibkxsbr7i9rzGreA==}
     dev: true
 
-  /@types/node/17.0.25:
-    resolution: {integrity: sha512-wANk6fBrUwdpY4isjWrKTufkrXdu1D2YHCot2fD/DfWxF5sMrVSA+KN7ydckvaTCh0HiqX9IVl0L5/ZoXg5M7w==}
+  /@types/node/17.0.26:
+    resolution: {integrity: sha512-z/FG/6DUO7pnze3AE3TBGIjGGKkvCcGcWINe1C7cADY8hKLJPDYpzsNE37uExQ4md5RFtTCvg+M8Mu1Enyeg2A==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -2725,8 +2725,8 @@ packages:
       - supports-color
     dev: true
 
-  /stylis/4.1.0:
-    resolution: {integrity: sha512-SrSDzNasOCBTo7C2N9geFwydg/2bmdkWXd4gJirtq82m5JBYtR2+Ialck8czmfBLIdPxCOotlgJESPa8C1RqvA==}
+  /stylis/4.1.1:
+    resolution: {integrity: sha512-lVrM/bNdhVX2OgBFNa2YJ9Lxj7kPzylieHd3TNjuGE0Re9JB7joL5VUKOVH1kdNNJTgGPpT8hmwIAPLaSyEVFQ==}
     dev: false
 
   /supports-color/5.5.0:
