@@ -149,10 +149,10 @@ importers:
 
   packages/postcss-ekscss:
     specifiers:
-      postcss: 8.4.12
+      postcss: 8.4.13
       typescript: 4.6.4
     devDependencies:
-      postcss: 8.4.12
+      postcss: 8.4.13
       typescript: 4.6.4
 
   packages/rollup-plugin-ekscss:
@@ -2329,6 +2329,15 @@ packages:
 
   /postcss/8.4.12:
     resolution: {integrity: sha512-lg6eITwYe9v6Hr5CncVbK70SoioNQIq81nsaG86ev5hAidQvmOeETBqs7jm43K2F5/Ley3ytDtriImV6TpNiSg==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.3
+      picocolors: 1.0.0
+      source-map-js: 1.0.2
+    dev: true
+
+  /postcss/8.4.13:
+    resolution: {integrity: sha512-jtL6eTBrza5MPzy8oJLFuUscHDXTV5KcLlqAWHl5q5WYRfnNRGSmOZmOZ1T6Gy7A99mOZfqungmZMpMmCVJ8ZA==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.3
