@@ -13,7 +13,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npm install --global pnpm@6
+        if: ${{ matrix.node-version == 12 }}
       - run: npm install --global pnpm
+        if: ${{ matrix.node-version >= 14 }}
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
       - run: pnpm run test
