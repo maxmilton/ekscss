@@ -46,7 +46,7 @@
   "devDependencies": {
     "@ekscss/cli": "workspace:*",
     "@types/color": "3.0.3",
-    "@types/stylis": "^4.0.2",
+    "@types/stylis": "4.0.2",
     "ekscss": "workspace:*",
     "typescript": "4.6.4"
   }
