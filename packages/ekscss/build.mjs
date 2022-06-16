@@ -17,7 +17,6 @@ const dev = mode === 'development';
       'process.env.NODE_ENV': JSON.stringify(mode),
     },
     external: ['source-map', 'stylis'],
-    banner: { js: '"use strict";' },
     bundle: true,
     sourcemap: true,
     minify: !dev,

@@ -12,7 +12,6 @@ const dev = mode === 'development';
     platform: 'node',
     target: ['node12'],
     external: ['postcss'],
-    banner: { js: '"use strict";' },
     bundle: true,
     sourcemap: true,
     minifySyntax: !dev,
