@@ -257,6 +257,32 @@ module.exports = {
       disabledTextColor: (x) => x.input.disabledTextColor,
       disabledBackgroundColor: (x) => x.input.disabledBackgroundColor,
       disabledBorder: (x) => x.input.disabledBorder,
+      level3: {
+        backgroundColorFrom: (x) => x.color.light5,
+        backgroundColorTo: (x) => x.color.light3,
+        hoverBackgroundColor: (x) => x.color.light1,
+      },
+      primary: {
+        textColor: (x) => x.color.white,
+        backgroundColorFrom: (x) => x.color.blue3,
+        backgroundColorTo: (x) => x.color.blue2,
+        borderColor: (x) => x.color.blue2,
+        hoverBackgroundColor: (x) => x.color.blue2,
+      },
+      success: {
+        textColor: (x) => x.color.white,
+        backgroundColorFrom: (x) => x.color.green4,
+        backgroundColorTo: (x) => x.color.green3,
+        borderColor: (x) => x.color.green2,
+        hoverBackgroundColor: (x) => x.color.green2,
+      },
+      danger: {
+        textColor: (x) => x.color.white,
+        backgroundColorFrom: (x) => x.color.red4,
+        backgroundColorTo: (x) => x.color.red3,
+        borderColor: (x) => x.color.red2,
+        hoverBackgroundColor: (x) => x.color.red2,
+      },
     },
 
     /* Addon: alert.xcss */
