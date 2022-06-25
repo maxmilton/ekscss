@@ -337,7 +337,7 @@ module.exports = {
       size: '48px',
       width: '5px',
       color: (x) => x.color.primary,
-      backgroundColor: (x) => x.color.light3,
+      backgroundColor: (x) => x.color.light1,
       animateSpeed: '496ms',
       animateTiming: 'linear',
     },
