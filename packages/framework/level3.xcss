@@ -9,6 +9,7 @@
 
 // Level 3 - Addons
 @import './addon/float.xcss';
+@import './addon/inert.xcss';
 @import './addon/type-hyphens.xcss';
 @import './addon/pretty.xcss';
 @import './addon/button.xcss';
