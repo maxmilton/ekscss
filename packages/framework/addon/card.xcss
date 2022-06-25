@@ -3,6 +3,7 @@
  */
 
 .card {
+  overflow: hidden; // prevent margin collapse
   border-radius: ${x.radiusLarge};
   background-color: ${x.card.backgroundColor};
   box-shadow: ${x.card.shadow};
