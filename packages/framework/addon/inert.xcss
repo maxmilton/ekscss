@@ -1,0 +1,18 @@
+/**
+* XCSS Addon: Inert
+*
+* Polyfill for HTMLElement.inert attribute. Especially useful for modal/dialog
+* boxes or other situations where you need to restrict focus.
+*
+* @see https://caniuse.com/mdn-api_htmlelement_inert
+* @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert
+* @see https://developer.chrome.com/articles/inert/
+*/
+
+[inert],
+[inert] * {
+  cursor: default;
+  opacity: 0.5; // opinionated but provides a clear UX
+  pointer-events: none;
+  user-select: none;
+}
