@@ -2,14 +2,17 @@
 * Fancy button styles
 */
 
-// TODO: Colours should be customisable and make use of x.color.primary, x.color.danger, etc.
+// Prevent default link hover styles
+a.button:hover {
+  color: currentcolor;
+}
 
 .button {
   font-weight: ${x.textWeightMedium};
-  background-image: linear-gradient(${x.color.white}, ${x.color.light4});
+  background-image: linear-gradient(${x.button.level3.backgroundColorFrom}, ${x.button.level3.backgroundColorTo});
 
   &:hover {
-    background-color: ${x.color.light1};
+    background-color: ${x.button.level3.hoverBackgroundColor};
     background-image: none;
   }
 
@@ -23,21 +26,35 @@
 }
 
 .button-primary {
-  border-color: ${x.color.blue2};
-  color: ${x.color.white};
-  background-image: linear-gradient(${x.color.blue3}, ${x.color.blue2});
+  border-color: ${x.button.primary.borderColor};
+  color: ${x.button.primary.textColor};
+  background-image: linear-gradient(${x.button.primary.backgroundColorFrom}, ${x.button.primary.backgroundColorTo});
 
   &:hover {
-    background-image: linear-gradient(${x.color.blue2}, ${x.color.blue1});
+    background-color: ${x.button.primary.hoverBackgroundColor};
+    background-image: none;
+  }
+}
+
+// TODO: How often is this button style actually used? Remove?
+.button-success {
+  border-color: ${x.button.success.borderColor};
+  color: ${x.button.success.textColor};
+  background-image: linear-gradient(${x.button.success.backgroundColorFrom}, ${x.button.success.backgroundColorTo});
+
+  &:hover {
+    background-color: ${x.button.success.hoverBackgroundColor};
+    background-image: none;
   }
 }
 
 .button-danger {
-  border-color: ${x.color.red2};
-  color: ${x.color.white};
-  background-image: linear-gradient(${x.color.red4}, ${x.color.red3});
+  border-color: ${x.button.danger.borderColor};
+  color: ${x.button.danger.textColor};
+  background-image: linear-gradient(${x.button.danger.backgroundColorFrom}, ${x.button.danger.backgroundColorTo});
 
   &:hover {
-    background-image: linear-gradient(${x.color.red3}, ${x.color.red2});
+    background-color: ${x.button.danger.hoverBackgroundColor};
+    background-image: none;
   }
 }
