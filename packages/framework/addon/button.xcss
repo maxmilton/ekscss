@@ -3,7 +3,8 @@
 */
 
 // Prevent default link hover styles
-a.button:hover {
+a.button:hover,
+a.button:focus {
   color: currentcolor;
 }
 
