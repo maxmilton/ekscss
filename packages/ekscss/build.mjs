@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-top-level-await, unicorn/no-process-exit */
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 
 import esbuild from 'esbuild';
@@ -66,4 +67,7 @@ const dev = mode === 'development';
   if (out2.metafile) {
     console.log(await esbuild.analyzeMetafile(out2.metafile));
   }
-})().catch(console.error);
+})().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
