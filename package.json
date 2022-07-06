@@ -24,7 +24,7 @@
     "postcss-ekscss": "workspace:*",
     "prettier": "2.7.1",
     "prettier-plugin-pkg": "0.16.0",
-    "prettier-plugin-sh": "0.12.4",
+    "prettier-plugin-sh": "0.12.6",
     "stylelint": "14.9.1",
     "stylelint-config-standard": "26.0.0",
     "tsm": "2.2.1",
