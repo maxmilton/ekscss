@@ -96,7 +96,7 @@ importers:
       '@types/color': 3.0.3
       '@types/stylis': 4.0.2
       color: ^4.2.1
-      cssremedy: github:jensimmons/cssremedy#468e31a
+      cssremedy: github:jensimmons/cssremedy#abe5806
       dset: ^3.1.2
       ekscss: workspace:*
       stylis: ^4.1.1
@@ -106,7 +106,7 @@ importers:
       '@ekscss/plugin-import': link:../plugin-import
       '@ekscss/plugin-prefix': link:../plugin-prefix
       color: 4.2.3
-      cssremedy: github.com/jensimmons/cssremedy/468e31a
+      cssremedy: github.com/jensimmons/cssremedy/abe5806
       dset: 3.1.2
       stylis: 4.1.1
     devDependencies:
@@ -3044,8 +3044,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/jensimmons/cssremedy/468e31a:
-    resolution: {tarball: https://codeload.github.com/jensimmons/cssremedy/tar.gz/468e31a}
+  github.com/jensimmons/cssremedy/abe5806:
+    resolution: {tarball: https://codeload.github.com/jensimmons/cssremedy/tar.gz/abe5806}
     name: cssremedy
     version: 0.1.0-beta.2
     dev: false
