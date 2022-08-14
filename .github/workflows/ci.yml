@@ -1,5 +1,9 @@
 name: ci
-on: push
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 jobs:
   test:
     name: test (node v${{ matrix.node-version }})
@@ -22,7 +26,7 @@ jobs:
       - run: pnpm run test
       - run: pnpm run test-raw
       - name: Report coverage
-        if: ${{ matrix.node-version == 18 }}
+        if: ${{ matrix.node-version == 18 && github.repository_owner == 'maxmilton' }}
         run: |
           curl -Lo ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod +x ./cc-test-reporter
