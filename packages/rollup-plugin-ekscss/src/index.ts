@@ -65,7 +65,7 @@ export default function rollupPlugin({
           this.warn('Unable to locate XCSS config');
         }
       } else {
-        configData = config || {};
+        configData = config;
       }
     },
 

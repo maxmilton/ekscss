@@ -48,7 +48,7 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
         console.warn(colors.yellow('Warning:'), 'Unable to locate XCSS config');
       }
     } else {
-      configData = config || {};
+      configData = config;
     }
 
     const compiled = compile(content, {
