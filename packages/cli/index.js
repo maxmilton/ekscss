@@ -41,30 +41,31 @@ module.exports = async (src, dest, opts) => {
   const config = result.data || {};
   const rootDir = config.rootDir || process.cwd();
   const srcFiles = src ? [src] : ['index.xcss', 'src/index.xcss'];
-  /** @type {string|undefined} */
+  let srcFileName;
   let srcFile;
 
   for (const filename of srcFiles) {
-    const file = path.resolve(rootDir, filename);
-    const exists = fs.existsSync(file);
-
-    if (exists) {
-      srcFile = file;
-      break;
+    try {
+      srcFileName = path.resolve(rootDir, filename);
+      // eslint-disable-next-line no-await-in-loop
+      srcFile = await fs.promises.open(srcFileName, 'r', 0o600);
+    } catch {
+      // no op
     }
   }
 
-  if (!srcFile) {
+  if (!srcFileName || !srcFile) {
     console.error(colors.red('Critical:'), 'Unable to resolve src file');
     process.exit(2);
   }
 
-  const destFile = dest || srcFile.replace(/\.xcss$/, '.css');
+  const destFile = dest || srcFileName.replace(/\.xcss$/, '.css');
   const code = await fs.promises.readFile(srcFile, 'utf8');
+  await srcFile.close();
 
   const t0 = performance.now();
   const compiled = xcss.compile(code, {
-    from: srcFile,
+    from: srcFileName,
     to: destFile,
     globals: config.globals,
     plugins: config.plugins,
