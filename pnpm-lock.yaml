@@ -17,7 +17,7 @@ importers:
       eslint-plugin-unicorn: 43.0.2
       postcss-ekscss: workspace:*
       prettier: 2.7.1
-      prettier-plugin-pkg: 0.16.1
+      prettier-plugin-pkg: 0.17.0
       prettier-plugin-sh: 0.12.8
       stylelint: 14.11.0
       stylelint-config-standard: 28.0.0
@@ -38,7 +38,7 @@ importers:
       eslint-plugin-unicorn: 43.0.2_eslint@8.22.0
       postcss-ekscss: link:packages/postcss-ekscss
       prettier: 2.7.1
-      prettier-plugin-pkg: 0.16.1_prettier@2.7.1
+      prettier-plugin-pkg: 0.17.0_prettier@2.7.1
       prettier-plugin-sh: 0.12.8_prettier@2.7.1
       stylelint: 14.11.0
       stylelint-config-standard: 28.0.0_stylelint@14.11.0
@@ -168,14 +168,14 @@ importers:
       '@rollup/pluginutils': ^4.2.1
       ekscss: workspace:*
       joycon: ^3.1.0
-      rollup: 2.78.0
+      rollup: 2.78.1
       typescript: 4.7.4
     dependencies:
       '@rollup/pluginutils': 4.2.1
       joycon: 3.1.1
     devDependencies:
       ekscss: link:../ekscss
-      rollup: 2.78.0
+      rollup: 2.78.1
       typescript: 4.7.4
 
   packages/svelte-ekscss:
@@ -2632,8 +2632,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-pkg/0.16.1_prettier@2.7.1:
-    resolution: {integrity: sha512-wy6mekVVYluwNLCqTmayW2916ABTLjf7SFQWcOfJ+nnqg1AavJiCyfZrapvaGUbinivdnm3IhIjxMjTjkXgVgQ==}
+  /prettier-plugin-pkg/0.17.0_prettier@2.7.1:
+    resolution: {integrity: sha512-TwQqf8XT+esIy75Js4WywCjhhCya46uCX2kP3elgCmmHwP9twybGYJfZLYJ0wnKgkFUXjlAzDypbPcNXfJA/mg==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
@@ -2759,8 +2759,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup/2.78.0:
-    resolution: {integrity: sha512-4+YfbQC9QEVvKTanHhIAFVUFSRsezvQF8vFOJwtGfb9Bb+r014S+qryr9PSmw8x6sMnPkmFBGAvIFVQxvJxjtg==}
+  /rollup/2.78.1:
+    resolution: {integrity: sha512-VeeCgtGi4P+o9hIg+xz4qQpRl6R401LWEXBmxYKOV4zlF82lyhgh2hTZnheFUbANE8l2A41F458iwj2vEYaXJg==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
