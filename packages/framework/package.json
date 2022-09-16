@@ -48,6 +48,6 @@
     "@types/color": "3.0.3",
     "@types/stylis": "4.0.2",
     "ekscss": "workspace:*",
-    "typescript": "4.8.2"
+    "typescript": "4.8.3"
   }
 }
