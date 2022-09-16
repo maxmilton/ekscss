@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "typescript": "4.8.2"
+    "typescript": "4.8.3"
   }
 }
