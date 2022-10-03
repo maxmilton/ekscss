@@ -231,7 +231,6 @@ module.exports = {
       hoverBorderColor: (x) => x.fn.color(x.color.dark4).alpha(0.5),
       invalidColor: (x) => x.color.red2,
       invalidBorder: (x) => x.color.red3,
-      errorTextColor: (x) => x.color.red4,
       placeholderTextColor: (x) => x.color.muted,
       border: (x) => xcss`1px solid ${x.color.gray4}`,
       radius: (x) => x.radius,
