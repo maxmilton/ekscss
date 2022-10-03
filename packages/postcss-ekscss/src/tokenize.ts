@@ -130,7 +130,7 @@ export function tokenize(
       case SPACE:
       case TAB:
       case CR:
-      case FEED: {
+      case FEED:
         next = pos;
         do {
           next += 1;
@@ -146,7 +146,6 @@ export function tokenize(
         currentToken = ['space', css.slice(pos, next)];
         pos = next - 1;
         break;
-      }
 
       case OPEN_SQUARE:
       case CLOSE_SQUARE:
