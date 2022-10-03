@@ -34,5 +34,6 @@ module.exports = {
     'unicorn/prefer-node-protocol': OFF,
     'unicorn/prefer-query-selector': OFF,
     'unicorn/prevent-abbreviations': OFF,
+    'unicorn/switch-case-braces': [ERROR, 'avoid'],
   },
 };
