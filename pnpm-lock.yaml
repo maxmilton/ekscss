@@ -20,7 +20,7 @@ importers:
       prettier-plugin-pkg: 0.17.1
       prettier-plugin-sh: 0.12.8
       stylelint: 14.13.0
-      stylelint-config-standard: 28.0.0
+      stylelint-config-standard: 29.0.0
       tsm: 2.2.2
       typescript: 4.8.4
       uvu: 0.5.6
@@ -41,7 +41,7 @@ importers:
       prettier-plugin-pkg: 0.17.1_prettier@2.7.1
       prettier-plugin-sh: 0.12.8_prettier@2.7.1
       stylelint: 14.13.0
-      stylelint-config-standard: 28.0.0_stylelint@14.13.0
+      stylelint-config-standard: 29.0.0_stylelint@14.13.0
       tsm: 2.2.2
       typescript: 4.8.4
       uvu: 0.5.6
@@ -2942,10 +2942,10 @@ packages:
       stylelint: 14.13.0
     dev: true
 
-  /stylelint-config-standard/28.0.0_stylelint@14.13.0:
-    resolution: {integrity: sha512-q/StuowDdDmFCravzGHAwgS9pjX0bdOQUEBBDIkIWsQuYGgYz/xsO8CM6eepmIQ1fc5bKdDVimlJZ6MoOUcJ5Q==}
+  /stylelint-config-standard/29.0.0_stylelint@14.13.0:
+    resolution: {integrity: sha512-uy8tZLbfq6ZrXy4JKu3W+7lYLgRQBxYTUUB88vPgQ+ZzAxdrvcaSUW9hOMNLYBnwH+9Kkj19M2DHdZ4gKwI7tg==}
     peerDependencies:
-      stylelint: ^14.11.0
+      stylelint: ^14.14.0
     dependencies:
       stylelint: 14.13.0
       stylelint-config-recommended: 9.0.0_stylelint@14.13.0
