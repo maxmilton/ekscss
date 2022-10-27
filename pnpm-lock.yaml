@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@maxmilton/stylelint-config': 0.0.10
-      '@types/node': 18.11.3
+      '@types/node': 18.11.7
       '@typescript-eslint/eslint-plugin': 5.40.1
       '@typescript-eslint/parser': 5.40.1
       c8: 7.12.0
@@ -26,7 +26,7 @@ importers:
       uvu: 0.5.6
     devDependencies:
       '@maxmilton/stylelint-config': 0.0.10_stylelint@14.14.0
-      '@types/node': 18.11.3
+      '@types/node': 18.11.7
       '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
       '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
       c8: 7.12.0
@@ -405,8 +405,8 @@ packages:
     resolution: {integrity: sha512-nJOuiTlsvmClSr3+a/trTSx4DTuY/VURsWGKSf/eeavh0LRMqdsK60ti0TlwM5iHiGOK3/Ibkxsbr7i9rzGreA==}
     dev: true
 
-  /@types/node/18.11.3:
-    resolution: {integrity: sha512-fNjDQzzOsZeKZu5NATgXUPsaFaTxeRgFXoosrHivTl8RGeV733OLawXsGfEk9a8/tySyZUyiZ6E8LcjPFZ2y1A==}
+  /@types/node/18.11.7:
+    resolution: {integrity: sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
