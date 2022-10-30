@@ -168,6 +168,7 @@ module.exports = {
       sepia3: '#96622d',
       sepia4: '#b07b46',
       sepia5: '#c99765',
+      transparent: 'transparent',
       // App
       primary: (x) => x.color.blue2,
       success: (x) => x.color.green2,
