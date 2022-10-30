@@ -20,7 +20,7 @@
     "ekscss": "workspace:^"
   },
   "dependencies": {
-    "stylis": "^4.1.1"
+    "stylis": "^4.1.3"
   },
   "devDependencies": {
     "@types/stylis": "4.0.2",

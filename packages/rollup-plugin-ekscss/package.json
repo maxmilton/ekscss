@@ -14,15 +14,15 @@
   },
   "peerDependencies": {
     "ekscss": "workspace:^",
-    "rollup": "^2.0.0"
+    "rollup": "^2.0.0 || ^3.0.0"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^4.2.1",
+    "@rollup/pluginutils": "^5.0.2",
     "joycon": "^3.1.0"
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "rollup": "2.79.1",
+    "rollup": "3.2.3",
     "typescript": "4.8.4"
   }
 }
