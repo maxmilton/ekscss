@@ -168,14 +168,14 @@ importers:
       '@rollup/pluginutils': ^5.0.2
       ekscss: workspace:*
       joycon: ^3.1.0
-      rollup: 3.2.4
+      rollup: 3.2.5
       typescript: 4.8.4
     dependencies:
-      '@rollup/pluginutils': 5.0.2_rollup@3.2.4
+      '@rollup/pluginutils': 5.0.2_rollup@3.2.5
       joycon: 3.1.1
     devDependencies:
       ekscss: link:../ekscss
-      rollup: 3.2.4
+      rollup: 3.2.5
       typescript: 4.8.4
 
   packages/svelte-ekscss:
@@ -361,7 +361,7 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /@rollup/pluginutils/5.0.2_rollup@3.2.4:
+  /@rollup/pluginutils/5.0.2_rollup@3.2.5:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -373,7 +373,7 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.2.4
+      rollup: 3.2.5
     dev: false
 
   /@types/color-convert/2.0.0:
@@ -2759,8 +2759,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup/3.2.4:
-    resolution: {integrity: sha512-1cAfF/u8Pf7XNo7eg3u/55+FkjNX5e4yPIVDQyUIO3MVBYMsTg+0C5FkEWzNlrEfRAYbunAIuTJ0jVp+01S3uA==}
+  /rollup/3.2.5:
+    resolution: {integrity: sha512-/Ha7HhVVofduy+RKWOQJrxe4Qb3xyZo+chcpYiD8SoQa4AG7llhupUtyfKSSrdBM2mWJjhM8wZwmbY23NmlIYw==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
