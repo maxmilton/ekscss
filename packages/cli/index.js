@@ -70,7 +70,7 @@ module.exports = async (src, dest, opts) => {
     globals: config.globals,
     plugins: config.plugins,
     rootDir,
-    map: opts.map != null ? opts.map : config.map,
+    map: opts.map == null ? config.map : opts.map,
   });
   const t1 = performance.now();
 

@@ -99,13 +99,13 @@ export function compile(
   let sourceMap;
 
   if (map) {
-    if (!process.env.BROWSER) {
-      sourceMap = compileSourceMap(ast, rootDir, from, to);
-    } else {
+    if (process.env.BROWSER) {
       warnings.push({
         code: 'browser-no-sourcemap',
         message: 'Browser ekscss does not support sourcemaps',
       });
+    } else {
+      sourceMap = compileSourceMap(ast, rootDir, from, to);
     }
   }
 

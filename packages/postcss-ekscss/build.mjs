@@ -3,7 +3,7 @@
 
 import esbuild from 'esbuild';
 
-const mode = process.env.NODE_ENV;
+const mode = process.env.NODE_ENV || 'Production';
 const dev = mode === 'development';
 
 (async () => {
