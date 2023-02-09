@@ -62,7 +62,7 @@
   - Overhead for each plugin
 -->
 
-[![Build status](https://img.shields.io/github/workflow/status/maxmilton/ekscss/ci)](https://github.com/maxmilton/ekscss/actions)
+[![Build status](https://img.shields.io/github/actions/workflow/status/maxmilton/ekscss/ci.yml?branch=master)](https://github.com/maxmilton/ekscss/actions)
 [![Coverage status](https://img.shields.io/codeclimate/coverage/MaxMilton/ekscss)](https://codeclimate.com/github/MaxMilton/ekscss)
 [![NPM version](https://img.shields.io/npm/v/ekscss.svg)](https://www.npmjs.com/package/ekscss)
 [![License](https://img.shields.io/github/license/maxmilton/ekscss.svg)](https://github.com/maxmilton/ekscss/blob/master/LICENSE)
