@@ -7,7 +7,8 @@ const mode = process.env.NODE_ENV || 'Production';
 const dev = mode === 'development';
 
 (async () => {
-  const out = await esbuild.build({
+  /** @type {esbuild.BuildOptions} */
+  const esbuildConfig = {
     entryPoints: ['src/index.ts'],
     outfile: 'dist/index.js',
     platform: 'node',
@@ -16,13 +17,19 @@ const dev = mode === 'development';
     bundle: true,
     sourcemap: true,
     minifySyntax: !dev,
-    watch: dev,
     metafile: !dev && process.stdout.isTTY,
     logLevel: 'debug',
-  });
+  };
 
-  if (out.metafile) {
-    console.log(await esbuild.analyzeMetafile(out.metafile));
+  if (dev) {
+    const context = await esbuild.context(esbuildConfig);
+    await context.watch();
+  } else {
+    const out = await esbuild.build(esbuildConfig);
+
+    if (out.metafile) {
+      console.log(await esbuild.analyzeMetafile(out.metafile));
+    }
   }
 })().catch((error) => {
   console.error(error);
