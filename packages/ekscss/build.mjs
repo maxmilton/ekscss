@@ -8,7 +8,8 @@ const dev = mode === 'development';
 
 (async () => {
   // Standard node CJS bundle
-  const out1 = await esbuild.build({
+  /** @type {esbuild.BuildOptions} */
+  const esbuildConfig1 = {
     entryPoints: ['src/index.ts'],
     outfile: 'dist/index.js',
     platform: 'node',
@@ -21,17 +22,13 @@ const dev = mode === 'development';
     bundle: true,
     sourcemap: true,
     minify: !dev,
-    watch: dev,
     metafile: !dev && process.stdout.isTTY,
     logLevel: 'debug',
-  });
-
-  if (out1.metafile) {
-    console.log(await esbuild.analyzeMetafile(out1.metafile));
-  }
+  };
 
   // Browser compatible ESM bundle (without sourcemap support)
-  const out2 = await esbuild.build({
+  /** @type {esbuild.BuildOptions} */
+  const esbuildConfig2 = {
     entryPoints: ['src/index.ts'],
     outfile: 'dist/browser.mjs',
     platform: 'browser',
@@ -45,7 +42,6 @@ const dev = mode === 'development';
     bundle: true,
     sourcemap: true,
     minifySyntax: !dev,
-    watch: dev,
     metafile: !dev && process.stdout.isTTY,
     logLevel: 'debug',
     plugins: [
@@ -62,10 +58,18 @@ const dev = mode === 'development';
         },
       },
     ],
-  });
+  };
 
-  if (out2.metafile) {
-    console.log(await esbuild.analyzeMetafile(out2.metafile));
+  if (dev) {
+    const context1 = await esbuild.context(esbuildConfig1);
+    const context2 = await esbuild.context(esbuildConfig2);
+    await Promise.all([context1.watch(), context2.watch()]);
+  } else {
+    const out1 = await esbuild.build(esbuildConfig1);
+    const out2 = await esbuild.build(esbuildConfig2);
+
+    if (out1.metafile) console.log(await esbuild.analyzeMetafile(out1.metafile));
+    if (out2.metafile) console.log(await esbuild.analyzeMetafile(out2.metafile));
   }
 })().catch((error) => {
   console.error(error);
