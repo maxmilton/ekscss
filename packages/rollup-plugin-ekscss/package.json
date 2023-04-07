@@ -23,6 +23,6 @@
   "devDependencies": {
     "ekscss": "workspace:*",
     "rollup": "3.20.2",
-    "typescript": "4.9.5"
+    "typescript": "5.0.4"
   }
 }
