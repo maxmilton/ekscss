@@ -22,7 +22,7 @@
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-unicorn": "46.0.0",
     "postcss-ekscss": "workspace:*",
-    "prettier": "2.8.7",
+    "prettier": "2.8.8",
     "prettier-plugin-pkg": "0.17.1",
     "prettier-plugin-sh": "0.12.8",
     "stylelint": "15.3.0",
