@@ -114,11 +114,10 @@ function getGlobals(config) {
   }
 
   /** @type {XCSSGlobals} */
-  const globals =
-    {
-      ...config.globals,
-      fn: config.globals.fn || {},
-    } || {};
+  const globals = {
+    ...config.globals,
+    fn: config.globals.fn || {},
+  };
 
   ctx.warnings = [];
   ctx.x = globals;
