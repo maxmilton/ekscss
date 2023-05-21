@@ -14,6 +14,25 @@ import * as stylis from 'stylis';
 // 46 = .
 const isRelative = (filePath: string) => stylis.charat(filePath, 0) === 46;
 
+const resolveFile = (filePath: string, dirs: string[]): string | null => {
+  try {
+    // Default to node require.resolve() behaviour
+    return require.resolve(filePath, { paths: dirs });
+  } catch {
+    // Fall back to manual search; resolve absolute path and check for existence
+    // eslint-disable-next-line no-restricted-syntax
+    for (const searchDir of dirs) {
+      const resolvedPath = path.resolve(searchDir, filePath);
+
+      if (fs.existsSync(resolvedPath)) {
+        return resolvedPath;
+      }
+    }
+  }
+
+  return null;
+};
+
 /**
  * XCSS plugin to inline the contents of `@import` statements.
  *
@@ -40,21 +59,32 @@ export const importPlugin: Middleware = (
     searchPaths.unshift(path.dirname(ctx.from));
   } else if (isRelative(importPath)) {
     ctx.warnings.push({
-      code: 'import-relative-no-from',
+      code: 'import-from-invalid',
       message:
-        'Unable to resolve relative import because "from" option invalid',
+        'Unable to resolve relative @import because "from" option invalid',
       file: ctx.from,
       line: element.line,
       column: element.column,
     });
   }
 
-  const from = require.resolve(importPath, {
-    paths: searchPaths,
-  });
+  const from = resolveFile(importPath, searchPaths);
+
+  if (!from) {
+    ctx.warnings.push({
+      code: 'import-not-found',
+      // TODO: No need to include importPath since we give the file and line/column
+      message: `Unable to resolve @import: ${importPath}`,
+      file: ctx.from,
+      line: element.line,
+      column: element.column,
+    });
+    return;
+  }
 
   // TODO: Document this behaviour
-  // Avoid importing files more than once
+  // Avoid importing files more than once; only first import is inlined (as
+  // opposed to CSS @import in which the last import wins)
   if (ctx.dependencies.includes(from)) {
     // Set empty value so at-rule is removed in stringify
     element.value = '';
@@ -85,7 +115,7 @@ export const importPlugin: Middleware = (
 
     ctx.warnings.push({
       code: 'import-empty',
-      message: `Imported file compile result empty: ${from}`,
+      message: `@import file empty: ${from}`,
       file: oldCtxFrom,
       line: element.line,
       column: element.column,
