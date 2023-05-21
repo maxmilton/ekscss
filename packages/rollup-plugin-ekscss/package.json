@@ -1,6 +1,10 @@
 {
   "name": "rollup-plugin-ekscss",
   "version": "0.0.11",
+  "description": "Rollup plugin to add support for XCSS",
+  "repository": "maxmilton/ekscss",
+  "homepage": "https://ekscss.js.org",
+  "author": "Max Milton <max@happyhackers.xyz>",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

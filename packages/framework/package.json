@@ -4,7 +4,7 @@
   "description": "Progressive CSS framework powered by ekscss",
   "repository": "maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
-  "author": "Max Milton <max@happycode.ltd>",
+  "author": "Max Milton <max@happyhackers.xyz>",
   "license": "MIT",
   "main": "level2.xcss",
   "files": [
