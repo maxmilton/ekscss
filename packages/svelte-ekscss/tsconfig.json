@@ -4,7 +4,8 @@
     "rootDir": "src",
     "outDir": "dist",
     "noEmit": false,
-    "target": "es2019",
-    "module": "commonjs"
+
+    // Fixes svelte types import
+    "resolvePackageJsonExports": false
   }
 }
