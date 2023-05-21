@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [12, 14, 16, 18]
+        node-version: [12, 14, 16, 18, 20]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -19,14 +19,22 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install --global pnpm@6
         if: ${{ matrix.node-version == 12 }}
+      - run: npm install --global pnpm@7
+        if: ${{ matrix.node-version == 14 }}
+      - run: npm install --global pnpm@8
+        if: ${{ matrix.node-version == 16 }}
       - run: npm install --global pnpm
-        if: ${{ matrix.node-version >= 14 }}
+        if: ${{ matrix.node-version >= 18 }}
+        # Old versions of pnpm don't support lockfile format v6 (pnpm v8+)
+      - run: pnpm install --frozen-lockfile --fix-lockfile
+        if: ${{ matrix.node-version <= 14 }}
       - run: pnpm install --frozen-lockfile
+        if: ${{ matrix.node-version >= 16 }}
       - run: pnpm run build
       - run: pnpm run test
       - run: pnpm run test-raw
       - name: Report coverage
-        if: ${{ matrix.node-version == 18 && github.repository_owner == 'maxmilton' }}
+        if: ${{ matrix.node-version == 20 && github.repository_owner == 'maxmilton' }}
         run: |
           curl -Lo ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod +x ./cc-test-reporter
@@ -40,7 +48,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - run: npm install --global pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
