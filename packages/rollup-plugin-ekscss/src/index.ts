@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 
-import { createFilter, FilterPattern } from '@rollup/pluginutils';
+import { createFilter, type FilterPattern } from '@rollup/pluginutils';
 import { compile, type XCSSCompileOptions } from 'ekscss';
 import JoyCon from 'joycon';
 import type { Plugin } from 'rollup';
@@ -30,7 +30,8 @@ export default function rollupPlugin({
   include = /\.xcss$/,
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
-  const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+  const reBadValue =
+    /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
   const joycon = new JoyCon({
     files: [
       '.xcssrc.cjs',

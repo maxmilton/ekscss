@@ -1,4 +1,4 @@
-// Based on https://github.com/postcss/postcss-scss/blob/ea0a76007c0d16b4eab946b1e3faa31a7dd9041b/lib/scss-stringifier.js
+// Based on https://github.com/postcss/postcss-scss/blob/f540beae6530b7c9632f954e4d6915359a54f25f/lib/scss-stringifier.js
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */

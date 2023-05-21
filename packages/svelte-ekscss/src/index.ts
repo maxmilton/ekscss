@@ -2,9 +2,11 @@
 
 import { compile, type XCSSCompileOptions } from 'ekscss';
 import JoyCon from 'joycon';
-import colors from 'kleur/colors';
-import type { Preprocessor, PreprocessorGroup } from './types';
-// import type { Preprocessor, PreprocessorGroup } from 'svelte/types/compiler/preprocess';
+import * as colors from 'kleur/colors';
+import type {
+  Preprocessor,
+  PreprocessorGroup,
+} from 'svelte/types/compiler/preprocess';
 
 export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
 
@@ -14,7 +16,8 @@ interface PluginOptions {
 }
 
 export const style = ({ config }: PluginOptions = {}): Preprocessor => {
-  const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+  const reBadValue =
+    /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
   const joycon = new JoyCon({
     files: [
       '.xcssrc.cjs',
@@ -30,9 +33,8 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
   let configData: XCSSConfig;
   let configPath: string | undefined;
 
-  // @ts-expect-error - FIXME: The returned map should take undefined
   return async ({ attributes, content, filename }) => {
-    if (attributes.lang !== 'xcss') return null;
+    if (attributes.lang !== 'xcss') return;
 
     // XXX: Svelte has no way to identify when the config was changed when
     // watching during dev mode, so to update the config the whole svelte
@@ -85,10 +87,11 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
     const { css, dependencies, map } = compiled;
     if (configPath) dependencies.push(configPath);
 
+    // eslint-disable-next-line consistent-return
     return {
       code: css,
       dependencies,
-      map: map?.toJSON(),
+      ...(map && { map: map.toJSON() }),
     };
   };
 };

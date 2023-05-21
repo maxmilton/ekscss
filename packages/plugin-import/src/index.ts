@@ -1,8 +1,6 @@
 /* eslint-disable no-param-reassign, no-underscore-dangle */
 
-import {
-  ctx, interpolate, xcss, type Element, type Middleware,
-} from 'ekscss';
+import { ctx, interpolate, xcss, type Element, type Middleware } from 'ekscss';
 import fs from 'fs';
 import path from 'path';
 import * as stylis from 'stylis';

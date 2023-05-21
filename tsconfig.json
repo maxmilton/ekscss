@@ -2,9 +2,8 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "node", // TODO: Use "bundler" once typescript-eslint can handle monorepos better
     "esModuleInterop": true,
-    "isolatedModules": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "allowJs": true,
@@ -18,14 +17,11 @@
     "allowUnreachableCode": false,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
-    "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": false, // covered by eslint
     "noImplicitOverride": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-
-    // FIXME: TEMP WORKAROUND, will be removed in next PR
-    "ignoreDeprecations": "5.0"
+    "noUnusedLocals": false, // covered by eslint
+    "noUnusedParameters": false, // covered by eslint
+    "verbatimModuleSyntax": true
   },
   "exclude": [
     "**/dist",

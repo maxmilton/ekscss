@@ -1,4 +1,4 @@
-// Based on https://github.com/postcss/postcss-scss/blob/1c1c2621eff21b0c3d11a70d71beff3f10bd6cfd/lib/scss-tokenize.js
+// Based on https://github.com/postcss/postcss-scss/blob/f540beae6530b7c9632f954e4d6915359a54f25f/lib/scss-tokenize.js
 
 // TODO: Tokenize xcss tagged template literals within XCSS expressions
 
@@ -27,7 +27,7 @@ const COMMA = 44; // ,
 const DOLLAR_SIGN = 36; // $
 
 const RE_AT_END = /[\t\n\f\r "#'()/;[\\\]{}]/g;
-const RE_WORD_END = /[\t\n\f\r !"#'():;@[\\\]{}]|\/(?=\*)/g;
+const RE_WORD_END = /[\t\n\f\r !"#'(),:;@[\\\]{}]|\/(?=\*)/g;
 const RE_BAD_BRACKET = /.[\n"'(/\\]/;
 const RE_HEX_ESCAPE = /[\da-f]/i;
 const RE_NEW_LINE = /[\n\f\r]/g;
@@ -118,8 +118,7 @@ export function tokenize(
 
   function nextToken(opts?: { ignoreUnclosed?: boolean }): Token | void {
     if (returned.length > 0) return returned.pop();
-    // eslint-disable-next-line consistent-return
-    if (pos >= len) return;
+    if (pos >= len) return undefined;
 
     const ignoreUnclosed = opts ? opts.ignoreUnclosed : false;
 
@@ -136,11 +135,11 @@ export function tokenize(
           next += 1;
           code = css.charCodeAt(next);
         } while (
-          code === SPACE
-          || code === NEWLINE
-          || code === TAB
-          || code === CR
-          || code === FEED
+          code === SPACE ||
+          code === NEWLINE ||
+          code === TAB ||
+          code === CR ||
+          code === FEED
         );
 
         currentToken = ['space', css.slice(pos, next)];
@@ -232,7 +231,8 @@ export function tokenize(
       case AT:
         RE_AT_END.lastIndex = pos + 1;
         RE_AT_END.test(css);
-        next = RE_AT_END.lastIndex === 0 ? css.length - 1 : RE_AT_END.lastIndex - 2;
+        next =
+          RE_AT_END.lastIndex === 0 ? css.length - 1 : RE_AT_END.lastIndex - 2;
 
         currentToken = ['at-word', css.slice(pos, next + 1), pos, next];
 
@@ -248,13 +248,13 @@ export function tokenize(
         }
         code = css.charCodeAt(next + 1);
         if (
-          escape
-          && code !== SLASH
-          && code !== SPACE
-          && code !== NEWLINE
-          && code !== TAB
-          && code !== CR
-          && code !== FEED
+          escape &&
+          code !== SLASH &&
+          code !== SPACE &&
+          code !== NEWLINE &&
+          code !== TAB &&
+          code !== CR &&
+          code !== FEED
         ) {
           next += 1;
           if (RE_HEX_ESCAPE.test(css.charAt(next))) {
@@ -296,9 +296,10 @@ export function tokenize(
         } else if (code === SLASH && n === SLASH) {
           RE_NEW_LINE.lastIndex = pos + 1;
           RE_NEW_LINE.test(css);
-          next = RE_NEW_LINE.lastIndex === 0
-            ? css.length - 1
-            : RE_NEW_LINE.lastIndex - 2;
+          next =
+            RE_NEW_LINE.lastIndex === 0
+              ? css.length - 1
+              : RE_NEW_LINE.lastIndex - 2;
 
           content = css.slice(pos, next + 1);
           currentToken = ['comment', content, pos, next, 'inline'];
@@ -307,9 +308,10 @@ export function tokenize(
         } else {
           RE_WORD_END.lastIndex = pos + 1;
           RE_WORD_END.test(css);
-          next = RE_WORD_END.lastIndex === 0
-            ? css.length - 1
-            : RE_WORD_END.lastIndex - 2;
+          next =
+            RE_WORD_END.lastIndex === 0
+              ? css.length - 1
+              : RE_WORD_END.lastIndex - 2;
 
           currentToken = ['word', css.slice(pos, next + 1), pos, next];
           buffer.push(currentToken);
