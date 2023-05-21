@@ -7,6 +7,7 @@
   "author": "Max Milton <max@happycode.ltd>",
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "browser": "dist/browser.mjs",
   "types": "dist/index.d.ts",
   "files": [

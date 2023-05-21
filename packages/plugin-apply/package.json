@@ -7,13 +7,15 @@
   "author": "Max Milton <max@happycode.ltd>",
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "pnpm run prebuild && tsc",
-    "dev": "tsc --watch --preserveWatchOutput",
+    "build": "pnpm run prebuild && node build.mjs && pnpm run postbuild",
+    "dev": "NODE_ENV=development node build.mjs",
+    "postbuild": "tsc --emitDeclarationOnly",
     "prebuild": "rm -rf dist"
   },
   "peerDependencies": {

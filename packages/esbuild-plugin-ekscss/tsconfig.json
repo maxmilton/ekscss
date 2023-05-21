@@ -3,8 +3,6 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "noEmit": false,
-    "target": "es2019",
-    "module": "commonjs"
+    "noEmit": false
   }
 }
