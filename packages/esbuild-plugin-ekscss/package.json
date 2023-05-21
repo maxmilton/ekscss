@@ -1,6 +1,10 @@
 {
   "name": "esbuild-plugin-ekscss",
   "version": "0.0.13",
+  "description": "esbuild plugin to add support for XCSS",
+  "repository": "maxmilton/ekscss",
+  "homepage": "https://ekscss.js.org",
+  "author": "Max Milton <max@happyhackers.xyz>",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
