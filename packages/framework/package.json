@@ -38,17 +38,16 @@
     "@ekscss/plugin-apply": "workspace:^",
     "@ekscss/plugin-import": "workspace:^",
     "@ekscss/plugin-prefix": "workspace:^",
-    "color": "^4.2.1",
+    "color": "^4.2.3",
     "cssremedy": "github:jensimmons/cssremedy#af14bf3",
     "dset": "^3.1.2",
-    "stylis": "^4.1.3"
+    "stylis": "^4.2.0"
   },
   "devDependencies": {
     "@ekscss/cli": "workspace:*",
     "@types/color": "3.0.3",
-    "@types/stylis": "4.0.2",
+    "@types/stylis": "4.2.0",
     "ekscss": "workspace:*",
-    "lightningcss-cli": "1.19.0",
-    "typescript": "4.9.5"
+    "typescript": "5.0.4"
   }
 }

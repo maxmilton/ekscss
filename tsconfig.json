@@ -22,7 +22,10 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+
+    // FIXME: TEMP WORKAROUND, will be removed in next PR
+    "ignoreDeprecations": "5.0"
   },
   "exclude": [
     "**/dist",
