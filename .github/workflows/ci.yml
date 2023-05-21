@@ -25,7 +25,11 @@ jobs:
         if: ${{ matrix.node-version == 16 }}
       - run: npm install --global pnpm
         if: ${{ matrix.node-version >= 18 }}
+        # Old versions of pnpm don't support the new v6 lockfile format
+      - run: pnpm install
+        if: ${{ matrix.node-version <= 14 }}
       - run: pnpm install --frozen-lockfile
+        if: ${{ matrix.node-version >= 16 }}
       - run: pnpm run build
       - run: pnpm run test
       - run: pnpm run test-raw
