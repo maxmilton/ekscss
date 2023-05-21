@@ -25,7 +25,8 @@ const complexCodeFixture = `
     .\${name} { color: \${value}; }
   \`)}
 `;
-const complexCodeResult = 'body{font-size:20px;color:coral;}.red{color:coral;}.green{color:seagreen;}.blue{color:deepskyblue;}';
+const complexCodeResult =
+  'body{font-size:20px;color:coral;}.red{color:coral;}.green{color:seagreen;}.blue{color:deepskyblue;}';
 
 test('bundled compiler runs with empty code', () => {
   const compiled = ekscssBundle.compile('');

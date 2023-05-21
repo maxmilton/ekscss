@@ -1,4 +1,4 @@
-// Based on https://github.com/postcss/postcss-scss/blob/c021e2350b328ef1b78841307b9aa03d174abbbb/lib/scss-parser.js
+// Based on https://github.com/postcss/postcss-scss/blob/f540beae6530b7c9632f954e4d6915359a54f25f/lib/scss-parser.js
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -193,8 +193,13 @@ export class XCSSParser extends Parser {
     super.atrule(['at-word', name, token[2], prev[3]]);
   }
 
-  override raw(node: AnyNode, prop: string, tokens: Token[]): string | void {
-    super.raw(node, prop, tokens);
+  override raw(
+    node: AnyNode,
+    prop: string,
+    tokens: Token[],
+    customProperty: boolean,
+  ): string | void {
+    super.raw(node, prop, tokens, customProperty);
 
     if (node.raws[prop]) {
       const xcss = node.raws[prop].raw;
