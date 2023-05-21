@@ -19,9 +19,11 @@ const resolveFile = (filePath: string, dirs: string[]): string | null => {
     // Default to node require.resolve() behaviour
     return require.resolve(filePath, { paths: dirs });
   } catch {
-    // Fall back to manual search; resolve absolute path and check for existence
+    // Fall back to manual search
     // eslint-disable-next-line no-restricted-syntax
     for (const searchDir of dirs) {
+      // TODO: Document that user input to path.resolve could lead to a path
+      // traversal vulnerability. Users should only run this on trusted code.
       const resolvedPath = path.resolve(searchDir, filePath);
 
       if (fs.existsSync(resolvedPath)) {
