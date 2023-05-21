@@ -1,9 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "moduleResolution": "node",
     "rootDir": ".",
-    "outDir": ".",
     "noEmit": false
   },
-  "include": ["./config.js", "./utils.js"]
+  "include": ["config.js", "utils.js"]
 }

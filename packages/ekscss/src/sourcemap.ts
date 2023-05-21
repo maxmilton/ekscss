@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-len
 /* eslint-disable no-cond-assign, no-param-reassign, no-plusplus, no-restricted-syntax, no-underscore-dangle, unicorn/no-array-callback-reference, unicorn/no-array-reduce */
 
 // TODO: Documentation:
@@ -42,12 +41,12 @@ function extractSourceMapRef(ast: Element[]): string | null {
   // look through the last 3 AST nodes to try find a source map ref comment
   while (++index < 4 && (currentNode = ast[ast.length - index])) {
     if (
-      currentNode.type === stylis.COMMENT
+      currentNode.type === stylis.COMMENT &&
       // FIXME: stylis types don't differentiate by Element.type so we must
       // type guard unnecessarily (even though currentNode.type=='comm' will
       // always have currentNode.children as a string)
-      && typeof currentNode.children === 'string'
-      && currentNode.children.indexOf('# sourceMappingURL=') === 0
+      typeof currentNode.children === 'string' &&
+      currentNode.children.indexOf('# sourceMappingURL=') === 0
     ) {
       // 19 = '# sourceMappingURL='.length
       return currentNode.children.slice(19).trim();

@@ -26,7 +26,6 @@
     "postcss-ekscss": "workspace:*",
     "prettier": "2.8.8",
     "prettier-plugin-pkg": "0.17.1",
-    "prettier-plugin-sh": "0.12.8",
     "stylelint": "15.6.2",
     "stylelint-config-standard": "33.0.0",
     "tsm": "2.3.0",
@@ -51,12 +50,12 @@
     "singleQuote": true,
     "trailingComma": "all",
     "plugins": [
-      "./node_modules/prettier-plugin-pkg",
-      "./node_modules/prettier-plugin-sh"
+      "prettier-plugin-pkg"
     ],
     "overrides": [
       {
         "files": [
+          "*.spec.ts",
           "*.test.tsx",
           "*.test.ts"
         ],
@@ -76,18 +75,15 @@
     "ignoreFiles": [
       "**/dist/**",
       "**/node_modules/**",
-      "packages/framework/test/**",
       "packages/framework/addon/alert.xcss",
       "packages/framework/addon/ux-larger-click-zone.xcss",
       "packages/framework/level1/type.xcss",
-      "packages/framework/level2/color.xcss",
       "packages/framework/level2/display.xcss",
       "packages/framework/level2/flex.xcss",
       "packages/framework/level2/form.xcss",
       "packages/framework/level2/grid.xcss",
       "packages/framework/level2/postition.xcss",
-      "packages/framework/level2/spacing.xcss",
-      "packages/framework/level2/utils.xcss"
+      "packages/framework/level2/spacing.xcss"
     ],
     "rules": {
       "import-notation": null

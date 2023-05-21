@@ -109,7 +109,6 @@ export function accessorsProxy<
         return accessorsProxy(new UndefinedProperty(), propPath);
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return Reflect.get(target, prop, receiver);
     },
 

@@ -18,8 +18,9 @@ let bundleName;
 
 onBeforeBuild(() => {
   if (ctx.from) {
-    bundleName = (ctx.from.includes('/addon/') ? 'addon/' : '')
-      + path.basename(ctx.from, '.xcss');
+    bundleName =
+      (ctx.from.includes('/addon/') ? 'addon/' : '') +
+      path.basename(ctx.from, '.xcss');
 
     // pre-populate applyPlugin ctx.applyRefs for #apply in addon/native.xcss
     if (ctx.from.endsWith('framework/addon/native.xcss')) {

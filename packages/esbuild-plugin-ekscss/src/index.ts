@@ -12,7 +12,8 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
   name: 'xcss',
 
   setup(build) {
-    const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+    const reBadValue =
+      /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
     const joycon = new JoyCon({
       files: [
         '.xcssrc.cjs',
