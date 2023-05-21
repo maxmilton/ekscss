@@ -10,24 +10,23 @@ const stylis = require('stylis');
 /** @typedef {Color | string | ArrayLike<number> | number | { [key: string]: any }} ColorParam */
 /** @typedef {import('ekscss').XCSSGlobals} XCSSGlobals */
 /** @typedef {import('ekscss').XCSSExpression} XCSSExpression */
+/** @typedef {import('ekscss').ExpressionOrNested} ExpressionOrNested */
 
 /**
  * @see https://github.com/Qix-/color#readme
  * @param {ColorParam | ((x: XCSSGlobals) => XCSSExpression)} value - A value
  * the `color` package `Color` constructor accepts or an XCSS template
  * expression function which will resolve to such a value.
- * @param {Parameters<typeof Color>[1]} model
+ * @param {Parameters<typeof Color>[1]} [model]
  */
 function color(value, model) {
-  let val = value;
-
-  // Reduce XCSS function expressions to their final value
-  while (typeof val === 'function') {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    val = val(ctx.x);
-  }
-
-  return Color(val, model);
+  return Color(
+    value instanceof Color || typeof value !== 'function'
+      ? value
+      : // @ts-expect-error - TODO: Correctly type `value`
+        xcss`${value}`,
+    model,
+  );
 }
 
 /**
@@ -73,65 +72,63 @@ function extend(target, source) {
   return merge(target, source);
 }
 
-/** @typedef {string | number | Array<string | number>} ResolvedExpression */
-/** @typedef {{ [key: string]: ResolvedExpression | ResolvedGlobals }} ResolvedGlobals */
+/** @typedef {Exclude<XCSSExpression, function>} ResolvedExpression */
+/** @typedef {{ [key: string]: ResolvedExpression | ResolvedExpressionOrNested }} ResolvedExpressionOrNested */
+/** @typedef {{ [key: string]: ResolvedExpressionOrNested } & { fn: XCSSGlobals['fn'] }} ResolvedGlobals */
 
 /**
- * @param {Record<string, XCSSExpression>} obj
- * @returns {ResolvedGlobals}
+ * @param {Record<string, ExpressionOrNested>} obj
+ * @returns {ResolvedExpressionOrNested}
  */
 function resolveGlobals(obj) {
-  /** @type {Record<string, XCSSExpression>} */
+  /** @type {ResolvedExpressionOrNested} */
   const resolved = {};
 
   // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of Object.entries(obj)) {
-    if (value != null && typeof value === 'object' && !Array.isArray(value)) {
-      // @ts-expect-error - TODO:!
-      resolved[key] = resolveGlobals(value);
-    } else if (typeof value === 'function') {
-      /** @type {XCSSExpression} */
-      let val = value;
+    let val = value;
 
-      // Reduce XCSS function expressions to their final value
-      do {
-        val = val(ctx.x);
-      } while (typeof val === 'function');
-
-      if (val instanceof Color) {
-        val = val.toString();
-      }
-
-      resolved[key] = val;
-    } else {
-      resolved[key] = value;
+    // Reduce XCSS function expressions to their final value
+    while (typeof val === 'function') {
+      val = val(ctx.x);
     }
+
+    resolved[key] =
+      val != null && typeof val === 'object' && !Array.isArray(val)
+        ? resolveGlobals(val)
+        : val;
   }
 
-  // @ts-expect-error - TODO:!
   return resolved;
 }
 
 /**
- * Get an XCSSConfig's globals with all expressions resolved.
+ * Get an XCSSConfig's globals with all XCSS function expressions resolved.
  *
  * @param {XCSSConfig} config
  * @returns {ResolvedGlobals}
  */
 function getGlobals(config) {
-  if (!config.globals || Object.keys(config.globals).length === 0) return {};
+  if (!config.globals || Object.keys(config.globals).length === 0) {
+    return { fn: {} };
+  }
+
+  /** @type {XCSSGlobals} */
+  const globals = {
+    ...config.globals,
+    fn: config.globals.fn || {},
+  };
 
   ctx.warnings = [];
-  // @ts-expect-error - TODO:!
-  ctx.x = config.globals || {};
+  ctx.x = globals;
 
-  const { fn, ...globals } = config.globals;
+  const { fn, ...globalVars } = globals;
+  /** @type {ResolvedGlobals} */
   // @ts-expect-error - TODO:!
-  const resolved = resolveGlobals(globals);
-  // @ts-expect-error - TODO:!
+  const resolved = resolveGlobals(globalVars);
   resolved.fn = fn || {};
 
-  // @ts-expect-error - reset
+  // @ts-expect-error - reseting ctx values
   // eslint-disable-next-line no-multi-assign
   ctx.warnings = ctx.x = undefined;
 
