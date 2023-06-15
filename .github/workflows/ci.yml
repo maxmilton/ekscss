@@ -69,7 +69,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu, windows, macos]
+        # TODO: If bun ever gets native windows support, add it
+        platform: [ubuntu, macos]
     name: test-bun (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}-latest
     timeout-minutes: 5
