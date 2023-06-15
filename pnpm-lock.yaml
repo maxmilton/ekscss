@@ -1,7 +1,7 @@
 lockfileVersion: '6.0'
 
 settings:
-  autoInstallPeers: true
+  autoInstallPeers: false
   excludeLinksFromLockfile: false
 
 importers:
@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@maxmilton/stylelint-config':
         specifier: 0.0.12
-        version: 0.0.12(postcss@8.4.24)(stylelint@15.7.0)
+        version: 0.0.12(stylelint@15.7.0)
       '@types/node':
         specifier: 20.3.1
         version: 20.3.1
@@ -112,9 +112,6 @@ importers:
 
   packages/esbuild-plugin-ekscss:
     dependencies:
-      esbuild:
-        specifier: '>=0.13.0 <0.19.0'
-        version: 0.18.3
       joycon:
         specifier: ^3.1.1
         version: 3.1.1
@@ -328,6 +325,7 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/android-arm@0.15.18:
@@ -345,6 +343,7 @@ packages:
     cpu: [arm]
     os: [android]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/android-x64@0.18.3:
@@ -353,6 +352,7 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/darwin-arm64@0.18.3:
@@ -361,6 +361,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/darwin-x64@0.18.3:
@@ -369,6 +370,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/freebsd-arm64@0.18.3:
@@ -377,6 +379,7 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/freebsd-x64@0.18.3:
@@ -385,6 +388,7 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-arm64@0.18.3:
@@ -393,6 +397,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-arm@0.18.3:
@@ -401,6 +406,7 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-ia32@0.18.3:
@@ -409,6 +415,7 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-loong64@0.15.18:
@@ -426,6 +433,7 @@ packages:
     cpu: [loong64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-mips64el@0.18.3:
@@ -434,6 +442,7 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-ppc64@0.18.3:
@@ -442,6 +451,7 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-riscv64@0.18.3:
@@ -450,6 +460,7 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-s390x@0.18.3:
@@ -458,6 +469,7 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/linux-x64@0.18.3:
@@ -466,6 +478,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/netbsd-x64@0.18.3:
@@ -474,6 +487,7 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/openbsd-x64@0.18.3:
@@ -482,6 +496,7 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/sunos-x64@0.18.3:
@@ -490,6 +505,7 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/win32-arm64@0.18.3:
@@ -498,6 +514,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/win32-ia32@0.18.3:
@@ -506,6 +523,7 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@esbuild/win32-x64@0.18.3:
@@ -514,6 +532,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@eslint-community/eslint-utils@4.4.0(eslint@8.42.0):
@@ -594,12 +613,12 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@maxmilton/stylelint-config@0.0.12(postcss@8.4.24)(stylelint@15.7.0):
+  /@maxmilton/stylelint-config@0.0.12(stylelint@15.7.0):
     resolution: {integrity: sha512-XYFRy7rP/+oDWdS70bhMZvx3f4S5oD62hH8GC9icWQpUtDUzGtuwUl+NVie1h7H7uTe25DAbsYwfIgCiBYp6Iw==}
     peerDependencies:
       stylelint: ^15.0.0
     dependencies:
-      postcss-ekscss: 0.0.6(postcss@8.4.24)
+      postcss-ekscss: 0.0.6
       stylelint: 15.7.0
       stylelint-order: 6.0.3(stylelint@15.7.0)
     transitivePeerDependencies:
@@ -1539,6 +1558,7 @@ packages:
       '@esbuild/win32-arm64': 0.18.3
       '@esbuild/win32-ia32': 0.18.3
       '@esbuild/win32-x64': 0.18.3
+    dev: true
 
   /escalade@3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
@@ -2729,15 +2749,13 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /postcss-ekscss@0.0.6(postcss@8.4.24):
+  /postcss-ekscss@0.0.6:
     resolution: {integrity: sha512-SJojjYn7pZsAfptKwat4g3wdlwAAaHsZ4yuegQSIM/mXcu7mgK7Qb26ChmY6exSBdJLU6Ylbd8AoWM2iEFOXYw==}
     peerDependencies:
       postcss: ^8.0.0
     peerDependenciesMeta:
       postcss:
         optional: true
-    dependencies:
-      postcss: 8.4.24
     dev: true
 
   /postcss-media-query-parser@0.2.3:
