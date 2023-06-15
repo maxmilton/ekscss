@@ -6,7 +6,23 @@ on:
   pull_request:
     branches: [master]
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - run: npm install --global pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: packages/*/dist/**
   test:
+    needs: build
     name: test (node v${{ matrix.node-version }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -16,6 +32,10 @@ jobs:
         node-version: [12, 14, 16, 18, 20]
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: packages
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -32,7 +52,6 @@ jobs:
         if: ${{ matrix.node-version <= 14 }}
       - run: pnpm install --frozen-lockfile
         if: ${{ matrix.node-version >= 16 }}
-      - run: pnpm run build
       - run: pnpm run test
       - run: pnpm run test-raw
       - name: Report coverage
@@ -45,14 +64,18 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   lint:
+    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: packages
       - uses: actions/setup-node@v3
         with:
           node-version: 20
       - run: npm install --global pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
       - run: pnpm run lint

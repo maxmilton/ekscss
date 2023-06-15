@@ -29,6 +29,6 @@
   "devDependencies": {
     "ekscss": "workspace:*",
     "svelte": "3.59.1",
-    "typescript": "5.0.4"
+    "typescript": "5.1.3"
   }
 }
