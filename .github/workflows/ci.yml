@@ -90,9 +90,13 @@ jobs:
         with:
           name: build
           path: packages
-      - uses: actions/setup-node@v3
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 20
+      # - run: npm install --global pnpm
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: 20
-      - run: npm install --global pnpm
+          bun-version: latest
+      - run: bun add -g pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run lint
+      - run: bun run lint
