@@ -7,7 +7,7 @@
     "lint:js": "eslint --ignore-path .gitignore --ext .cjs,.js,.jsx,.mjs,.ts,.tsx .",
     "lint:ts": "tsc --project tsconfig.lint.json",
     "test": "c8 uvu -r tsm packages '\\/test\\/.+\\.test\\.ts$'",
-    "test-raw": "uvu packages '\\/test\\/.+\\.test-raw\\.js$'"
+    "test:raw": "uvu packages '\\/test\\/.+\\.test-raw\\.js$'"
   },
   "devDependencies": {
     "@maxmilton/stylelint-config": "0.0.12",
