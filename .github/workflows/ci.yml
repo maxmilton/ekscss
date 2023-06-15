@@ -2,12 +2,14 @@ name: ci
 on:
   push:
     branches: [master]
+    paths-ignore: ['**.md']
   pull_request:
     branches: [master]
 jobs:
   test:
     name: test (node v${{ matrix.node-version }})
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
@@ -44,6 +46,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
