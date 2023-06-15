@@ -53,7 +53,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
         if: ${{ matrix.node-version >= 16 }}
       - run: pnpm run test
-      - run: pnpm run test-raw
+      - run: pnpm run test:raw
       - name: Report coverage
         if: ${{ matrix.node-version == 20 && github.repository_owner == 'maxmilton' }}
         run: |
@@ -63,6 +63,23 @@ jobs:
           ./cc-test-reporter upload-coverage
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  test-bun:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: packages
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - run: bun add -g pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: bun run test
+      - run: bun run test:raw
   lint:
     needs: build
     runs-on: ubuntu-latest
