@@ -23,13 +23,14 @@ jobs:
           path: packages/*/dist/**
   test:
     needs: build
-    name: test (node v${{ matrix.node-version }})
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
         node-version: [12, 14, 16, 18, 20]
+        platform: [ubuntu, windows, macos]
+    name: test (node v${{ matrix.node-version }} ${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
       - uses: actions/download-artifact@v3
@@ -55,7 +56,7 @@ jobs:
       - run: pnpm run test
       - run: pnpm run test:raw
       - name: Report coverage
-        if: ${{ matrix.node-version == 20 && github.repository_owner == 'maxmilton' }}
+        if: ${{ matrix.node-version == 20 && matrix.platform == 'ubuntu' && github.repository_owner == 'maxmilton' }}
         run: |
           curl -Lo ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
           chmod +x ./cc-test-reporter
@@ -65,7 +66,12 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   test-bun:
     needs: build
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ubuntu, windows, macos]
+    name: test-bun (${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
