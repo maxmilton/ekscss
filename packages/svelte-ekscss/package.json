@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "svelte": "3.59.1",
+    "svelte": "3.59.2",
     "typescript": "5.1.6"
   }
 }
