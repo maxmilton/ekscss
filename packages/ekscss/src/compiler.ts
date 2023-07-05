@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign, no-restricted-syntax */
+/* eslint-disable no-restricted-syntax */
 
 import * as stylis from 'stylis';
 import {
@@ -7,13 +7,11 @@ import {
   ctx,
   each,
   interpolate,
-  noop,
   xcss,
 } from './helpers';
 import { compileSourceMap } from './sourcemap';
 import type {
   BuildHookFn,
-  Middleware,
   Warning,
   XCSSCompileOptions,
   XCSSCompileResult,
@@ -51,6 +49,7 @@ export function compile(
     map,
   }: XCSSCompileOptions = {},
 ): XCSSCompileResult {
+  const middlewares = [...plugins, stylis.stringify];
   const dependencies: string[] = [];
   const warnings: Warning[] = [];
   const x = accessorsProxy(mergeDefaultGlobals(globals), 'x');
@@ -62,37 +61,6 @@ export function compile(
   ctx.rootDir = rootDir;
   ctx.warnings = warnings;
   ctx.x = x;
-
-  const middlewares = plugins.map((plugin) => {
-    // Load plugins which are a package or file path (e.g., from JSON configs)
-    if (typeof plugin === 'string') {
-      // FIXME: The else condition is not fully removed from the browser build
-      if (process.env.BROWSER) {
-        warnings.push({
-          code: 'browser-no-plugin-string',
-          message: 'Browser runtime does not support plugin as string',
-        });
-        plugin = noop;
-      } else {
-        try {
-          // eslint-disable-next-line
-          const mod = require(plugin);
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-          plugin = (mod.default || mod) as Middleware;
-        } catch (error) {
-          warnings.push({
-            code: 'plugin-load-error',
-            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-            message: `Failed to load plugin "${plugin}"; ${error}`,
-            file: __filename,
-          });
-          plugin = noop;
-        }
-      }
-    }
-    return plugin;
-  });
-  middlewares.push(stylis.stringify);
 
   for (const fn of beforeBuildFns) fn();
 

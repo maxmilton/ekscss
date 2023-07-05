@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 
 import { createFilter, type FilterPattern } from '@rollup/pluginutils';
-import { compile, type XCSSCompileOptions } from 'ekscss';
+import { compile, resolvePlugins, type XCSSCompileOptions } from 'ekscss';
 import JoyCon from 'joycon';
 import type { Plugin } from 'rollup';
 
@@ -67,6 +67,10 @@ export default function rollupPlugin({
         }
       } else {
         configData = config;
+      }
+
+      if (configData.plugins) {
+        configData.plugins = resolvePlugins(configData.plugins);
       }
     },
 

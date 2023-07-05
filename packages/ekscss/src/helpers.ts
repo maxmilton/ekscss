@@ -1,6 +1,11 @@
 /* eslint-disable no-plusplus, no-restricted-syntax */
 
-import type { Context, XCSSExpression, XCSSTemplateFn } from './types';
+import type {
+  Context,
+  Middleware,
+  XCSSExpression,
+  XCSSTemplateFn,
+} from './types';
 
 /**
  * Compiler context. For internal and advanced use cases only.
@@ -234,4 +239,35 @@ export function xcss(
   }
 
   return out;
+}
+
+/**
+ * Resolve XCSS plugins when specified as a stylis Middleware or string.
+ *
+ * Itterate over plugins and load plugins specified as a string that denotes
+ * either the name of a package or a file path. Useful when loading XCSS
+ * configuration from a JSON file.
+ */
+export function resolvePlugins(plugins: (Middleware | string)[]): Middleware[] {
+  if (process.env.BROWSER) {
+    throw new Error('Browser runtime does not support resolving plugins');
+  } else {
+    return plugins.map((plugin) => {
+      if (typeof plugin !== 'string') return plugin;
+
+      try {
+        // eslint-disable-next-line
+        const mod = require(plugin);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        return (mod.default || mod) as Middleware;
+      } catch (error) {
+        ctx.warnings.push({
+          code: 'plugin-load-error',
+          message: `Failed to load plugin "${plugin}"; ${String(error)}`,
+          file: __filename,
+        });
+        return noop;
+      }
+    });
+  }
 }

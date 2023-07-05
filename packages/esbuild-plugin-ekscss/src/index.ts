@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 // https://esbuild.github.io/plugins/
 
-import { compile, type XCSSCompileOptions } from 'ekscss';
+import { compile, resolvePlugins, type XCSSCompileOptions } from 'ekscss';
 import type { PartialMessage, Plugin } from 'esbuild';
 import fs from 'fs';
 import JoyCon from 'joycon';
@@ -46,6 +46,10 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
         } else {
           configData = config || {};
         }
+      }
+
+      if (configData.plugins) {
+        configData.plugins = resolvePlugins(configData.plugins);
       }
 
       const compiled = compile(code, {

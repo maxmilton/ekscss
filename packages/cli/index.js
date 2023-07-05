@@ -44,6 +44,10 @@ module.exports = async (src, dest, opts) => {
   let srcFileName;
   let srcFile;
 
+  if (config.plugins) {
+    config.plugins = xcss.resolvePlugins(config.plugins);
+  }
+
   for (const filename of srcFiles) {
     try {
       srcFileName = path.resolve(rootDir, filename);

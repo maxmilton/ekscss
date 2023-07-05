@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { compile, type XCSSCompileOptions } from 'ekscss';
+import { compile, resolvePlugins, type XCSSCompileOptions } from 'ekscss';
 import JoyCon from 'joycon';
 import * as colors from 'kleur/colors';
 import type {
@@ -51,6 +51,10 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
       }
     } else {
       configData = config;
+    }
+
+    if (configData.plugins) {
+      configData.plugins = resolvePlugins(configData.plugins);
     }
 
     const compiled = compile(content, {
