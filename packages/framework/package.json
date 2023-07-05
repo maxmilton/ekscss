@@ -43,7 +43,7 @@
     "color": "^4.2.3",
     "cssremedy": "github:jensimmons/cssremedy#af14bf3",
     "dset": "^3.1.2",
-    "stylis": "^4.2.0"
+    "stylis": "^4.3.0"
   },
   "devDependencies": {
     "@ekscss/cli": "workspace:*",
