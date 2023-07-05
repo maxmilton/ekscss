@@ -86,7 +86,8 @@
       "packages/framework/level2/spacing.xcss"
     ],
     "rules": {
-      "import-notation": null
+      "import-notation": null,
+      "media-query-no-invalid": null
     }
   }
 }
