@@ -74,14 +74,14 @@ export interface XCSSCompileOptions {
   map?: boolean | undefined;
   globals?: Partial<XCSSGlobals> | undefined;
   /**
-   * XCSS plugins or package names of XCSS plugins.
+   * XCSS plugins.
    *
    * XCSS plugins are stylis Middleware which may also use the ekscss compiler
    * API. Any valid stylis middleware is also a valid XCSS plugin.
    *
    * @default []
    */
-  plugins?: Array<Middleware | string> | undefined;
+  plugins?: Middleware[] | undefined;
   /**
    * Root directory path to use when resolving file paths e.g., in `@import`.
    *

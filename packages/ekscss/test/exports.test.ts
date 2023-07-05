@@ -14,6 +14,7 @@ const helperPublicExports = [
   ['accessorsProxy', 'function'],
   ['ctx', 'object'],
   ['interpolate', 'function'],
+  ['resolvePlugins', 'function'],
   ['xcss', 'function'],
 ] as const;
 
