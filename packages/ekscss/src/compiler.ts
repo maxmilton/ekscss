@@ -66,6 +66,7 @@ export function compile(
   const middlewares = plugins.map((plugin) => {
     // Load plugins which are a package or file path (e.g., from JSON configs)
     if (typeof plugin === 'string') {
+      // FIXME: The else condition is not fully removed from the browser build
       if (process.env.BROWSER) {
         warnings.push({
           code: 'browser-no-plugin-string',
