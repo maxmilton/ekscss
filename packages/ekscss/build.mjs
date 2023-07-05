@@ -54,7 +54,6 @@ const dev = mode === 'development';
     platform: 'browser',
     format: 'esm',
     define: {
-      __filename: JSON.stringify(''),
       'process.env.BROWSER': 'true',
       'process.env.NODE_ENV': JSON.stringify(mode),
     },
@@ -66,13 +65,9 @@ const dev = mode === 'development';
     logLevel: 'debug',
     plugins: [
       {
-        name: 'mock-sourcemap',
+        name: 'stub-sourcemap',
         setup(build) {
-          build.onResolve({ filter: /^\.\/sourcemap$/ }, () => ({
-            namespace: 'mock-sourcemap',
-            path: 'null',
-          }));
-          build.onLoad({ filter: /.*/, namespace: 'mock-sourcemap' }, () => ({
+          build.onLoad({ filter: /sourcemap\.ts$/ }, () => ({
             contents: 'export const compileSourceMap = () => {};',
           }));
         },

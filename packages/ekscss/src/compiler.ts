@@ -2,11 +2,11 @@
 
 import * as stylis from 'stylis';
 import {
+  map as _map,
   accessorsProxy,
   ctx,
   each,
   interpolate,
-  map as _map,
   noop,
   xcss,
 } from './helpers';
@@ -66,19 +66,27 @@ export function compile(
   const middlewares = plugins.map((plugin) => {
     // Load plugins which are a package or file path (e.g., from JSON configs)
     if (typeof plugin === 'string') {
-      try {
-        // eslint-disable-next-line
-        const mod = require(plugin);
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        plugin = (mod.default || mod) as Middleware;
-      } catch (error) {
+      if (process.env.BROWSER) {
         warnings.push({
-          code: 'plugin-load-error',
-          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-          message: `Failed to load plugin "${plugin}"; ${error}`,
-          file: __filename,
+          code: 'browser-no-plugin-string',
+          message: 'Browser runtime does not support plugin as string',
         });
         plugin = noop;
+      } else {
+        try {
+          // eslint-disable-next-line
+          const mod = require(plugin);
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          plugin = (mod.default || mod) as Middleware;
+        } catch (error) {
+          warnings.push({
+            code: 'plugin-load-error',
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            message: `Failed to load plugin "${plugin}"; ${error}`,
+            file: __filename,
+          });
+          plugin = noop;
+        }
       }
     }
     return plugin;
@@ -103,7 +111,7 @@ export function compile(
     if (process.env.BROWSER) {
       warnings.push({
         code: 'browser-no-sourcemap',
-        message: 'Browser ekscss does not support sourcemaps',
+        message: 'Browser runtime does not support sourcemap',
       });
     } else {
       sourceMap = compileSourceMap(ast, rootDir, from, to);
