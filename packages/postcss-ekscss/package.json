@@ -1,6 +1,6 @@
 {
   "name": "postcss-ekscss",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "PostCSS plugin to add support for XCSS",
   "repository": "maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",

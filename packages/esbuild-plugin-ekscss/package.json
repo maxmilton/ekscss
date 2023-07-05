@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-ekscss",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "esbuild plugin to add support for XCSS",
   "repository": "maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
