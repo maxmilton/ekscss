@@ -261,11 +261,8 @@ export function resolvePlugins(plugins: (Middleware | string)[]): Middleware[] {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return (mod.default || mod) as Middleware;
       } catch (error) {
-        ctx.warnings.push({
-          code: 'plugin-load-error',
-          message: `Failed to load plugin "${plugin}"; ${String(error)}`,
-          file: __filename,
-        });
+        // eslint-disable-next-line no-console
+        console.error(`Failed to load plugin "${plugin}"; ${String(error)}`);
         return noop;
       }
     });
