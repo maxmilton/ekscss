@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-restricted-syntax, prefer-object-spread */
 
 import * as stylis from 'stylis';
 import {
@@ -32,7 +32,9 @@ export function onAfterBuild(callback: BuildHookFn): void {
 // TODO: Write tests that prove this doesn't mutate the original object.
 // TODO: This is only a shallow clone, should we do a deep clone? Use structuredClone or klona
 function mergeDefaultGlobals(globals: Partial<XCSSGlobals>): XCSSGlobals {
-  const newGlobals = { ...globals, fn: { ...globals.fn } };
+  const newGlobals = Object.assign({}, globals, {
+    fn: Object.assign({}, globals.fn),
+  });
   newGlobals.fn.each ??= each;
   newGlobals.fn.map ??= _map;
   return newGlobals as XCSSGlobals;
