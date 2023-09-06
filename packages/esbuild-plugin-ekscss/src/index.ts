@@ -26,7 +26,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
       ],
       packageKey: 'xcss',
     });
-    let configData: XCSSConfig;
+    let configData: XCSSConfig | undefined;
     let configPath: string | undefined;
 
     build.onLoad({ filter: /\.xcss$/ }, async (args) => {
@@ -37,13 +37,14 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
         if (!config || typeof config === 'string') {
           // Load user defined config or fall back to default file locations
           const result = await joycon.load(config ? [config] : undefined);
-          configData = (result.data as XCSSConfig) || {};
+          configData = (result.data as XCSSConfig | undefined) ?? {};
           configPath = result.path;
 
           if (!result.path) {
             warnings.push({ text: 'Unable to locate XCSS config' });
           }
         } else {
+          // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
           configData = config || {};
         }
       }

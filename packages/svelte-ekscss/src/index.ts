@@ -43,7 +43,7 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
     if (!config || typeof config === 'string') {
       // load user defined config or fall back to default file locations
       const result = await joycon.load(config ? [config] : undefined);
-      configData = (result.data as XCSSConfig) || {};
+      configData = (result.data as XCSSConfig | undefined) ?? {};
       configPath = result.path;
 
       if (!result.path) {

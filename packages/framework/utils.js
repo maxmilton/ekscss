@@ -116,7 +116,7 @@ function getGlobals(config) {
   /** @type {XCSSGlobals} */
   const globals = {
     ...config.globals,
-    fn: config.globals.fn || {},
+    fn: config.globals.fn ?? {},
   };
 
   ctx.warnings = [];
@@ -126,7 +126,7 @@ function getGlobals(config) {
   /** @type {ResolvedGlobals} */
   // @ts-expect-error - TODO:!
   const resolved = resolveGlobals(globalVars);
-  resolved.fn = fn || {};
+  resolved.fn = fn;
 
   // @ts-expect-error - reseting ctx values
   // eslint-disable-next-line no-multi-assign

@@ -39,6 +39,7 @@ function extractSourceMapRef(ast: Element[]): string | null {
   let index = 0;
 
   // look through the last 3 AST nodes to try find a source map ref comment
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   while (++index < 4 && (currentNode = ast[ast.length - index])) {
     if (
       currentNode.type === stylis.COMMENT &&
@@ -46,7 +47,7 @@ function extractSourceMapRef(ast: Element[]): string | null {
       // type guard unnecessarily (even though currentNode.type=='comm' will
       // always have currentNode.children as a string)
       typeof currentNode.children === 'string' &&
-      currentNode.children.indexOf('# sourceMappingURL=') === 0
+      currentNode.children.startsWith('# sourceMappingURL=')
     ) {
       // 19 = '# sourceMappingURL='.length
       return currentNode.children.slice(19).trim();
@@ -91,7 +92,7 @@ export function compileSourceMap(
           nodes.push(importedNode);
         }
       } else {
-        const srcFrom = node.root?.__from || from;
+        const srcFrom = node.root?.__from ?? from;
         const srcPath = srcFrom ? path.relative(rootDir, srcFrom) : '<unknown>';
         nodes.push(
           new SourceNode(node.line, node.column, srcPath, node.return),
@@ -104,7 +105,7 @@ export function compileSourceMap(
 
   const nodes = ast.reduce(nodeReducer, []);
   const rootNode = new SourceNode(null, null, null, nodes);
-  const pathTo = to || from;
+  const pathTo = to ?? from;
   const sourceRoot = pathTo ? path.dirname(pathTo) : rootDir;
   // @ts-expect-error - FIXME: file should take undefined
   const result = rootNode.toStringWithSourceMap({

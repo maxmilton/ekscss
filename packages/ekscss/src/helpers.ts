@@ -170,7 +170,7 @@ export function map<T>(
  * Iterate over each of an object's properties then combine the result.
  */
 export function each<T>(
-  obj: { [key: string]: T },
+  obj: Record<string, T>,
   callback: (key: string, value: T) => string,
 ): string {
   if (!isObject(obj)) {
@@ -234,7 +234,7 @@ export function xcss(
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
     out += (val || (val == null || val === false ? '' : val)) + strings[index];
   }
 
