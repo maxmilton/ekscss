@@ -23,12 +23,12 @@
     "rollup": "^2.0.0 || ^3.0.0"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.0.2",
+    "@rollup/pluginutils": "^5.0.4",
     "joycon": "^3.1.1"
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "rollup": "3.26.0",
-    "typescript": "5.1.6"
+    "rollup": "3.29.0",
+    "typescript": "5.2.2"
   }
 }
