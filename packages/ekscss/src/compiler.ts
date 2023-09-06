@@ -35,7 +35,9 @@ function mergeDefaultGlobals(globals: Partial<XCSSGlobals>): XCSSGlobals {
   const newGlobals = Object.assign({}, globals, {
     fn: Object.assign({}, globals.fn),
   });
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   newGlobals.fn.each ??= each;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   newGlobals.fn.map ??= _map;
   return newGlobals as XCSSGlobals;
 }

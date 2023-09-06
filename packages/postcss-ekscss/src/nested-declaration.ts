@@ -9,6 +9,7 @@ export class NestedDeclaration extends Container {
     super(defaults);
     this.type = 'decl';
     this.isNested = true;
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!this.nodes) this.nodes = [];
   }
 }

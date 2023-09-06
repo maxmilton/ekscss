@@ -31,7 +31,7 @@ export class XCSSStringifier extends Stringifier {
       const between = this.raw(node, 'between', 'colon');
       let string = node.prop + between + this.rawValue(node, 'value');
       if (node.important) {
-        string += node.raws.important || ' !important';
+        string += node.raws.important ?? ' !important';
       }
 
       this.builder(`${string}{`, node, 'start');

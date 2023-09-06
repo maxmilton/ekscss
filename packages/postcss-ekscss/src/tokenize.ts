@@ -284,7 +284,7 @@ export function tokenize(
         } else if (code === SLASH && n === ASTERISK) {
           next = css.indexOf('*/', pos + 2) + 1;
           if (next === 0) {
-            if (ignore || ignoreUnclosed) {
+            if (ignore ?? ignoreUnclosed) {
               next = css.length;
             } else {
               unclosed('comment');

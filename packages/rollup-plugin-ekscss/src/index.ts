@@ -59,7 +59,7 @@ export default function rollupPlugin({
       if (!config || typeof config === 'string') {
         // load user defined config or fall back to default file locations
         const result = await joycon.load(config ? [config] : undefined);
-        configData = (result.data as XCSSConfig) || {};
+        configData = (result.data as XCSSConfig | undefined) ?? {};
         configPath = result.path;
 
         if (!result.path) {
@@ -97,9 +97,11 @@ export default function rollupPlugin({
         // });
         this.warn(warning.message);
 
+        // eslint-disable-next-line no-console
         console.warn('XCSS Warning:', warning.message || warning);
 
         if (warning.file) {
+          // eslint-disable-next-line no-console
           console.log(
             '  at',
             [warning.file, warning.line, warning.column]
@@ -118,7 +120,7 @@ export default function rollupPlugin({
       //   console.log('!! XCSS MAP', compiled.map);
       // }
 
-      if (this.meta.watchMode === true) {
+      if (this.meta.watchMode) {
         for (const dep of compiled.dependencies) {
           this.addWatchFile(dep);
         }

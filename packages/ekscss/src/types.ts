@@ -45,7 +45,7 @@ export type XCSSExpression =
   | ((x: XCSSGlobals) => XCSSExpression)
   | string
   | number
-  | Array<string | number>
+  | (string | number)[]
   | false
   | null
   | undefined
@@ -58,6 +58,7 @@ export type ExpressionOrNested =
 export interface XCSSGlobals {
   [key: string]: ExpressionOrNested;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fn: Record<string, (...args: any) => any>;
 }
 

@@ -77,6 +77,7 @@ export class XCSSParser extends Parser {
       node.prop = '';
       while (tokens.length > 0) {
         const type = tokens[0][0];
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         if (type === ':' || type === 'space' || type === 'comment') {
           break;
         }
@@ -119,11 +120,13 @@ export class XCSSParser extends Parser {
           let str = '';
           for (let j = i; j > 0; j--) {
             const type = cache[j][0];
+            // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
             if (str.trim().indexOf('!') === 0 && type !== 'space') {
               break;
             }
             str = cache.pop()[1] + str;
           }
+          // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
           if (str.trim().indexOf('!') === 0) {
             node.important = true;
             node.raws.important = str;

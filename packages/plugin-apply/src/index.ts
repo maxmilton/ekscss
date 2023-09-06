@@ -32,7 +32,7 @@ import {
 } from 'ekscss';
 import * as stylis from 'stylis';
 
-type ApplyRefs = Record<string, Element[]>;
+type ApplyRefs = Record<string, Element[] | undefined>;
 
 onBeforeBuild(() => {
   ctx.applyRefs = {};
