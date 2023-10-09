@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@maxmilton/stylelint-config':
-        specifier: 0.0.12
-        version: 0.0.12(stylelint@15.10.3)
+        specifier: 0.0.13
+        version: 0.0.13(stylelint@15.10.3)
       '@types/node':
         specifier: 20.8.2
         version: 20.8.2
@@ -641,12 +641,12 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@maxmilton/stylelint-config@0.0.12(stylelint@15.10.3):
-    resolution: {integrity: sha512-XYFRy7rP/+oDWdS70bhMZvx3f4S5oD62hH8GC9icWQpUtDUzGtuwUl+NVie1h7H7uTe25DAbsYwfIgCiBYp6Iw==}
+  /@maxmilton/stylelint-config@0.0.13(stylelint@15.10.3):
+    resolution: {integrity: sha512-1UFVayUlOVG7WPeOxoGruLNN8hOrP9vKHrxulmg2409bOrFI94Ey3MLLUruFul/epEza82848Dfu1MrofVUvIg==}
     peerDependencies:
       stylelint: ^15.0.0
     dependencies:
-      postcss-ekscss: 0.0.6
+      postcss-ekscss: 0.0.9
       stylelint: 15.10.3(typescript@5.2.2)
       stylelint-order: 6.0.3(stylelint@15.10.3)
     transitivePeerDependencies:
@@ -3089,8 +3089,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /postcss-ekscss@0.0.6:
-    resolution: {integrity: sha512-SJojjYn7pZsAfptKwat4g3wdlwAAaHsZ4yuegQSIM/mXcu7mgK7Qb26ChmY6exSBdJLU6Ylbd8AoWM2iEFOXYw==}
+  /postcss-ekscss@0.0.9:
+    resolution: {integrity: sha512-qYC2Py28QE0flqoXYZ+fENKvHS067/9u9EGUToyEw6yDS0E4rZcsWej9uVC9GXlSUAaFmg9/oBE5xLpiA8OPKQ==}
     peerDependencies:
       postcss: ^8.0.0
     peerDependenciesMeta:
