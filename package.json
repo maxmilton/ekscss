@@ -10,13 +10,13 @@
     "test:raw": "uvu packages '\\/test\\/.+\\.test-raw\\.js$'"
   },
   "devDependencies": {
-    "@maxmilton/stylelint-config": "0.0.12",
-    "@types/node": "20.8.2",
+    "@maxmilton/stylelint-config": "0.0.13",
+    "@types/node": "20.8.4",
     "@typescript-eslint/eslint-plugin": "6.7.5",
     "@typescript-eslint/parser": "6.7.5",
     "c8": "8.0.1",
-    "esbuild": "0.19.2",
-    "eslint": "8.49.0",
+    "esbuild": "0.19.4",
+    "eslint": "8.51.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.1.0",
     "eslint-config-prettier": "9.0.0",
