@@ -8,6 +8,7 @@
 */
 
 ${null}
+
 /* Typography */
 table {
   #apply: .table;
