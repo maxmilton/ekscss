@@ -151,8 +151,8 @@ importers:
         specifier: workspace:*
         version: link:../cli
       '@types/color':
-        specifier: 3.0.4
-        version: 3.0.4
+        specifier: 3.0.6
+        version: 3.0.6
       '@types/stylis':
         specifier: 4.2.3
         version: 4.2.3
@@ -795,8 +795,8 @@ packages:
     resolution: {integrity: sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==}
     dev: true
 
-  /@types/color@3.0.4:
-    resolution: {integrity: sha512-OpisS4bqJJwbkkQRrMvURf3DOxBoAg9mysHYI7WgrWpSYHqHGKYBULHdz4ih77SILcLDo/zyHGFyfIl9yb8NZQ==}
+  /@types/color@3.0.6:
+    resolution: {integrity: sha512-NMiNcZFRUAiUUCCf7zkAelY8eV3aKqfbzyFQlXpPIEeoNDbsEHGpb854V3gzTsGKYj830I5zPuOwU/TP5/cW6A==}
     dependencies:
       '@types/color-convert': 2.0.1
     dev: true
