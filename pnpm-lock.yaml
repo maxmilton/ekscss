@@ -88,8 +88,8 @@ importers:
         version: 1.8.1
     devDependencies:
       '@types/sade':
-        specifier: 1.7.7
-        version: 1.7.7
+        specifier: 1.7.8
+        version: 1.7.8
 
   packages/ekscss:
     dependencies:
@@ -834,8 +834,8 @@ packages:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
 
-  /@types/sade@1.7.7:
-    resolution: {integrity: sha512-R8IwN5gyrbplV7UycixpLSwhiVoWxJcYjhw4hDjxXa+PYrbOBk9v856Ta0CaHsg4Mav0uWAhywgNYrsDA+8BiA==}
+  /@types/sade@1.7.8:
+    resolution: {integrity: sha512-WGEWfxQ8VHLm3JS4ljRR3MSPqVjY0JMo6zsbBywOjFIxP8Cizxx1p6r6FxOnAOZpUn4VOFoRRTXFmaOLD/+VOQ==}
     dependencies:
       '@types/mri': 1.1.4
     dev: true
