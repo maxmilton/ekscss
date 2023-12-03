@@ -252,8 +252,8 @@ importers:
         specifier: workspace:*
         version: link:../ekscss
       svelte:
-        specifier: 4.2.3
-        version: 4.2.3
+        specifier: 4.2.8
+        version: 4.2.8
       typescript:
         specifier: 5.3.2
         version: 5.3.2
@@ -3747,8 +3747,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte@4.2.3:
-    resolution: {integrity: sha512-sqmG9KC6uUc7fb3ZuWoxXvqk6MI9Uu4ABA1M0fYDgTlFYu1k02xp96u6U9+yJZiVm84m9zge7rrA/BNZdFpOKw==}
+  /svelte@4.2.8:
+    resolution: {integrity: sha512-hU6dh1MPl8gh6klQZwK/n73GiAHiR95IkFsesLPbMeEZi36ydaXL/ZAb4g9sayT0MXzpxyZjR28yderJHxcmYA==}
     engines: {node: '>=16'}
     dependencies:
       '@ampproject/remapping': 2.2.1
