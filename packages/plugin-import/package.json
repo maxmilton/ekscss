@@ -25,7 +25,7 @@
     "stylis": "^4.3.0"
   },
   "devDependencies": {
-    "@types/stylis": "4.2.4",
+    "@types/stylis": "4.2.5",
     "ekscss": "workspace:*",
     "typescript": "5.3.2"
   }

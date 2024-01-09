@@ -154,8 +154,8 @@ importers:
         specifier: 3.0.6
         version: 3.0.6
       '@types/stylis':
-        specifier: 4.2.4
-        version: 4.2.4
+        specifier: 4.2.5
+        version: 4.2.5
       ekscss:
         specifier: workspace:*
         version: link:../ekscss
@@ -170,8 +170,8 @@ importers:
         version: 4.3.0
     devDependencies:
       '@types/stylis':
-        specifier: 4.2.4
-        version: 4.2.4
+        specifier: 4.2.5
+        version: 4.2.5
       ekscss:
         specifier: workspace:*
         version: link:../ekscss
@@ -186,8 +186,8 @@ importers:
         version: 4.3.0
     devDependencies:
       '@types/stylis':
-        specifier: 4.2.4
-        version: 4.2.4
+        specifier: 4.2.5
+        version: 4.2.5
       ekscss:
         specifier: workspace:*
         version: link:../ekscss
@@ -202,8 +202,8 @@ importers:
         version: 4.3.0
     devDependencies:
       '@types/stylis':
-        specifier: 4.2.4
-        version: 4.2.4
+        specifier: 4.2.5
+        version: 4.2.5
       ekscss:
         specifier: workspace:*
         version: link:../ekscss
@@ -846,6 +846,11 @@ packages:
 
   /@types/stylis@4.2.4:
     resolution: {integrity: sha512-36ZrGJ8fgtBr6nwNnuJ9jXIj+bn/pF6UoqmrQT7+Y99+tFFeHHsoR54+194dHdyhPjgbeoNz3Qru0oRt0l6ASQ==}
+    dev: false
+
+  /@types/stylis@4.2.5:
+    resolution: {integrity: sha512-1Xve+NMN7FWjY14vLoY5tL3BVEQ/n42YLwaqJIPYhotZ9uBHt87VceMwWQpzmdEt2TNXIorIFG+YeCUUW7RInw==}
+    dev: true
 
   /@typescript-eslint/eslint-plugin@6.18.1(@typescript-eslint/parser@6.18.1)(eslint@8.55.0)(typescript@5.3.2):
     resolution: {integrity: sha512-nISDRYnnIpk7VCFrGcu1rnZfM1Dh9LRHnfgdkjcbi/l7g16VYRri3TjXi9Ir4lOZSw5N/gnV/3H7jIPQ8Q4daA==}
