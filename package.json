@@ -10,7 +10,7 @@
     "test:raw": "uvu packages '\\/test\\/.+\\.test-raw\\.js$'"
   },
   "devDependencies": {
-    "@maxmilton/stylelint-config": "0.0.13",
+    "@maxmilton/stylelint-config": "0.0.15",
     "@types/node": "20.10.2",
     "@typescript-eslint/eslint-plugin": "6.18.1",
     "@typescript-eslint/parser": "6.18.1",
