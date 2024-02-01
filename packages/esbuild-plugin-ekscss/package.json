@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "ekscss": "workspace:^",
-    "esbuild": ">=0.13.0 <0.20.0"
+    "esbuild": ">=0.13.0 <0.20.1"
   },
   "dependencies": {
     "joycon": "^3.1.1"
