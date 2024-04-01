@@ -88,8 +88,8 @@ importers:
         version: 1.8.1
     devDependencies:
       '@types/sade':
-        specifier: 1.7.8
-        version: 1.7.8
+        specifier: 1.8.0
+        version: 1.8.0
 
   packages/ekscss:
     dependencies:
@@ -820,10 +820,6 @@ packages:
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
     dev: true
 
-  /@types/mri@1.1.5:
-    resolution: {integrity: sha512-C6NscC1RO9iz1YmvqPlFdbo/q8krKwrvWsciw2MG+pH+WUgxWKv1VFpY/Y2AAZubzUpA4FH6d+FDtroboN9xMw==}
-    dev: true
-
   /@types/node@20.10.2:
     resolution: {integrity: sha512-37MXfxkb0vuIlRKHNxwCkb60PNBpR94u4efQuN4JgIAm66zfCDXGSAFCef9XUWFovX2R1ok6Z7MHhtdVXXkkIw==}
     dependencies:
@@ -834,10 +830,11 @@ packages:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
 
-  /@types/sade@1.7.8:
-    resolution: {integrity: sha512-WGEWfxQ8VHLm3JS4ljRR3MSPqVjY0JMo6zsbBywOjFIxP8Cizxx1p6r6FxOnAOZpUn4VOFoRRTXFmaOLD/+VOQ==}
+  /@types/sade@1.8.0:
+    resolution: {integrity: sha512-AaEFFSbi9xUFPVmsmlo0X8gXpdUJxoT6Ve36Qqorqb/wxagc5v4W44mCPeiw5HqWjwypJ1X1qNL7lmofqX5C7g==}
+    deprecated: This is a stub types definition. sade provides its own type definitions, so you do not need this installed.
     dependencies:
-      '@types/mri': 1.1.5
+      sade: 1.8.1
     dev: true
 
   /@types/semver@7.5.6:
