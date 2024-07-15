@@ -1,8 +1,8 @@
-// Based on https://github.com/postcss/postcss-scss/blob/f540beae6530b7c9632f954e4d6915359a54f25f/lib/scss-stringifier.js
+// Based on https://github.com/postcss/postcss-scss/blob/e57f9bdfdfaf49ae72f379f968d43c441fd77d18/lib/scss-stringifier.js
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint "@typescript-eslint/no-unsafe-assignment": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-member-access": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-return": "warn" */
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck - TODO: Too many broken types
@@ -36,7 +36,7 @@ export class XCSSStringifier extends Stringifier {
 
       this.builder(`${string}{`, node, 'start');
 
-      let after;
+      let after: string;
       if (node.nodes && node.nodes.length > 0) {
         this.body(node);
         after = this.raw(node, 'after');

@@ -1,4 +1,4 @@
-// Based on https://github.com/postcss/postcss-scss/blob/f540beae6530b7c9632f954e4d6915359a54f25f/lib/nested-declaration.js
+// Based on https://github.com/postcss/postcss-scss/blob/e57f9bdfdfaf49ae72f379f968d43c441fd77d18/lib/nested-declaration.js
 
 import { Container } from 'postcss';
 
@@ -9,7 +9,6 @@ export class NestedDeclaration extends Container {
     super(defaults);
     this.type = 'decl';
     this.isNested = true;
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!this.nodes) this.nodes = [];
   }
 }
