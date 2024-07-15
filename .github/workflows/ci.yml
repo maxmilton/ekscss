@@ -5,18 +5,20 @@ on:
     paths-ignore: ['**.md']
   pull_request: {}
   workflow_dispatch: {}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: 20
-      - run: npm install --global pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun run build
       - uses: actions/upload-artifact@v4
         with:
           name: build
@@ -26,51 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [12, 14, 16, 18, 20]
         platform: [ubuntu, windows, macos]
-    name: test (node v${{ matrix.node-version }} ${{ matrix.platform }})
-    runs-on: ${{ matrix.platform }}-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: build
-          path: packages
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install --global pnpm@6
-        if: ${{ matrix.node-version == 12 }}
-      - run: npm install --global pnpm@7
-        if: ${{ matrix.node-version == 14 }}
-      - run: npm install --global pnpm@8
-        if: ${{ matrix.node-version == 16 }}
-      - run: npm install --global pnpm
-        if: ${{ matrix.node-version >= 18 }}
-        # Old versions of pnpm don't support lockfile format v6 (pnpm v8+)
-      - run: pnpm install --frozen-lockfile --fix-lockfile
-        if: ${{ matrix.node-version <= 14 }}
-      - run: pnpm install --frozen-lockfile
-        if: ${{ matrix.node-version >= 16 }}
-      - run: pnpm run test
-      - run: pnpm run test:raw
-      - name: Report coverage
-        if: ${{ matrix.node-version == 20 && matrix.platform == 'ubuntu' && github.repository_owner == 'maxmilton' }}
-        run: |
-          curl -Lo ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter format-coverage -t lcov -o coverage/codeclimate.json coverage/lcov.info
-          ./cc-test-reporter upload-coverage
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-  test-bun:
-    needs: build
-    strategy:
-      fail-fast: false
-      matrix:
-        # TODO: If bun ever gets native windows support, add it
-        platform: [ubuntu, macos]
     name: test-bun (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}-latest
     timeout-minutes: 5
@@ -83,10 +41,70 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - run: bun add -g pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: bun run test
-      - run: bun run test:raw
+      - run: bun install --frozen-lockfile
+      - run: bun run test --coverage --coverage-reporter=lcov --coverage-reporter=text
+      - name: Report coverage
+        if: ${{ matrix.platform == 'ubuntu' && github.repository_owner == 'maxmilton' }}
+        run: |
+          curl -LO https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
+               -LO https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64.sha256
+          grep test-reporter-latest-linux-amd64 test-reporter-latest-linux-amd64.sha256 | shasum -a 256 -c -
+          mv test-reporter-latest-linux-amd64 test-reporter
+          chmod +x ./test-reporter
+          ./test-reporter format-coverage -t lcov -o coverage/codeclimate.json coverage/lcov.info
+          ./test-reporter upload-coverage
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  test-node:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [12, 14, 16, 18, 20, 22]
+        platform: [ubuntu, windows, macos]
+    name: test-node (v${{ matrix.node-version }} ${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: packages
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - run: bun install --global pnpm
+      - run: bun install --frozen-lockfile
+      # - run: npm install --global pnpm@6
+      #   if: ${{ matrix.node-version == 12 }}
+      # - run: npm install --global pnpm@7
+      #   if: ${{ matrix.node-version == 14 }}
+      # - run: npm install --global pnpm@8
+      #   if: ${{ matrix.node-version == 16 }}
+      # - run: npm install --global pnpm
+      #   if: ${{ matrix.node-version >= 18 }}
+      #   # Old versions of pnpm don't support lockfile format v6 (pnpm v8+)
+      # - run: pnpm install --frozen-lockfile --fix-lockfile
+      #   if: ${{ matrix.node-version <= 14 }}
+      # - run: pnpm install --frozen-lockfile
+      #   if: ${{ matrix.node-version >= 16 }}
+      - run: pnpm run test:node
+      - name: Report coverage
+        if: ${{ matrix.node-version == 22 && matrix.platform == 'ubuntu' && github.repository_owner == 'maxmilton' }}
+        run: |
+          curl -LO https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
+               -LO https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64.sha256
+          grep test-reporter-latest-linux-amd64 test-reporter-latest-linux-amd64.sha256 | shasum -a 256 -c -
+          mv test-reporter-latest-linux-amd64 test-reporter
+          chmod +x ./test-reporter
+          ./test-reporter format-coverage -t lcov -o coverage/codeclimate.json coverage/lcov.info
+          ./test-reporter upload-coverage
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   lint:
     needs: build
     runs-on: ubuntu-latest
@@ -97,9 +115,8 @@ jobs:
         with:
           name: build
           path: packages
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v1
         with:
-          node-version: 20
-      - run: npm install --global pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run lint
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
