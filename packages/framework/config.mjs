@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck 😢
+/* eslint "@typescript-eslint/no-unsafe-assignment": "warn" */
 /* eslint "@typescript-eslint/no-unsafe-argument": "warn" */
 /* eslint "@typescript-eslint/no-unsafe-call": "warn" */
 /* eslint "@typescript-eslint/no-unsafe-member-access": "warn" */
