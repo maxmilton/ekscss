@@ -1,21 +1,99 @@
-// Based on https://github.com/postcss/postcss-scss/blob/f540beae6530b7c9632f954e4d6915359a54f25f/lib/scss-parser.js
+// Based on https://github.com/postcss/postcss-scss/blob/e57f9bdfdfaf49ae72f379f968d43c441fd77d18/lib/scss-parser.js
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint "@typescript-eslint/restrict-plus-operands": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-assignment": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-call": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-member-access": "warn" */
 /* eslint-disable prefer-destructuring */
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck - TODO: Too many broken types
+// @ts-nocheck - TODO: Too many broken types.
 
-import { Comment, type AnyNode } from 'postcss';
+import { type AnyNode, Comment } from 'postcss';
 import Parser from 'postcss/lib/parser';
 import { NestedDeclaration } from './nested-declaration';
-import { tokenize, type Token } from './tokenize';
+import { type Token, tokenize } from './tokenize';
 
 export class XCSSParser extends Parser {
+  override atrule(token: Token): void {
+    let name = token[1];
+    let prev = token;
+
+    while (!this.tokenizer.endOfFile()) {
+      const next = this.tokenizer.nextToken();
+      if (next[0] === 'word' && next[2] === prev[3]! + 1) {
+        name += next[1];
+        prev = next;
+      } else {
+        this.tokenizer.back(next);
+        break;
+      }
+    }
+
+    super.atrule(['at-word', name, token[2], prev[3]]);
+  }
+
   override createTokenizer(): void {
     this.tokenizer = tokenize(this.input);
+  }
+
+  override comment(token: Token): void {
+    if (token[4] === 'inline') {
+      const node = new Comment();
+      this.init(node, token[2]);
+      // @ts-expect-error - "inline" missing in upstream types
+      node.raws.inline = true;
+      const pos = this.input.fromOffset(token[3]);
+      node.source.end = {
+        column: pos.col,
+        line: pos.line,
+        offset: token[3] + 1,
+      };
+
+      const text = token[1].slice(2);
+      if (/^\s*$/.test(text)) {
+        node.text = '';
+        node.raws.left = text;
+        node.raws.right = '';
+      } else {
+        // biome-ignore lint/correctness/noEmptyCharacterClassInRegex: TODO:!
+        const match = text.match(/^(\s*)([^]*\S)(\s*)$/);
+        const fixed = match[2].replace(/(\*\/|\/\*)/g, '*//*');
+        node.text = fixed;
+        node.raws.left = match[1];
+        node.raws.right = match[3];
+        // @ts-expect-error - "text" missing in upstream types
+        node.raws.text = match[2];
+      }
+    } else {
+      super.comment(token);
+    }
+  }
+
+  override raw(
+    node: AnyNode,
+    prop: string,
+    tokens: Token[],
+    customProperty: boolean,
+  ): string | void {
+    super.raw(node, prop, tokens, customProperty);
+
+    if (node.raws[prop]) {
+      const xcss = node.raws[prop].raw;
+      // eslint-disable-next-line no-param-reassign, unicorn/no-array-reduce
+      node.raws[prop].raw = tokens.reduce((all, i) => {
+        if (i[0] === 'comment' && i[4] === 'inline') {
+          const text = i[1].slice(2).replace(/(\*\/|\/\*)/g, '*//*');
+          return `${all}/*${text}*/`;
+        }
+        return all + i[1];
+      }, '');
+
+      if (xcss !== node.raws[prop].raw) {
+        // eslint-disable-next-line no-param-reassign
+        node.raws[prop].xcss = xcss;
+      }
+    }
   }
 
   override rule(tokens: Token[]): void {
@@ -46,7 +124,7 @@ export class XCSSParser extends Parser {
       const node = new NestedDeclaration();
       this.init(node, tokens[0][2]);
 
-      let last;
+      let last: Token;
       for (let i = tokens.length - 1; i >= 0; i--) {
         if (tokens[i][0] !== 'space') {
           last = tokens[i];
@@ -55,10 +133,18 @@ export class XCSSParser extends Parser {
       }
       if (last[3]) {
         const pos = this.input.fromOffset(last[3]);
-        node.source.end = { offset: last[3], line: pos.line, column: pos.col };
+        node.source.end = {
+          column: pos.col,
+          line: pos.line,
+          offset: last[3] + 1,
+        };
       } else {
         const pos = this.input.fromOffset(last[2]);
-        node.source.end = { offset: last[2], line: pos.line, column: pos.col };
+        node.source.end = {
+          column: pos.col,
+          line: pos.line,
+          offset: last[2] + 1,
+        };
       }
 
       while (tokens[0][0] !== 'word') {
@@ -68,9 +154,9 @@ export class XCSSParser extends Parser {
       if (tokens[0][2]) {
         const pos = this.input.fromOffset(tokens[0][2]);
         node.source.start = {
-          offset: tokens[0][2],
-          line: pos.line,
           column: pos.col,
+          line: pos.line,
+          offset: tokens[0][2],
         };
       }
 
@@ -86,16 +172,15 @@ export class XCSSParser extends Parser {
 
       node.raws.between = '';
 
-      let token;
+      let token: Token;
       while (tokens.length > 0) {
         token = tokens.shift();
 
         if (token[0] === ':') {
           node.raws.between += token[1];
           break;
-        } else {
-          node.raws.between += token[1];
         }
+        node.raws.between += token[1];
       }
 
       if (node.prop[0] === '_' || node.prop[0] === '*') {
@@ -115,7 +200,8 @@ export class XCSSParser extends Parser {
             node.raws.important = string;
           }
           break;
-        } else if (token[1] === 'important') {
+        }
+        if (token[1] === 'important') {
           const cache = [...tokens];
           let str = '';
           for (let j = i; j > 0; j--) {
@@ -130,8 +216,8 @@ export class XCSSParser extends Parser {
           if (str.trim().indexOf('!') === 0) {
             node.important = true;
             node.raws.important = str;
-            // eslint-disable-next-line no-param-reassign
-            tokens = cache;
+            // biome-ignore lint/style/noParameterAssign: TODO:!
+            tokens = cache; // eslint-disable-line no-param-reassign
           }
         }
 
@@ -147,78 +233,6 @@ export class XCSSParser extends Parser {
       }
 
       this.current = node;
-    }
-  }
-
-  override comment(token: Token): void {
-    if (token[4] === 'inline') {
-      const node = new Comment();
-      this.init(node, token[2]);
-      // @ts-expect-error - "inline" missing in upstream types
-      node.raws.inline = true;
-      const pos = this.input.fromOffset(token[3]);
-      node.source.end = { offset: token[3], line: pos.line, column: pos.col };
-
-      const text = token[1].slice(2);
-      if (/^\s*$/.test(text)) {
-        node.text = '';
-        node.raws.left = text;
-        node.raws.right = '';
-      } else {
-        const match = text.match(/^(\s*)([^]*\S)(\s*)$/);
-        const fixed = match[2].replace(/(\*\/|\/\*)/g, '*//*');
-        node.text = fixed;
-        node.raws.left = match[1];
-        node.raws.right = match[3];
-        // @ts-expect-error - "text" missing in upstream types
-        node.raws.text = match[2];
-      }
-    } else {
-      super.comment(token);
-    }
-  }
-
-  override atrule(token: Token): void {
-    let name = token[1];
-    let prev = token;
-
-    while (!this.tokenizer.endOfFile()) {
-      const next = this.tokenizer.nextToken();
-      if (next[0] === 'word' && next[2] === prev[3]! + 1) {
-        name += next[1];
-        prev = next;
-      } else {
-        this.tokenizer.back(next);
-        break;
-      }
-    }
-
-    super.atrule(['at-word', name, token[2], prev[3]]);
-  }
-
-  override raw(
-    node: AnyNode,
-    prop: string,
-    tokens: Token[],
-    customProperty: boolean,
-  ): string | void {
-    super.raw(node, prop, tokens, customProperty);
-
-    if (node.raws[prop]) {
-      const xcss = node.raws[prop].raw;
-      // eslint-disable-next-line no-param-reassign, unicorn/no-array-reduce
-      node.raws[prop].raw = tokens.reduce((all, i) => {
-        if (i[0] === 'comment' && i[4] === 'inline') {
-          const text = i[1].slice(2).replace(/(\*\/|\/\*)/g, '*//*');
-          return `${all}/*${text}*/`;
-        }
-        return all + i[1];
-      }, '');
-
-      if (xcss !== node.raws[prop].raw) {
-        // eslint-disable-next-line no-param-reassign
-        node.raws[prop].xcss = xcss;
-      }
     }
   }
 }

@@ -1,6 +1,8 @@
-// Based on https://github.com/postcss/postcss-scss/blob/f540beae6530b7c9632f954e4d6915359a54f25f/lib/scss-tokenize.js
+// Based on https://github.com/postcss/postcss-scss/blob/e57f9bdfdfaf49ae72f379f968d43c441fd77d18/lib/scss-tokenize.js
 
 // TODO: Tokenize xcss tagged template literals within XCSS expressions
+
+/* eslint-disable unicorn/prefer-code-point */
 
 import type { Input } from 'postcss';
 
@@ -28,7 +30,7 @@ const DOLLAR_SIGN = 36; // $
 
 const RE_AT_END = /[\t\n\f\r "#'()/;[\\\]{}]/g;
 const RE_WORD_END = /[\t\n\f\r !"#'(),:;@[\\\]{}]|\/(?=\*)/g;
-const RE_BAD_BRACKET = /.[\n"'(/\\]/;
+const RE_BAD_BRACKET = /.[\n\r"'(/\\]/;
 const RE_HEX_ESCAPE = /[\da-f]/i;
 const RE_NEW_LINE = /[\n\f\r]/g;
 
@@ -61,23 +63,23 @@ export function tokenize(
   const buffer: Token[] = [];
   const returned: Token[] = [];
   let pos = 0;
-  let code;
+  let code: number;
   let next: number;
-  let quote;
-  let content;
-  let escape;
-  let escaped;
-  let prev;
-  let n;
+  let quote: typeof SINGLE_QUOTE | typeof DOUBLE_QUOTE;
+  let content: string;
+  // biome-ignore lint/suspicious/noShadowRestrictedNames: TODO:!
+  let escape: boolean;
+  let escaped: boolean;
+  let prev: string;
+  let n: number;
   let currentToken: Token;
-  let brackets;
+  let brackets: 0 | 1;
 
   function position() {
     return pos;
   }
 
   function unclosed(what: string): never {
-    // eslint-disable-next-line @typescript-eslint/no-throw-literal
     throw input.error(`Unclosed ${what}`, pos);
   }
 
@@ -215,7 +217,8 @@ export function tokenize(
 
           if (!escaped && code === quote) {
             break;
-          } else if (code === BACKSLASH) {
+          }
+          if (code === BACKSLASH) {
             escaped = !escaped;
           } else if (escaped) {
             escaped = false;
@@ -330,8 +333,8 @@ export function tokenize(
 
   return {
     back,
-    nextToken,
     endOfFile,
+    nextToken,
     position,
   };
 }
