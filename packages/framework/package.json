@@ -21,7 +21,7 @@
     "utils.mjs"
   ],
   "scripts": {
-    "build": "pnpm run prebuild && pnpm run build-levels && pnpm run build-addons && pnpm run postbuild",
+    "build": "pnpm run build-levels && pnpm run build-addons",
     "build-addons": "for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css; done",
     "build-levels": "for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css; done",
     "postbuild": "tsc --emitDeclarationOnly",
