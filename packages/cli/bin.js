@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+'use strict';
+
 const sade = require('sade');
 const boot = require('./index');
 const pkg = require('./package.json');
