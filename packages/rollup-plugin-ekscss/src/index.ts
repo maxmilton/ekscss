@@ -1,7 +1,5 @@
-/* eslint-disable no-restricted-syntax */
-
-import { createFilter, type FilterPattern } from '@rollup/pluginutils';
-import { compile, resolvePlugins, type XCSSCompileOptions } from 'ekscss';
+import { type FilterPattern, createFilter } from '@rollup/pluginutils';
+import { type XCSSCompileOptions, compile, resolvePlugins } from 'ekscss';
 import JoyCon from 'joycon';
 import type { Plugin } from 'rollup';
 
@@ -74,7 +72,6 @@ export default function rollupPlugin({
       }
     },
 
-    // @ts-expect-error - FIXME: The returned map should take undefined
     transform(code, id) {
       if (!filter(id)) return null;
 
@@ -97,11 +94,11 @@ export default function rollupPlugin({
         // });
         this.warn(warning.message);
 
-        // eslint-disable-next-line no-console
+        /* eslint-disable no-console */
         console.warn('XCSS Warning:', warning.message || warning);
 
         if (warning.file) {
-          // eslint-disable-next-line no-console
+          // biome-ignore lint/suspicious/noConsoleLog: provide feedback
           console.log(
             '  at',
             [warning.file, warning.line, warning.column]
@@ -109,6 +106,7 @@ export default function rollupPlugin({
               .join(':'),
           );
         }
+        /* eslint-enable no-console */
       }
 
       if (reBadValue.test(compiled.css)) {
@@ -138,7 +136,7 @@ export default function rollupPlugin({
 
       return {
         code: compiled.css,
-        map: compiled.map?.toJSON(),
+        map: compiled.map?.toString() ?? null,
       };
     },
 
