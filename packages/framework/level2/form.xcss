@@ -90,7 +90,7 @@ input::-webkit-inner-spin-button {
   appearance: none;
   border: ${x.form.checkboxBorder};
   border-radius: ${x.form.checkboxRadius};
-  // vertial-align: text-bottom;
+  // vertical-align: text-bottom;
   cursor: pointer;
 
   &:checked {

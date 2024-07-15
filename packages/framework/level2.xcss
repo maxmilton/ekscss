@@ -10,7 +10,7 @@
 @import './level2/grid.xcss';
 @import './level2/spacing.xcss';
 @import './level2/display.xcss';
-@import './level2/postition.xcss';
+@import './level2/position.xcss';
 @import './level2/z-index.xcss';
 @import './level2/utils.xcss';
 @import './level2/a11y.xcss';

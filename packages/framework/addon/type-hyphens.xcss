@@ -16,9 +16,9 @@ p,
   -webkit-hyphenate-limit-chars: 6 3 3;
   hyphenate-limit-chars: 6 3 3;
   -webkit-hyphenate-limit-last: always;
-  hyphenate-limit-last: always; /* stylelint-disable-line property-no-unknown */
+  hyphenate-limit-last: always;
   -webkit-hyphenate-limit-lines: 2;
-  hyphenate-limit-lines: 2; /* stylelint-disable-line property-no-unknown */
+  hyphenate-limit-lines: 2;
   -webkit-hyphenate-limit-zone: 8%;
-  hyphenate-limit-zone: 8%; /* stylelint-disable-line property-no-unknown */
+  hyphenate-limit-zone: 8%;
 }
