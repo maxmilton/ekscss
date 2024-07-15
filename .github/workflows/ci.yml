@@ -61,15 +61,20 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [12, 14, 16, 18, 20, 22]
-        platform: [ubuntu, windows, macos]
+        platform: [ubuntu-latest, windows-latest, macos-latest]
         exclude:
-          # no prebuilt node <=14 for darwin arm64
+          # no prebuilt node <=14 for darwin arm64 (macos-latest; macos-14)
           - node-version: 12
-            platform: macos
+            platform: macos-latest
           - node-version: 14
-            platform: macos
+            platform: macos-latest
+        include:
+          - node-version: 12
+            platform: macos-13
+          - node-version: 14
+            platform: macos-13
     name: test-node (v${{ matrix.node-version }} ${{ matrix.platform }})
-    runs-on: ${{ matrix.platform }}-latest
+    runs-on: ${{ matrix.platform }}
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
