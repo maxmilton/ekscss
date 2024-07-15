@@ -1,5 +1,3 @@
-/* eslint-disable no-plusplus, no-restricted-syntax */
-
 import type {
   Context,
   Middleware,
@@ -234,7 +232,7 @@ export function xcss(
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/restrict-plus-operands
     out += (val || (val == null || val === false ? '' : val)) + strings[index];
   }
 
@@ -244,27 +242,27 @@ export function xcss(
 /**
  * Resolve XCSS plugins when specified as a stylis Middleware or string.
  *
- * Itterate over plugins and load plugins specified as a string that denotes
+ * Iterate over plugins and load plugins specified as a string that denotes
  * either the name of a package or a file path. Useful when loading XCSS
  * configuration from a JSON file.
  */
 export function resolvePlugins(plugins: (Middleware | string)[]): Middleware[] {
   if (process.env.BROWSER) {
     throw new Error('Browser runtime does not support resolving plugins');
-  } else {
-    return plugins.map((plugin) => {
-      if (typeof plugin !== 'string') return plugin;
-
-      try {
-        // eslint-disable-next-line
-        const mod = require(plugin);
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        return (mod.default || mod) as Middleware;
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(`Failed to load plugin "${plugin}"; ${String(error)}`);
-        return noop;
-      }
-    });
   }
+
+  return plugins.map((plugin) => {
+    if (typeof plugin !== 'string') return plugin;
+
+    try {
+      // eslint-disable-next-line
+      const mod = require(plugin);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      return (mod.default || mod) as Middleware;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(`Failed to load plugin "${plugin}":\n  ${String(error)}`);
+      return noop;
+    }
+  });
 }
