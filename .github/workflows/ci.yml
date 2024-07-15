@@ -60,19 +60,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [10, 12, 14, 16, 18, 20, 22]
+        node-version: [12, 14, 16, 18, 20, 22]
         platform: [ubuntu-latest, windows-latest, macos-latest]
         exclude:
           # no prebuilt node <=14 for darwin arm64 (macos-latest; macos-14)
-          - node-version: 10
-            platform: macos-latest
           - node-version: 12
             platform: macos-latest
           - node-version: 14
             platform: macos-latest
         include:
-          - node-version: 10
-            platform: macos-13
           - node-version: 12
             platform: macos-13
           - node-version: 14
@@ -93,8 +89,6 @@ jobs:
         with:
           bun-version: latest
       - run: bun install --frozen-lockfile
-      - run: bun install --global pnpm@5
-        if: ${{ matrix.node-version == 10 }}
       - run: bun install --global pnpm@6
         if: ${{ matrix.node-version == 12 }}
       - run: bun install --global pnpm@7
