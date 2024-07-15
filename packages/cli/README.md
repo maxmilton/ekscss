@@ -101,4 +101,4 @@ This package registers the CLI executable binaries `xcss` and `ekscss` which are
 
 ---
 
-© 2022 [Max Milton](https://maxmilton.com)
+© 2024 [Max Milton](https://maxmilton.com)
