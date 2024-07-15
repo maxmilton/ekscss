@@ -36,28 +36,14 @@
         "noShoutyConstants": "error",
         "useCollapsedElseIf": "error",
         "useEnumInitializers": "off",
-        // "useNamingConvention": {
-        //   "level": "warn",
-        //   "options": {
-        //     "strictCase": false,
-        //     "requireAscii": true,
-        //     "enumMemberCase": "CONSTANT_CASE"
-        //     // "conventions": [
-        //     //   {
-        //     //     // "selector": { "kind": "typeMember" },
-        //     //     "selector": { "kind": "typeProperty" },
-        //     //     "formats": ["camelCase", "snake_case"]
-        //     //   },
-        //     //   {
-        //     //     "selector": {
-        //     //       "kind": "typeProperty",
-        //     //       "modifiers": ["readonly"]
-        //     //     },
-        //     //     "formats": ["CONSTANT_CASE"]
-        //     //   }
-        //     // ]
-        //   }
-        // },
+        "useNamingConvention": {
+          "level": "warn",
+          "options": {
+            "strictCase": false,
+            "requireAscii": true,
+            "enumMemberCase": "CONSTANT_CASE"
+          }
+        },
         "useNodejsImportProtocol": "off", // we support node v12+
         "useShorthandArrayType": "error",
         "useShorthandAssign": "error",
