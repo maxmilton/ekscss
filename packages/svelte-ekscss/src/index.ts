@@ -1,12 +1,9 @@
 /* eslint-disable no-console */
 
-import { compile, resolvePlugins, type XCSSCompileOptions } from 'ekscss';
+import { type XCSSCompileOptions, compile, resolvePlugins } from 'ekscss';
 import JoyCon from 'joycon';
 import * as colors from 'kleur/colors';
-import type {
-  Preprocessor,
-  PreprocessorGroup,
-} from 'svelte/types/compiler/preprocess';
+import type { Preprocessor, PreprocessorGroup } from 'svelte/compiler';
 
 export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
 
@@ -65,11 +62,11 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
       rootDir: configData.rootDir,
     });
 
-    // eslint-disable-next-line no-restricted-syntax
     for (const warning of compiled.warnings) {
       console.warn(colors.yellow('Warning:'), warning.message || warning);
 
       if (warning.file) {
+        // biome-ignore lint/suspicious/noConsoleLog: provide feedback
         console.log(
           '  at',
           colors.dim(
@@ -95,11 +92,14 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
     return {
       code: css,
       dependencies,
-      ...(map && { map: map.toJSON() }),
+      ...(map && { map: map.toString() }),
     };
   };
 };
 
-export default (opts: PluginOptions): PreprocessorGroup => ({
+const preprocessor = (opts: PluginOptions): PreprocessorGroup => ({
+  name: 'ekscss',
   style: style(opts),
 });
+
+export default preprocessor;
