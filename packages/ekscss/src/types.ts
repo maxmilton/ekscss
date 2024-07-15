@@ -1,6 +1,6 @@
-import type { SourceMapGenerator } from 'source-map';
-import type { Element as _Element, Middleware } from 'stylis';
-import type { xcss as _xcss } from './helpers';
+import type { SourceMapGenerator } from 'source-map-js';
+import type { Middleware, Element as _Element } from 'stylis';
+import type { xcss } from './helpers';
 
 // eslint-disable-next-line unicorn/prefer-export-from
 export type { Middleware };
@@ -93,7 +93,7 @@ export interface XCSSCompileOptions {
 
 export type BuildHookFn = () => void;
 
-export type XCSSTemplateFn = (xcss: typeof _xcss, x: XCSSGlobals) => string;
+export type XCSSTemplateFn = (xcss_: typeof xcss, x: XCSSGlobals) => string;
 
 export interface XCSSCompileResult {
   css: string;

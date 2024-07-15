@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax, prefer-object-spread */
-
 import * as stylis from 'stylis';
 import {
   map as _map,
@@ -32,7 +30,9 @@ export function onAfterBuild(callback: BuildHookFn): void {
 // TODO: Write tests that prove this doesn't mutate the original object.
 // TODO: This is only a shallow clone, should we do a deep clone? Use structuredClone or klona
 function mergeDefaultGlobals(globals: Partial<XCSSGlobals>): XCSSGlobals {
+  // eslint-disable-next-line prefer-object-spread
   const newGlobals = Object.assign({}, globals, {
+    // eslint-disable-next-line prefer-object-spread
     fn: Object.assign({}, globals.fn),
   });
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -74,11 +74,11 @@ export function compile(
 
   for (const fn of afterBuildFns) fn();
 
-  // @ts-expect-error - reset for next compile
+  // @ts-expect-error - resetting ctx to initial state
   // eslint-disable-next-line no-multi-assign
   ctx.dependencies = ctx.from = ctx.rootDir = ctx.warnings = ctx.x = undefined;
 
-  let sourceMap;
+  let sourceMap: ReturnType<typeof compileSourceMap> | undefined;
 
   if (map) {
     if (process.env.BROWSER) {
