@@ -2,16 +2,12 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node", // TODO: Use "bundler" once typescript-eslint can handle monorepos better
-    "esModuleInterop": true,
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "esModuleInterop": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "allowJs": true,
-    "checkJs": true,
-    "noEmit": true,
-
-    "declaration": true,
-    "sourceMap": true,
+    "allowJs": false,
 
     "strict": true,
     "allowUnreachableCode": false,
@@ -23,11 +19,17 @@
     "noUnusedParameters": false, // covered by eslint
     "verbatimModuleSyntax": true
   },
-  "exclude": [
-    "**/dist",
-    "**/node_modules",
-    "**/test",
-    "**/build.mjs",
-    "coverage"
-  ]
+  "include": [
+    "*.config.mjs",
+    "*.config.ts",
+    "*.d.ts",
+    "packages/*/*.config.ts",
+    "packages/*/*.d.ts",
+    "packages/*/build.ts",
+    "packages/*/src",
+    "packages/*/test",
+    "packages/framework/*.mjs",
+    "test"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
