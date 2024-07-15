@@ -1,4 +1,4 @@
-/* eslint-disable no-cond-assign, no-param-reassign, no-plusplus, no-restricted-syntax, no-underscore-dangle, unicorn/no-array-callback-reference, unicorn/no-array-reduce */
+/* eslint-disable no-underscore-dangle, unicorn/no-array-callback-reference, unicorn/no-array-reduce */
 
 // TODO: Documentation:
 // - Explain our template engine and link to supporting docs:
@@ -30,16 +30,16 @@
 // - Spec: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit#heading=h.lmz475t4mvbx
 
 import path from 'path';
-import { SourceNode, type SourceMapGenerator } from 'source-map';
+import { type SourceMapGenerator, SourceNode } from 'source-map-js';
 import * as stylis from 'stylis';
 import type { Element } from './types';
 
 function extractSourceMapRef(ast: Element[]): string | null {
-  let currentNode;
+  let currentNode: Element;
   let index = 0;
 
   // look through the last 3 AST nodes to try find a source map ref comment
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-cond-assign
   while (++index < 4 && (currentNode = ast[ast.length - index])) {
     if (
       currentNode.type === stylis.COMMENT &&
@@ -83,6 +83,7 @@ export function compileSourceMap(
 
         const importAst = node.__ast
           .map((importedNode) => {
+            // eslint-disable-next-line no-param-reassign
             importedNode.root ??= node;
             return importedNode;
           })
@@ -104,14 +105,16 @@ export function compileSourceMap(
   }
 
   const nodes = ast.reduce(nodeReducer, []);
-  const rootNode = new SourceNode(null, null, null, nodes);
+  const rootNode = new SourceNode();
+  // @ts-expect-error - bad upstream types
+  rootNode.add(nodes);
+
   const pathTo = to ?? from;
   const sourceRoot = pathTo ? path.dirname(pathTo) : rootDir;
-  // @ts-expect-error - FIXME: file should take undefined
+  // @ts-expect-error - TODO: file should take undefined
   const result = rootNode.toStringWithSourceMap({
     file: pathTo && path.relative(sourceRoot, pathTo),
     sourceRoot,
-    skipValidation: true, // better performance
   });
 
   return result.map;
