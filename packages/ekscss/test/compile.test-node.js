@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies */
+'use strict';
 
 const { test } = require('uvu');
 const assert = require('uvu/assert');
-const ekscssBundle = require('../dist/index');
+const { compile } = require('ekscss');
 
 const complexCodeFixture = `
   /**
@@ -29,12 +29,12 @@ const complexCodeResult =
   'body{font-size:20px;color:coral;}.red{color:coral;}.green{color:seagreen;}.blue{color:deepskyblue;}';
 
 test('bundled compiler runs with empty code', () => {
-  const compiled = ekscssBundle.compile('');
+  const compiled = compile('');
   assert.is(compiled.css, '');
 });
 
 test('bundled compiler runs with complex code', () => {
-  const compiled = ekscssBundle.compile(complexCodeFixture);
+  const compiled = compile(complexCodeFixture);
   assert.snapshot(compiled.css, complexCodeResult);
 });
 
