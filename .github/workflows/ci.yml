@@ -94,7 +94,7 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: bun install --global pnpm@6
-        if: ${{ matrix.node-version == 12 }}
+        if: ${{ matrix.node-version <= 12 }}
       - run: bun install --global pnpm@7
         if: ${{ matrix.node-version == 14 }}
       - run: bun install --global pnpm@8
