@@ -37,7 +37,6 @@ module.exports = async (src, dest, opts) => {
   }
 
   /** @type {import('./types').XCSSConfig} */
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const config = result.data || {};
   const rootDir = config.rootDir || process.cwd();
   const srcFiles = src ? [src] : ['index.xcss', 'src/index.xcss'];
@@ -51,7 +50,6 @@ module.exports = async (src, dest, opts) => {
   for (const filename of srcFiles) {
     try {
       srcFileName = path.resolve(rootDir, filename);
-      // eslint-disable-next-line no-await-in-loop
       srcFile = await fs.promises.open(srcFileName, 'r', 0o600);
     } catch {
       // no op
@@ -103,7 +101,8 @@ module.exports = async (src, dest, opts) => {
   if (sourcemap) {
     if (config.banner) {
       const bannerLineCount = config.banner.split('\n').length;
-      const map = sourcemap.toJSON();
+      /** @type {import('./types').RawSourceMap} */
+      const map = JSON.parse(sourcemap.toString());
       map.mappings = `${';'.repeat(bannerLineCount)}${map.mappings}`;
       sourcemap = JSON.stringify(map);
     }
@@ -133,7 +132,6 @@ module.exports = async (src, dest, opts) => {
       colors.bold(colors.red('$&')),
     );
     const bytes = Buffer.byteLength(css, 'utf8');
-    // eslint-disable-next-line global-require
     const gzBytes = require('zlib').gzipSync(css).byteLength;
     const timeCompile = `${(t1 - t0).toFixed(2)}ms`;
     const timeTotal = `${Math.ceil(performance.now())}ms total`;
