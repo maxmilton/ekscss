@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign, no-restricted-syntax */
+/* eslint-disable no-param-reassign */
 
 // TODO: Documentation: #apply as decl with value of rule selectors to inline
 //  ↳ Selectors can be separated by comma and/or whitespace (including new
@@ -13,7 +13,7 @@
 // it. It will not create or modify other rule sets, i.e., it does not
 // automagically also apply pseudo-classes, pseudo-elements, at-rules,
 // attributes, etc. It's an intentional design choice to keep the code simple
-// and have better performance. Although the consumer maintenence overhead can
+// and have better performance. Although the consumer maintenance overhead can
 // be higher it also has the bonus of better visibility into what's going on
 // and no unexpected results (which often leads to logically incorrect or hugely
 // bloated code in SASS for example.)
@@ -24,11 +24,11 @@
 //  ↳ Impact of including this plugin and impact of actual #apply use
 
 import {
+  type Element,
+  type Middleware,
   ctx,
   onAfterBuild,
   onBeforeBuild,
-  type Element,
-  type Middleware,
 } from 'ekscss';
 import * as stylis from 'stylis';
 

@@ -1,8 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck 😢
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return */
+/* eslint "@typescript-eslint/no-unsafe-argument": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-call": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-member-access": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-return": "warn" */
 
-// FIXME: ekscss compiler types issues which need the eslint disable comments above
+// FIXME: ekscss compiler types issues which is why need the eslint comments above
+
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { applyPlugin } from '@ekscss/plugin-apply';
 import { importPlugin } from '@ekscss/plugin-import';

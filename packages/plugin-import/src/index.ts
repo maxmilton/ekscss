@@ -1,8 +1,8 @@
-/* eslint-disable no-param-reassign, no-underscore-dangle */
+/* eslint-disable no-param-reassign, no-underscore-dangle, unicorn/prefer-module */
 
-import { ctx, interpolate, xcss, type Element, type Middleware } from 'ekscss';
 import fs from 'fs';
 import path from 'path';
+import { type Element, type Middleware, ctx, interpolate, xcss } from 'ekscss';
 import * as stylis from 'stylis';
 
 // TODO: Document this plugin should come first
@@ -20,7 +20,6 @@ const resolveFile = (filePath: string, dirs: string[]): string | null => {
     return require.resolve(filePath, { paths: dirs });
   } catch {
     // Fall back to manual search
-    // eslint-disable-next-line no-restricted-syntax
     for (const searchDir of dirs) {
       // TODO: Document that user input to path.resolve could lead to a path
       // traversal vulnerability. Users should only run this on trusted code.

@@ -18,6 +18,7 @@ import { compile, middleware, serialize } from 'stylis';
  * the `color` package `Color` constructor accepts or an XCSS template
  * expression function which will resolve to such a value.
  * @param {Parameters<typeof Color>[1]} [model]
+ * @returns {Color}
  */
 export function color(value, model) {
   return Color(
@@ -42,6 +43,7 @@ export function color(value, model) {
  * onBeforeBuild(preloadApply);
  *
  * @param code - The XCSS code to preload, default is `"@import '@ekscss/framework/level2.xcss';"`.
+ * @returns {void}
  */
 export function preloadApply(
   code = "@import '@ekscss/framework/level2.xcss';",
@@ -86,7 +88,6 @@ export function resolveGlobals(obj) {
   /** @type {ResolvedExpressionOrNested} */
   const resolved = {};
 
-  // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of Object.entries(obj)) {
     let val = value;
 
@@ -126,11 +127,11 @@ export function getGlobals(config) {
 
   const { fn, ...globalVars } = globals;
   /** @type {ResolvedGlobals} */
-  // @ts-expect-error - TODO:!
+  // @ts-expect-error - TODO: Fix Resolved* types
   const resolved = resolveGlobals(globalVars);
   resolved.fn = fn;
 
-  // @ts-expect-error - reseting ctx values
+  // @ts-expect-error - resetting ctx values
   // eslint-disable-next-line no-multi-assign
   ctx.warnings = ctx.x = undefined;
 
