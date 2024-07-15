@@ -39,57 +39,9 @@
     "include": [
       "packages/*/src",
       "packages/cli",
-      "packages/framework/utils.js"
+      "packages/framework/*.js",
+      "packages/framework/*.mjs"
     ],
-    "reporter": [
-      "text",
-      "lcovonly"
-    ]
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "endOfLine": "lf",
-    "singleQuote": true,
-    "trailingComma": "all",
-    "plugins": [
-      "prettier-plugin-pkg"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "*.spec.ts",
-          "*.test.tsx",
-          "*.test.ts"
-        ],
-        "options": {
-          "printWidth": 100
-        }
-      }
-    ]
-  },
-  "stylelint": {
-    "reportInvalidScopeDisables": true,
-    "reportNeedlessDisables": true,
-    "extends": [
-      "stylelint-config-standard",
-      "@maxmilton/stylelint-config"
-    ],
-    "ignoreFiles": [
-      "**/dist/**",
-      "**/node_modules/**",
-      "packages/framework/addon/alert.xcss",
-      "packages/framework/addon/ux-larger-click-zone.xcss",
-      "packages/framework/level1/type.xcss",
-      "packages/framework/level2/display.xcss",
-      "packages/framework/level2/flex.xcss",
-      "packages/framework/level2/form.xcss",
-      "packages/framework/level2/grid.xcss",
-      "packages/framework/level2/postition.xcss",
-      "packages/framework/level2/spacing.xcss"
-    ],
-    "rules": {
-      "import-notation": null,
-      "media-query-no-invalid": null
-    }
+    "reporter": ["text", "lcovonly"]
   }
 }

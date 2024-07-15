@@ -1,0 +1,26 @@
+/** @type {import('stylelint').Config} */
+export default {
+  reportInvalidScopeDisables: true,
+  reportNeedlessDisables: true,
+  extends: ['stylelint-config-standard', '@maxmilton/stylelint-config'],
+  ignoreFiles: [
+    '**/*.bak/**',
+    '**/dist/**',
+    '**/node_modules/**',
+
+    // FIXME: Remove these when fixed.
+    'packages/framework/addon/alert.xcss',
+    'packages/framework/addon/ux-larger-click-zone.xcss',
+    'packages/framework/level1/type.xcss',
+    'packages/framework/level2/display.xcss',
+    'packages/framework/level2/flex.xcss',
+    'packages/framework/level2/form.xcss',
+    'packages/framework/level2/grid.xcss',
+    'packages/framework/level2/position.xcss',
+    'packages/framework/level2/spacing.xcss',
+  ],
+  rules: {
+    'import-notation': null,
+    'media-query-no-invalid': null,
+  },
+};
