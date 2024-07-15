@@ -45,7 +45,7 @@
 - An official way to remove unused styles
 - Webpack plugin
 - Also test rollup plugin against vite
-  - If there are some particular benifits, make a separate vite plugin, potentially just reexporting the rollup plugin
+  - If there are some particular benefits, make a separate vite plugin, potentially just reexporting the rollup plugin
 - PostCSS syntax plugin then (related):
   - Stylelint plugin
   - Prettier plugin
@@ -93,4 +93,4 @@ MIT license. See [LICENSE](https://github.com/maxmilton/ekscss/blob/master/LICEN
 
 ---
 
-© 2022 [Max Milton](https://maxmilton.com)
+© 2024 [Max Milton](https://maxmilton.com)
