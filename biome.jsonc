@@ -1,0 +1,186 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "formatter": {
+    "formatWithErrors": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80
+  },
+  "organizeImports": { "enabled": true },
+  "javascript": {
+    "formatter": {
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "quoteStyle": "single"
+    }
+  },
+  "linter": {
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off",
+        "useSimplifiedLogicExpression": "info"
+      },
+      "performance": {
+        "noBarrelFile": "info",
+        "noReExportAll": "info"
+      },
+      "style": {
+        "noNamespace": "error",
+        "noNegationElse": "error",
+        "noNonNullAssertion": "off",
+        "noParameterProperties": "error",
+        "noRestrictedGlobals": "error",
+        "noShoutyConstants": "error",
+        "useCollapsedElseIf": "error",
+        "useEnumInitializers": "off",
+        // "useNamingConvention": {
+        //   "level": "warn",
+        //   "options": {
+        //     "strictCase": false,
+        //     "requireAscii": true,
+        //     "enumMemberCase": "CONSTANT_CASE"
+        //     // "conventions": [
+        //     //   {
+        //     //     // "selector": { "kind": "typeMember" },
+        //     //     "selector": { "kind": "typeProperty" },
+        //     //     "formats": ["camelCase", "snake_case"]
+        //     //   },
+        //     //   {
+        //     //     "selector": {
+        //     //       "kind": "typeProperty",
+        //     //       "modifiers": ["readonly"]
+        //     //     },
+        //     //     "formats": ["CONSTANT_CASE"]
+        //     //   }
+        //     // ]
+        //   }
+        // },
+        "useNodejsImportProtocol": "off", // we support node v12+
+        "useShorthandArrayType": "error",
+        "useShorthandAssign": "error",
+        "useSingleCaseStatement": "info",
+        "useTemplate": "off"
+      },
+      "suspicious": {
+        "noApproximativeNumericConstant": "error",
+        "noAssignInExpressions": "off",
+        "noConfusingVoidType": "off",
+        "noConsoleLog": "warn",
+        "noConstEnum": "off",
+        "noExplicitAny": "off",
+        "noFocusedTests": "error",
+        "noMisrefactoredShorthandAssign": "error"
+      },
+      "nursery": {
+        "noDoneCallback": "warn",
+        "noDuplicateAtImportRules": "error",
+        "noDuplicateElseIf": "error",
+        "noDuplicateFontNames": "error",
+        "noDuplicateJsonKeys": "error",
+        "noDuplicateSelectorsKeyframeBlock": "error",
+        "noEmptyBlock": "warn",
+        "noEvolvingTypes": "warn",
+        "noImportantInKeyframe": "error",
+        "noInvalidDirectionInLinearGradient": "error",
+        "noInvalidPositionAtImportRule": "error",
+        "noLabelWithoutControl": "warn",
+        "noMisplacedAssertion": "error",
+        "noShorthandPropertyOverrides": "warn",
+        "noSubstr": "warn",
+        // "noUndeclaredDependencies": "warn", // TODO: Enable once it supports monorepos
+        "noUnknownFunction": "warn",
+        "noUnknownMediaFeatureName": "warn",
+        "noUnknownProperty": "warn",
+        "noUnknownPseudoClassSelector": "warn",
+        "noUnknownSelectorPseudoElement": "warn",
+        "noUnknownUnit": "error",
+        "noUnmatchableAnbSelector": "warn",
+        "noUnusedFunctionParameters": "warn",
+        "noUselessStringConcat": "warn",
+        "noUselessUndefinedInitialization": "warn",
+        "noYodaExpression": "warn",
+        "useAdjacentOverloadSignatures": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useConsistentGridAreas": "warn",
+        "useDateNow": "error",
+        "useDefaultSwitchClause": "warn",
+        "useErrorMessage": "warn",
+        "useExplicitLengthCheck": "warn",
+        "useFocusableInteractive": "warn",
+        "useGenericFontNames": "error",
+        "useThrowNewError": "error",
+        "useThrowOnlyError": "warn",
+        "useValidAutocomplete": "warn"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "include": [
+        "**/*.cjs",
+        "**/*.test-node.js",
+        "packages/cli/*.js",
+        "packages/framework/*.js"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNodejsImportProtocol": "off" // we support node v12+
+          },
+          "suspicious": {
+            "noConsoleLog": "off",
+            "noRedundantUseStrict": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["packages/ekscss/src/index.ts"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noBarrelFile": "off",
+            "noReExportAll": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": [".vscode/*.json", "tsconfig*.json"],
+      "json": {
+        "parser": {
+          "allowComments": true,
+          "allowTrailingCommas": true
+        }
+      }
+    },
+    {
+      "include": [
+        "**/*.spec.ts",
+        "**/*.test.ts",
+        "**/*.test-node.js",
+        "packages/*/test/**",
+        "test/**"
+      ],
+      "formatter": {
+        "lineWidth": 100
+      }
+    },
+    {
+      "include": ["packages/*/build.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNamingConvention": "off"
+          },
+          "suspicious": {
+            "noConsoleLog": "off"
+          }
+        }
+      }
+    }
+  ]
+}
