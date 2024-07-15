@@ -13,7 +13,7 @@
 html,
 body {
   min-height: 100vh;
-  min-height: -webkit-fill-available; // stylelint-disable-line value-no-vendor-prefix
+  min-height: -webkit-fill-available;
 }
 
 /* Form elements */
