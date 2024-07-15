@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "moduleResolution": "node10",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "**/*.cjs",
+    "**/package.json", // may be imported
+    "packages/cli/*.js",
+    "packages/framework/*.js"
+  ]
+}

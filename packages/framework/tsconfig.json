@@ -3,7 +3,9 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "rootDir": ".",
-    "noEmit": false
+    "declaration": true,
+    "sourceMap": true,
+    "allowJs": true
   },
   "include": ["config.js", "utils.js"]
 }

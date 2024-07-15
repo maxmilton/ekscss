@@ -3,9 +3,8 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "noEmit": false,
-
-    // Fixes svelte types import
-    "resolvePackageJsonExports": false
-  }
+    "declaration": true,
+    "sourceMap": true
+  },
+  "include": ["src"]
 }
