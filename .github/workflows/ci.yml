@@ -92,6 +92,9 @@ jobs:
       # - run: pnpm install --frozen-lockfile
       #   if: ${{ matrix.node-version >= 16 }}
       - run: pnpm run test:node
+        if : ${{ matrix.node-version < 22 || matrix.platform != 'ubuntu' }}
+      - run: pnpm run test:node:c8
+        if : ${{ matrix.node-version == 22 && matrix.platform == 'ubuntu' }}
       - name: Report coverage
         if: ${{ matrix.node-version == 22 && matrix.platform == 'ubuntu' && github.repository_owner == 'maxmilton' }}
         run: |
