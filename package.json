@@ -10,7 +10,8 @@
     "lint:js": "eslint",
     "lint:ts": "tsc --noEmit",
     "test": "bun test",
-    "test:node": "c8 uvu packages '\\/test\\/.+\\.test-node\\.js$'"
+    "test:node": "uvu packages '\\/test\\/.+\\.test-node\\.js$'",
+    "test:node:c8": "c8 uvu packages '\\/test\\/.+\\.test-node\\.js$'"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
