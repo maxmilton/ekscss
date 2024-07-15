@@ -53,6 +53,7 @@ export function isObject(val: unknown): val is Record<string, unknown> {
  * direct property access for mixed object types - <https://jsben.ch/KVoXV>.
  */
 class UndefinedProperty {
+  // biome-ignore lint/style/useNamingConvention: "UNDEFINED" is a constant
   UNDEFINED = 'UNDEFINED';
 
   constructor() {
