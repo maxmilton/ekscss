@@ -1,0 +1,6 @@
+[run]
+bun = true
+
+[test]
+preload = ["./test/setup.ts"]
+coverage = true
