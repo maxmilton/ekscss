@@ -77,17 +77,16 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - run: bun install --global pnpm
       - run: bun install --frozen-lockfile
-      # - run: npm install --global pnpm@6
-      #   if: ${{ matrix.node-version == 12 }}
-      # - run: npm install --global pnpm@7
-      #   if: ${{ matrix.node-version == 14 }}
-      # - run: npm install --global pnpm@8
-      #   if: ${{ matrix.node-version == 16 }}
-      # - run: npm install --global pnpm
-      #   if: ${{ matrix.node-version >= 18 }}
-      #   # Old versions of pnpm don't support lockfile format v6 (pnpm v8+)
+      - run: bun install --global pnpm@6
+        if: ${{ matrix.node-version == 12 }}
+      - run: bun install --global pnpm@7
+        if: ${{ matrix.node-version == 14 }}
+      - run: bun install --global pnpm@8
+        if: ${{ matrix.node-version == 16 }}
+      - run: bun install --global pnpm
+        if: ${{ matrix.node-version >= 18 }}
+      # # Old versions of pnpm don't support lockfile format v6 (pnpm v8+)
       # - run: pnpm install --frozen-lockfile --fix-lockfile
       #   if: ${{ matrix.node-version <= 14 }}
       # - run: pnpm install --frozen-lockfile
