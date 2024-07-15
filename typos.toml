@@ -1,0 +1,3 @@
+[default.extend-words]
+# package name in packages/cli
+sade = "sade"

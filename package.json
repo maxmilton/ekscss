@@ -2,13 +2,15 @@
   "private": true,
   "workspaces": ["packages/*"],
   "scripts": {
-    "build": "pnpm run -r build",
-    "lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:ts",
-    "lint:css": "stylelint --ignore-path .gitignore '**/*.{css,xcss}'",
-    "lint:js": "eslint --ignore-path .gitignore --ext .tsx,.ts,.mjs,.jsx,.js,.cjs .",
-    "lint:ts": "tsc --project tsconfig.lint.json",
-    "test": "c8 uvu -r tsm packages '\\/test\\/.+\\.test\\.ts$'",
-    "test:raw": "uvu packages '\\/test\\/.+\\.test-raw\\.js$'"
+    "FIXME__build": "bun run --filter '*' --if-present build",
+    "build": "bunx pnpm -r exec bun run --if-present build",
+    "lint": "bun lint:fmt && bun lint:css && bun lint:js && bun lint:ts",
+    "lint:css": "stylelint '**/*.{css,xcss}'",
+    "lint:fmt": "biome check --diagnostic-level=warn",
+    "lint:js": "eslint",
+    "lint:ts": "tsc --noEmit",
+    "test": "bun test",
+    "test:node": "c8 uvu packages '\\/test\\/.+\\.test-node\\.js$'"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
