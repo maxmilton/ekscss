@@ -18,7 +18,7 @@
     "@eslint/compat": "1.1.1",
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.7.0",
-    "@maxmilton/stylelint-config": "0.1.1",
+    "@maxmilton/stylelint-config": "0.1.2",
     "@types/bun": "1.1.6",
     "@types/eslint__eslintrc": "2.1.1",
     "@types/eslint__js": "8.42.3",
