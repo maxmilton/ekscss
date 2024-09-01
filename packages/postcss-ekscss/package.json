@@ -22,6 +22,6 @@
     }
   },
   "devDependencies": {
-    "postcss": "8.4.39"
+    "postcss": "8.4.42"
   }
 }
