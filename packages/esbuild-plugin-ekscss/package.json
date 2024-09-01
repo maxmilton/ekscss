@@ -24,6 +24,6 @@
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "esbuild": "0.23.0"
+    "esbuild": "0.23.1"
   }
 }
