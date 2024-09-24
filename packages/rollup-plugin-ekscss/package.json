@@ -17,7 +17,7 @@
   },
   "peerDependencies": {
     "ekscss": "workspace:^",
-    "rollup": "^2.0.0 || ^3.0.0 || ^4.0.0"
+    "rollup": "^4.22.4 ^4.22.4 ^4.22.4"
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.1.0",
@@ -25,6 +25,6 @@
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "rollup": "4.18.1"
+    "rollup": "4.22.4"
   }
 }
