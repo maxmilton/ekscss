@@ -30,6 +30,7 @@ const objects: [string, unknown][] = [
   // biome-ignore format: explicit test
   ['new Cls', new Cls], // eslint-disable-line new-parens
   ['new Cls()', new Cls()],
+  // eslint-disable-next-line unicorn/prefer-global-this
   ['global', global],
 ] as const;
 
