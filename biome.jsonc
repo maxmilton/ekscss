@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "organizeImports": { "enabled": true },
   "formatter": {
     "formatWithErrors": true,
     "indentStyle": "space",
@@ -8,34 +9,39 @@
     "lineEnding": "lf",
     "lineWidth": 80
   },
-  "organizeImports": { "enabled": true },
-  "javascript": {
-    "formatter": {
-      "semicolons": "always",
-      "trailingCommas": "all",
-      "quoteStyle": "single"
-    }
-  },
   "linter": {
     "rules": {
       "recommended": true,
       "complexity": {
         "noForEach": "off",
-        "useSimplifiedLogicExpression": "info"
+        "noUselessStringConcat": "warn",
+        "noUselessUndefinedInitialization": "warn",
+        "useSimplifiedLogicExpression": "info",
+        "useDateNow": "error"
+      },
+      "correctness": {
+        // "noUndeclaredDependencies": "warn", // TODO: Enable once it supports monorepos
+        "noUndeclaredVariables": "warn",
+        "noUnusedFunctionParameters": "warn"
       },
       "performance": {
-        "noBarrelFile": "info",
-        "noReExportAll": "info"
+        "noBarrelFile": "error",
+        "noReExportAll": "error"
       },
       "style": {
+        "noDoneCallback": "warn",
         "noNamespace": "error",
         "noNegationElse": "error",
         "noNonNullAssertion": "off",
         "noParameterProperties": "error",
         "noRestrictedGlobals": "error",
         "noShoutyConstants": "error",
+        "noYodaExpression": "warn",
         "useCollapsedElseIf": "error",
+        "useConsistentBuiltinInstantiation": "error",
+        "useDefaultSwitchClause": "warn",
         "useEnumInitializers": "off",
+        "useExplicitLengthCheck": "warn",
         "useNamingConvention": {
           "level": "warn",
           "options": {
@@ -48,7 +54,9 @@
         "useShorthandArrayType": "error",
         "useShorthandAssign": "error",
         "useSingleCaseStatement": "info",
-        "useTemplate": "off"
+        "useTemplate": "off",
+        "useThrowNewError": "error",
+        "useThrowOnlyError": "warn"
       },
       "suspicious": {
         "noApproximativeNumericConstant": "error",
@@ -56,51 +64,32 @@
         "noConfusingVoidType": "off",
         "noConsoleLog": "warn",
         "noConstEnum": "off",
-        "noExplicitAny": "off",
-        "noFocusedTests": "error",
-        "noMisrefactoredShorthandAssign": "error"
-      },
-      "nursery": {
-        "noDoneCallback": "warn",
         "noDuplicateAtImportRules": "error",
-        "noDuplicateElseIf": "error",
         "noDuplicateFontNames": "error",
-        "noDuplicateJsonKeys": "error",
         "noDuplicateSelectorsKeyframeBlock": "error",
         "noEmptyBlock": "warn",
         "noEvolvingTypes": "warn",
-        "noImportantInKeyframe": "error",
-        "noInvalidDirectionInLinearGradient": "error",
-        "noInvalidPositionAtImportRule": "error",
-        "noLabelWithoutControl": "warn",
+        "noExplicitAny": "off",
+        "noFocusedTests": "error",
         "noMisplacedAssertion": "error",
-        "noShorthandPropertyOverrides": "warn",
+        "noMisrefactoredShorthandAssign": "error",
+        "useErrorMessage": "warn"
+      },
+      "nursery": {
+        "noDuplicateElseIf": "error",
         "noSubstr": "warn",
-        // "noUndeclaredDependencies": "warn", // TODO: Enable once it supports monorepos
-        "noUnknownFunction": "warn",
-        "noUnknownMediaFeatureName": "warn",
-        "noUnknownProperty": "warn",
-        "noUnknownPseudoClassSelector": "warn",
-        "noUnknownSelectorPseudoElement": "warn",
-        "noUnknownUnit": "error",
-        "noUnmatchableAnbSelector": "warn",
-        "noUnusedFunctionParameters": "warn",
-        "noUselessStringConcat": "warn",
-        "noUselessUndefinedInitialization": "warn",
-        "noYodaExpression": "warn",
+        "noUnknownPseudoClass": "warn",
+        "noUnknownPseudoElement": "warn",
         "useAdjacentOverloadSignatures": "error",
-        "useConsistentBuiltinInstantiation": "error",
-        "useConsistentGridAreas": "warn",
-        "useDateNow": "error",
-        "useDefaultSwitchClause": "warn",
-        "useErrorMessage": "warn",
-        "useExplicitLengthCheck": "warn",
-        "useFocusableInteractive": "warn",
-        "useGenericFontNames": "error",
-        "useThrowNewError": "error",
-        "useThrowOnlyError": "warn",
         "useValidAutocomplete": "warn"
       }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "quoteStyle": "single"
     }
   },
   "overrides": [
@@ -153,12 +142,22 @@
       ],
       "formatter": {
         "lineWidth": 100
+      },
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUndeclaredDependencies": "off"
+          }
+        }
       }
     },
     {
       "include": ["packages/*/build.ts"],
       "linter": {
         "rules": {
+          "correctness": {
+            "noUndeclaredDependencies": "off"
+          },
           "style": {
             "useNamingConvention": "off"
           },
@@ -166,6 +165,9 @@
             "noConsoleLog": "off"
           }
         }
+      },
+      "javascript": {
+        "globals": ["Bun"]
       }
     }
   ]
