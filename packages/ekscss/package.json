@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@types/stylis": "^4.2.6",
-    "source-map-js": "^1.2.0",
-    "stylis": "^4.3.2"
+    "source-map-js": "^1.2.1",
+    "stylis": "^4.3.4"
   },
   "devDependencies": {
-    "dts-buddy": "0.5.1"
+    "dts-buddy": "0.5.3"
   }
 }
