@@ -41,13 +41,13 @@
     "@ekscss/plugin-import": "workspace:^",
     "@ekscss/plugin-prefix": "workspace:^",
     "color": "^4.2.3",
-    "cssremedy": "git@github.com:jensimmons/cssremedy#af14bf3",
+    "cssremedy": "github:jensimmons/cssremedy#af14bf3",
     "dset": "^3.1.4",
     "stylis": "^4.3.4"
   },
   "devDependencies": {
     "@ekscss/cli": "workspace:*",
-    "@types/color": "3.0.6",
+    "@types/color": "4.2.0",
     "@types/stylis": "4.2.6",
     "ekscss": "workspace:*"
   }
