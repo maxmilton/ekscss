@@ -22,7 +22,7 @@
     "stylis": "^4.3.4"
   },
   "devDependencies": {
-    "@types/stylis": "4.2.6",
+    "@types/stylis": "4.2.7",
     "ekscss": "workspace:*"
   }
 }
