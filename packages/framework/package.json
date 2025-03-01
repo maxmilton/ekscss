@@ -40,7 +40,7 @@
     "@ekscss/plugin-apply": "workspace:^",
     "@ekscss/plugin-import": "workspace:^",
     "@ekscss/plugin-prefix": "workspace:^",
-    "color": "^4.2.3",
+    "color": "^5.0.0",
     "cssremedy": "github:jensimmons/cssremedy#af14bf3",
     "dset": "^3.1.4",
     "stylis": "^4.3.4"
