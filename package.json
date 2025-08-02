@@ -1,12 +1,14 @@
 {
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "export NODE_ENV=development; bun run build",
     "lint": "turbo lint:css lint:fmt lint:js lint:ts",
     "lint:css": "stylelint '**/*.{css,xcss}'",
-    "lint:fmt": "biome check --diagnostic-level=warn",
+    "lint:fmt": "dprint check",
     "lint:js": "eslint",
     "lint:ts": "tsc --noEmit",
     "test": "bun test",
@@ -14,7 +16,6 @@
     "test:node:c8": "c8 uvu packages '\\/test\\/.+\\.test-node\\.js$'"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
     "@eslint/compat": "1.2.1",
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.13.0",
@@ -30,6 +31,7 @@
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-unicorn": "56.0.0",
+    "dprint": "0.50.1",
     "postcss-ekscss": "workspace:*",
     "stylelint": "16.10.0",
     "stylelint-config-standard": "36.0.1",
