@@ -17,6 +17,11 @@
   max-width: ${x.containerNarrowWidthMax};
 }
 
+.fit {
+  width: fit-content;
+  max-width: 100%;
+}
+
 .fluid {
   max-width: unset;
 }
