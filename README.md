@@ -93,4 +93,4 @@ MIT license. See [LICENSE](https://github.com/maxmilton/ekscss/blob/master/LICEN
 
 ---
 
-© 2024 [Max Milton](https://maxmilton.com)
+© 2025 [Max Milton](https://maxmilton.com)
