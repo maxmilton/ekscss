@@ -19,10 +19,12 @@
     "ekscss": "workspace:^"
   },
   "dependencies": {
-    "stylis": "^4.3.4"
+    "stylis": "^4.3.6"
   },
   "devDependencies": {
-    "@types/stylis": "4.2.6",
-    "ekscss": "workspace:*"
+    "@ekscss/build-tools": "workspace:*",
+    "@types/stylis": "4.2.7",
+    "ekscss": "workspace:*",
+    "esbuild": "0.25.8"
   }
 }
