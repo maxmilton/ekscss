@@ -1,20 +1,7 @@
-import * as stylis from 'stylis';
-import {
-  map as _map,
-  accessorsProxy,
-  ctx,
-  each,
-  interpolate,
-  xcss,
-} from './helpers';
-import { compileSourceMap } from './sourcemap';
-import type {
-  BuildHookFn,
-  Warning,
-  XCSSCompileOptions,
-  XCSSCompileResult,
-  XCSSGlobals,
-} from './types';
+import * as stylis from "stylis";
+import { accessorsProxy, ctx, each, interpolate, map as _map, xcss } from "./helpers.ts";
+import { compileSourceMap } from "./sourcemap.ts";
+import type { BuildHookFn, Warning, XCSSCompileOptions, XCSSCompileResult, XCSSGlobals } from "./types.ts";
 
 const beforeBuildFns: BuildHookFn[] = [];
 const afterBuildFns: BuildHookFn[] = [];
@@ -56,7 +43,7 @@ export function compile(
   const middlewares = [...plugins, stylis.stringify];
   const dependencies: string[] = [];
   const warnings: Warning[] = [];
-  const x = accessorsProxy(mergeDefaultGlobals(globals), 'x');
+  const x = accessorsProxy(mergeDefaultGlobals(globals), "x");
 
   if (from) dependencies.push(from);
 
@@ -75,16 +62,16 @@ export function compile(
   for (const fn of afterBuildFns) fn();
 
   // @ts-expect-error - resetting ctx to initial state
-  // eslint-disable-next-line no-multi-assign
-  ctx.dependencies = ctx.from = ctx.rootDir = ctx.warnings = ctx.x = undefined;
+  // dprint-ignore
+  ctx.dependencies = ctx.from = ctx.rootDir = ctx.warnings = ctx.x = undefined; // eslint-disable-line no-multi-assign
 
   let sourceMap: ReturnType<typeof compileSourceMap> | undefined;
 
   if (map) {
     if (process.env.BROWSER) {
       warnings.push({
-        code: 'browser-no-sourcemap',
-        message: 'Browser runtime does not support sourcemap',
+        code: "browser-no-sourcemap",
+        message: "Browser runtime does not support sourcemap",
       });
     } else {
       sourceMap = compileSourceMap(ast, rootDir, from, to);

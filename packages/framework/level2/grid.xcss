@@ -27,10 +27,10 @@
   display: grid;
   grid-gap: ${x.gutterRow} ${x.gutterCol};
 
-  ${x.autoRows !== 'auto' && xcss`
+  ${x.autoRows !== "auto" && xcss`
     grid-auto-rows: ${x.autoRows};
   `}
-  ${x.autoCols !== 'auto' && xcss`
+  ${x.autoCols !== "auto" && xcss`
     grid-auto-columns: ${x.autoCols};
   `}
 

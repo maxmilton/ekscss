@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 
-import { type XCSSCompileOptions, compile, resolvePlugins } from 'ekscss';
-import JoyCon from 'joycon';
-import * as colors from 'kleur/colors';
-import type { Preprocessor, PreprocessorGroup } from 'svelte/compiler';
+import { compile, resolvePlugins, type XCSSCompileOptions } from "ekscss";
+import JoyCon from "joycon";
+import * as colors from "kleur/colors";
+import type { Preprocessor, PreprocessorGroup } from "svelte/compiler";
 
-export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
+export type XCSSConfig = Omit<XCSSCompileOptions, "from" | "to">;
 
 interface PluginOptions {
   /** An XCSS config object or the path to a config file. */
@@ -13,38 +13,37 @@ interface PluginOptions {
 }
 
 export const style = ({ config }: PluginOptions = {}): Preprocessor => {
-  const reBadValue =
-    /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+  const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
   const joycon = new JoyCon({
     files: [
-      '.xcssrc.cjs',
-      '.xcssrc.js',
-      '.xcssrc.json',
-      'xcss.config.cjs',
-      'xcss.config.js',
-      'xcss.config.json',
-      'package.json',
+      ".xcssrc.cjs",
+      ".xcssrc.js",
+      ".xcssrc.json",
+      "xcss.config.cjs",
+      "xcss.config.js",
+      "xcss.config.json",
+      "package.json",
     ],
-    packageKey: 'xcss',
+    packageKey: "xcss",
   });
   let configData: XCSSConfig;
   let configPath: string | undefined;
 
   return async ({ attributes, content, filename }) => {
-    if (attributes.lang !== 'xcss') return;
+    if (attributes.lang !== "xcss") return;
 
     // XXX: Svelte has no way to identify when the config was changed when
     // watching during dev mode, so to update the config the whole svelte
     // processes must be manually restarted
 
-    if (!config || typeof config === 'string') {
+    if (!config || typeof config === "string") {
       // load user defined config or fall back to default file locations
       const result = await joycon.load(config ? [config] : undefined);
       configData = (result.data as XCSSConfig | undefined) ?? {};
       configPath = result.path;
 
       if (!result.path) {
-        console.warn(colors.yellow('Warning:'), 'Unable to locate XCSS config');
+        console.warn(colors.yellow("Warning:"), "Unable to locate XCSS config");
       }
     } else {
       configData = config;
@@ -63,16 +62,15 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
     });
 
     for (const warning of compiled.warnings) {
-      console.warn(colors.yellow('Warning:'), warning.message || warning);
+      console.warn(colors.yellow("Warning:"), warning.message || warning);
 
       if (warning.file) {
-        // biome-ignore lint/suspicious/noConsoleLog: provide feedback
         console.log(
-          '  at',
+          "  at",
           colors.dim(
             [warning.file, warning.line, warning.column]
               .filter(Boolean)
-              .join(':'),
+              .join(":"),
           ),
         );
       }
@@ -80,8 +78,8 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
 
     if (reBadValue.test(compiled.css)) {
       console.warn(
-        colors.yellow('Warning:'),
-        'XCSS output may contain unwanted value',
+        colors.yellow("Warning:"),
+        "XCSS output may contain unwanted value",
       );
     }
 
@@ -98,7 +96,7 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
 };
 
 const preprocessor = (opts: PluginOptions): PreprocessorGroup => ({
-  name: 'ekscss',
+  name: "ekscss",
   style: style(opts),
 });
 

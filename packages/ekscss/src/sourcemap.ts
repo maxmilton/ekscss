@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle, unicorn/no-array-callback-reference, unicorn/no-array-reduce */
+/* eslint-disable no-underscore-dangle, unicorn/no-array-reduce */
 
 // TODO: Documentation:
 // - Explain our template engine and link to supporting docs:
@@ -29,10 +29,10 @@
 // - //# sourceMappingURL=...
 // - Spec: https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit#heading=h.lmz475t4mvbx
 
-import path from 'path';
-import { type SourceMapGenerator, SourceNode } from 'source-map-js';
-import * as stylis from 'stylis';
-import type { Element } from './types';
+import path from "path";
+import { type SourceMapGenerator, SourceNode } from "source-map-js";
+import * as stylis from "stylis";
+import type { Element } from "./types.ts";
 
 function extractSourceMapRef(ast: Element[]): string | null {
   let currentNode: Element;
@@ -42,12 +42,12 @@ function extractSourceMapRef(ast: Element[]): string | null {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-cond-assign
   while (++index < 4 && (currentNode = ast[ast.length - index])) {
     if (
-      currentNode.type === stylis.COMMENT &&
+      currentNode.type === stylis.COMMENT
       // FIXME: stylis types don't differentiate by Element.type so we must
       // type guard unnecessarily (even though currentNode.type=='comm' will
       // always have currentNode.children as a string)
-      typeof currentNode.children === 'string' &&
-      currentNode.children.startsWith('# sourceMappingURL=')
+      && typeof currentNode.children === "string"
+      && currentNode.children.startsWith("# sourceMappingURL=")
     ) {
       // 19 = '# sourceMappingURL='.length
       return currentNode.children.slice(19).trim();
@@ -76,7 +76,7 @@ export function compileSourceMap(
         if (sourceMapRef) {
           // eslint-disable-next-line no-console
           console.debug(
-            'ekscss does not currently apply input source maps\n  ref:',
+            "ekscss does not currently apply input source maps\n  ref:",
             sourceMapRef,
           );
         }
@@ -94,7 +94,7 @@ export function compileSourceMap(
         }
       } else {
         const srcFrom = node.root?.__from ?? from;
-        const srcPath = srcFrom ? path.relative(rootDir, srcFrom) : '<unknown>';
+        const srcPath = srcFrom ? path.relative(rootDir, srcFrom) : "<unknown>";
         nodes.push(
           new SourceNode(node.line, node.column, srcPath, node.return),
         );

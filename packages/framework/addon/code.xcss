@@ -1,6 +1,7 @@
 .code-inline {
   padding: ${x.codeInline.paddingY} ${x.codeInline.paddingX};
   color: ${x.codeInline.textColor};
+  /* stylelint-disable-next-line property-no-deprecated */
   word-wrap: break-word;
   background-color: ${x.codeInline.backgroundColor};
   user-select: all; // for easy copy

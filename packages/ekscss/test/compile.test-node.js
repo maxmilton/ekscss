@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const { test } = require('uvu');
-const assert = require('uvu/assert');
-const { compile } = require('ekscss');
+const { test } = require("uvu");
+const assert = require("uvu/assert");
+const { compile } = require("ekscss");
 
 const complexCodeFixture = `
   /**
@@ -26,14 +26,14 @@ const complexCodeFixture = `
   \`)}
 `;
 const complexCodeResult =
-  'body{font-size:20px;color:coral;}.red{color:coral;}.green{color:seagreen;}.blue{color:deepskyblue;}';
+  "body{font-size:20px;color:coral;}.red{color:coral;}.green{color:seagreen;}.blue{color:deepskyblue;}";
 
-test('bundled compiler runs with empty code', () => {
-  const compiled = compile('');
-  assert.is(compiled.css, '');
+test("bundled compiler runs with empty code", () => {
+  const compiled = compile("");
+  assert.is(compiled.css, "");
 });
 
-test('bundled compiler runs with complex code', () => {
+test("bundled compiler runs with complex code", () => {
   const compiled = compile(complexCodeFixture);
   assert.snapshot(compiled.css, complexCodeResult);
 });

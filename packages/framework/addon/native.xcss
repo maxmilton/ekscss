@@ -33,10 +33,10 @@ textarea { #apply: .textarea; }
 input,
 select,
 textarea {
-  &:hover { #apply: '.input:hover'; }
+  &:hover { #apply: ".input:hover"; }
 
   &:focus,
-  &:active { #apply: '.input:focus'; }
+  &:active { #apply: ".input:focus"; }
 
   &[disabled],
   &[disabled]:hover,
@@ -44,37 +44,37 @@ textarea {
   &:disabled { #apply: .input[disabled]; }
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   #apply: .checkbox;
 
-  &:checked { #apply: '.checkbox:checked'; }
-  &:hover { #apply: '.checkbox:hover'; }
+  &:checked { #apply: ".checkbox:checked"; }
+  &:hover { #apply: ".checkbox:hover"; }
 
   &:focus,
-  &:active { #apply: '.checkbox:focus'; }
+  &:active { #apply: ".checkbox:focus"; }
 
   &[disabled],
   &[disabled]:hover,
   &[disabled]:focus,
   &:disabled { #apply: .checkbox[disabled]; }
-  & + label { #apply: '.checkbox+.label'; }
+  & + label { #apply: ".checkbox+.label"; }
 }
 // TODO: Add .radio styles
-// input[type='radio'] {}
+// input[type="radio"] {}
 // TODO: Add .file input styles
-// input[type='file'] {}
+// input[type="file"] {}
 // TODO: Add .range input styles
-// input[type='range'] {}
+// input[type="range"] {}
 
 /* Buttons */
 
 button {
   #apply: .button;
 
-  &:hover { #apply: '.button:hover'; }
+  &:hover { #apply: ".button:hover"; }
 
   &:focus,
-  &:active { #apply: '.button:focus'; }
+  &:active { #apply: ".button:focus"; }
 
   &[disabled],
   &[disabled]:hover,

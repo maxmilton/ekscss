@@ -14,7 +14,9 @@
 
 a,
 .break {
+  // stylelint-disable-next-line declaration-property-value-keyword-no-deprecated
   word-break: break-word;
+  /* stylelint-disable-next-line property-no-deprecated */
   word-wrap: break-word; // fallback for old browsers and Safari
   overflow-wrap: anywhere;
 }

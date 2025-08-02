@@ -1,46 +1,45 @@
 // https://esbuild.github.io/plugins/
 
-import fs from 'fs';
-import { type XCSSCompileOptions, compile, resolvePlugins } from 'ekscss';
-import type { PartialMessage, Plugin } from 'esbuild';
-import JoyCon from 'joycon';
+import { compile, resolvePlugins, type XCSSCompileOptions } from "ekscss";
+import type { PartialMessage, Plugin } from "esbuild";
+import * as fs from "fs";
+import JoyCon from "joycon";
 
-export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
+export type XCSSConfig = Omit<XCSSCompileOptions, "from" | "to">;
 
 export const xcss = (config?: string | XCSSConfig): Plugin => ({
-  name: 'xcss',
+  name: "xcss",
 
   setup(build) {
-    const reBadValue =
-      /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+    const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
     const joycon = new JoyCon({
       files: [
-        '.xcssrc.cjs',
-        '.xcssrc.js',
-        '.xcssrc.json',
-        'xcss.config.cjs',
-        'xcss.config.js',
-        'xcss.config.json',
-        'package.json',
+        ".xcssrc.cjs",
+        ".xcssrc.js",
+        ".xcssrc.json",
+        "xcss.config.cjs",
+        "xcss.config.js",
+        "xcss.config.json",
+        "package.json",
       ],
-      packageKey: 'xcss',
+      packageKey: "xcss",
     });
     let configData: XCSSConfig | undefined;
     let configPath: string | undefined;
 
     build.onLoad({ filter: /\.xcss$/ }, async (args) => {
-      const code = await fs.promises.readFile(args.path, 'utf8');
+      const code = await fs.promises.readFile(args.path, "utf8");
       const warnings: PartialMessage[] = [];
 
       if (!configData) {
-        if (!config || typeof config === 'string') {
+        if (!config || typeof config === "string") {
           // Load user defined config or fall back to default file locations
           const result = await joycon.load(config ? [config] : undefined);
           configData = (result.data as XCSSConfig | undefined) ?? {};
           configPath = result.path;
 
           if (!result.path) {
-            warnings.push({ text: 'Unable to locate XCSS config' });
+            warnings.push({ text: "Unable to locate XCSS config" });
           }
         } else {
           // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -66,7 +65,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
           text: warning.message,
           // @ts-expect-error - FIXME: location* should take undefined -- submit a PR to esbuild
           location: {
-            namespace: 'xcss',
+            namespace: "xcss",
             file: warning.file,
             line: warning.line,
             column: warning.column,
@@ -80,9 +79,9 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
       // the warning is a bit cryptic!)
       if (reBadValue.test(compiled.css)) {
         warnings.push({
-          text: 'Output may contain unwanted value',
+          text: "Output may contain unwanted value",
           location: {
-            namespace: 'xcss',
+            namespace: "xcss",
             file: args.path,
           },
         });
@@ -95,9 +94,11 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
       // - https://github.com/evanw/esbuild/issues/519
       // - https://github.com/evanw/esbuild/issues/20
       if (compiled.map) {
-        output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${Buffer.from(
-          compiled.map.toString(),
-        ).toString('base64')} */`;
+        output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${
+          Buffer.from(
+            compiled.map.toString(),
+          ).toString("base64")
+        } */`;
       }
 
       const watchFiles = compiled.dependencies;
@@ -105,7 +106,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
 
       return {
         contents: output,
-        loader: 'css',
+        loader: "css",
         warnings,
         watchFiles,
       };

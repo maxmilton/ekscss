@@ -1,9 +1,4 @@
-import type {
-  Context,
-  Middleware,
-  XCSSExpression,
-  XCSSTemplateFn,
-} from './types';
+import type { Context, Middleware, XCSSExpression, XCSSTemplateFn } from "./types.ts";
 
 /**
  * Compiler context. For internal and advanced use cases only.
@@ -23,7 +18,7 @@ const has = Object.prototype.hasOwnProperty;
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const toStr = Object.prototype.toString;
 
-export const noop = (): void => {};
+export function noop(): void {}
 
 /**
  * Interpolative template engine for XCSS.
@@ -33,12 +28,12 @@ export const noop = (): void => {};
 export function interpolate(template: string): XCSSTemplateFn {
   // @ts-expect-error - Function constructor is not type aware
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
-  return new Function('xcss', 'x', `'use strict'; return xcss\`${template}\``);
+  return new Function("xcss", "x", `'use strict'; return xcss\`${template}\``);
 }
 
 // TODO: Does this need additional checks anywhere it's used? Ref: https://github.com/jonschlinkert/is-plain-object/blob/master/is-plain-object.js
 export function isObject(val: unknown): val is Record<string, unknown> {
-  return toStr.call(val) === '[object Object]';
+  return toStr.call(val) === "[object Object]";
 }
 
 /**
@@ -53,14 +48,13 @@ export function isObject(val: unknown): val is Record<string, unknown> {
  * direct property access for mixed object types - <https://jsben.ch/KVoXV>.
  */
 class UndefinedProperty {
-  // biome-ignore lint/style/useNamingConvention: "UNDEFINED" is a constant
-  UNDEFINED = 'UNDEFINED';
+  UNDEFINED = "UNDEFINED";
 
   constructor() {
     // These "own functions" must be non-enumerable so when an UndefinedProxy
     // instance's properties are enumerated these functions are not included
     // e.g., `Object.keys(...)`
-    Object.defineProperty(this, 'toString', {
+    Object.defineProperty(this, "toString", {
       enumerable: false,
       value: () => this.UNDEFINED,
     });
@@ -105,7 +99,7 @@ export function accessorsProxy<
         const propPath = `${parentPath}.${String(prop)}`;
 
         ctx.warnings.push({
-          code: 'prop-undefined',
+          code: "prop-undefined",
           message: `Unable to resolve property "${propPath}"`,
           file: ctx.from,
         });
@@ -119,10 +113,12 @@ export function accessorsProxy<
     set(target, prop, value, receiver) {
       if (has.call(target, prop)) {
         ctx.warnings.push({
-          code: 'prop-override',
-          message: `Overriding existing property "${parentPath}.${String(
-            prop,
-          )}"`,
+          code: "prop-override",
+          message: `Overriding existing property "${parentPath}.${
+            String(
+              prop,
+            )
+          }"`,
           file: ctx.from,
         });
       }
@@ -147,19 +143,19 @@ export function map<T>(
   if (!Array.isArray(arr)) {
     // TODO: Populate "line" and "column"
     ctx.warnings.push({
-      code: 'map-invalid-array',
+      code: "map-invalid-array",
       message: `Expected array but got ${toStr.call(arr)}`,
       file: ctx.from,
     });
-    return 'INVALID';
+    return "INVALID";
   }
 
   const len = arr.length;
   let index = 0;
-  let out = '';
+  let out = "";
 
   for (; index < len; index++) {
-    out += callback(arr[index], index) || '';
+    out += callback(arr[index], index) || "";
   }
 
   return out;
@@ -175,18 +171,18 @@ export function each<T>(
   if (!isObject(obj)) {
     // TODO: Populate "line" and "column"
     ctx.warnings.push({
-      code: 'each-invalid-object',
+      code: "each-invalid-object",
       message: `Expected object but got ${toStr.call(obj)}`,
       file: ctx.from,
     });
-    return 'INVALID';
+    return "INVALID";
   }
 
-  let out = '';
+  let out = "";
 
   for (const key in obj) {
     if (has.call(obj, key)) {
-      out += callback(key, obj[key]) || '';
+      out += callback(key, obj[key]) || "";
     }
   }
 
@@ -206,35 +202,38 @@ export function xcss(
   const strings = template.raw;
   const len = strings.length;
   let index = 0;
-  let out = '';
+  let out = "";
 
   for (; index < len; index++) {
     let val = expressions[index - 1];
 
     // Reduce XCSS function expressions to their final value
-    while (typeof val === 'function') {
+    while (typeof val === "function") {
       val = val(ctx.x);
     }
 
-    if (val != null && typeof val === 'object') {
-      if (typeof val.toString === 'function') {
+    if (typeof val === "object" && val !== null) {
+      if (typeof val.toString === "function") {
         val = val.toString();
       } else {
         // TODO: Populate  "line" and "column"
         ctx.warnings.push({
-          code: 'expression-invalid',
-          message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${toStr.call(
-            val,
-          )}`,
+          code: "expression-invalid",
+          message:
+            `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${
+              toStr.call(
+                val,
+              )
+            }`,
           file: ctx.from,
         });
 
-        val = 'INVALID';
+        val = "INVALID";
       }
     }
 
     // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/restrict-plus-operands
-    out += (val || (val == null || val === false ? '' : val)) + strings[index];
+    out += (val || (val == null || val === false ? "" : val)) + strings[index];
   }
 
   return out;
@@ -249,17 +248,17 @@ export function xcss(
  */
 export function resolvePlugins(plugins: (Middleware | string)[]): Middleware[] {
   if (process.env.BROWSER) {
-    throw new Error('Browser runtime does not support resolving plugins');
+    throw new Error("Browser runtime does not support resolving plugins");
   }
 
   return plugins.map((plugin) => {
-    if (typeof plugin !== 'string') return plugin;
+    if (typeof plugin !== "string") return plugin;
 
     try {
       // eslint-disable-next-line
       const mod = require(plugin);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      return (mod.default || mod) as Middleware;
+      return (mod.default ?? mod) as Middleware;
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(`Failed to load plugin "${plugin}":\n  ${String(error)}`);

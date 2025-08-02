@@ -29,7 +29,7 @@
     border-radius: 50%;
     border-top-color: ${x.spinner.color};
     animation: spinner ${x.spinner.animateSpeed} ${x.spinner.animateTiming} infinite;
-    content: '';
+    content: "";
   }
 }
 

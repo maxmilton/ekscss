@@ -1,6 +1,6 @@
-import type { SourceMapGenerator } from 'source-map-js';
-import type { Middleware, Element as _Element } from 'stylis';
-import type { xcss } from './helpers';
+import type { SourceMapGenerator } from "source-map-js";
+import type { Element as _Element, Middleware } from "stylis";
+import type { xcss } from "./helpers.ts";
 
 // eslint-disable-next-line unicorn/prefer-export-from
 export type { Middleware };
@@ -49,7 +49,7 @@ export type XCSSExpression =
   | false
   | null
   | undefined
-  | void;
+  | void; // eslint-disable-line @typescript-eslint/no-invalid-void-type
 
 export type ExpressionOrNested =
   | XCSSExpression

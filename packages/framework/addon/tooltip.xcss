@@ -46,7 +46,7 @@
     border: solid;
     border-width: 0.5rem 0.5rem 0;
     border-color: ${x.tooltip.backgroundColor} transparent;
-    content: '';
+    content: "";
   }
 
   &:hover::before,

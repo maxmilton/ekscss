@@ -1,4 +1,4 @@
-import { prefixer } from 'stylis';
+import { prefixer } from "stylis";
 
 // TODO: Document this should be the last plugin or else may cause duplicate
 // code output (e.g., with @ekscss/plugin-apply)

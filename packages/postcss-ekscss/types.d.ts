@@ -1,4 +1,4 @@
-import type { Parser, Stringifier } from 'postcss';
+import type { Parser, Stringifier } from "postcss";
 
 export declare const parse: Parser;
 export declare const stringify: Stringifier;

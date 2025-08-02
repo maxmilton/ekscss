@@ -23,14 +23,8 @@
 // benchmarks to verify)
 //  ↳ Impact of including this plugin and impact of actual #apply use
 
-import {
-  type Element,
-  type Middleware,
-  ctx,
-  onAfterBuild,
-  onBeforeBuild,
-} from 'ekscss';
-import * as stylis from 'stylis';
+import { ctx, type Element, type Middleware, onAfterBuild, onBeforeBuild } from "ekscss";
+import * as stylis from "stylis";
 
 type ApplyRefs = Record<string, Element[] | undefined>;
 
@@ -59,11 +53,11 @@ export const applyPlugin: Middleware = (
     return;
   }
 
-  if (element.type === stylis.DECLARATION && element.props === '#apply') {
+  if (element.type === stylis.DECLARATION && element.props === "#apply") {
     // TODO: Remove type cast; stylis types don't differentiate by element.type
     const targets = (element.children as string)
-      .split(',')
-      .map((x) => x.trim().replace(/^["']/, '').replace(/["']$/, ''));
+      .split(",")
+      .map((x) => x.trim().replace(/^["']/, "").replace(/["']$/, ""));
     const decls: Element[] = [];
 
     for (const target of targets) {
@@ -76,7 +70,7 @@ export const applyPlugin: Middleware = (
         }
       } else {
         ctx.warnings.push({
-          code: 'apply-no-match',
+          code: "apply-no-match",
           message: `Unable to #apply "${target}", no matching rule`,
           file: ctx.from,
           line: element.line,
@@ -87,12 +81,12 @@ export const applyPlugin: Middleware = (
 
     element.return = stylis.serialize(decls, callback);
 
-    if (element.return === '') {
+    if (element.return === "") {
       // Set empty value so declaration is removed in stringify
-      element.value = '';
+      element.value = "";
 
       ctx.warnings.push({
-        code: 'apply-empty',
+        code: "apply-empty",
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         message: `#apply "${targets}" result empty`,
         file: ctx.from,

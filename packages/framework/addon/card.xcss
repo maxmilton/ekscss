@@ -30,7 +30,7 @@
       height: 100%;
       border-radius: ${x.radiusLarge};
       box-shadow: ${x.card.hoverHoverShadow};
-      content: '';
+      content: "";
       opacity: 0;
       transition: opacity ${x.card.hoverAnimateSpeedOut} ease-out;
     }

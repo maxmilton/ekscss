@@ -1,4 +1,4 @@
 // Level 1 - Core
-@import 'cssremedy/css/remedy.css';
-@import './level1/reboot.xcss';
-@import './level1/type.xcss';
+@import "cssremedy/css/remedy.css";
+@import "./level1/reboot.xcss";
+@import "./level1/type.xcss";

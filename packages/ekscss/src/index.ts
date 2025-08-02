@@ -1,9 +1,3 @@
-export { compile, onAfterBuild, onBeforeBuild } from './compiler';
-export {
-  accessorsProxy,
-  ctx,
-  interpolate,
-  resolvePlugins,
-  xcss,
-} from './helpers';
-export * from './types';
+export { compile, onAfterBuild, onBeforeBuild } from "./compiler.ts";
+export { accessorsProxy, ctx, interpolate, resolvePlugins, xcss } from "./helpers.ts";
+export * from "./types.ts";
