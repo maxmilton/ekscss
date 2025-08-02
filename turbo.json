@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/turbo/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "//#lint:css": { "persistent": true, "cache": false },
+    "//#lint:fmt": { "persistent": true, "cache": false },
+    "//#lint:js": { "persistent": true, "cache": false },
+    "//#lint:ts": { "persistent": true, "cache": false },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "outputLogs": "new-only",
+    },
+    "dev": { "persistent": true, "cache": false },
+  },
+  "globalDependencies": ["package.json"],
+  "globalEnv": ["CI", "GITHUB_ACTIONS", "NODE_ENV"],
+  "noUpdateNotifier": true,
+}
