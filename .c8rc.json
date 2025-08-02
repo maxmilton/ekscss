@@ -1,0 +1,13 @@
+{
+  "all": true,
+  "include": [
+    "packages/*/src",
+    "packages/cli",
+    "packages/framework/*.js",
+    "packages/framework/*.mjs"
+  ],
+  "reporter": [
+    "text",
+    "lcovonly"
+  ]
+}
