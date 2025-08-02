@@ -62,10 +62,12 @@
   - Overhead for each plugin
 -->
 
-[![Build status](https://img.shields.io/github/actions/workflow/status/maxmilton/ekscss/ci.yml?branch=master)](https://github.com/maxmilton/ekscss/actions)
-[![Coverage status](https://img.shields.io/codeclimate/coverage/MaxMilton/ekscss)](https://codeclimate.com/github/MaxMilton/ekscss)
-[![NPM version](https://img.shields.io/npm/v/ekscss.svg)](https://www.npmjs.com/package/ekscss)
-[![License](https://img.shields.io/github/license/maxmilton/ekscss.svg)](https://github.com/maxmilton/ekscss/blob/master/LICENSE)
+<!-- TODO: Migrate qlty.sh badge to badgen.net once it's supported -->
+
+[![CI status](https://badgen.net/github/checks/maxmilton/ekscss?label=ci)](https://github.com/maxmilton/ekscss/actions)
+[![Coverage %](https://qlty.sh/badges/bfb90576-1d44-4606-9ba0-95b4e7077333/test_coverage.svg)](https://qlty.sh/gh/maxmilton/projects/ekscss)
+[![NPM version](https://badgen.net/npm/v/ekscss)](https://www.npmjs.com/package/ekscss)
+[![Licence](https://badgen.net/github/license/maxmilton/ekscss)](./LICENSE)
 
 # ekscss
 
@@ -93,4 +95,4 @@ MIT license. See [LICENSE](https://github.com/maxmilton/ekscss/blob/master/LICEN
 
 ---
 
-© 2025 [Max Milton](https://maxmilton.com)
+© [Max Milton](https://maxmilton.com)
