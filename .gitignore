@@ -2,8 +2,10 @@
 *-lock.yaml
 *.bak
 *.lock
-*.log
+*.tsbuildinfo
+!/bun.lock
 /coverage/
+.turbo/
 dist/
 node_modules/
 
