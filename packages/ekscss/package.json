@@ -17,11 +17,12 @@
     "postbuild": "dts-buddy dist/index.d.ts -m ekscss:src/index.ts"
   },
   "dependencies": {
-    "@types/stylis": "^4.2.6",
+    "@types/stylis": "^4.2.7",
     "source-map-js": "^1.2.1",
-    "stylis": "^4.3.4"
+    "stylis": "^4.3.6"
   },
   "devDependencies": {
-    "dts-buddy": "0.5.3"
+    "dts-buddy": "0.6.2",
+    "esbuild": "0.25.8"
   }
 }
