@@ -1,0 +1,10 @@
+{
+  "name": "@ekscss/build-tools",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "dependencies": {
+    "typescript": "5.9.2"
+  }
+}
