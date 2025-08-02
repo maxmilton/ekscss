@@ -2,7 +2,7 @@ name: ci
 on:
   push:
     branches: [master]
-    paths-ignore: ['**.md']
+    paths-ignore: ["**.md"]
   pull_request: {}
   workflow_dispatch: {}
 concurrency:
@@ -12,6 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -32,14 +34,16 @@ jobs:
     name: test-bun (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     timeout-minutes: 5
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
-      # bun install on windows is currently slow, cache it
+      # bun install on windows is slow, cache it
       - uses: actions/cache@v4
         if: ${{ matrix.platform == 'windows-latest' }}
         with:
           path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-bun-
       - uses: actions/download-artifact@v4
@@ -50,33 +54,31 @@ jobs:
         with:
           bun-version: latest
       - run: bun install --frozen-lockfile
-      - run: bun run test --coverage --coverage-reporter=lcov --coverage-reporter=text
+      - run: bun run test --coverage-reporter=lcov --coverage-reporter=text
       - name: Report coverage
         if: ${{ matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
-        run: |
-          curl -LO https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
-               -LO https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64.sha256
-          grep test-reporter-latest-linux-amd64 test-reporter-latest-linux-amd64.sha256 | shasum -a 256 -c -
-          mv test-reporter-latest-linux-amd64 test-reporter
-          chmod +x ./test-reporter
-          ./test-reporter format-coverage -t lcov -o coverage/codeclimate.json coverage/lcov.info
-          ./test-reporter upload-coverage
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        uses: qltysh/qlty-action/coverage@v1
+        with:
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+          files: coverage/lcov.info
   test-node:
     needs: build
     strategy:
       fail-fast: false
       matrix:
-        node-version: [12, 14, 16, 18, 20, 22]
+        node-version: [10, 12, 14, 16, 18, 20, 22, 24]
         platform: [ubuntu-latest, windows-latest, macos-latest]
         exclude:
           # no prebuilt node <=14 for darwin arm64 (macos-latest; macos-14)
+          - node-version: 10
+            platform: macos-latest
           - node-version: 12
             platform: macos-latest
           - node-version: 14
             platform: macos-latest
         include:
+          - node-version: 10
+            platform: macos-13
           - node-version: 12
             platform: macos-13
           - node-version: 14
@@ -84,14 +86,16 @@ jobs:
     name: test-node (v${{ matrix.node-version }} ${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     timeout-minutes: 10
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
-      # bun install on windows is currently slow, cache it
+      # bun install on windows is slow, cache it
       - uses: actions/cache@v4
         if: ${{ matrix.platform == 'windows-latest' }}
         with:
           path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-bun-
       - uses: actions/download-artifact@v4
@@ -105,20 +109,26 @@ jobs:
         with:
           bun-version: latest
       - run: bun install --frozen-lockfile
-      - run: bun install --global pnpm@6
-        if: ${{ matrix.node-version == 12 }}
-      - run: bun install --global pnpm@7
-        if: ${{ matrix.node-version == 14 }}
-      - run: bun install --global pnpm@8
-        if: ${{ matrix.node-version == 16 }}
-      - run: bun install --global pnpm
-        if: ${{ matrix.node-version >= 18 }}
+      # - run: bun install --global pnpm@6
+      #   if: ${{ matrix.node-version == 12 }}
+      # - run: bun install --global pnpm@7
+      #   if: ${{ matrix.node-version == 14 }}
+      # - run: bun install --global pnpm@8
+      #   if: ${{ matrix.node-version == 16 }}
+      # - run: bun install --global pnpm
+      #   if: ${{ matrix.node-version >= 18 }}
       - run: pnpm run test:node
-        if : ${{ matrix.node-version < 22 || matrix.platform != 'ubuntu-latest' }}
+        if: ${{ matrix.node-version < 24 || matrix.platform != 'ubuntu-latest' }}
       - run: pnpm run test:node:c8
-        if : ${{ matrix.node-version == 22 && matrix.platform == 'ubuntu-latest' }}
+        if: ${{ matrix.node-version == 24 && matrix.platform == 'ubuntu-latest' }}
       - name: Report coverage
-        if: ${{ matrix.node-version == 22 && matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
+        if: ${{ matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
+        uses: qltysh/qlty-action/coverage@v1
+        with:
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+          files: coverage/lcov.info
+      - name: Report coverage (old)
+        if: ${{ matrix.node-version == 24 && matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
         run: |
           curl -LO https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
                -LO https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64.sha256
@@ -133,6 +143,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
