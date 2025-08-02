@@ -1,35 +1,19 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "files": [],
+  "include": [],
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleDetection": "force",
-    "moduleResolution": "bundler",
-    "esModuleInterop": false,
-    "resolveJsonModule": true,
+    "noEmit": true,
     "skipLibCheck": true,
-    "allowJs": false,
-
     "strict": true,
-    "allowUnreachableCode": false,
-    "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": false, // covered by eslint
-    "noImplicitOverride": true,
-    "noUnusedLocals": false, // covered by eslint
-    "noUnusedParameters": false, // covered by eslint
-    "verbatimModuleSyntax": true
   },
-  "include": [
-    "*.config.mjs",
-    "*.config.ts",
-    "*.d.ts",
-    "packages/*/*.config.ts",
-    "packages/*/*.d.ts",
-    "packages/*/build.ts",
-    "packages/*/src",
-    "packages/*/test",
-    "packages/framework/*.mjs",
-    "test"
+  "references": [
+    // { "path": "./apps/backend" },
+    // { "path": "./apps/crawler" },
+    // { "path": "./apps/extension" },
+    // { "path": "./apps/frontend" },
+    // { "path": "./apps/frontend-auth" },
+    { "path": "./tsconfig.bun.json" },
+    { "path": "./tsconfig.node.json" },
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
 }

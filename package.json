@@ -10,7 +10,7 @@
     "lint:css": "stylelint '**/*.{css,xcss}'",
     "lint:fmt": "dprint check",
     "lint:js": "eslint",
-    "lint:ts": "tsc --noEmit",
+    "lint:ts": "tsc --build --noEmit",
     "test": "bun test",
     "test:node": "uvu packages '\\/test\\/.+\\.test-node\\.js$'",
     "test:node:c8": "c8 uvu packages '\\/test\\/.+\\.test-node\\.js$'"

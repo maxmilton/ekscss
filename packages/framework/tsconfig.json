@@ -1,11 +1,11 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "moduleResolution": "node",
     "rootDir": ".",
     "declaration": true,
     "sourceMap": true,
-    "allowJs": true
+    "allowJs": true,
   },
-  "include": ["config.js", "utils.js"]
+  "include": ["config.js", "config.mjs", "utils.js", "utils.mjs"],
 }
