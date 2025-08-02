@@ -4,7 +4,7 @@
   "description": "PostCSS plugin to add support for XCSS",
   "repository": "maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
-  "author": "Max Milton <max@happyhackers.xyz>",
+  "author": "Max Milton <max@bunnybunny.org>",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "types.d.ts",
