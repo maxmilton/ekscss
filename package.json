@@ -37,14 +37,4 @@
     "typescript-eslint": "7.16.0",
     "uvu": "0.5.6"
   },
-  "c8": {
-    "all": true,
-    "include": [
-      "packages/*/src",
-      "packages/cli",
-      "packages/framework/*.js",
-      "packages/framework/*.mjs"
-    ],
-    "reporter": ["text", "lcovonly"]
-  }
 }
