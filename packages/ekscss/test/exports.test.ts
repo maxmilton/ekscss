@@ -1,17 +1,17 @@
-import { expect, test } from 'bun:test';
-import * as allExports from '../src/index';
+import { expect, test } from "bun:test";
+import * as allExports from "../src/index.ts";
 
 const compilerPublicExports: [string, unknown][] = [
-  ['onBeforeBuild', Function],
-  ['onAfterBuild', Function],
-  ['compile', Function],
+  ["onBeforeBuild", Function],
+  ["onAfterBuild", Function],
+  ["compile", Function],
 ] as const;
 const helperPublicExports: [string, unknown][] = [
-  ['accessorsProxy', Function],
-  ['ctx', Object],
-  ['interpolate', Function],
-  ['resolvePlugins', Function],
-  ['xcss', Function],
+  ["accessorsProxy", Function],
+  ["ctx", Object],
+  ["interpolate", Function],
+  ["resolvePlugins", Function],
+  ["xcss", Function],
 ] as const;
 
 test.each(compilerPublicExports)('exports public "%s" compiler %p', (name, type) => {
@@ -28,7 +28,7 @@ test.each(helperPublicExports)('exports public "%s" helper %p', (name, type) => 
   expect(allExports[name]).toBeInstanceOf(type);
 });
 
-test('does not export any private internals', () => {
+test("does not export any private internals", () => {
   expect.assertions(2);
   const allPublicExportNames = [
     ...compilerPublicExports.map((x) => x[0]),
@@ -42,15 +42,15 @@ test('does not export any private internals', () => {
   expect(scriptExports.size).toBe(0);
 });
 
-test('default export is undefined', () => {
+test("default export is undefined", () => {
   expect.assertions(4);
 
   // Runtime
   expect(allExports).toBeInstanceOf(Object);
-  expect(allExports).not.toHaveProperty('default');
+  expect(allExports).not.toHaveProperty("default");
 
   // Build output
-  const bundle = require('../dist/index.js'); // eslint-disable-line
+  const bundle = require("../dist/index.js"); // eslint-disable-line
   expect(bundle).toBeInstanceOf(Object);
-  expect(bundle).not.toHaveProperty('default');
+  expect(bundle).not.toHaveProperty("default");
 });

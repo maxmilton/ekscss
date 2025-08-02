@@ -1,45 +1,45 @@
-import esbuild, { type BuildOptions } from 'esbuild';
+import esbuild, { type BuildOptions } from "esbuild";
 
-const mode = process.env.NODE_ENV ?? 'production';
-const dev = mode === 'development';
+const mode = process.env.NODE_ENV ?? "production";
+const dev = mode === "development";
 
-console.time('prebuild');
+console.time("prebuild");
 await Bun.$`rm -rf dist`;
-console.timeEnd('prebuild');
+console.timeEnd("prebuild");
 
 // Node CJS bundle
 const esbuildConfig1: BuildOptions = {
-  entryPoints: ['src/index.ts'],
-  outfile: 'dist/index.js',
-  platform: 'node',
-  target: ['node12'],
+  entryPoints: ["src/index.ts"],
+  outfile: "dist/index.js",
+  platform: "node",
+  target: ["node12"],
   define: {
-    'process.env.NODE_ENV': JSON.stringify(mode),
+    "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  external: ['ekscss', 'stylis'],
+  external: ["ekscss", "stylis"],
   bundle: true,
   sourcemap: true,
   minify: !dev,
   metafile: !dev && process.stdout.isTTY,
-  logLevel: 'debug',
+  logLevel: "debug",
 };
 
 // Node ESM bundle
 const esbuildConfig2: BuildOptions = {
-  entryPoints: ['src/index.ts'],
-  outfile: 'dist/index.mjs',
-  platform: 'node',
-  format: 'esm',
-  target: ['node16'],
+  entryPoints: ["src/index.ts"],
+  outfile: "dist/index.mjs",
+  platform: "node",
+  format: "esm",
+  target: ["node16"],
   define: {
-    'process.env.NODE_ENV': JSON.stringify(mode),
+    "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  external: ['ekscss', 'stylis'],
+  external: ["ekscss", "stylis"],
   bundle: true,
   sourcemap: true,
   minify: !dev,
   metafile: !dev && process.stdout.isTTY,
-  logLevel: 'debug',
+  logLevel: "debug",
 };
 
 if (dev) {

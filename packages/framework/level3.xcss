@@ -2,31 +2,31 @@
 // but rather level 2 + the specific addons you need for your project
 
 // Level 1 - Core
-@import './level1.xcss';
+@import "./level1.xcss";
 
 // Level 2 - Functional
-@import './level2.xcss';
+@import "./level2.xcss";
 
 // Level 3 - Addons
-@import './addon/float.xcss';
-@import './addon/inert.xcss';
-@import './addon/type-hyphens.xcss';
-@import './addon/pretty.xcss';
-@import './addon/button.xcss';
-@import './addon/tag.xcss';
-@import './addon/alert.xcss';
-@import './addon/code.xcss';
-@import './addon/validation.xcss';
-@import './addon/card.xcss';
-@import './addon/spinner.xcss';
-@import './addon/tooltip.xcss';
+@import "./addon/float.xcss";
+@import "./addon/inert.xcss";
+@import "./addon/type-hyphens.xcss";
+@import "./addon/pretty.xcss";
+@import "./addon/button.xcss";
+@import "./addon/tag.xcss";
+@import "./addon/alert.xcss";
+@import "./addon/code.xcss";
+@import "./addon/validation.xcss";
+@import "./addon/card.xcss";
+@import "./addon/spinner.xcss";
+@import "./addon/tooltip.xcss";
 
 // Addons with a high chance of unexpected side effects
-@import './addon/ux-larger-click-zone.xcss';
-@import './addon/native.xcss';
+@import "./addon/ux-larger-click-zone.xcss";
+@import "./addon/native.xcss";
 
 // TODO: Should also probably not be enabled by default unless it's fully
 // compatible with the default colours + at least everything in level 1 + 2
 @media (prefers-color-scheme: dark) {
-  @import './addon/dark.xcss'; // stylelint-disable-line no-invalid-position-at-import-rule
+  @import "./addon/dark.xcss"; // stylelint-disable-line no-invalid-position-at-import-rule
 }

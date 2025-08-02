@@ -1,13 +1,12 @@
-declare module 'postcss/lib/parser' {
-  import type { Input, Node, Root } from 'postcss';
-  import type { Token, Tokenizer } from 'postcss-ekscss/src/tokenize';
+declare module "postcss/lib/parser" {
+  import type { Input, Node, Root } from "postcss";
+  import type { Token, Tokenizer } from "postcss-ekscss/src/tokenize";
 
   // https://github.com/postcss/postcss/blob/e0efb168c8a65b42ba10b787857cfa306ba9d48c/lib/parser.js#L23
   class Parser {
     tokenizer: Tokenizer;
 
     input: Input & { error: (message: string, pos?: number) => void };
-
     root: Root;
 
     current: Node;

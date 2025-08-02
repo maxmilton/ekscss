@@ -1,23 +1,23 @@
-import esbuild, { type BuildOptions } from 'esbuild';
+import esbuild, { type BuildOptions } from "esbuild";
 
-const mode = process.env.NODE_ENV ?? 'production';
-const dev = mode === 'development';
+const mode = process.env.NODE_ENV ?? "production";
+const dev = mode === "development";
 
-console.time('prebuild');
+console.time("prebuild");
 await Bun.$`rm -rf dist`;
-console.timeEnd('prebuild');
+console.timeEnd("prebuild");
 
 const esbuildConfig: BuildOptions = {
-  entryPoints: ['src/index.ts'],
-  outfile: 'dist/index.js',
-  platform: 'node',
-  target: ['node12'],
-  external: ['postcss'],
+  entryPoints: ["src/index.ts"],
+  outfile: "dist/index.js",
+  platform: "node",
+  target: ["node12"],
+  external: ["postcss"],
   bundle: true,
   sourcemap: true,
   minifySyntax: !dev,
   metafile: !dev && process.stdout.isTTY,
-  logLevel: 'debug',
+  logLevel: "debug",
 };
 
 if (dev) {

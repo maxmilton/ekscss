@@ -1,71 +1,71 @@
-import esbuild, { type BuildOptions } from 'esbuild';
+import esbuild, { type BuildOptions } from "esbuild";
 
-const mode = process.env.NODE_ENV ?? 'production';
-const dev = mode === 'development';
+const mode = process.env.NODE_ENV ?? "production";
+const dev = mode === "development";
 
-console.time('prebuild');
+console.time("prebuild");
 await Bun.$`rm -rf dist`;
-console.timeEnd('prebuild');
+console.timeEnd("prebuild");
 
 // Node CJS bundle
 const esbuildConfig1: BuildOptions = {
-  entryPoints: ['src/index.ts'],
-  outfile: 'dist/index.js',
-  platform: 'node',
-  target: ['node12'],
+  entryPoints: ["src/index.ts"],
+  outfile: "dist/index.js",
+  platform: "node",
+  target: ["node12"],
   define: {
-    'process.env.BROWSER': 'false',
-    'process.env.NODE_ENV': JSON.stringify(mode),
+    "process.env.BROWSER": "false",
+    "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  external: ['source-map', 'stylis'],
+  external: ["source-map", "stylis"],
   bundle: true,
   sourcemap: true,
   minify: !dev,
   metafile: !dev && process.stdout.isTTY,
-  logLevel: 'debug',
+  logLevel: "debug",
 };
 
 // Node ESM bundle
 const esbuildConfig2: BuildOptions = {
-  entryPoints: ['src/index.ts'],
-  outfile: 'dist/index.mjs',
-  platform: 'node',
-  format: 'esm',
-  target: ['node16'],
+  entryPoints: ["src/index.ts"],
+  outfile: "dist/index.mjs",
+  platform: "node",
+  format: "esm",
+  target: ["node16"],
   define: {
-    'process.env.BROWSER': 'false',
-    'process.env.NODE_ENV': JSON.stringify(mode),
+    "process.env.BROWSER": "false",
+    "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  external: ['source-map', 'stylis'],
+  external: ["source-map", "stylis"],
   bundle: true,
   sourcemap: true,
   minify: !dev,
   metafile: !dev && process.stdout.isTTY,
-  logLevel: 'debug',
+  logLevel: "debug",
 };
 
 // Browser compatible ESM bundle (without sourcemap support)
 const esbuildConfig3: BuildOptions = {
-  entryPoints: ['src/index.ts'],
-  outfile: 'dist/browser.mjs',
-  platform: 'browser',
-  format: 'esm',
+  entryPoints: ["src/index.ts"],
+  outfile: "dist/browser.mjs",
+  platform: "browser",
+  format: "esm",
   define: {
-    'process.env.BROWSER': 'true',
-    'process.env.NODE_ENV': JSON.stringify(mode),
+    "process.env.BROWSER": "true",
+    "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  external: ['stylis'],
+  external: ["stylis"],
   bundle: true,
   sourcemap: true,
   minifySyntax: !dev,
   metafile: !dev && process.stdout.isTTY,
-  logLevel: 'debug',
+  logLevel: "debug",
   plugins: [
     {
-      name: 'stub-sourcemap',
+      name: "stub-sourcemap",
       setup(build) {
         build.onLoad({ filter: /sourcemap\.ts$/ }, () => ({
-          contents: 'export const compileSourceMap = () => {};',
+          contents: "export const compileSourceMap = () => {};",
         }));
       },
     },

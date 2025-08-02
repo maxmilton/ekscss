@@ -1,9 +1,9 @@
-/* eslint-disable no-param-reassign, no-underscore-dangle, unicorn/prefer-module */
+/* eslint-disable no-param-reassign, no-underscore-dangle */
 
-import fs from 'fs';
-import path from 'path';
-import { type Element, type Middleware, ctx, interpolate, xcss } from 'ekscss';
-import * as stylis from 'stylis';
+import { ctx, type Element, interpolate, type Middleware, xcss } from "ekscss";
+import fs from "fs";
+import path from "path";
+import * as stylis from "stylis";
 
 // TODO: Document this plugin should come first
 
@@ -49,10 +49,10 @@ export const importPlugin: Middleware = (
 
   const importPath = stylis
     .tokenize(element.value)[3]
-    .replace(/^["']/, '')
-    .replace(/["']$/, '');
+    .replace(/^["']/, "")
+    .replace(/["']$/, "");
 
-  if (importPath === 'url') return;
+  if (importPath === "url") return;
 
   const searchPaths = [ctx.rootDir];
 
@@ -60,9 +60,8 @@ export const importPlugin: Middleware = (
     searchPaths.unshift(path.dirname(ctx.from));
   } else if (isRelative(importPath)) {
     ctx.warnings.push({
-      code: 'import-from-invalid',
-      message:
-        'Unable to resolve relative @import because "from" option invalid',
+      code: "import-from-invalid",
+      message: 'Unable to resolve relative @import because "from" option invalid',
       file: ctx.from,
       line: element.line,
       column: element.column,
@@ -73,7 +72,7 @@ export const importPlugin: Middleware = (
 
   if (!from) {
     ctx.warnings.push({
-      code: 'import-not-found',
+      code: "import-not-found",
       // TODO: No need to include importPath since we give the file and line/column
       message: `Unable to resolve @import: ${importPath}`,
       file: ctx.from,
@@ -88,7 +87,7 @@ export const importPlugin: Middleware = (
   // opposed to CSS @import in which the last import wins)
   if (ctx.dependencies.includes(from)) {
     // Set empty value so at-rule is removed in stringify
-    element.value = '';
+    element.value = "";
     return;
   }
 
@@ -96,10 +95,10 @@ export const importPlugin: Middleware = (
   ctx.from = from;
 
   const ext = path.extname(from);
-  let code = fs.readFileSync(from, 'utf8');
+  let code = fs.readFileSync(from, "utf8");
 
   // TODO: Document this behaviour
-  if (ext === '.xcss' || !ext) {
+  if (ext === ".xcss" || !ext) {
     code = interpolate(code)(xcss, ctx.x);
   }
 
@@ -110,12 +109,12 @@ export const importPlugin: Middleware = (
   element.__ast = ast;
   element.__from = from;
 
-  if (element.return === '') {
+  if (element.return === "") {
     // Set empty value so at-rule is removed in stringify
-    element.value = '';
+    element.value = "";
 
     ctx.warnings.push({
-      code: 'import-empty',
+      code: "import-empty",
       message: `@import file empty: ${from}`,
       file: oldCtxFrom,
       line: element.line,

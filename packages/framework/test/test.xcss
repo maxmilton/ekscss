@@ -174,10 +174,10 @@ ${null}
   color: blue;
 
   // &:hover {
-  //   // #apply: '.btn:hover';
+  //   // #apply: ".btn:hover";
   //   #apply: .btn:hover;
   //   // @apply: .btn\:hover;
-  //   // @apply: '.btn:hover';
+  //   // @apply: ".btn:hover";
   //   // @apply: .btn:hover;
   // }
 }
@@ -204,5 +204,5 @@ ${null}
 
 // ////////////////////////////////////
 
-// @import './not-exist.xcss';
-@import './test-imported.xcss';
+// @import "./not-exist.xcss";
+@import "./test-imported.xcss";

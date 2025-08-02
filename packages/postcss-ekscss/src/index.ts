@@ -1,6 +1,6 @@
-import { Input, type Parser, type Stringifier } from 'postcss';
-import { XCSSParser } from './parser';
-import { XCSSStringifier } from './stringifier';
+import { Input, type Parser, type Stringifier } from "postcss";
+import { XCSSParser } from "./parser.ts";
+import { XCSSStringifier } from "./stringifier.ts";
 
 export const parse: Parser = (xcss, opts) => {
   const input = new Input(xcss.toString(), opts);

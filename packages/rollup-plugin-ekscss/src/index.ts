@@ -1,9 +1,9 @@
-import { type FilterPattern, createFilter } from '@rollup/pluginutils';
-import { type XCSSCompileOptions, compile, resolvePlugins } from 'ekscss';
-import JoyCon from 'joycon';
-import type { Plugin } from 'rollup';
+import { createFilter, type FilterPattern } from "@rollup/pluginutils";
+import { compile, resolvePlugins, type XCSSCompileOptions } from "ekscss";
+import JoyCon from "joycon";
+import type { Plugin } from "rollup";
 
-export type XCSSConfig = Omit<XCSSCompileOptions, 'from' | 'to'>;
+export type XCSSConfig = Omit<XCSSCompileOptions, "from" | "to">;
 
 // TODO: Document the const fallbacks e.g., if map==null fall back to rollup output setting
 
@@ -28,40 +28,39 @@ export default function rollupPlugin({
   include = /\.xcss$/,
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
-  const reBadValue =
-    /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+  const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
   const joycon = new JoyCon({
     files: [
-      '.xcssrc.cjs',
-      '.xcssrc.js',
-      '.xcssrc.json',
-      'xcss.config.cjs',
-      'xcss.config.js',
-      'xcss.config.json',
-      'package.json',
+      ".xcssrc.cjs",
+      ".xcssrc.js",
+      ".xcssrc.json",
+      "xcss.config.cjs",
+      "xcss.config.js",
+      "xcss.config.json",
+      "package.json",
     ],
-    packageKey: 'xcss',
+    packageKey: "xcss",
   });
   let configData: XCSSConfig;
   let configPath: string | undefined;
-  let useSourceMaps: boolean | 'inline' | 'hidden';
+  let useSourceMaps: boolean | "inline" | "hidden";
 
   return {
-    name: 'ekscss',
+    name: "ekscss",
 
     renderStart(outputOptions) {
       useSourceMaps = outputOptions.sourcemap;
     },
 
     async buildStart() {
-      if (!config || typeof config === 'string') {
+      if (!config || typeof config === "string") {
         // load user defined config or fall back to default file locations
         const result = await joycon.load(config ? [config] : undefined);
         configData = (result.data as XCSSConfig | undefined) ?? {};
         configPath = result.path;
 
         if (!result.path) {
-          this.warn('Unable to locate XCSS config');
+          this.warn("Unable to locate XCSS config");
         }
       } else {
         configData = config;
@@ -95,22 +94,21 @@ export default function rollupPlugin({
         this.warn(warning.message);
 
         /* eslint-disable no-console */
-        console.warn('XCSS Warning:', warning.message || warning);
+        console.warn("XCSS Warning:", warning.message || warning);
 
         if (warning.file) {
-          // biome-ignore lint/suspicious/noConsoleLog: provide feedback
           console.log(
-            '  at',
+            "  at",
             [warning.file, warning.line, warning.column]
               .filter(Boolean)
-              .join(':'),
+              .join(":"),
           );
         }
         /* eslint-enable no-console */
       }
 
       if (reBadValue.test(compiled.css)) {
-        this.warn('Output may contain unwanted value');
+        this.warn("Output may contain unwanted value");
       }
 
       // if (id.endsWith('web-app/src/css/index.xcss')) {

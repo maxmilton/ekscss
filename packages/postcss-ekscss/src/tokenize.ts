@@ -4,7 +4,7 @@
 
 /* eslint-disable unicorn/prefer-code-point */
 
-import type { Input } from 'postcss';
+import type { Input } from "postcss";
 
 const SINGLE_QUOTE = 39; // '
 const DOUBLE_QUOTE = 34; // "
@@ -48,7 +48,7 @@ export type Token = readonly [
 
 export interface Tokenizer {
   back: (token: Token) => void;
-  nextToken: (opts?: { ignoreUnclosed?: boolean }) => Token | void;
+  nextToken: (opts?: { ignoreUnclosed?: boolean }) => Token | undefined;
   endOfFile: () => boolean;
   position: () => number;
 }
@@ -94,7 +94,7 @@ export function tokenize(
 
     while (depth > 0) {
       next += 1;
-      if (css.length <= next) unclosed('interpolation');
+      if (css.length <= next) unclosed("interpolation");
 
       code = css.charCodeAt(next);
       n = css.charCodeAt(next + 1);
@@ -118,7 +118,7 @@ export function tokenize(
     }
   }
 
-  function nextToken(opts?: { ignoreUnclosed?: boolean }): Token | void {
+  function nextToken(opts?: { ignoreUnclosed?: boolean }): Token | undefined {
     if (returned.length > 0) return returned.pop();
     if (pos >= len) return undefined;
 
@@ -137,14 +137,14 @@ export function tokenize(
           next += 1;
           code = css.charCodeAt(next);
         } while (
-          code === SPACE ||
-          code === NEWLINE ||
-          code === TAB ||
-          code === CR ||
-          code === FEED
+          code === SPACE
+          || code === NEWLINE
+          || code === TAB
+          || code === CR
+          || code === FEED
         );
 
-        currentToken = ['space', css.slice(pos, next)];
+        currentToken = ["space", css.slice(pos, next)];
         pos = next - 1;
         break;
 
@@ -161,14 +161,14 @@ export function tokenize(
       }
 
       case COMMA:
-        currentToken = ['word', ',', pos, pos + 1];
+        currentToken = ["word", ",", pos, pos + 1];
         break;
 
       case OPEN_PARENTHESES:
-        prev = buffer.length > 0 ? buffer.pop()![1] : '';
+        prev = buffer.length > 0 ? buffer.pop()![1] : "";
         n = css.charCodeAt(pos + 1);
 
-        if (prev === 'url' && n !== SINGLE_QUOTE && n !== DOUBLE_QUOTE) {
+        if (prev === "url" && n !== SINGLE_QUOTE && n !== DOUBLE_QUOTE) {
           brackets = 1;
           escaped = false;
           next = pos + 1;
@@ -187,16 +187,16 @@ export function tokenize(
           }
 
           content = css.slice(pos, next + 1);
-          currentToken = ['brackets', content, pos, next];
+          currentToken = ["brackets", content, pos, next];
           pos = next;
         } else {
-          next = css.indexOf(')', pos + 1);
+          next = css.indexOf(")", pos + 1);
           content = css.slice(pos, next + 1);
 
           if (next === -1 || RE_BAD_BRACKET.test(content)) {
-            currentToken = ['(', '(', pos];
+            currentToken = ["(", "(", pos];
           } else {
-            currentToken = ['brackets', content, pos, next];
+            currentToken = ["brackets", content, pos, next];
             pos = next;
           }
         }
@@ -210,7 +210,7 @@ export function tokenize(
         escaped = false;
         while (next < len) {
           next++;
-          if (next === len) unclosed('string');
+          if (next === len) unclosed("string");
 
           code = css.charCodeAt(next);
           n = css.charCodeAt(next + 1);
@@ -227,17 +227,16 @@ export function tokenize(
           }
         }
 
-        currentToken = ['string', css.slice(pos, next + 1), pos, next];
+        currentToken = ["string", css.slice(pos, next + 1), pos, next];
         pos = next;
         break;
 
       case AT:
         RE_AT_END.lastIndex = pos + 1;
         RE_AT_END.test(css);
-        next =
-          RE_AT_END.lastIndex === 0 ? css.length - 1 : RE_AT_END.lastIndex - 2;
+        next = RE_AT_END.lastIndex === 0 ? css.length - 1 : RE_AT_END.lastIndex - 2;
 
-        currentToken = ['at-word', css.slice(pos, next + 1), pos, next];
+        currentToken = ["at-word", css.slice(pos, next + 1), pos, next];
 
         pos = next;
         break;
@@ -251,13 +250,13 @@ export function tokenize(
         }
         code = css.charCodeAt(next + 1);
         if (
-          escape &&
-          code !== SLASH &&
-          code !== SPACE &&
-          code !== NEWLINE &&
-          code !== TAB &&
-          code !== CR &&
-          code !== FEED
+          escape
+          && code !== SLASH
+          && code !== SPACE
+          && code !== NEWLINE
+          && code !== TAB
+          && code !== CR
+          && code !== FEED
         ) {
           next += 1;
           if (RE_HEX_ESCAPE.test(css.charAt(next))) {
@@ -270,7 +269,7 @@ export function tokenize(
           }
         }
 
-        currentToken = ['word', css.slice(pos, next + 1), pos, next];
+        currentToken = ["word", css.slice(pos, next + 1), pos, next];
 
         pos = next;
         break;
@@ -282,41 +281,39 @@ export function tokenize(
           next = pos;
           interpolation();
           content = css.slice(pos, next + 1);
-          currentToken = ['root', content, pos, next];
+          currentToken = ["root", content, pos, next];
           pos = next;
         } else if (code === SLASH && n === ASTERISK) {
-          next = css.indexOf('*/', pos + 2) + 1;
+          next = css.indexOf("*/", pos + 2) + 1;
           if (next === 0) {
             if (ignore ?? ignoreUnclosed) {
               next = css.length;
             } else {
-              unclosed('comment');
+              unclosed("comment");
             }
           }
 
-          currentToken = ['comment', css.slice(pos, next + 1), pos, next];
+          currentToken = ["comment", css.slice(pos, next + 1), pos, next];
           pos = next;
         } else if (code === SLASH && n === SLASH) {
           RE_NEW_LINE.lastIndex = pos + 1;
           RE_NEW_LINE.test(css);
-          next =
-            RE_NEW_LINE.lastIndex === 0
-              ? css.length - 1
-              : RE_NEW_LINE.lastIndex - 2;
+          next = RE_NEW_LINE.lastIndex === 0
+            ? css.length - 1
+            : RE_NEW_LINE.lastIndex - 2;
 
           content = css.slice(pos, next + 1);
-          currentToken = ['comment', content, pos, next, 'inline'];
+          currentToken = ["comment", content, pos, next, "inline"];
 
           pos = next;
         } else {
           RE_WORD_END.lastIndex = pos + 1;
           RE_WORD_END.test(css);
-          next =
-            RE_WORD_END.lastIndex === 0
-              ? css.length - 1
-              : RE_WORD_END.lastIndex - 2;
+          next = RE_WORD_END.lastIndex === 0
+            ? css.length - 1
+            : RE_WORD_END.lastIndex - 2;
 
-          currentToken = ['word', css.slice(pos, next + 1), pos, next];
+          currentToken = ["word", css.slice(pos, next + 1), pos, next];
           buffer.push(currentToken);
           pos = next;
         }

@@ -19,7 +19,7 @@ nav ul {
 */
 nav li::before {
   position: absolute;
-  content: '\200B';
+  content: "\200B";
 }
 
 /* Reduced Motion

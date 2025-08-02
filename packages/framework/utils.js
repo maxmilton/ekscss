@@ -1,16 +1,17 @@
-'use strict';
+"use strict";
 
-const { applyPlugin } = require('@ekscss/plugin-apply');
-const { importPlugin } = require('@ekscss/plugin-import');
-const Color = require('color');
-const { merge } = require('dset/merge');
-const { ctx, interpolate, xcss } = require('ekscss');
-const stylis = require('stylis');
+const { applyPlugin } = require("@ekscss/plugin-apply");
+const { importPlugin } = require("@ekscss/plugin-import");
+const { default: Color } = require("color");
+const { merge } = require("dset/merge");
+const { ctx, interpolate, xcss } = require("ekscss");
+const stylis = require("stylis");
 
-/** @typedef {Color | string | ArrayLike<number> | number | { [key: string]: any }} ColorParam */
-/** @typedef {import('ekscss').XCSSGlobals} XCSSGlobals */
-/** @typedef {import('ekscss').XCSSExpression} XCSSExpression */
-/** @typedef {import('ekscss').ExpressionOrNested} ExpressionOrNested */
+/** @typedef {import("color").ColorInstance} ColorInstance */
+/** @typedef {ColorInstance | string | ArrayLike<number> | number | { [key: string]: any }} ColorParam */
+/** @typedef {import("ekscss").XCSSGlobals} XCSSGlobals */
+/** @typedef {import("ekscss").XCSSExpression} XCSSExpression */
+/** @typedef {import("ekscss").ExpressionOrNested} ExpressionOrNested */
 
 /**
  * @see https://github.com/Qix-/color#readme
@@ -18,14 +19,14 @@ const stylis = require('stylis');
  * the `color` package `Color` constructor accepts or an XCSS template
  * expression function which will resolve to such a value.
  * @param {Parameters<typeof Color>[1]} [model]
- * @returns {Color}
+ * @returns {ColorInstance}
  */
 function color(value, model) {
   return Color(
-    value instanceof Color || typeof value !== 'function'
+    value instanceof Color || typeof value !== "function"
       ? value
-      : // @ts-expect-error - TODO: Correctly type `value`
-        xcss`${value}`,
+      // @ts-expect-error - TODO: Correctly type `value`
+      : xcss`${value}`,
     model,
   );
 }
@@ -60,7 +61,7 @@ function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
   ctx.warnings.push(...oldWarnings);
 }
 
-/** @typedef {Omit<import('ekscss').XCSSCompileOptions, 'from' | 'to'>} XCSSConfig */
+/** @typedef {Omit<import("ekscss").XCSSCompileOptions, 'from' | 'to'>} XCSSConfig */
 
 /**
  * Extend an XCSS configuration with your own.
@@ -90,14 +91,13 @@ function resolveGlobals(obj) {
     let val = value;
 
     // Reduce XCSS function expressions to their final value
-    while (typeof val === 'function') {
+    while (typeof val === "function") {
       val = val(ctx.x);
     }
 
-    resolved[key] =
-      val != null && typeof val === 'object' && !Array.isArray(val)
-        ? resolveGlobals(val)
-        : val;
+    resolved[key] = val != null && typeof val === "object" && !Array.isArray(val)
+      ? resolveGlobals(val)
+      : val;
   }
 
   return resolved;
