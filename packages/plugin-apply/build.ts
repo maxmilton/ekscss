@@ -1,3 +1,4 @@
+import { createTypes } from "@ekscss/build-tools";
 import esbuild, { type BuildOptions } from "esbuild";
 
 const mode = process.env.NODE_ENV ?? "production";
@@ -53,3 +54,5 @@ if (dev) {
   if (out1.metafile) console.log(await esbuild.analyzeMetafile(out1.metafile));
   if (out2.metafile) console.log(await esbuild.analyzeMetafile(out2.metafile));
 }
+
+createTypes(["src/index.ts"], "dist");
