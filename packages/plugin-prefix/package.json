@@ -11,9 +11,8 @@
   "types": "dist/index.d.ts",
   "files": ["dist", "src"],
   "scripts": {
-    "build": "bun build.ts",
-    "dev": "NODE_ENV=development bun build.ts",
-    "postbuild": "tsc --emitDeclarationOnly --declarationMap"
+    "build": "NODE_ENV=production bun build.ts",
+    "dev": "NODE_ENV=development bun build.ts"
   },
   "peerDependencies": {
     "ekscss": "workspace:^"
