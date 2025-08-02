@@ -1,4 +1,4 @@
-name: typos
+name: sherif
 on:
   push:
     branches: [master, next]
@@ -8,11 +8,14 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  typos:
+  sherif:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: crate-ci/typos@v1
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bunx sherif@latest
