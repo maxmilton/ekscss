@@ -20,6 +20,10 @@ const toStr = Object.prototype.toString;
 
 export function noop(): void {}
 
+// TODO: Add documentation about the security implications of using this
+// function. It uses `new Function()` which means it can execute arbitrary
+// code. It must only be used with trusted code.
+// TODO: Minimal hardening; runtime checks, sandboxing, etc.
 /**
  * Interpolative template engine for XCSS.
  *
