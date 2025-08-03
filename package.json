@@ -13,7 +13,7 @@
     "lint:ts": "tsc --build --noEmit",
     "test": "bun test",
     "test:node": "uvu packages '\\/test\\/.+\\.test-node\\.js$'",
-    "test:node:c8": "c8 npm test:node"
+    "test:node:c8": "c8 npm run test:node"
   },
   "dependencies": {
     "ekscss": "workspace:*"
