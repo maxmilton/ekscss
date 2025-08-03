@@ -15,6 +15,9 @@
     "test:node": "uvu packages '\\/test\\/.+\\.test-node\\.js$'",
     "test:node:c8": "c8 npm test:node"
   },
+  "dependencies": {
+    "ekscss": "workspace:*"
+  },
   "devDependencies": {
     "@eslint/js": "9.32.0",
     "@maxmilton/eslint-config": "0.2.1",

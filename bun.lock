@@ -2,6 +2,9 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
+      "dependencies": {
+        "ekscss": "workspace:*",
+      },
       "devDependencies": {
         "@eslint/js": "9.32.0",
         "@maxmilton/eslint-config": "0.2.1",
@@ -52,6 +55,7 @@
         "stylis": "^4.3.6",
       },
       "devDependencies": {
+        "@ekscss/plugin-null": "workspace:*",
         "dts-buddy": "0.6.2",
         "esbuild": "0.25.8",
       },
@@ -123,6 +127,13 @@
         "ekscss": "workspace:*",
         "esbuild": "0.25.8",
       },
+      "peerDependencies": {
+        "ekscss": "workspace:^",
+      },
+    },
+    "packages/plugin-null": {
+      "name": "@ekscss/plugin-null",
+      "version": "0.0.0",
       "peerDependencies": {
         "ekscss": "workspace:^",
       },
@@ -238,6 +249,8 @@
     "@ekscss/plugin-apply": ["@ekscss/plugin-apply@workspace:packages/plugin-apply"],
 
     "@ekscss/plugin-import": ["@ekscss/plugin-import@workspace:packages/plugin-import"],
+
+    "@ekscss/plugin-null": ["@ekscss/plugin-null@workspace:packages/plugin-null"],
 
     "@ekscss/plugin-prefix": ["@ekscss/plugin-prefix@workspace:packages/plugin-prefix"],
 
