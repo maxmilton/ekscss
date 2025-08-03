@@ -1,4 +1,4 @@
-import { createBundle } from "dts-buddy";
+import { createTypes } from "@ekscss/build-tools";
 import esbuild, { type BuildOptions } from "esbuild";
 
 const mode = process.env.NODE_ENV;
@@ -56,11 +56,6 @@ const esbuildConfig3: BuildOptions = {
     "process.env.NODE_ENV": JSON.stringify(mode),
   },
   external: ["stylis"],
-  bundle: true,
-  sourcemap: true,
-  minifySyntax: !dev,
-  metafile: !dev && process.stdout.isTTY,
-  logLevel: "debug",
   plugins: [
     {
       name: "stub-sourcemap",
@@ -71,7 +66,16 @@ const esbuildConfig3: BuildOptions = {
       },
     },
   ],
+  bundle: true,
+  sourcemap: true,
+  minifySyntax: !dev,
+  metafile: !dev && process.stdout.isTTY,
+  logLevel: "debug",
 };
+
+console.time("dts");
+createTypes(["src/index.ts"], "dist");
+console.timeEnd("dts");
 
 if (dev) {
   const context1 = await esbuild.context(esbuildConfig1);
@@ -88,12 +92,4 @@ if (dev) {
   if (out1.metafile) console.log(await esbuild.analyzeMetafile(out1.metafile));
   if (out2.metafile) console.log(await esbuild.analyzeMetafile(out2.metafile));
   if (out3.metafile) console.log(await esbuild.analyzeMetafile(out3.metafile));
-
-  await createBundle({
-    project: "tsconfig.json",
-    output: "dist/index.d.ts",
-    modules: {
-      ekscss: "src/index.ts",
-    },
-  });
 }
