@@ -7,6 +7,25 @@
   "author": "Max Milton <max@bunnybunny.org>",
   "license": "MIT",
   "main": "level2.xcss",
+  "exports": {
+    ".": "./level2.xcss",
+    "./level1.xcss": "./level1.xcss",
+    "./level2.xcss": "./level2.xcss",
+    "./level3.xcss": "./level3.xcss",
+    "./addon/*": "./addon/*",
+    "./level1/*": "./level1/*",
+    "./level2/*": "./level2/*",
+    "./config": {
+      "types": "./config.d.mts",
+      "default": "./config.mjs"
+    },
+    "./utils": {
+      "types": "./utils.d.mts",
+      "default": "./utils.mjs"
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
   "files": [
     "*.xcss",
     "addon",
