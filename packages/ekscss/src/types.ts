@@ -2,6 +2,8 @@ import type { SourceMapGenerator } from "source-map-js";
 import type { Element as _Element, Middleware } from "stylis";
 import type { xcss } from "./helpers.ts";
 
+export type { RawSourceMap } from "source-map-js";
+
 // eslint-disable-next-line unicorn/prefer-export-from
 export type { Middleware };
 
