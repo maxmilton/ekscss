@@ -1,7 +1,7 @@
 import * as stylis from "stylis";
 import { accessorsProxy, ctx, each, interpolate, map as _map, xcss } from "./helpers.ts";
 import { compileSourceMap } from "./sourcemap.ts";
-import type { BuildHookFn, Warning, XCSSCompileOptions, XCSSCompileResult, XCSSGlobals } from "./types.ts";
+import type { BuildHookFn, CompileOptions, CompileResult, Globals, Warning } from "./types.ts";
 
 const beforeBuildFns: BuildHookFn[] = [];
 const afterBuildFns: BuildHookFn[] = [];
@@ -16,7 +16,7 @@ export function onAfterBuild(callback: BuildHookFn): void {
 
 // TODO: Write tests that prove this doesn't mutate the original object.
 // TODO: This is only a shallow clone, should we do a deep clone? Use structuredClone or klona
-function mergeDefaultGlobals(globals: Partial<XCSSGlobals>): XCSSGlobals {
+function mergeDefaultGlobals(globals: Partial<Globals>): Globals {
   // eslint-disable-next-line prefer-object-spread
   const newGlobals = Object.assign({}, globals, {
     // eslint-disable-next-line prefer-object-spread
@@ -26,7 +26,7 @@ function mergeDefaultGlobals(globals: Partial<XCSSGlobals>): XCSSGlobals {
   newGlobals.fn.each ??= each;
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   newGlobals.fn.map ??= _map;
-  return newGlobals as XCSSGlobals;
+  return newGlobals as Globals;
 }
 
 export function compile(
@@ -38,8 +38,8 @@ export function compile(
     plugins = [],
     rootDir = process.cwd(),
     map,
-  }: XCSSCompileOptions = {},
-): XCSSCompileResult {
+  }: CompileOptions = {},
+): CompileResult {
   const middlewares = [...plugins, stylis.stringify];
   const dependencies: string[] = [];
   const warnings: Warning[] = [];
