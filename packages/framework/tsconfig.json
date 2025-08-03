@@ -8,5 +8,5 @@
     "noEmit": false,
     "emitDeclarationOnly": true,
   },
-  "include": ["*.mjs"],
+  "include": ["config.mjs", "utils.mjs"],
 }
