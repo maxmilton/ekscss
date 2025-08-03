@@ -1,7 +1,7 @@
 import { createBundle } from "dts-buddy";
 import esbuild, { type BuildOptions } from "esbuild";
 
-const mode = process.env.NODE_ENV ?? "production";
+const mode = process.env.NODE_ENV;
 const dev = mode === "development";
 
 console.time("prebuild");
@@ -79,9 +79,11 @@ if (dev) {
   const context3 = await esbuild.context(esbuildConfig3);
   await Promise.all([context1.watch(), context2.watch(), context3.watch()]);
 } else {
+  console.time("build");
   const out1 = await esbuild.build(esbuildConfig1);
   const out2 = await esbuild.build(esbuildConfig2);
   const out3 = await esbuild.build(esbuildConfig3);
+  console.timeEnd("build");
 
   if (out1.metafile) console.log(await esbuild.analyzeMetafile(out1.metafile));
   if (out2.metafile) console.log(await esbuild.analyzeMetafile(out2.metafile));

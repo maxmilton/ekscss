@@ -1,6 +1,6 @@
 import esbuild, { type BuildOptions } from "esbuild";
 
-const mode = process.env.NODE_ENV ?? "production";
+const mode = process.env.NODE_ENV;
 const dev = mode === "development";
 
 console.time("prebuild");
@@ -24,7 +24,9 @@ if (dev) {
   const context = await esbuild.context(esbuildConfig);
   await context.watch();
 } else {
+  console.time("build");
   const out = await esbuild.build(esbuildConfig);
+  console.timeEnd("build");
 
   if (out.metafile) console.log(await esbuild.analyzeMetafile(out.metafile));
 }

@@ -7,7 +7,7 @@ const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
 
-/** @type {import('typescript-eslint').ConfigArray} */
+/** @type {import("typescript-eslint").ConfigArray} */
 const config = ts.config(
   js.configs.recommended,
   ts.configs.strictTypeChecked,
@@ -98,18 +98,24 @@ const config = ts.config(
   {
     files: ["packages/cli/index.js"],
     rules: {
+      "@typescript-eslint/no-unsafe-assignment": WARN,
+      "@typescript-eslint/prefer-optional-chain": OFF,
       "@typescript-eslint/restrict-template-expressions": OFF,
       "global-require": OFF,
       "no-await-in-loop": OFF,
       "no-console": OFF,
       "unicorn/no-anonymous-default-export": OFF,
       "unicorn/no-process-exit": OFF,
-
-      // TODO: Fix these and remove (upgrade to error)
+    },
+  },
+  {
+    files: ["packages/framework/xcss.config.mjs"],
+    rules: {
+      "@typescript-eslint/explicit-module-boundary-types": WARN,
       "@typescript-eslint/no-unsafe-assignment": WARN,
     },
   },
-  { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.ts"] },
+  { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.mts"] },
 );
 
 export default config;
