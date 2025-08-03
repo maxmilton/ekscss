@@ -1,0 +1,13 @@
+{
+  "name": "@ekscss/plugin-null",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Internal testing XCSS plugin that does nothing",
+  "license": "MIT",
+  "main": "src/index.js",
+  "module": "src/index.mjs",
+  "types": "src/index.d.ts",
+  "peerDependencies": {
+    "ekscss": "workspace:^"
+  }
+}

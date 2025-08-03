@@ -200,54 +200,40 @@ describe("resolvePlugins", () => {
 
   test("resolves plugins when strings", async () => {
     expect.assertions(7);
-    const plugin1 = await import("@ekscss/plugin-apply");
-    const plugin2 = await import("@ekscss/plugin-import");
-    const plugin3 = await import("@ekscss/plugin-prefix");
-    const plugins = resolvePlugins([
-      "@ekscss/plugin-apply",
-      "@ekscss/plugin-import",
-      "@ekscss/plugin-prefix",
-    ]);
+    const plugin = await import("@ekscss/plugin-null");
+    const plugins = resolvePlugins(["@ekscss/plugin-null", "@ekscss/plugin-null", "@ekscss/plugin-null"]);
     expect(plugins[0]).toBeFunction();
-    expect(plugins[0]).toBe(plugin1.default);
+    expect(plugins[0]).toBe(plugin.default);
     expect(plugins[1]).toBeFunction();
-    expect(plugins[1]).toBe(plugin2.default);
+    expect(plugins[1]).toBe(plugin.default);
     expect(plugins[2]).toBeFunction();
-    expect(plugins[2]).toBe(plugin3.default);
+    expect(plugins[2]).toBe(plugin.default);
     expect(plugins).toHaveLength(3);
   });
 
   test("resolves plugins when functions", async () => {
     expect.assertions(7);
-    const plugin1 = await import("@ekscss/plugin-apply");
-    const plugin2 = await import("@ekscss/plugin-import");
-    const plugin3 = await import("@ekscss/plugin-prefix");
-    const plugins = resolvePlugins([plugin1.default, plugin2.default, plugin3.default]);
+    const plugin = await import("@ekscss/plugin-null");
+    const plugins = resolvePlugins([plugin.default, plugin.default, plugin.default]);
     expect(plugins[0]).toBeFunction();
-    expect(plugins[0]).toBe(plugin1.default);
+    expect(plugins[0]).toBe(plugin.default);
     expect(plugins[1]).toBeFunction();
-    expect(plugins[1]).toBe(plugin2.default);
+    expect(plugins[1]).toBe(plugin.default);
     expect(plugins[2]).toBeFunction();
-    expect(plugins[2]).toBe(plugin3.default);
+    expect(plugins[2]).toBe(plugin.default);
     expect(plugins).toHaveLength(3);
   });
 
   test("resolves plugins when mixed", async () => {
     expect.assertions(7);
-    const plugin1 = await import("@ekscss/plugin-apply");
-    const plugin2 = await import("@ekscss/plugin-import");
-    const plugin3 = await import("@ekscss/plugin-prefix");
-    const plugins = resolvePlugins([
-      "@ekscss/plugin-apply",
-      plugin2.default,
-      "@ekscss/plugin-prefix",
-    ]);
+    const plugin = await import("@ekscss/plugin-null");
+    const plugins = resolvePlugins(["@ekscss/plugin-null", plugin.default, "@ekscss/plugin-null"]);
     expect(plugins[0]).toBeFunction();
-    expect(plugins[0]).toBe(plugin1.default);
+    expect(plugins[0]).toBe(plugin.default);
     expect(plugins[1]).toBeFunction();
-    expect(plugins[1]).toBe(plugin2.default);
+    expect(plugins[1]).toBe(plugin.default);
     expect(plugins[2]).toBeFunction();
-    expect(plugins[2]).toBe(plugin3.default);
+    expect(plugins[2]).toBe(plugin.default);
     expect(plugins).toHaveLength(3);
   });
 });
