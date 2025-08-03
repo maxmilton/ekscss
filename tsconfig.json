@@ -10,5 +10,6 @@
   "references": [
     { "path": "./tsconfig.bun.json" },
     { "path": "./tsconfig.node.json" },
+    { "path": "./packages/framework/tsconfig.json" },
   ],
 }

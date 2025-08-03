@@ -10,22 +10,20 @@
   "files": [
     "*.xcss",
     "addon",
-    "config.d.ts",
-    "config.js",
+    "config.d.mts",
     "config.mjs",
     "dist",
     "level1",
     "level2",
-    "utils.d.ts",
-    "utils.js",
+    "utils.d.mts",
     "utils.mjs"
   ],
   "scripts": {
-    "build": "pnpm run build-levels && pnpm run build-addons",
+    "build": "bun run build-levels && bun run build-addons",
     "build-addons": "for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css; done",
     "build-levels": "for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css; done",
     "postbuild": "tsc --emitDeclarationOnly",
-    "prebuild": "rm -rf dist *.d.ts",
+    "prebuild": "rm -rf dist *.d.mts",
     "test": "xcss test/test.xcss /dev/null"
   },
   "peerDependencies": {
@@ -42,11 +40,13 @@
     "@ekscss/plugin-prefix": "workspace:^",
     "color": "^5.0.0",
     "cssremedy": "github:jensimmons/cssremedy#af14bf3",
-    "dset": "^3.1.4",
-    "stylis": "^4.3.6"
+    "dset": "^3.1.4"
   },
   "devDependencies": {
     "@ekscss/cli": "workspace:*",
     "ekscss": "workspace:*"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
