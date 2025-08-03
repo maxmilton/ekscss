@@ -211,9 +211,11 @@ module.exports = {
       helpMargin: (x) => x.input.paddingY,
       helpTextColor: (x) => x.color.dark3,
       selectCaret: (x) =>
-        `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${encodeURIComponent(
-          xcss`${x.color.text}`,
-        )}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e")`,
+        `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${
+          encodeURIComponent(
+            xcss`${x.color.text}`,
+          )
+        }' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e")`,
       checkboxSize: "1.4rem",
       checkboxBorder: (x) => xcss`2px solid ${x.color.gray3}`,
       checkboxRadius: (x) => x.input.radius,
@@ -315,8 +317,7 @@ module.exports = {
       hoverHoverShadow: (x) => x.color.shadow,
       bodyMargin: "1.2rem 2rem",
       buttonTextColor: "inherit",
-      buttonBorder: (x) =>
-        xcss`1px solid ${x.fn.color(x.color.light3).alpha(0.5)}`,
+      buttonBorder: (x) => xcss`1px solid ${x.fn.color(x.color.light3).alpha(0.5)}`,
     },
 
     /* Addon: code.xcss */

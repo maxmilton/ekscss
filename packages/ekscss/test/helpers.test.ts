@@ -1,17 +1,7 @@
 import { describe, expect, mock, spyOn, test } from "bun:test";
 import { isProxy } from "node:util/types";
 import { compile } from "../src/compiler.ts";
-import {
-  accessorsProxy,
-  ctx,
-  each,
-  interpolate,
-  isObject,
-  map,
-  noop,
-  resolvePlugins,
-  xcss,
-} from "../src/helpers.ts";
+import { accessorsProxy, ctx, each, interpolate, isObject, map, noop, resolvePlugins, xcss } from "../src/helpers.ts";
 import type { Context } from "../src/types.ts";
 
 function Func() {}
@@ -50,7 +40,7 @@ const notObjects: [string, unknown][] = [
   ["['abc', 'def']", ["abc", "def"]],
   ["function named() {}", function named() {}],
   // biome-ignore lint/complexity/useArrowFunction: explicit test
-  ["function () {}", function () {}], // eslint-disable-line func-names
+  ["function () {}", function() {}], // eslint-disable-line func-names
   ["() => {}", () => {}],
   ["async () => {}", async () => {}],
   ["/regex/", /regex/],

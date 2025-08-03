@@ -1,5 +1,6 @@
 {
   "biome.enabled": false, // use dprint
+  "dprint.path": "./node_modules/.bin/dprint",
   "editor.defaultFormatter": "dprint.dprint",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
@@ -7,7 +8,7 @@
   "eslint.enable": true,
   "files.associations": {
     "*.xcss": "scss",
-    "turbo.json": "jsonc"
+    "turbo.json": "jsonc",
   },
   "git.branchProtection": ["master", "next"],
   "js/ts.implicitProjectConfig.checkJs": true,
@@ -17,5 +18,5 @@
   "stylelint.validate": ["css", "scss"],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "yaml.validate": true
+  "yaml.validate": true,
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "export NODE_ENV=development; bun run build",
-    "lint": "turbo lint:css lint:fmt lint:js lint:ts",
+    "lint": "turbo lint:fmt lint:css lint:js lint:ts",
     "lint:css": "stylelint '**/*.{css,xcss}'",
     "lint:fmt": "dprint check",
     "lint:js": "eslint",

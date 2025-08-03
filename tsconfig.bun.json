@@ -3,19 +3,10 @@
   "compilerOptions": {},
   "include": [
     "*.config.mjs",
-    // "*.config.ts",
-    // "*.d.ts",
-    // "apps/*/*.config.mjs",
-    // "apps/*/*.config.ts",
-    // "apps/*/*.d.ts",
-    // "apps/*/build.ts",
-    // "apps/*/src",
-    // "apps/*/test",
     "packages/*/*.d.ts",
     "packages/*/build.ts",
     "packages/*/src",
     "packages/*/test",
-    "test"
-  ]
-  // "exclude": ["apps"],
+    "test",
+  ],
 }

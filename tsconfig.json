@@ -5,15 +5,10 @@
   "compilerOptions": {
     "noEmit": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
   },
   "references": [
-    // { "path": "./apps/backend" },
-    // { "path": "./apps/crawler" },
-    // { "path": "./apps/extension" },
-    // { "path": "./apps/frontend" },
-    // { "path": "./apps/frontend-auth" },
     { "path": "./tsconfig.bun.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+    { "path": "./tsconfig.node.json" },
+  ],
 }

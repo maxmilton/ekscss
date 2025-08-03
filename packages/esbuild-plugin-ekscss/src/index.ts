@@ -11,8 +11,7 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
   name: "xcss",
 
   setup(build) {
-    const reBadValue =
-      /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+    const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
     const joycon = new JoyCon({
       files: [
         ".xcssrc.cjs",
@@ -95,9 +94,11 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
       // - https://github.com/evanw/esbuild/issues/519
       // - https://github.com/evanw/esbuild/issues/20
       if (compiled.map) {
-        output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${Buffer.from(
-          compiled.map.toString(),
-        ).toString("base64")} */`;
+        output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${
+          Buffer.from(
+            compiled.map.toString(),
+          ).toString("base64")
+        } */`;
       }
 
       const watchFiles = compiled.dependencies;

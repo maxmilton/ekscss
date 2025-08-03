@@ -28,8 +28,7 @@ export default function rollupPlugin({
   include = /\.xcss$/,
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
-  const reBadValue =
-    /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+  const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
   const joycon = new JoyCon({
     files: [
       ".xcssrc.cjs",

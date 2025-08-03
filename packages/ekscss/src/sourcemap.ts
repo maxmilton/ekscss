@@ -42,12 +42,12 @@ function extractSourceMapRef(ast: Element[]): string | null {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-cond-assign
   while (++index < 4 && (currentNode = ast[ast.length - index])) {
     if (
-      currentNode.type === stylis.COMMENT &&
+      currentNode.type === stylis.COMMENT
       // FIXME: stylis types don't differentiate by Element.type so we must
       // type guard unnecessarily (even though currentNode.type=='comm' will
       // always have currentNode.children as a string)
-      typeof currentNode.children === "string" &&
-      currentNode.children.startsWith("# sourceMappingURL=")
+      && typeof currentNode.children === "string"
+      && currentNode.children.startsWith("# sourceMappingURL=")
     ) {
       // 19 = '# sourceMappingURL='.length
       return currentNode.children.slice(19).trim();

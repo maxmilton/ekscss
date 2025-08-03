@@ -1,9 +1,4 @@
-import type {
-  Context,
-  Middleware,
-  XCSSExpression,
-  XCSSTemplateFn,
-} from "./types.ts";
+import type { Context, Middleware, XCSSExpression, XCSSTemplateFn } from "./types.ts";
 
 /**
  * Compiler context. For internal and advanced use cases only.
@@ -123,9 +118,11 @@ export function accessorsProxy<
       if (has.call(target, prop)) {
         ctx.warnings.push({
           code: "prop-override",
-          message: `Overriding existing property "${parentPath}.${String(
-            prop,
-          )}"`,
+          message: `Overriding existing property "${parentPath}.${
+            String(
+              prop,
+            )
+          }"`,
           file: ctx.from,
         });
       }
@@ -226,9 +223,12 @@ export function xcss(
         // TODO: Populate  "line" and "column"
         ctx.warnings.push({
           code: "expression-invalid",
-          message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${toStr.call(
-            val,
-          )}`,
+          message:
+            `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${
+              toStr.call(
+                val,
+              )
+            }`,
           file: ctx.from,
         });
 
