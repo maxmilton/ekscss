@@ -7,7 +7,8 @@ const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
 
-export default ts.config(
+/** @type {import('typescript-eslint').ConfigArray} */
+const config = ts.config(
   js.configs.recommended,
   ts.configs.strictTypeChecked,
   ts.configs.stylisticTypeChecked,
@@ -110,3 +111,5 @@ export default ts.config(
   },
   { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.ts"] },
 );
+
+export default config;
