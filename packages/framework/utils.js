@@ -25,8 +25,8 @@ function color(value, model) {
   return Color(
     value instanceof Color || typeof value !== "function"
       ? value
-      // @ts-expect-error - TODO: Correctly type `value`
-      : xcss`${value}`,
+      : // @ts-expect-error - TODO: Correctly type `value`
+        xcss`${value}`,
     model,
   );
 }
@@ -95,9 +95,10 @@ function resolveGlobals(obj) {
       val = val(ctx.x);
     }
 
-    resolved[key] = val != null && typeof val === "object" && !Array.isArray(val)
-      ? resolveGlobals(val)
-      : val;
+    resolved[key] =
+      val != null && typeof val === "object" && !Array.isArray(val)
+        ? resolveGlobals(val)
+        : val;
   }
 
   return resolved;

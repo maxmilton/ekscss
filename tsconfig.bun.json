@@ -15,7 +15,7 @@
     "packages/*/build.ts",
     "packages/*/src",
     "packages/*/test",
-    "test",
-  ],
+    "test"
+  ]
   // "exclude": ["apps"],
 }

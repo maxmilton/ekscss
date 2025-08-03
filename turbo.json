@@ -9,11 +9,11 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"],
-      "outputLogs": "new-only",
+      "outputLogs": "new-only"
     },
-    "dev": { "persistent": true, "cache": false },
+    "dev": { "persistent": true, "cache": false }
   },
   "globalDependencies": ["package.json"],
   "globalEnv": ["CI", "GITHUB_ACTIONS", "NODE_ENV"],
-  "noUpdateNotifier": true,
+  "noUpdateNotifier": true
 }

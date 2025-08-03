@@ -6,8 +6,5 @@
     "packages/framework/*.js",
     "packages/framework/*.mjs"
   ],
-  "reporter": [
-    "text",
-    "lcovonly"
-  ]
+  "reporter": ["text", "lcovonly"]
 }
