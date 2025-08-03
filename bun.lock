@@ -83,7 +83,7 @@
     },
     "packages/framework": {
       "name": "@ekscss/framework",
-      "version": "0.0.54",
+      "version": "0.0.55",
       "dependencies": {
         "@ekscss/plugin-apply": "workspace:^",
         "@ekscss/plugin-import": "workspace:^",
