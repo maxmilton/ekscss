@@ -8,13 +8,13 @@ import { ctx, interpolate, stylis, xcss } from "ekscss";
 
 /** @typedef {import("color").ColorInstance} ColorInstance */
 /** @typedef {ColorInstance | string | ArrayLike<number> | number | { [key: string]: any }} ColorParam */
-/** @typedef {import("ekscss").XCSSGlobals} XCSSGlobals */
-/** @typedef {import("ekscss").XCSSExpression} XCSSExpression */
+/** @typedef {import("ekscss").Globals} Globals */
+/** @typedef {import("ekscss").Expression} Expression */
 /** @typedef {import("ekscss").ExpressionOrNested} ExpressionOrNested */
 
 /**
  * @see https://github.com/Qix-/color#readme
- * @param {ColorParam | ((x: XCSSGlobals) => XCSSExpression)} value - A value
+ * @param {ColorParam | ((x: Globals) => Expression)} value - A value
  * the `color` package `Color` constructor accepts or an XCSS template
  * expression function which will resolve to such a value.
  * @param {Parameters<typeof Color>[1]} [model]
@@ -52,8 +52,8 @@ export function preloadApply(
   const oldWarnings = [...ctx.warnings];
 
   const interpolated = interpolate(code)(xcss, ctx.x);
-  const ast = compile(interpolated);
-  serialize(ast, middleware([importPlugin, applyPlugin]));
+  const ast = stylis.compile(interpolated);
+  stylis.serialize(ast, stylis.middleware([importPlugin, applyPlugin]));
 
   // reset ctx values which may have changed in importPlugin or applyPlugin
   ctx.dependencies.length = 0;
@@ -62,23 +62,23 @@ export function preloadApply(
   ctx.warnings.push(...oldWarnings);
 }
 
-/** @typedef {Omit<import("ekscss").XCSSCompileOptions, 'from' | 'to'>} XCSSConfig */
+/** @typedef {Omit<import("ekscss").CompileOptions, 'from' | 'to'>} Config */
 
 /**
  * Extend an XCSS configuration with your own.
  *
- * @param {XCSSConfig} target
- * @param {XCSSConfig} source
- * @returns {XCSSConfig}
+ * @param {Config} target
+ * @param {Config} source
+ * @returns {Config}
  */
 export function extend(target, source) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return merge(target, source);
 }
 
-/** @typedef {Exclude<XCSSExpression, function>} ResolvedExpression */
+/** @typedef {Exclude<Expression, function>} ResolvedExpression */
 /** @typedef {{ [key: string]: ResolvedExpression | ResolvedExpressionOrNested }} ResolvedExpressionOrNested */
-/** @typedef {{ [key: string]: ResolvedExpressionOrNested } & { fn: XCSSGlobals['fn'] }} ResolvedGlobals */
+/** @typedef {{ [key: string]: ResolvedExpressionOrNested } & { fn: Globals['fn'] }} ResolvedGlobals */
 
 /**
  * @param {Record<string, ExpressionOrNested>} obj
@@ -105,9 +105,9 @@ export function resolveGlobals(obj) {
 }
 
 /**
- * Get an XCSSConfig's globals with all XCSS function expressions resolved.
+ * Get an Config's globals with all XCSS function expressions resolved.
  *
- * @param {XCSSConfig} config
+ * @param {Config} config
  * @returns {ResolvedGlobals}
  */
 export function getGlobals(config) {
@@ -115,7 +115,7 @@ export function getGlobals(config) {
     return { fn: {} };
   }
 
-  /** @type {XCSSGlobals} */
+  /** @type {Globals} */
   const globals = {
     ...config.globals,
     fn: config.globals.fn ?? {},

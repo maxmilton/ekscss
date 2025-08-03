@@ -5,7 +5,8 @@
     "rootDir": ".",
     "declaration": true,
     "sourceMap": true,
-    "allowJs": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
   },
-  "include": ["config.js", "config.mjs", "utils.js", "utils.mjs"],
+  "include": ["*.mjs"],
 }
