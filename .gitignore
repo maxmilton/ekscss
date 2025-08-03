@@ -3,11 +3,11 @@
 *.bak
 *.lock
 *.tsbuildinfo
-!/bun.lock
-/coverage/
 .turbo/
 dist/
 node_modules/
+!/bun.lock
+/coverage/
 
 # auto-generated
-packages/framework/*.d.ts
+/packages/framework/*.d.mts

@@ -1,7 +1,7 @@
 import { createTypes } from "@ekscss/build-tools";
 import esbuild, { type BuildOptions } from "esbuild";
 
-const mode = process.env.NODE_ENV ?? "production";
+const mode = process.env.NODE_ENV;
 const dev = mode === "development";
 
 console.time("prebuild");
@@ -43,16 +43,20 @@ const esbuildConfig2: BuildOptions = {
   logLevel: "debug",
 };
 
+console.time("dts");
+createTypes(["src/index.ts"], "dist");
+console.timeEnd("dts");
+
 if (dev) {
   const context1 = await esbuild.context(esbuildConfig1);
   const context2 = await esbuild.context(esbuildConfig2);
   await Promise.all([context1.watch(), context2.watch()]);
 } else {
+  console.time("build");
   const out1 = await esbuild.build(esbuildConfig1);
   const out2 = await esbuild.build(esbuildConfig2);
+  console.timeEnd("build");
 
   if (out1.metafile) console.log(await esbuild.analyzeMetafile(out1.metafile));
   if (out2.metafile) console.log(await esbuild.analyzeMetafile(out2.metafile));
 }
-
-createTypes(["src/index.ts"], "dist");

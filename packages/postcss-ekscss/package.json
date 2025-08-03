@@ -13,7 +13,7 @@
     "types.d.ts"
   ],
   "scripts": {
-    "build": "bun build.ts",
+    "build": "NODE_ENV=production bun build.ts",
     "dev": "NODE_ENV=development bun build.ts"
   },
   "peerDependencies": {
