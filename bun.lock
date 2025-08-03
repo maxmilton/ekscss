@@ -32,7 +32,7 @@
     },
     "packages/cli": {
       "name": "@ekscss/cli",
-      "version": "0.0.18",
+      "version": "0.0.19",
       "bin": {
         "ekscss": "bin.js",
         "xcss": "bin.js",
@@ -54,7 +54,7 @@
     },
     "packages/ekscss": {
       "name": "ekscss",
-      "version": "0.0.20",
+      "version": "0.0.21",
       "dependencies": {
         "@types/stylis": "^4.2.7",
         "source-map-js": "^1.2.1",
@@ -68,7 +68,7 @@
     },
     "packages/esbuild-plugin-ekscss": {
       "name": "esbuild-plugin-ekscss",
-      "version": "0.0.20",
+      "version": "0.0.21",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
       },
@@ -83,7 +83,7 @@
     },
     "packages/framework": {
       "name": "@ekscss/framework",
-      "version": "0.0.52",
+      "version": "0.0.53",
       "dependencies": {
         "@ekscss/plugin-apply": "workspace:^",
         "@ekscss/plugin-import": "workspace:^",
@@ -105,7 +105,7 @@
     },
     "packages/plugin-apply": {
       "name": "@ekscss/plugin-apply",
-      "version": "0.0.15",
+      "version": "0.0.16",
       "dependencies": {
         "stylis": "^4.3.6",
       },
@@ -120,7 +120,7 @@
     },
     "packages/plugin-import": {
       "name": "@ekscss/plugin-import",
-      "version": "0.0.15",
+      "version": "0.0.16",
       "dependencies": {
         "stylis": "^4.3.6",
       },
@@ -142,7 +142,7 @@
     },
     "packages/plugin-prefix": {
       "name": "@ekscss/plugin-prefix",
-      "version": "0.0.14",
+      "version": "0.0.15",
       "dependencies": {
         "stylis": "^4.3.6",
       },
@@ -157,7 +157,7 @@
     },
     "packages/postcss-ekscss": {
       "name": "postcss-ekscss",
-      "version": "0.0.12",
+      "version": "0.0.13",
       "devDependencies": {
         "esbuild": "0.25.8",
         "postcss": "8.5.6",
@@ -171,7 +171,7 @@
     },
     "packages/rollup-plugin-ekscss": {
       "name": "rollup-plugin-ekscss",
-      "version": "0.0.19",
+      "version": "0.0.20",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
         "@rollup/pluginutils": "^5.2.0",
@@ -188,7 +188,7 @@
     },
     "packages/svelte-ekscss": {
       "name": "svelte-ekscss",
-      "version": "0.0.14",
+      "version": "0.0.15",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
         "kleur": "^4.1.5",
@@ -928,6 +928,8 @@
     "@isaacs/cliui/strip-ansi": ["strip-ansi@7.1.0", "", { "dependencies": { "ansi-regex": "^6.0.1" } }, "sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ=="],
 
     "@isaacs/cliui/wrap-ansi": ["wrap-ansi@8.1.0", "", { "dependencies": { "ansi-styles": "^6.1.0", "string-width": "^5.0.1", "strip-ansi": "^7.0.1" } }, "sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ=="],
+
+    "@maxmilton/stylelint-config/postcss-ekscss": ["postcss-ekscss@0.0.12", "", { "peerDependencies": { "postcss": "^8.0.0" }, "optionalPeers": ["postcss"] }, "sha512-XYW5apq1JlD2FtBFlIaGmpS1VKCyhNRaL4u51tlSTenkFOG59QJ85oAQof2vIQkEquttjgGOzpmUxuw+GHbJZQ=="],
 
     "@typescript-eslint/eslint-plugin/ignore": ["ignore@7.0.5", "", {}, "sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg=="],
 
