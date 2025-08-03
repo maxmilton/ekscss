@@ -24,6 +24,6 @@
     "noUncheckedSideEffectImports": true,
     "noUnusedLocals": false, // covered by eslint
     "noUnusedParameters": false, // covered by eslint
-    "verbatimModuleSyntax": true,
-  },
+    "verbatimModuleSyntax": true
+  }
 }

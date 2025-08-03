@@ -1,7 +1,20 @@
 import * as stylis from "stylis";
-import { accessorsProxy, ctx, each, interpolate, map as _map, xcss } from "./helpers.ts";
+import {
+  accessorsProxy,
+  ctx,
+  each,
+  interpolate,
+  map as _map,
+  xcss,
+} from "./helpers.ts";
 import { compileSourceMap } from "./sourcemap.ts";
-import type { BuildHookFn, Warning, XCSSCompileOptions, XCSSCompileResult, XCSSGlobals } from "./types.ts";
+import type {
+  BuildHookFn,
+  Warning,
+  XCSSCompileOptions,
+  XCSSCompileResult,
+  XCSSGlobals,
+} from "./types.ts";
 
 const beforeBuildFns: BuildHookFn[] = [];
 const afterBuildFns: BuildHookFn[] = [];

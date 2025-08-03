@@ -7,7 +7,7 @@
   "eslint.enable": true,
   "files.associations": {
     "*.xcss": "scss",
-    "turbo.json": "jsonc",
+    "turbo.json": "jsonc"
   },
   "git.branchProtection": ["master", "next"],
   "js/ts.implicitProjectConfig.checkJs": true,
@@ -17,5 +17,5 @@
   "stylelint.validate": ["css", "scss"],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "yaml.validate": true,
+  "yaml.validate": true
 }

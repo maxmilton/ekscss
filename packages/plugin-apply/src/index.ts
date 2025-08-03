@@ -23,7 +23,13 @@
 // benchmarks to verify)
 //  ↳ Impact of including this plugin and impact of actual #apply use
 
-import { ctx, type Element, type Middleware, onAfterBuild, onBeforeBuild } from "ekscss";
+import {
+  ctx,
+  type Element,
+  type Middleware,
+  onAfterBuild,
+  onBeforeBuild,
+} from "ekscss";
 import * as stylis from "stylis";
 
 type ApplyRefs = Record<string, Element[] | undefined>;

@@ -1,7 +1,17 @@
 import { describe, expect, mock, spyOn, test } from "bun:test";
 import { isProxy } from "node:util/types";
 import { compile } from "../src/compiler.ts";
-import { accessorsProxy, ctx, each, interpolate, isObject, map, noop, resolvePlugins, xcss } from "../src/helpers.ts";
+import {
+  accessorsProxy,
+  ctx,
+  each,
+  interpolate,
+  isObject,
+  map,
+  noop,
+  resolvePlugins,
+  xcss,
+} from "../src/helpers.ts";
 import type { Context } from "../src/types.ts";
 
 function Func() {}
@@ -40,7 +50,7 @@ const notObjects: [string, unknown][] = [
   ["['abc', 'def']", ["abc", "def"]],
   ["function named() {}", function named() {}],
   // biome-ignore lint/complexity/useArrowFunction: explicit test
-  ["function () {}", function() {}], // eslint-disable-line func-names
+  ["function () {}", function () {}], // eslint-disable-line func-names
   ["() => {}", () => {}],
   ["async () => {}", async () => {}],
   ["/regex/", /regex/],
@@ -171,7 +181,9 @@ describe("resolvePlugins", () => {
     resolvePlugins(["@ekscss/plugin-not-real"]);
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(
-      expect.stringMatching(/^Failed to load plugin "@ekscss\/plugin-not-real":\n/),
+      expect.stringMatching(
+        /^Failed to load plugin "@ekscss\/plugin-not-real":\n/,
+      ),
     );
     spy.mockRestore();
   });
@@ -195,13 +207,20 @@ describe("resolvePlugins", () => {
     function plugin1() {}
     // eslint-disable-next-line unicorn/consistent-function-scoping
     function plugin2() {}
-    expect(resolvePlugins([plugin1, plugin2])).toStrictEqual([plugin1, plugin2]);
+    expect(resolvePlugins([plugin1, plugin2])).toStrictEqual([
+      plugin1,
+      plugin2,
+    ]);
   });
 
   test("resolves plugins when strings", async () => {
     expect.assertions(7);
     const plugin = await import("@ekscss/plugin-null");
-    const plugins = resolvePlugins(["@ekscss/plugin-null", "@ekscss/plugin-null", "@ekscss/plugin-null"]);
+    const plugins = resolvePlugins([
+      "@ekscss/plugin-null",
+      "@ekscss/plugin-null",
+      "@ekscss/plugin-null",
+    ]);
     expect(plugins[0]).toBeFunction();
     expect(plugins[0]).toBe(plugin.default);
     expect(plugins[1]).toBeFunction();
@@ -214,7 +233,11 @@ describe("resolvePlugins", () => {
   test("resolves plugins when functions", async () => {
     expect.assertions(7);
     const plugin = await import("@ekscss/plugin-null");
-    const plugins = resolvePlugins([plugin.default, plugin.default, plugin.default]);
+    const plugins = resolvePlugins([
+      plugin.default,
+      plugin.default,
+      plugin.default,
+    ]);
     expect(plugins[0]).toBeFunction();
     expect(plugins[0]).toBe(plugin.default);
     expect(plugins[1]).toBeFunction();
@@ -227,7 +250,11 @@ describe("resolvePlugins", () => {
   test("resolves plugins when mixed", async () => {
     expect.assertions(7);
     const plugin = await import("@ekscss/plugin-null");
-    const plugins = resolvePlugins(["@ekscss/plugin-null", plugin.default, "@ekscss/plugin-null"]);
+    const plugins = resolvePlugins([
+      "@ekscss/plugin-null",
+      plugin.default,
+      "@ekscss/plugin-null",
+    ]);
     expect(plugins[0]).toBeFunction();
     expect(plugins[0]).toBe(plugin.default);
     expect(plugins[1]).toBeFunction();
