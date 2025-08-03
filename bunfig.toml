@@ -1,11 +1,10 @@
-telemetry = false
-
 [run]
 bun = true
 
 [install]
 auto = "disable"
 linker = "isolated"
+peer = true
 
 [test]
 preload = ["./test/setup.ts"]
