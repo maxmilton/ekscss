@@ -1,3 +1,4 @@
+import { createBundle } from "dts-buddy";
 import esbuild, { type BuildOptions } from "esbuild";
 
 const mode = process.env.NODE_ENV ?? "production";
@@ -85,4 +86,12 @@ if (dev) {
   if (out1.metafile) console.log(await esbuild.analyzeMetafile(out1.metafile));
   if (out2.metafile) console.log(await esbuild.analyzeMetafile(out2.metafile));
   if (out3.metafile) console.log(await esbuild.analyzeMetafile(out3.metafile));
+
+  await createBundle({
+    project: "tsconfig.json",
+    output: "dist/index.d.ts",
+    modules: {
+      ekscss: "src/index.ts",
+    },
+  });
 }

@@ -16,8 +16,7 @@
   ],
   "scripts": {
     "build": "bun build.ts",
-    "dev": "NODE_ENV=development bun build.ts",
-    "postbuild": "dts-buddy dist/index.d.ts -m ekscss:src/index.ts"
+    "dev": "NODE_ENV=development bun build.ts"
   },
   "dependencies": {
     "@types/stylis": "^4.2.7",
