@@ -1,19 +1,17 @@
 "use strict";
 
+const { ConfigLoader } = require("@ekscss/config-loader");
 const xcss = require("ekscss");
 const fs = require("fs");
-const JoyCon = require("joycon").default;
 const colors = require("kleur/colors");
 const path = require("path");
 const { performance } = require("perf_hooks");
 
-const joycon = new JoyCon({
+const cl = new ConfigLoader({
   files: [
-    ".xcssrc.cjs",
-    ".xcssrc.js",
-    ".xcssrc.json",
-    "xcss.config.cjs",
     "xcss.config.js",
+    "xcss.config.mjs",
+    "xcss.config.cjs",
     "xcss.config.json",
     "package.json",
   ],
@@ -30,14 +28,14 @@ const joycon = new JoyCon({
  */
 module.exports = async (src, dest, opts) => {
   // Load user defined config or fall back to default file locations
-  const result = await joycon.load(opts.config ? [opts.config] : undefined);
+  const result = await cl.load(opts.config);
 
-  if (!result.path && !opts.quiet) {
+  if ((!result || !result.path) && !opts.quiet) {
     console.warn(colors.yellow("Warning:"), "Unable to locate XCSS config");
   }
 
-  /** @type {import("./types").XCSSConfig} */
-  const config = result.data || {};
+  /** @type {import("./types").Config} */
+  const config = (result && result.data) || {};
   const rootDir = config.rootDir || process.cwd();
   const srcFiles = src ? [src] : ["index.xcss", "src/index.xcss"];
   let srcFileName;
