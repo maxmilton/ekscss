@@ -109,17 +109,9 @@ jobs:
         with:
           bun-version: latest
       - run: bun install --frozen-lockfile
-      # - run: bun install --global pnpm@6
-      #   if: ${{ matrix.node-version == 12 }}
-      # - run: bun install --global pnpm@7
-      #   if: ${{ matrix.node-version == 14 }}
-      # - run: bun install --global pnpm@8
-      #   if: ${{ matrix.node-version == 16 }}
-      # - run: bun install --global pnpm
-      #   if: ${{ matrix.node-version >= 18 }}
-      - run: pnpm run test:node
+      - run: npm run test:node
         if: ${{ matrix.node-version < 24 || matrix.platform != 'ubuntu-latest' }}
-      - run: pnpm run test:node:c8
+      - run: npm run test:node:c8
         if: ${{ matrix.node-version == 24 && matrix.platform == 'ubuntu-latest' }}
       - name: Report coverage
         if: ${{ matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
