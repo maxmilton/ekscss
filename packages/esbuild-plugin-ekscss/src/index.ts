@@ -1,30 +1,28 @@
 // https://esbuild.github.io/plugins/
 
-import { compile, resolvePlugins, type XCSSCompileOptions } from "ekscss";
+import { ConfigLoader } from "@ekscss/config-loader";
+import { compile, type CompileOptions, resolvePlugins } from "ekscss";
 import type { PartialMessage, Plugin } from "esbuild";
 import * as fs from "fs";
-import JoyCon from "joycon";
 
-export type XCSSConfig = Omit<XCSSCompileOptions, "from" | "to">;
+export type Config = Omit<CompileOptions, "from" | "to">;
 
-export const xcss = (config?: string | XCSSConfig): Plugin => ({
+export const xcss = (config?: string | Config): Plugin => ({
   name: "xcss",
 
   setup(build) {
     const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
-    const joycon = new JoyCon({
+    const cl = new ConfigLoader({
       files: [
-        ".xcssrc.cjs",
-        ".xcssrc.js",
-        ".xcssrc.json",
-        "xcss.config.cjs",
         "xcss.config.js",
+        "xcss.config.mjs",
+        "xcss.config.cjs",
         "xcss.config.json",
         "package.json",
       ],
       packageKey: "xcss",
     });
-    let configData: XCSSConfig | undefined;
+    let configData: Config | undefined;
     let configPath: string | undefined;
 
     build.onLoad({ filter: /\.xcss$/ }, async (args) => {
@@ -34,11 +32,11 @@ export const xcss = (config?: string | XCSSConfig): Plugin => ({
       if (!configData) {
         if (!config || typeof config === "string") {
           // Load user defined config or fall back to default file locations
-          const result = await joycon.load(config ? [config] : undefined);
-          configData = (result.data as XCSSConfig | undefined) ?? {};
-          configPath = result.path;
+          const result = await cl.load(config);
+          configData = (result?.data as Config | undefined) ?? {};
+          configPath = result?.path;
 
-          if (!result.path) {
+          if (!configPath) {
             warnings.push({ text: "Unable to locate XCSS config" });
           }
         } else {

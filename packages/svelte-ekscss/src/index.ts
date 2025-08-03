@@ -1,32 +1,30 @@
 /* eslint-disable no-console */
 
-import { compile, resolvePlugins, type XCSSCompileOptions } from "ekscss";
-import JoyCon from "joycon";
+import { ConfigLoader } from "@ekscss/config-loader";
+import { compile, type CompileOptions, resolvePlugins } from "ekscss";
 import * as colors from "kleur/colors";
 import type { Preprocessor, PreprocessorGroup } from "svelte/compiler";
 
-export type XCSSConfig = Omit<XCSSCompileOptions, "from" | "to">;
+export type Config = Omit<CompileOptions, "from" | "to">;
 
 interface PluginOptions {
   /** An XCSS config object or the path to a config file. */
-  config?: XCSSConfig | string;
+  config?: Config | string;
 }
 
 export const style = ({ config }: PluginOptions = {}): Preprocessor => {
   const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
-  const joycon = new JoyCon({
+  const cl = new ConfigLoader({
     files: [
-      ".xcssrc.cjs",
-      ".xcssrc.js",
-      ".xcssrc.json",
-      "xcss.config.cjs",
       "xcss.config.js",
+      "xcss.config.mjs",
+      "xcss.config.cjs",
       "xcss.config.json",
       "package.json",
     ],
     packageKey: "xcss",
   });
-  let configData: XCSSConfig;
+  let configData: Config;
   let configPath: string | undefined;
 
   return async ({ attributes, content, filename }) => {
@@ -37,12 +35,12 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
     // processes must be manually restarted
 
     if (!config || typeof config === "string") {
-      // load user defined config or fall back to default file locations
-      const result = await joycon.load(config ? [config] : undefined);
-      configData = (result.data as XCSSConfig | undefined) ?? {};
-      configPath = result.path;
+      // Load user defined config or fall back to default file locations
+      const result = await cl.load(config);
+      configData = (result?.data as Config | undefined) ?? {};
+      configPath = result?.path;
 
-      if (!result.path) {
+      if (!configPath) {
         console.warn(colors.yellow("Warning:"), "Unable to locate XCSS config");
       }
     } else {

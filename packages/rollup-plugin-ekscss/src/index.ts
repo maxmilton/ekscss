@@ -1,15 +1,15 @@
+import { ConfigLoader } from "@ekscss/config-loader";
 import { createFilter, type FilterPattern } from "@rollup/pluginutils";
-import { compile, resolvePlugins, type XCSSCompileOptions } from "ekscss";
-import JoyCon from "joycon";
+import { compile, type CompileOptions, resolvePlugins } from "ekscss";
 import type { Plugin } from "rollup";
 
-export type XCSSConfig = Omit<XCSSCompileOptions, "from" | "to">;
+export type Config = Omit<CompileOptions, "from" | "to">;
 
 // TODO: Document the const fallbacks e.g., if map==null fall back to rollup output setting
 
 export interface PluginOptions {
   /** An XCSS config object or the path to a config file. */
-  config?: XCSSConfig | string;
+  config?: Config | string;
   /**
    * Files to exclude from processing.
    * @default []
@@ -29,19 +29,17 @@ export default function rollupPlugin({
 }: PluginOptions = {}): Plugin {
   const filter = createFilter(include, exclude);
   const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
-  const joycon = new JoyCon({
+  const cl = new ConfigLoader({
     files: [
-      ".xcssrc.cjs",
-      ".xcssrc.js",
-      ".xcssrc.json",
-      "xcss.config.cjs",
       "xcss.config.js",
+      "xcss.config.mjs",
+      "xcss.config.cjs",
       "xcss.config.json",
       "package.json",
     ],
     packageKey: "xcss",
   });
-  let configData: XCSSConfig;
+  let configData: Config;
   let configPath: string | undefined;
   let useSourceMaps: boolean | "inline" | "hidden";
 
@@ -55,11 +53,11 @@ export default function rollupPlugin({
     async buildStart() {
       if (!config || typeof config === "string") {
         // load user defined config or fall back to default file locations
-        const result = await joycon.load(config ? [config] : undefined);
-        configData = (result.data as XCSSConfig | undefined) ?? {};
-        configPath = result.path;
+        const result = await cl.load(config);
+        configData = (result?.data as Config | undefined) ?? {};
+        configPath = result?.path;
 
-        if (!result.path) {
+        if (!configPath) {
           this.warn("Unable to locate XCSS config");
         }
       } else {
@@ -126,7 +124,7 @@ export default function rollupPlugin({
 
           // // also watch config file's dependencies
           // module.children
-          //   .find((mod) => mod.id === require.resolve('joycon'))
+          //   .find((mod) => mod.id === require.resolve('cl'))
           //   ?.children.find((mod) => mod.id === configPath)
           //   ?.children.forEach((mod) => this.addWatchFile(mod.id));
         }
@@ -144,7 +142,7 @@ export default function rollupPlugin({
         // @ts-expect-error - Clearing data between builds
         configData = undefined;
         configPath = undefined;
-        joycon.clearCache();
+        cl.clearCache();
       }
     },
   };
