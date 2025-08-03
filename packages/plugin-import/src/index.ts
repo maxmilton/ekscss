@@ -1,9 +1,8 @@
 /* eslint-disable no-param-reassign, no-underscore-dangle */
 
-import { ctx, type Element, interpolate, type Middleware, xcss } from "ekscss";
+import { ctx, type Element, interpolate, type Middleware, stylis, xcss } from "ekscss";
 import fs from "fs";
 import path from "path";
-import * as stylis from "stylis";
 
 // TODO: Document this plugin should come first
 
