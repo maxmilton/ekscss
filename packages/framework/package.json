@@ -41,7 +41,7 @@
     "build": "bun run build-levels && bun run build-addons",
     "build-addons": "for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css; done",
     "build-levels": "for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css; done",
-    "postbuild": "tsc --emitDeclarationOnly",
+    "postbuild": "tsc --emitDeclarationOnly --composite false --incremental false",
     "prebuild": "rm -rf dist *.d.mts",
     "test": "xcss test/test.xcss /dev/null"
   },
