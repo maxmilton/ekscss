@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/plugin-import",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "XCSS plugin to inline the contents of @import statements",
   "repository": "maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
