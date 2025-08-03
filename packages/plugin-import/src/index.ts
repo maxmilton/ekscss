@@ -61,8 +61,7 @@ export const importPlugin: Middleware = (
   } else if (isRelative(importPath)) {
     ctx.warnings.push({
       code: "import-from-invalid",
-      message:
-        'Unable to resolve relative @import because "from" option invalid',
+      message: 'Unable to resolve relative @import because "from" option invalid',
       file: ctx.from,
       line: element.line,
       column: element.column,

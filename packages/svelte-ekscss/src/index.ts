@@ -13,8 +13,7 @@ interface PluginOptions {
 }
 
 export const style = ({ config }: PluginOptions = {}): Preprocessor => {
-  const reBadValue =
-    /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+  const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
   const joycon = new JoyCon({
     files: [
       ".xcssrc.cjs",
