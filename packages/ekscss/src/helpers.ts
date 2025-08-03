@@ -1,4 +1,4 @@
-import type { Context, Middleware, XCSSExpression, XCSSTemplateFn } from "./types.ts";
+import type { Context, Expression, Middleware, TemplateFn } from "./types.ts";
 
 /**
  * Compiler context. For internal and advanced use cases only.
@@ -29,7 +29,7 @@ export function noop(): void {}
  *
  * @param template - An XCSS string template literal to compile.
  */
-export function interpolate(template: string): XCSSTemplateFn {
+export function interpolate(template: string): TemplateFn {
   // @ts-expect-error - Function constructor is not type aware
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
   return new Function("xcss", "x", `'use strict'; return xcss\`${template}\``);
@@ -201,7 +201,7 @@ export function each<T>(
  */
 export function xcss(
   template: TemplateStringsArray,
-  ...expressions: XCSSExpression[]
+  ...expressions: Expression[]
 ): string {
   const strings = template.raw;
   const len = strings.length;

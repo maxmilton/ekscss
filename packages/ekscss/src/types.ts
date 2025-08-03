@@ -40,11 +40,11 @@ export interface Context {
   from: string | undefined;
   rootDir: string;
   warnings: Warning[];
-  x: XCSSGlobals;
+  x: Globals;
 }
 
-export type XCSSExpression =
-  | ((x: XCSSGlobals) => XCSSExpression)
+export type Expression =
+  | ((x: Globals) => Expression)
   | string
   | number
   | (string | number)[]
@@ -54,17 +54,17 @@ export type XCSSExpression =
   | void; // eslint-disable-line @typescript-eslint/no-invalid-void-type
 
 export type ExpressionOrNested =
-  | XCSSExpression
+  | Expression
   | { [key: string]: ExpressionOrNested };
 
-export interface XCSSGlobals {
+export interface Globals {
   [key: string]: ExpressionOrNested;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fn: Record<string, (...args: any) => any>;
 }
 
-export interface XCSSCompileOptions {
+export interface CompileOptions {
   /** Input file path. Without this top level relative `@import`s may fail. */
   from?: string | undefined;
   /** Output file path. Only used in source maps. */
@@ -75,7 +75,7 @@ export interface XCSSCompileOptions {
    * @default false
    */
   map?: boolean | undefined;
-  globals?: Partial<XCSSGlobals> | undefined;
+  globals?: Partial<Globals> | undefined;
   /**
    * XCSS plugins.
    *
@@ -95,9 +95,9 @@ export interface XCSSCompileOptions {
 
 export type BuildHookFn = () => void;
 
-export type XCSSTemplateFn = (xcss_: typeof xcss, x: XCSSGlobals) => string;
+export type TemplateFn = (xcss_: typeof xcss, x: Globals) => string;
 
-export interface XCSSCompileResult {
+export interface CompileResult {
   css: string;
   dependencies: string[];
   map: SourceMapGenerator | undefined;
