@@ -10,7 +10,10 @@
   "module": "dist/index.mjs",
   "browser": "dist/browser.mjs",
   "types": "dist/index.d.ts",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "bun build.ts",
     "dev": "NODE_ENV=development bun build.ts",

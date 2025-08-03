@@ -8,7 +8,10 @@
   "license": "MIT",
   "main": "dist/index.js",
   "types": "types.d.ts",
-  "files": ["dist", "types.d.ts"],
+  "files": [
+    "dist",
+    "types.d.ts"
+  ],
   "scripts": {
     "build": "bun build.ts",
     "dev": "NODE_ENV=development bun build.ts"
