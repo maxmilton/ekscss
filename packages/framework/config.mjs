@@ -19,7 +19,7 @@ import { color } from "./utils.mjs";
 // TODO: Document the use of xcss tagged template literals for special cases in
 // XCSS configs or plugins
 
-/** @type {import("./utils").Config} */
+/** @type {import("./utils.mjs").Config} */
 const config = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
   globals: {
