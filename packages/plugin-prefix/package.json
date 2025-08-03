@@ -9,7 +9,10 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "NODE_ENV=production bun build.ts",
     "dev": "NODE_ENV=development bun build.ts"
