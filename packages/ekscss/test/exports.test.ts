@@ -11,6 +11,7 @@ const helperPublicExports: [string, unknown][] = [
   ["ctx", Object],
   ["interpolate", Function],
   ["resolvePlugins", Function],
+  ["stylis", Object],
   ["xcss", Function],
 ] as const;
 

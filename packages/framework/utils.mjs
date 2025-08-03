@@ -4,8 +4,7 @@ import { applyPlugin } from "@ekscss/plugin-apply";
 import { importPlugin } from "@ekscss/plugin-import";
 import Color from "color";
 import { merge } from "dset/merge";
-import { ctx, interpolate, xcss } from "ekscss";
-import { compile, middleware, serialize } from "stylis";
+import { ctx, interpolate, stylis, xcss } from "ekscss";
 
 /** @typedef {import("color").ColorInstance} ColorInstance */
 /** @typedef {ColorInstance | string | ArrayLike<number> | number | { [key: string]: any }} ColorParam */
