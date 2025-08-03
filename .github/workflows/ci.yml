@@ -38,14 +38,6 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      # bun install on windows is slow, cache it
-      - uses: actions/cache@v4
-        if: ${{ matrix.platform == 'windows-latest' }}
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
       - uses: actions/download-artifact@v4
         with:
           name: build
@@ -86,14 +78,6 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      # bun install on windows is slow, cache it
-      - uses: actions/cache@v4
-        if: ${{ matrix.platform == 'windows-latest' }}
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
       - uses: actions/download-artifact@v4
         with:
           name: build
