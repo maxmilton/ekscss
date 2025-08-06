@@ -38,8 +38,8 @@ export function color(value, model) {
  * Use by calling this function in `onBeforeBuild`:
  *
  * @example
- * const { onBeforeBuild } = require('ekscss');
- * const { preloadApply } = require('@ekscss/framework/utils');
+ * import { onBeforeBuild } from "ekscss";
+ * import { preloadApply } from "@ekscss/framework/utils";
  * onBeforeBuild(preloadApply);
  *
  * @param code - The XCSS code to preload, default is `"@import '@ekscss/framework/level2.xcss';"`.
@@ -60,6 +60,26 @@ export function preloadApply(
   ctx.dependencies.push(...oldDependencies);
   ctx.warnings.length = 0;
   ctx.warnings.push(...oldWarnings);
+}
+
+/**
+ * Ignore imports of the given files when using `@ekscss/plugin-import` (which
+ * is included by default in `@ekscss/framework`).
+ *
+ * Use by calling this function in `onBeforeBuild`:
+ *
+ * @example
+ * import { resolve } from "node:path";
+ * import { onBeforeBuild } from "ekscss";
+ * import { ignoreImport } from "@ekscss/framework/utils";
+ * onBeforeBuild(ignoreImport(resolve("path/to/file1.xcss"), resolve("path/to/file2.xcss")));
+
+ * @param {...string} files - A list of fully resolved file paths to ignore.
+ * @returns {void}
+ */
+export function ignoreImport(...files) {
+  // HACK: Cheeky abuse of ctx to stop unwanted style imports.
+  ctx.dependencies.push(...files);
 }
 
 /** @typedef {Omit<import("ekscss").CompileOptions, 'from' | 'to'>} Config */
@@ -105,9 +125,9 @@ export function resolveGlobals(obj) {
 }
 
 /**
- * Get an Config's globals with all XCSS function expressions resolved.
+ * Get an XCSS Config's globals with all XCSS function expressions resolved.
  *
- * @param {Config} config
+ * @param {Config} config - An XCSS configuration object.
  * @returns {ResolvedGlobals}
  */
 export function getGlobals(config) {
