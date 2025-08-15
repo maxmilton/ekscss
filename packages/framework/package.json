@@ -16,12 +16,12 @@
     "./level1/*": "./level1/*",
     "./level2/*": "./level2/*",
     "./config": {
-      "types": "./config.d.mts",
-      "default": "./config.mjs"
+      "types": "./config.d.ts",
+      "default": "./config.js"
     },
     "./utils": {
-      "types": "./utils.d.mts",
-      "default": "./utils.mjs"
+      "types": "./utils.d.ts",
+      "default": "./utils.js"
     },
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
@@ -29,20 +29,20 @@
   "files": [
     "*.xcss",
     "addon",
-    "config.d.mts",
-    "config.mjs",
+    "config.d.ts",
+    "config.js",
     "dist",
     "level1",
     "level2",
-    "utils.d.mts",
-    "utils.mjs"
+    "utils.d.ts",
+    "utils.js"
   ],
   "scripts": {
     "build": "bun run build-levels && bun run build-addons",
     "build-addons": "for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css; done",
     "build-levels": "for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css; done",
     "postbuild": "tsc --emitDeclarationOnly --composite false --incremental false",
-    "prebuild": "rm -rf dist *.d.mts",
+    "prebuild": "rm -rf dist *.d.ts",
     "test": "xcss test/test.xcss /dev/null"
   },
   "peerDependencies": {

@@ -5,10 +5,10 @@
 
 import { ctx, onBeforeBuild } from "ekscss";
 import { readFileSync } from "node:fs";
-import { basename } from "node:path";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
-import baseConfig from "./config.mjs";
-import { preloadApply } from "./utils.mjs";
+import baseConfig from "./config.js";
+import { preloadApply } from "./utils.js";
 
 /** @type {import("./package.json")} */
 const pkg = JSON.parse(readFileSync(fileURLToPath(new URL("package.json", import.meta.url)), "utf8"));
@@ -18,7 +18,7 @@ let bundleName;
 
 onBeforeBuild(() => {
   if (ctx.from) {
-    bundleName = (ctx.from.includes("/addon/") ? "addon/" : "") + basename(ctx.from, ".xcss");
+    bundleName = (ctx.from.includes("/addon/") ? "addon/" : "") + path.basename(ctx.from, ".xcss");
 
     // pre-populate applyPlugin ctx.applyRefs for #apply in addon/native.xcss
     if (ctx.from.endsWith("framework/addon/native.xcss")) {

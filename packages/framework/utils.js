@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+"use strict";
 
-import { applyPlugin } from "@ekscss/plugin-apply";
-import { importPlugin } from "@ekscss/plugin-import";
-import Color from "color";
-import { merge } from "dset/merge";
-import { ctx, interpolate, stylis, xcss } from "ekscss";
+const { applyPlugin } = require("@ekscss/plugin-apply");
+const { importPlugin } = require("@ekscss/plugin-import");
+const { default: Color } = require("color");
+const { merge } = require("dset/merge");
+const { ctx, interpolate, stylis, xcss } = require("ekscss");
 
 /** @typedef {import("color").ColorInstance} ColorInstance */
 /** @typedef {ColorInstance | string | ArrayLike<number> | number | { [key: string]: any }} ColorParam */
@@ -20,7 +20,7 @@ import { ctx, interpolate, stylis, xcss } from "ekscss";
  * @param {Parameters<typeof Color>[1]} [model]
  * @returns {ColorInstance}
  */
-export function color(value, model) {
+function color(value, model) {
   return Color(
     value instanceof Color || typeof value !== "function"
       ? value
@@ -45,17 +45,17 @@ export function color(value, model) {
  * @param code - The XCSS code to preload, default is `"@import '@ekscss/framework/level2.xcss';"`.
  * @returns {void}
  */
-export function preloadApply(
+function preloadApply(
   code = "@import '@ekscss/framework/level2.xcss';",
 ) {
   const oldDependencies = [...ctx.dependencies];
   const oldWarnings = [...ctx.warnings];
 
-  const interpolated = interpolate(code)(xcss, ctx.x);
+  const interpolated = interpolate(code)(xcss, ctx.x, ctx.fn);
   const ast = stylis.compile(interpolated);
   stylis.serialize(ast, stylis.middleware([importPlugin, applyPlugin]));
 
-  // reset ctx values which may have changed in importPlugin or applyPlugin
+  // Reset ctx values which may have changed in importPlugin or applyPlugin
   ctx.dependencies.length = 0;
   ctx.dependencies.push(...oldDependencies);
   ctx.warnings.length = 0;
@@ -72,13 +72,14 @@ export function preloadApply(
  * import { resolve } from "node:path";
  * import { onBeforeBuild } from "ekscss";
  * import { ignoreImport } from "@ekscss/framework/utils";
- * onBeforeBuild(ignoreImport(resolve("path/to/file1.xcss"), resolve("path/to/file2.xcss")));
+ * onBeforeBuild(ignoreImport(resolve("@ekscss/framework/level2/a11y.xcss"), resolve("path/to/file.xcss")));
 
  * @param {...string} files - A list of fully resolved file paths to ignore.
  * @returns {void}
  */
-export function ignoreImport(...files) {
-  // HACK: Cheeky abuse of ctx to stop unwanted style imports.
+function ignoreImport(...files) {
+  // HACK: Cheeky abuse of ctx to stop unwanted style imports. Assumes import
+  // logic prevents loading files which are already listed in dependencies.
   ctx.dependencies.push(...files);
 }
 
@@ -91,32 +92,31 @@ export function ignoreImport(...files) {
  * @param {Config} source
  * @returns {Config}
  */
-export function extend(target, source) {
+function extend(target, source) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return merge(target, source);
 }
 
 /** @typedef {Exclude<Expression, function>} ResolvedExpression */
-/** @typedef {{ [key: string]: ResolvedExpression | ResolvedExpressionOrNested }} ResolvedExpressionOrNested */
-/** @typedef {{ [key: string]: ResolvedExpressionOrNested } & { fn: Globals['fn'] }} ResolvedGlobals */
+/** @typedef {Dict<ResolvedExpression | ResolvedOrNested>} ResolvedOrNested */
 
 /**
- * @param {Record<string, ExpressionOrNested>} obj
- * @returns {ResolvedExpressionOrNested}
+ * @param {Dict<ExpressionOrNested>} globals
+ * @returns {ResolvedOrNested}
  */
-export function resolveGlobals(obj) {
-  /** @type {ResolvedExpressionOrNested} */
+function resolveGlobals(globals) {
+  /** @type {ResolvedOrNested} */
   const resolved = {};
 
-  for (const [key, value] of Object.entries(obj)) {
+  for (const [key, value] of Object.entries(globals)) {
     let val = value;
 
     // Reduce XCSS function expressions to their final value
     while (typeof val === "function") {
-      val = val(ctx.x);
+      val = val(ctx.x, ctx.fn);
     }
 
-    resolved[key] = val != null && typeof val === "object" && !Array.isArray(val)
+    resolved[key] = typeof val === "object" && val !== null && !Array.isArray(val)
       ? resolveGlobals(val)
       : val;
   }
@@ -128,31 +128,28 @@ export function resolveGlobals(obj) {
  * Get an XCSS Config's globals with all XCSS function expressions resolved.
  *
  * @param {Config} config - An XCSS configuration object.
- * @returns {ResolvedGlobals}
+ * @returns {ResolvedOrNested}
  */
-export function getGlobals(config) {
+function getGlobals(config) {
   if (!config.globals || Object.keys(config.globals).length === 0) {
-    return { fn: {} };
+    return {};
   }
 
-  /** @type {Globals} */
-  const globals = {
-    ...config.globals,
-    fn: config.globals.fn ?? {},
-  };
-
+  ctx.fn = { ...config.functions };
+  ctx.x = { ...config.globals };
   ctx.warnings = [];
-  ctx.x = globals;
 
-  const { fn, ...globalVars } = globals;
-  /** @type {ResolvedGlobals} */
-  // @ts-expect-error - TODO: Fix Resolved* types
-  const resolved = resolveGlobals(globalVars);
-  resolved.fn = fn;
+  const resolved = resolveGlobals(ctx.x);
 
-  // @ts-expect-error - resetting ctx values
+  // @ts-expect-error - reset ctx values
   // eslint-disable-next-line no-multi-assign
-  ctx.warnings = ctx.x = undefined;
+  ctx.fn = ctx.x = ctx.warnings = undefined;
 
   return resolved;
 }
+
+exports.color = color;
+exports.preloadApply = preloadApply;
+exports.ignoreImport = ignoreImport;
+exports.extend = extend;
+exports.getGlobals = getGlobals;

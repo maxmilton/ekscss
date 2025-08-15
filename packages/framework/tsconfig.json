@@ -1,12 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
     "rootDir": ".",
     "declaration": true,
     "sourceMap": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
   },
-  "include": ["config.mjs", "utils.mjs"],
+  "include": ["config.js", "utils.js"],
 }

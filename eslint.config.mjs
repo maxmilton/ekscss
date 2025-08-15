@@ -115,7 +115,7 @@ const config = ts.config(
       "@typescript-eslint/no-unsafe-assignment": WARN,
     },
   },
-  { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.mts"] },
+  { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.ts"] },
 );
 
 export default config;

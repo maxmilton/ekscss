@@ -7,7 +7,6 @@
   "author": "Max Milton <max@2okki.com>",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "browser": "dist/browser.mjs",
   "types": "dist/index.d.ts",
   "files": [

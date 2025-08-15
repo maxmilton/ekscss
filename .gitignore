@@ -10,4 +10,4 @@ node_modules/
 /coverage/
 
 # auto-generated
-/packages/framework/*.d.mts
+/packages/framework/*.d.ts

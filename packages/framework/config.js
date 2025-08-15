@@ -1,3 +1,4 @@
+// FIXME: Fix compiler types and remove these eslint comments.
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck 😢
 /* eslint "@typescript-eslint/no-unsafe-assignment": "warn" */
@@ -6,27 +7,23 @@
 /* eslint "@typescript-eslint/no-unsafe-member-access": "warn" */
 /* eslint "@typescript-eslint/no-unsafe-return": "warn" */
 
-// FIXME: ekscss compiler types issues which is why need the eslint comments above
+"use strict";
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+const { applyPlugin } = require("@ekscss/plugin-apply");
+const { importPlugin } = require("@ekscss/plugin-import");
+const { prefixPlugin } = require("@ekscss/plugin-prefix");
+const { xcss } = require("ekscss");
+const { color } = require("./utils.js");
 
-import { applyPlugin } from "@ekscss/plugin-apply";
-import { importPlugin } from "@ekscss/plugin-import";
-import { prefixPlugin } from "@ekscss/plugin-prefix";
-import { xcss } from "ekscss";
-import { color } from "./utils.mjs";
+// TODO: Document the use of `xcss` tagged template literals for special cases in XCSS configs or plugins.
 
-// TODO: Document the use of xcss tagged template literals for special cases in
-// XCSS configs or plugins
-
-/** @type {import("./utils.mjs").Config} */
-const config = {
+/** @type {import("./utils.js").Config} */
+module.exports = {
   plugins: [importPlugin, applyPlugin, prefixPlugin],
+  functions: {
+    color,
+  },
   globals: {
-    fn: {
-      color,
-    },
-
     media: {
       ns: "(min-width: 30.01rem)",
       m: "(min-width: 30.01rem) and (max-width: 60rem)",
@@ -178,7 +175,7 @@ const config = {
       muted: (x) => x.color.gray1,
       disabled: (x) => x.color.gray3,
       background: (x) => x.color.light5,
-      shadow: (x) => x.fn.color(x.color.dark4).alpha(0.1),
+      shadow: (x, fn) => fn.color(x.color.dark4).alpha(0.1),
       text: (x) => x.color.dark2,
       link: (x) => x.color.primary,
       linkHover: (x) => x.color.primary,
@@ -205,7 +202,7 @@ const config = {
     animateSpeedOut: "192ms",
 
     hrMargin: "1.2rem 0",
-    hrColor: (x) => x.fn.color(x.color.dark5).alpha(0.15),
+    hrColor: (x, fn) => fn.color(x.color.dark5).alpha(0.15),
 
     form: {
       groupMargin: "1rem",
@@ -213,9 +210,7 @@ const config = {
       helpTextColor: (x) => x.color.dark3,
       selectCaret: (x) =>
         `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${
-          encodeURIComponent(
-            xcss`${x.color.text}`,
-          )
+          encodeURIComponent(xcss`${x.color.text}`)
         }' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e")`,
       checkboxSize: "1.4rem",
       checkboxBorder: (x) => xcss`2px solid ${x.color.gray3}`,
@@ -233,7 +228,7 @@ const config = {
       backgroundColor: (x) => x.color.white,
       outlineSize: "2px",
       activeBorderColor: (x) => x.color.primary,
-      hoverBorderColor: (x) => x.fn.color(x.color.dark4).alpha(0.5),
+      hoverBorderColor: (x, fn) => fn.color(x.color.dark4).alpha(0.5),
       invalidColor: (x) => x.color.red2,
       invalidBorder: (x) => x.color.red3,
       placeholderTextColor: (x) => x.color.muted,
@@ -318,7 +313,7 @@ const config = {
       hoverHoverShadow: (x) => x.color.shadow,
       bodyMargin: "1.2rem 2rem",
       buttonTextColor: "inherit",
-      buttonBorder: (x) => xcss`1px solid ${x.fn.color(x.color.light3).alpha(0.5)}`,
+      buttonBorder: (x, fn) => xcss`1px solid ${fn.color(x.color.light3).alpha(0.5)}`,
     },
 
     /* Addon: code.xcss */
@@ -326,7 +321,7 @@ const config = {
       paddingX: "3px",
       paddingY: "0",
       textColor: (x) => x.color.rose1,
-      backgroundColor: (x) => x.fn.color(x.color.rose5).lighten(0.41),
+      backgroundColor: (x, fn) => fn.color(x.color.rose5).lighten(0.41),
     },
     codeBlock: {
       paddingX: "1rem",
@@ -373,5 +368,3 @@ const config = {
     linkClickArea: "0.4em", // XXX: Reduce if links overlap
   },
 };
-
-export default config;
