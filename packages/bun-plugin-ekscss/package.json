@@ -1,0 +1,28 @@
+{
+  "name": "bun-plugin-ekscss",
+  "version": "0.0.1",
+  "description": "Bun plugin to add support for XCSS",
+  "repository": "maxmilton/ekscss",
+  "homepage": "https://ekscss.js.org",
+  "author": "Max Milton <max@2okki.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "NODE_ENV=production bun build.ts",
+    "dev": "NODE_ENV=development bun build.ts"
+  },
+  "peerDependencies": {
+    "ekscss": "workspace:^"
+  },
+  "dependencies": {
+    "@ekscss/config-loader": "workspace:^"
+  },
+  "devDependencies": {
+    "ekscss": "workspace:*"
+  }
+}
