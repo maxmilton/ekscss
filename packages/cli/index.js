@@ -75,6 +75,9 @@ module.exports = async (src, dest, opts) => {
   });
   const t1 = performance.now();
 
+  const css = `${config.banner ? `${config.banner}\n` : ""}${compiled.css}`;
+  const sourcemap = compiled.map;
+
   for (const warning of compiled.warnings) {
     process.exitCode = 1;
     console.error(colors.red("Error:"), warning.message || warning);
@@ -91,19 +94,16 @@ module.exports = async (src, dest, opts) => {
     }
   }
 
-  const css = `${config.banner ? `${config.banner}\n` : ""}${compiled.css}`;
-  /** @type {typeof compiled.map | string} */
-  let sourcemap = compiled.map;
-
   await fs.promises.mkdir(path.dirname(destFile), { recursive: true });
 
   if (sourcemap) {
     if (config.banner) {
       const bannerLineCount = config.banner.split("\n").length;
-      /** @type {import("./types").RawSourceMap} */
-      const map = JSON.parse(sourcemap.toString());
-      map.mappings = `${";".repeat(bannerLineCount)}${map.mappings}`;
-      sourcemap = JSON.stringify(map);
+      for (let i = 0; i < bannerLineCount; i++) {
+        // @ts-expect-error - internal property
+        // eslint-disable-next-line
+        sourcemap._map._mappings.unshift([]);
+      }
     }
 
     await Promise.all([
@@ -131,7 +131,7 @@ module.exports = async (src, dest, opts) => {
       colors.bold(colors.red("$&")),
     );
     const bytes = Buffer.byteLength(css, "utf8");
-    const gzBytes = require("zlib").gzipSync(css).byteLength;
+    const gzBytes = require("node:zlib").gzipSync(css).byteLength;
     const timeCompile = `${(t1 - t0).toFixed(2)}ms`;
     const timeTotal = `${Math.ceil(performance.now())}ms total`;
 
