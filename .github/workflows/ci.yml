@@ -95,7 +95,7 @@ jobs:
         if: ${{ matrix.node-version == 24 && matrix.platform == 'ubuntu-latest' }}
       - name: Report coverage
         if: ${{ matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
-        uses: qltysh/qlty-action/coverage@v1
+        uses: qltysh/qlty-action/coverage@v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
           files: coverage/lcov.info
