@@ -2,8 +2,8 @@
 
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/prefer-nullish-coalescing, global-require */
 
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
 const pathExists = (filePath: string): Promise<boolean> =>
   new Promise((resolve) => {

@@ -39,7 +39,6 @@ const config = ts.config(
       "unicorn/prefer-global-this": OFF,
       // Compatibility with node >= v12
       "@typescript-eslint/prefer-nullish-coalescing": WARN,
-      "unicorn/prefer-node-protocol": OFF,
 
       /* Performance and byte savings */
       "no-plusplus": OFF,

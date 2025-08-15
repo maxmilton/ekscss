@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign, no-underscore-dangle */
 
 import { ctx, type Element, interpolate, type Middleware, stylis, xcss } from "ekscss";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
 // TODO: Document this plugin should come first
 

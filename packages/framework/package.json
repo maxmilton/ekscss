@@ -64,8 +64,5 @@
   "devDependencies": {
     "@ekscss/cli": "workspace:*",
     "ekscss": "workspace:*"
-  },
-  "engines": {
-    "node": ">=14"
   }
 }

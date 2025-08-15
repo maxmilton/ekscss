@@ -3,7 +3,7 @@
 import { ConfigLoader } from "@ekscss/config-loader";
 import { compile, type CompileOptions, resolvePlugins } from "ekscss";
 import type { PartialMessage, Plugin } from "esbuild";
-import * as fs from "fs";
+import * as fs from "node:fs";
 
 export type Config = Omit<CompileOptions, "from" | "to">;
 

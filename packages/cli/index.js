@@ -2,10 +2,10 @@
 
 const { ConfigLoader } = require("@ekscss/config-loader");
 const xcss = require("ekscss");
-const fs = require("fs");
 const colors = require("kleur/colors");
-const path = require("path");
-const { performance } = require("perf_hooks");
+const fs = require("node:fs");
+const path = require("node:path");
+const { performance } = require("node:perf_hooks");
 
 const cl = new ConfigLoader({
   files: [
