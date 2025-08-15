@@ -1,56 +1,8 @@
 import { describe, expect, mock, spyOn, test } from "bun:test";
 import { isProxy } from "node:util/types";
 import { compile } from "../src/compiler.ts";
-import { accessorsProxy, ctx, each, interpolate, isObject, map, noop, resolvePlugins, xcss } from "../src/helpers.ts";
+import { accessorsProxy, ctx, each, interpolate, map, noop, resolvePlugins, xcss } from "../src/helpers.ts";
 import type { Context } from "../src/types.ts";
-
-function Func() {}
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
-class Cls {}
-
-const objects: [string, unknown][] = [
-  ["{}", {}],
-  ["{ a: 1, b: true }", { a: 1, b: true }],
-  ["Object.create({})", Object.create({})],
-  ["Object.create(Object.prototype)", Object.create(Object.prototype)],
-  ["Object.create(null)", Object.create(null)],
-  // biome-ignore format: explicit test
-  ["new Func", new (Func as any)()], // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call
-  ["new Func()", new (Func as any)()],
-  // biome-ignore format: explicit test
-  ["new Cls", new Cls()],
-  ["new Cls()", new Cls()],
-  ["global", global],
-] as const;
-
-const notObjects: [string, unknown][] = [
-  ["'abc'", "abc"],
-  ["''", ""],
-  ["1", 1],
-  ["0", 0],
-  ["-1", -1],
-  ["Number.MAX_SAFE_INTEGER", Number.MAX_SAFE_INTEGER],
-  ["BigInt(Number.MAX_SAFE_INTEGER + 1)", BigInt(Number.MAX_SAFE_INTEGER + 1)],
-  ["Infinity", Number.POSITIVE_INFINITY],
-  ["-Infinity", Number.NEGATIVE_INFINITY],
-  ["true", true],
-  ["false", false],
-  ["[]", []],
-  ["['abc', 'def']", ["abc", "def"]],
-  ["function named() {}", function named() {}],
-  // biome-ignore lint/complexity/useArrowFunction: explicit test
-  ["function () {}", function() {}], // eslint-disable-line func-names
-  ["() => {}", () => {}],
-  ["async () => {}", async () => {}],
-  ["/regex/", /regex/],
-  ["Object", Object],
-  ["Symbol", Symbol],
-  ["Symbol.toStringTag", Symbol.toStringTag],
-  ["Symbol.prototype", Symbol.prototype],
-  ["undefined", undefined],
-  ["null", null],
-] as const;
 
 describe("noop", () => {
   test("is a function", () => {
@@ -84,15 +36,15 @@ describe("ctx", () => {
 
   test("has expected properties before compile", () => {
     expect.assertions(1);
-    // TODO: Fix race condition where sometimes a compile hasn't been run yet
-    // and all ctx properties have not been set at all yet.
-    // expect(ctx).toStrictEqual({
-    expect(ctx).toEqual({
-      dependencies: undefined,
-      from: undefined,
+    // XXX: Before a compile has run all ctx properties are present on the ctx
+    // object but set as undefined.
+    expect(ctx).toStrictEqual({
       rootDir: undefined,
-      warnings: undefined,
+      from: undefined,
+      fn: undefined,
       x: undefined,
+      dependencies: undefined,
+      warnings: undefined,
     } as unknown as Context);
   });
 
@@ -100,11 +52,12 @@ describe("ctx", () => {
     expect.assertions(1);
     compile("");
     expect(ctx).toStrictEqual({
-      dependencies: undefined,
-      from: undefined,
       rootDir: undefined,
-      warnings: undefined,
+      from: undefined,
+      fn: undefined,
       x: undefined,
+      dependencies: undefined,
+      warnings: undefined,
     } as unknown as Context);
   });
 
@@ -112,28 +65,26 @@ describe("ctx", () => {
     expect.assertions(1);
     const check = () => {
       expect(ctx).toEqual({
-        dependencies: [],
-        from: undefined,
         rootDir: process.cwd(),
-        warnings: [],
-        x: {
-          fn: {
-            check, // this custom function
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            each: expect.any(Function),
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            map: expect.any(Function),
-          },
+        from: undefined,
+        fn: {
+          check, // this custom function
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          each: expect.any(Function),
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          map: expect.any(Function),
         },
+        x: {},
+        dependencies: [],
+        warnings: [],
       });
     };
     // eslint-disable-next-line no-template-curly-in-string
-    compile("${(x) => x.fn.check()}", {
-      globals: {
-        fn: {
-          check,
-        },
+    compile("${(x, fn) => fn.check()}", {
+      functions: {
+        check,
       },
+      globals: {},
     });
   });
 });
@@ -171,9 +122,12 @@ describe("resolvePlugins", () => {
     resolvePlugins(["@ekscss/plugin-not-real"]);
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(
-      expect.stringMatching(
-        /^Failed to load plugin "@ekscss\/plugin-not-real":\n/,
-      ),
+      'Failed to load plugin "@ekscss/plugin-not-real":',
+      expect.objectContaining({
+        name: "ResolveMessage",
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        message: expect.stringMatching(/^Cannot find module '@ekscss\/plugin-not-real'/),
+      }),
     );
     spy.mockRestore();
   });
@@ -297,29 +251,6 @@ describe("accessorsProxy", () => {
   });
 
   // TODO: Write tests for accessorsProxy
-});
-
-describe("isObject", () => {
-  test("is a function", () => {
-    expect.assertions(2);
-    expect(isObject).toBeFunction();
-    expect(isObject).not.toBeClass();
-  });
-
-  test("expects 1 parameter", () => {
-    expect.assertions(1);
-    expect(isObject).toHaveParameters(1, 0);
-  });
-
-  test.each(objects)("returns true for object: %s", (_, value) => {
-    expect.assertions(1);
-    expect(isObject(value)).toBeTrue();
-  });
-
-  test.each(notObjects)("returns false for non-object: %s", (_, value) => {
-    expect.assertions(1);
-    expect(isObject(value)).toBeFalse();
-  });
 });
 
 describe("xcss", () => {

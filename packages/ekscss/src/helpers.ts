@@ -1,22 +1,20 @@
 import type { Context, Expression, Middleware, TemplateFn } from "./types.ts";
 
+const toType = (value: unknown): string => Object.prototype.toString.call(value);
+
 /**
  * Compiler context. For internal and advanced use cases only.
  * @private No guarantee API will remain the same between versions!
  */
-// @ts-expect-error - initialised at runtime
-export const ctx: Context = {
-  // dependencies: undefined,
-  // from: undefined,
-  // x: undefined,
-  // rootDir: undefined,
-  // warnings: undefined,
-};
-
-// eslint-disable-next-line @typescript-eslint/unbound-method
-const has = Object.prototype.hasOwnProperty;
-// eslint-disable-next-line @typescript-eslint/unbound-method
-const toStr = Object.prototype.toString;
+// @ts-expect-error - values initialised at runtime
+export const ctx = {
+  rootDir: undefined,
+  from: undefined,
+  fn: undefined,
+  x: undefined,
+  dependencies: undefined,
+  warnings: undefined,
+} as Context;
 
 export function noop(): void {}
 
@@ -24,6 +22,7 @@ export function noop(): void {}
 // function. It uses `new Function()` which means it can execute arbitrary
 // code. It must only be used with trusted code.
 // TODO: Minimal hardening; runtime checks, sandboxing, etc.
+
 /**
  * Interpolative template engine for XCSS.
  *
@@ -32,12 +31,7 @@ export function noop(): void {}
 export function interpolate(template: string): TemplateFn {
   // @ts-expect-error - Function constructor is not type aware
   // eslint-disable-next-line @typescript-eslint/no-implied-eval
-  return new Function("xcss", "x", `'use strict'; return xcss\`${template}\``);
-}
-
-// TODO: Does this need additional checks anywhere it's used? Ref: https://github.com/jonschlinkert/is-plain-object/blob/master/is-plain-object.js
-export function isObject(val: unknown): val is Record<string, unknown> {
-  return toStr.call(val) === "[object Object]";
+  return new Function("xcss", "x", "fn", `'use strict'; return xcss\`${template}\``);
 }
 
 /**
@@ -55,7 +49,7 @@ class UndefinedProperty {
   UNDEFINED = "UNDEFINED";
 
   constructor() {
-    // These "own functions" must be non-enumerable so when an UndefinedProxy
+    // These "own functions" must be non-enumerable so when an UndefinedProperty
     // instance's properties are enumerated these functions are not included
     // e.g., `Object.keys(...)`
     Object.defineProperty(this, "toString", {
@@ -82,24 +76,28 @@ class UndefinedProperty {
  * @param obj - The object to inject accessor helpers into.
  * @param parentPath - Key path to the current location in the object.
  */
-export function accessorsProxy<
-  T extends Record<string, unknown> | UndefinedProperty,
->(obj: T, parentPath: string): T {
-  for (const key in obj) {
-    if (has.call(obj, key)) {
-      const val = obj[key];
+export function accessorsProxy<T extends object>(obj: T, parentPath: string): T {
+  // Shallow clone to prevent mutations on the original object
+  const baseTarget = (
+    Array.isArray(obj)
+      ? [...obj]
+      : toType(obj) === "[object Object]"
+      ? { ...obj }
+      : obj
+  ) as T;
 
-      if (isObject(val)) {
-        // eslint-disable-next-line no-param-reassign
-        obj[key] = accessorsProxy(val, `${parentPath}.${key}`);
-      }
+  // eslint-disable-next-line guard-for-in
+  for (const key in baseTarget) {
+    const value = baseTarget[key];
+
+    if (typeof value === "object" && value !== null) {
+      baseTarget[key] = accessorsProxy(value, `${parentPath}.${key}`);
     }
   }
 
-  return new Proxy(obj, {
+  return new Proxy(baseTarget, {
     get(target, prop, receiver) {
-      // bypass Symbol.toStringTag because it's used in isObject
-      if (!has.call(target, prop) && prop !== Symbol.toStringTag) {
+      if (!Reflect.has(target, prop) && prop !== Symbol.toStringTag) {
         const propPath = `${parentPath}.${String(prop)}`;
 
         ctx.warnings.push({
@@ -115,24 +113,22 @@ export function accessorsProxy<
     },
 
     set(target, prop, value, receiver) {
-      if (has.call(target, prop)) {
+      if (Reflect.has(target, prop)) {
         ctx.warnings.push({
           code: "prop-override",
-          message: `Overriding existing property "${parentPath}.${
-            String(
-              prop,
-            )
-          }"`,
+          message: `Overriding existing property "${parentPath}.${String(prop)}"`,
           file: ctx.from,
         });
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const proxiedValue = isObject(value)
-        ? accessorsProxy(value, `${parentPath}.${String(prop)}`)
-        : value;
-
-      return Reflect.set(target, prop, proxiedValue, receiver);
+      return Reflect.set(
+        target,
+        prop,
+        typeof value === "object" && value !== null
+          ? accessorsProxy(value, `${parentPath}.${String(prop)}`)
+          : value,
+        receiver,
+      );
     },
   });
 }
@@ -140,15 +136,11 @@ export function accessorsProxy<
 /**
  * Iterate over an array's items then combine the result.
  */
-export function map<T>(
-  arr: T[],
-  callback: (value: T, index: number) => string,
-): string {
+export function map<T>(arr: T[], callback: (value: T, index: number) => string): string {
   if (!Array.isArray(arr)) {
-    // TODO: Populate "line" and "column"
     ctx.warnings.push({
       code: "map-invalid-array",
-      message: `Expected array but got ${toStr.call(arr)}`,
+      message: `Expected array but got ${toType(arr)}`,
       file: ctx.from,
     });
     return "INVALID";
@@ -168,15 +160,11 @@ export function map<T>(
 /**
  * Iterate over each of an object's properties then combine the result.
  */
-export function each<T>(
-  obj: Record<string, T>,
-  callback: (key: string, value: T) => string,
-): string {
-  if (!isObject(obj)) {
-    // TODO: Populate "line" and "column"
+export function each<T>(obj: Record<string, T>, callback: (key: string, value: T) => string): string {
+  if (toType(obj) !== "[object Object]") {
     ctx.warnings.push({
       code: "each-invalid-object",
-      message: `Expected object but got ${toStr.call(obj)}`,
+      message: `Expected object but got ${toType(obj)}`,
       file: ctx.from,
     });
     return "INVALID";
@@ -185,7 +173,7 @@ export function each<T>(
   let out = "";
 
   for (const key in obj) {
-    if (has.call(obj, key)) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
       out += callback(key, obj[key]) || "";
     }
   }
@@ -199,45 +187,39 @@ export function each<T>(
  * XCSS template expressions which return `null`, `undefined`, or `false` will
  * return an empty string to make clean templates simpler.
  */
-export function xcss(
-  template: TemplateStringsArray,
-  ...expressions: Expression[]
-): string {
+export function xcss(template: TemplateStringsArray, ...expressions: Expression[]): string {
   const strings = template.raw;
   const len = strings.length;
   let index = 0;
   let out = "";
 
   for (; index < len; index++) {
-    let val = expressions[index - 1];
+    let value = expressions[index - 1];
 
     // Reduce XCSS function expressions to their final value
-    while (typeof val === "function") {
-      val = val(ctx.x);
+    while (typeof value === "function") {
+      value = value(ctx.x, ctx.fn);
     }
 
-    if (typeof val === "object" && val !== null) {
-      if (typeof val.toString === "function") {
-        val = val.toString();
+    if (typeof value === "object" && value !== null) {
+      if (typeof value.toString === "function") {
+        value = value.toString();
       } else {
-        // TODO: Populate  "line" and "column"
         ctx.warnings.push({
           code: "expression-invalid",
           message:
             `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${
-              toStr.call(
-                val,
-              )
+              toType(value)
             }`,
           file: ctx.from,
         });
 
-        val = "INVALID";
+        value = "INVALID";
       }
     }
 
     // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/restrict-plus-operands
-    out += (val || (val == null || val === false ? "" : val)) + strings[index];
+    out += (value || (value == null || value === false ? "" : value)) + strings[index];
   }
 
   return out;
@@ -247,7 +229,7 @@ export function xcss(
  * Resolve XCSS plugins when specified as a stylis Middleware or string.
  *
  * Iterate over plugins and load plugins specified as a string that denotes
- * either the name of a package or a file path. Useful when loading XCSS
+ * either the name of a package or a filepath. Useful when loading XCSS
  * configuration from a JSON file.
  */
 export function resolvePlugins(plugins: (Middleware | string)[]): Middleware[] {
@@ -264,8 +246,11 @@ export function resolvePlugins(plugins: (Middleware | string)[]): Middleware[] {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       return (mod.default ?? mod) as Middleware;
     } catch (error) {
+      // NOTE: Typically this function is called before compile begins so we
+      // cannot use ctx.warnings here.
       // eslint-disable-next-line no-console
-      console.error(`Failed to load plugin "${plugin}":\n  ${String(error)}`);
+      console.error(`Failed to load plugin "${plugin}":`, error);
+
       return noop;
     }
   });
