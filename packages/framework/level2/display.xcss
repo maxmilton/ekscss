@@ -34,7 +34,7 @@
 .dg { display: grid; }
 .dig { display: inline-grid; }
 
-${x.fn.each(x.media, (bp, query) => xcss`
+${fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-dn { display: none; }
     .${bp}-db { display: block; }

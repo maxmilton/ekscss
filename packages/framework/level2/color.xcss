@@ -4,13 +4,13 @@
 
 /* Foreground colours */
 
-${x.fn.each(x.color, (key, value) => xcss`
+${fn.each(x.color, (key, value) => xcss`
   .${key} { color: ${value}; }
 `)}
 
 /* Background colours */
 
-${x.fn.each(x.color, (key, value) => xcss`
+${fn.each(x.color, (key, value) => xcss`
   .bg-${key} { background-color: ${value}; }
 `)}
 
@@ -24,7 +24,7 @@ ${x.fn.each(x.color, (key, value) => xcss`
 .border { border-style: solid }
 .border-dash { border-style: dashed }
 
-${x.fn.each(x.color, (key, value) => xcss`
+${fn.each(x.color, (key, value) => xcss`
   .border-${key} { border-color: ${value}; }
 `)}
 

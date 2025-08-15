@@ -52,11 +52,12 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
     }
 
     const compiled = compile(content, {
+      rootDir: configData.rootDir,
       from: filename,
+      plugins: configData.plugins,
+      functions: configData.functions,
       globals: configData.globals,
       map: configData.map,
-      plugins: configData.plugins,
-      rootDir: configData.rootDir,
     });
 
     for (const warning of compiled.warnings) {

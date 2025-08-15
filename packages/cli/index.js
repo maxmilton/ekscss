@@ -65,11 +65,12 @@ module.exports = async (src, dest, opts) => {
 
   const t0 = performance.now();
   const compiled = xcss.compile(code, {
+    rootDir,
     from: srcFileName,
     to: destFile,
-    globals: config.globals,
     plugins: config.plugins,
-    rootDir,
+    functions: config.functions,
+    globals: config.globals,
     map: opts.map == null ? config.map : opts.map,
   });
   const t1 = performance.now();

@@ -7,11 +7,12 @@ import * as fs from "node:fs";
 
 export type Config = Omit<CompileOptions, "from" | "to">;
 
+const RE_BAD_VALUES = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
+
 export const xcss = (config?: string | Config): Plugin => ({
   name: "xcss",
 
   setup(build) {
-    const reBadValue = /UNDEFINED|INVALID|#apply:|null|undefined|NaN|\[object \w+]/;
     const cl = new ConfigLoader({
       files: [
         "xcss.config.js",
@@ -50,12 +51,13 @@ export const xcss = (config?: string | Config): Plugin => ({
       }
 
       const compiled = compile(code, {
+        rootDir: configData.rootDir,
         from: args.path,
         // TODO: Get "to" value
-        globals: configData.globals,
-        map: configData.map ?? !!build.initialOptions.sourcemap,
         plugins: configData.plugins,
-        rootDir: configData.rootDir,
+        functions: configData.functions,
+        globals: configData.globals,
+        map: configData.map ?? Boolean(build.initialOptions.sourcemap),
       });
 
       for (const warning of compiled.warnings) {
@@ -75,7 +77,7 @@ export const xcss = (config?: string | Config): Plugin => ({
       // TODO: Get the location.line and location.column of matches to make it
       // far easier to debug or even know what's going on for users (otherwise
       // the warning is a bit cryptic!)
-      if (reBadValue.test(compiled.css)) {
+      if (RE_BAD_VALUES.test(compiled.css)) {
         warnings.push({
           text: "Output may contain unwanted value",
           location: {
@@ -87,15 +89,9 @@ export const xcss = (config?: string | Config): Plugin => ({
 
       let output = compiled.css;
 
-      // XXX: Source maps for CSS are not yet supported in esbuild but adding
-      // here anyway in preparation for when they are supported; see:
-      // - https://github.com/evanw/esbuild/issues/519
-      // - https://github.com/evanw/esbuild/issues/20
       if (compiled.map) {
         output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${
-          Buffer.from(
-            compiled.map.toString(),
-          ).toString("base64")
+          Buffer.from(compiled.map.toString()).toString("base64")
         } */`;
       }
 

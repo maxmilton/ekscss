@@ -98,7 +98,7 @@ export const importPlugin: Middleware = (
 
   // TODO: Document this behaviour.
   if (ext === ".xcss" || !ext) {
-    code = interpolate(code)(xcss, ctx.x);
+    code = interpolate(code)(xcss, ctx.x, ctx.fn);
   }
 
   const ast = stylis.compile(code);

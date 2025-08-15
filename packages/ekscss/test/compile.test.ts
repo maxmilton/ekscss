@@ -24,7 +24,7 @@ const complexCodeFixture = `
   }
 
   // inline comm
-  \${x.fn.each(x.color, (name, value) => xcss\`
+  \${fn.each(x.color, (name, value) => xcss\`
     .\${name} { color: \${value}; }
   \`)}
 `;
@@ -64,14 +64,13 @@ describe("onBeforeBuild", () => {
       order += "1";
     });
     // eslint-disable-next-line no-template-curly-in-string
-    compile("${(x) => x.fn.foo()}", {
-      globals: {
-        fn: {
-          foo() {
-            order += "2";
-          },
+    compile("${(x, fn) => fn.foo()}", {
+      functions: {
+        foo() {
+          order += "2";
         },
       },
+      globals: {},
     });
     expect(order).toBe("12");
   });
@@ -139,14 +138,13 @@ describe("onAfterBuild", () => {
       order += "1";
     });
     // eslint-disable-next-line no-template-curly-in-string
-    compile("${(x) => x.fn.foo()}", {
-      globals: {
-        fn: {
-          foo() {
-            order += "2";
-          },
+    compile("${(x, fn) => fn.foo()}", {
+      functions: {
+        foo() {
+          order += "2";
         },
       },
+      globals: {},
     });
     expect(order).toBe("21");
   });

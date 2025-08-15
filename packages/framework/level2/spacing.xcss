@@ -1,25 +1,25 @@
-${x.fn.map(x.spacingValues, (value, i) => xcss`
+${fn.map(x.spacingValues, (value, i) => xcss`
   .ma${i} { margin: ${value}; }
 `)}
-${x.fn.map(x.spacingValues, (value, i) => xcss`
+${fn.map(x.spacingValues, (value, i) => xcss`
   .mh${i} { margin-right: ${value}; margin-left: ${value}; }
   .mv${i} { margin-top: ${value}; margin-bottom: ${value}; }
 `)}
-${x.fn.map(x.spacingValues, (value, i) => xcss`
+${fn.map(x.spacingValues, (value, i) => xcss`
   .mt${i} { margin-top: ${value}; }
   .mr${i} { margin-right: ${value}; }
   .mb${i} { margin-bottom: ${value}; }
   .ml${i} { margin-left: ${value}; }
 `)}
 
-${x.fn.map(x.spacingValues, (value, i) => xcss`
+${fn.map(x.spacingValues, (value, i) => xcss`
   .pa${i} { padding: ${value}; }
 `)}
-${x.fn.map(x.spacingValues, (value, i) => xcss`
+${fn.map(x.spacingValues, (value, i) => xcss`
   .ph${i} { padding-right: ${value}; padding-left: ${value}; }
   .pv${i} { padding-top: ${value}; padding-bottom: ${value}; }
 `)}
-${x.fn.map(x.spacingValues, (value, i) => xcss`
+${fn.map(x.spacingValues, (value, i) => xcss`
   .pt${i} { padding-top: ${value}; }
   .pr${i} { padding-right: ${value}; }
   .pb${i} { padding-bottom: ${value}; }
@@ -77,30 +77,30 @@ ${x.fn.map(x.spacingValues, (value, i) => xcss`
 .mbu { margin-bottom: unset; }
 .mlu { margin-left: unset; }
 
-${x.fn.each(x.media, (bp, query) => xcss`
+${fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
-    ${x.fn.map(x.spacingValues, (value, i) => xcss`
+    ${fn.map(x.spacingValues, (value, i) => xcss`
       .${bp}-ma${i} { margin: ${value}; }
     `)}
-    ${x.fn.map(x.spacingValues, (value, i) => xcss`
+    ${fn.map(x.spacingValues, (value, i) => xcss`
       .${bp}-mh${i} { margin-right: ${value}; margin-left: ${value}; }
       .${bp}-mv${i} { margin-top: ${value}; margin-bottom: ${value}; }
     `)}
-    ${x.fn.map(x.spacingValues, (value, i) => xcss`
+    ${fn.map(x.spacingValues, (value, i) => xcss`
       .${bp}-mt${i} { margin-top: ${value}; }
       .${bp}-mr${i} { margin-right: ${value}; }
       .${bp}-mb${i} { margin-bottom: ${value}; }
       .${bp}-ml${i} { margin-left: ${value}; }
     `)}
 
-    ${x.fn.map(x.spacingValues, (value, i) => xcss`
+    ${fn.map(x.spacingValues, (value, i) => xcss`
       .${bp}-pa${i} { padding: ${value}; }
     `)}
-    ${x.fn.map(x.spacingValues, (value, i) => xcss`
+    ${fn.map(x.spacingValues, (value, i) => xcss`
       .${bp}-ph${i} { padding-right: ${value}; padding-left: ${value}; }
       .${bp}-pv${i} { padding-top: ${value}; padding-bottom: ${value}; }
     `)}
-    ${x.fn.map(x.spacingValues, (value, i) => xcss`
+    ${fn.map(x.spacingValues, (value, i) => xcss`
       .${bp}-pt${i} { padding-top: ${value}; }
       .${bp}-pr${i} { padding-right: ${value}; }
       .${bp}-pb${i} { padding-bottom: ${value}; }
@@ -109,7 +109,7 @@ ${x.fn.each(x.media, (bp, query) => xcss`
   }
 `)}
 
-${x.fn.each(x.media, (bp, query) => xcss`
+${fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-mh-auto { margin-right: auto; margin-left: auto; }
     .${bp}-mv-auto { margin-top: auto; margin-bottom: auto; }

@@ -21,7 +21,7 @@ const complexCodeFixture = `
   }
 
   // inline comm
-  \${x.fn.each(x.color, (name, value) => xcss\`
+  \${fn.each(x.color, (name, value) => xcss\`
     .\${name} { color: \${value}; }
   \`)}
 `;

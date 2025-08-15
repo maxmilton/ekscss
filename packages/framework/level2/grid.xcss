@@ -67,29 +67,29 @@
 
 */
 
-${x.fn.map(x.colSteps, (step, i) => xcss`
+${fn.map(x.colSteps, (step, i) => xcss`
   .gx${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
   .gc${step} { grid-column-start: ${step}; }
   .gw${step} { grid-column-end: span ${step}; }
 `)}
 
-${x.fn.map(x.rowSteps, (step, i) => xcss`
+${fn.map(x.rowSteps, (step, i) => xcss`
   .gy${step} { grid-template-rows: repeat(${step}, auto); }
   .gr${step} { grid-row-start: ${step}; }
   .gh${step} { grid-row-end: span ${step}; }
 `)}
 
-${x.fn.each(x.media, (bp, query) => xcss`
+${fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-gx-auto { grid-template-columns: auto; }
 
-    ${x.fn.map(x.colSteps, (step, i) => xcss`
+    ${fn.map(x.colSteps, (step, i) => xcss`
       .${bp}-gx${step} { grid-template-columns: repeat(${step}, ${x.itemSize}); }
       .${bp}-gc${step} { grid-column-start: ${step}; }
       .${bp}-gw${step} { grid-column-end: span ${step}; }
     `)}
 
-    ${x.fn.map(x.rowSteps, (step, i) => xcss`
+    ${fn.map(x.rowSteps, (step, i) => xcss`
       .${bp}-gy${step} { grid-template-rows: repeat(${step}, auto); }
       .${bp}-gr${step} { grid-row-start: ${step}; }
       .${bp}-gh${step} { grid-row-end: span ${step}; }

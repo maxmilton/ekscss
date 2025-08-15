@@ -1,69 +1,57 @@
 import * as stylis from "stylis";
 import { accessorsProxy, ctx, each, interpolate, map as _map, xcss } from "./helpers.ts";
 import { compileSourceMap } from "./sourcemap.ts";
-import type { BuildHookFn, CompileOptions, CompileResult, Globals, Warning } from "./types.ts";
+import type { BuildHook, CompileOptions, CompileResult, Warning } from "./types.ts";
 
-const beforeBuildFns: BuildHookFn[] = [];
-const afterBuildFns: BuildHookFn[] = [];
+const beforeBuild: BuildHook[] = [];
+const afterBuild: BuildHook[] = [];
 
-export function onBeforeBuild(callback: BuildHookFn): void {
-  beforeBuildFns.push(callback);
+export function onBeforeBuild(callback: BuildHook): void {
+  beforeBuild.push(callback);
 }
 
-export function onAfterBuild(callback: BuildHookFn): void {
-  afterBuildFns.push(callback);
-}
-
-// TODO: Write tests that prove this doesn't mutate the original object.
-// TODO: This is only a shallow clone, should we do a deep clone? Use structuredClone or klona
-function mergeDefaultGlobals(globals: Partial<Globals>): Globals {
-  // eslint-disable-next-line prefer-object-spread
-  const newGlobals = Object.assign({}, globals, {
-    // eslint-disable-next-line prefer-object-spread
-    fn: Object.assign({}, globals.fn),
-  });
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  newGlobals.fn.each ??= each;
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  newGlobals.fn.map ??= _map;
-  return newGlobals as Globals;
+export function onAfterBuild(callback: BuildHook): void {
+  afterBuild.push(callback);
 }
 
 export function compile(
   code: string,
   {
+    rootDir = process.cwd(),
     from,
     to,
-    globals = {},
     plugins = [],
-    rootDir = process.cwd(),
+    functions = {},
+    globals = {},
     map,
   }: CompileOptions = {},
 ): CompileResult {
   const middlewares = [...plugins, stylis.stringify];
+  const fn = { each, map: _map, ...functions };
+  const x = accessorsProxy(globals, "x");
   const dependencies: string[] = [];
   const warnings: Warning[] = [];
-  const x = accessorsProxy(mergeDefaultGlobals(globals), "x");
 
   if (from) dependencies.push(from);
 
-  ctx.dependencies = dependencies;
-  ctx.from = from;
   ctx.rootDir = rootDir;
-  ctx.warnings = warnings;
+  ctx.from = from;
+  ctx.fn = fn;
   ctx.x = x;
+  ctx.dependencies = dependencies;
+  ctx.warnings = warnings;
 
-  for (const fn of beforeBuildFns) fn();
+  for (const run of beforeBuild) run();
 
-  const interpolated = interpolate(code)(xcss, x);
+  const interpolated = interpolate(code)(xcss, x, fn);
   const ast = stylis.compile(interpolated);
   const css = stylis.serialize(ast, stylis.middleware(middlewares));
 
-  for (const fn of afterBuildFns) fn();
+  for (const run of afterBuild) run();
 
-  // @ts-expect-error - resetting ctx to initial state
+  // @ts-expect-error - reset ctx to initial state
   // dprint-ignore
-  ctx.dependencies = ctx.from = ctx.rootDir = ctx.warnings = ctx.x = undefined; // eslint-disable-line no-multi-assign
+  ctx.rootDir = ctx.from = ctx.fn = ctx.x = ctx.dependencies = ctx.warnings = undefined; // eslint-disable-line no-multi-assign
 
   return {
     css,

@@ -1,6 +1,6 @@
 import type { addMapping, EncodedSourceMap, GenMapping } from "@jridgewell/gen-mapping";
 import type { Element as _Element, Middleware } from "stylis";
-import type { xcss } from "./helpers.ts";
+import type { xcss as _xcss } from "./helpers.ts";
 
 // eslint-disable-next-line unicorn/prefer-export-from
 export type { Middleware };
@@ -37,49 +37,43 @@ export interface Warning {
 }
 
 export interface Context {
-  // index signature for XCSS plugins to add properties
+  // Index signature for XCSS plugins to add properties.
   [key: string]: unknown;
 
-  dependencies: string[];
-  from: string | undefined;
   rootDir: string;
-  warnings: Warning[];
+  from: string | undefined;
+  fn: Functions;
   x: Globals;
+  dependencies: string[];
+  warnings: Warning[];
 }
 
 export type Expression =
-  | ((x: Globals) => Expression)
+  | ((x: Globals, fn: Functions) => Expression)
   | string
   | number
   | (string | number)[]
   | false
   | null
-  | undefined
-  | void; // eslint-disable-line @typescript-eslint/no-invalid-void-type
+  | undefined;
 
-export type ExpressionOrNested =
-  | Expression
-  | { [key: string]: ExpressionOrNested };
+export type ExpressionOrNested = Expression | Dict<ExpressionOrNested>;
 
-export interface Globals {
-  [key: string]: ExpressionOrNested;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  fn: Record<string, (...args: any) => any>;
-}
+export type Globals = ReadOnlyDict<ExpressionOrNested>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Functions = ReadOnlyDict<(...args: any) => any>;
 
 export interface CompileOptions {
+  /**
+   * Root directory path to use when resolving file paths e.g., in `@import`.
+   *
+   * @default process.cwd()
+   */
+  rootDir?: string | undefined;
   /** Input file path. Without this top level relative `@import`s may fail. */
   from?: string | undefined;
   /** Output file path. Only used in source maps. */
   to?: string | undefined;
-  /**
-   * Generate source map.
-   *
-   * @default false
-   */
-  map?: boolean | undefined;
-  globals?: Partial<Globals> | undefined;
   /**
    * XCSS plugins.
    *
@@ -89,17 +83,20 @@ export interface CompileOptions {
    * @default []
    */
   plugins?: Middleware[] | undefined;
+  functions?: Functions | undefined;
+  globals?: Globals | undefined;
   /**
-   * Root directory path to use when resolving file paths e.g., in `@import`.
+   * Generate source map.
    *
-   * @default process.cwd()
+   * @default false
    */
-  rootDir?: string | undefined;
+  map?: boolean | undefined;
 }
 
-export type BuildHookFn = () => void;
+export type BuildHook = () => void;
 
-export type TemplateFn = (xcss_: typeof xcss, x: Globals) => string;
+export type TemplateFn = (xcss: typeof _xcss, x: Globals, fn: Functions) => string;
+
 export interface RawSourceMap {
   readonly _map: GenMapping;
   addMapping(mapping: Parameters<typeof addMapping>[1]): void;

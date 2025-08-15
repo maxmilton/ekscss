@@ -73,13 +73,14 @@ export default function rollupPlugin({
       if (!filter(id)) return null;
 
       const compiled = compile(code, {
+        rootDir: configData.rootDir,
         from: id,
         // TODO: Remove if we never change the output file name
         // to: id.replace(/\.xcss$/, '.css'),
+        plugins: configData.plugins,
+        functions: configData.functions,
         globals: configData.globals,
         map: configData.map ?? !!useSourceMaps,
-        plugins: configData.plugins,
-        rootDir: configData.rootDir,
       });
 
       for (const warning of compiled.warnings) {

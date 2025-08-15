@@ -32,7 +32,7 @@
 .f-row { flex-direction: row; }
 .f-row-r { flex-direction: row-reverse; }
 
-${x.fn.each(x.media, (bp, query) => xcss`
+${fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-dfc {
       display: flex;

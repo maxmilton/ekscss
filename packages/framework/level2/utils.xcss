@@ -10,7 +10,7 @@
 .w100 { width: 100%; }
 .wi { width: initial; }
 
-${x.fn.each(x.media, (bp, query) => xcss`
+${fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-w100 { width: 100%; }
     .${bp}-wi { width: initial; }
@@ -24,7 +24,7 @@ ${x.fn.each(x.media, (bp, query) => xcss`
 .tc { text-align: center; }
 .tu { text-align: unset; }
 
-${x.fn.each(x.media, (bp, query) => xcss`
+${fn.each(x.media, (bp, query) => xcss`
   @media ${query} {
     .${bp}-tl { text-align: left; }
     .${bp}-tr { text-align: right; }
