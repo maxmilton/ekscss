@@ -4,11 +4,11 @@ import { ctx, type Element, interpolate, type Middleware, stylis, xcss } from "e
 import fs from "node:fs";
 import path from "node:path";
 
-// TODO: Document this plugin should come first
+// TODO: Document this plugin should come first.
 
 // TODO: Document @import tries to resolve and inline the given path, unless
 // it's a url() import, so if developers want to @import a local file and not
-// have it inlined they can use `@import url('file:...')` e.g., for dev/testing
+// have it inlined they can use `@import url('file:...')` e.g., for dev/testing.
 
 // 46 = .
 const isRelative = (filePath: string) => stylis.charat(filePath, 0) === 46;
@@ -72,7 +72,7 @@ export const importPlugin: Middleware = (
   if (!from) {
     ctx.warnings.push({
       code: "import-not-found",
-      // TODO: No need to include importPath since we give the file and line/column
+      // TODO: No need to include importPath since we give the file and line/column.
       message: `Unable to resolve @import: ${importPath}`,
       file: ctx.from,
       line: element.line,
@@ -81,7 +81,7 @@ export const importPlugin: Middleware = (
     return;
   }
 
-  // TODO: Document this behaviour
+  // TODO: Document this behaviour.
   // Avoid importing files more than once; only first import is inlined (as
   // opposed to CSS @import in which the last import wins)
   if (ctx.dependencies.includes(from)) {
@@ -96,7 +96,7 @@ export const importPlugin: Middleware = (
   const ext = path.extname(from);
   let code = fs.readFileSync(from, "utf8");
 
-  // TODO: Document this behaviour
+  // TODO: Document this behaviour.
   if (ext === ".xcss" || !ext) {
     code = interpolate(code)(xcss, ctx.x);
   }
@@ -105,8 +105,9 @@ export const importPlugin: Middleware = (
   element.return = stylis.serialize(ast, callback);
 
   // Expose data for constructing source maps
-  element.__ast = ast;
   element.__from = from;
+  element.__code = code;
+  element.__ast = ast;
 
   if (element.return === "") {
     // Set empty value so at-rule is removed in stringify

@@ -1,25 +1,29 @@
-import type { SourceMapGenerator } from "source-map-js";
+import type { addMapping, EncodedSourceMap, GenMapping } from "@jridgewell/gen-mapping";
 import type { Element as _Element, Middleware } from "stylis";
 import type { xcss } from "./helpers.ts";
-
-export type { RawSourceMap } from "source-map-js";
 
 // eslint-disable-next-line unicorn/prefer-export-from
 export type { Middleware };
 
 export interface Element extends _Element {
   /**
-   * AST for constructing source maps.
+   * File path of imported file (for constructing source maps).
    *
-   * Only on `@import` nodes when the import plugin is used.
-   */
-  __ast?: Element[];
-  /**
-   * From path for constructing source maps.
-   *
-   * Only on `@import` nodes when the import plugin is used.
+   * Only on `@import` nodes when `@ekscss/plugin-import` is used.
    */
   __from?: string;
+  /**
+   * Original source code of imported file (for constructing source maps).
+   *
+   * Only on `@import` nodes when `@ekscss/plugin-import` is used.
+   */
+  __code?: string;
+  /**
+   * Compiled AST of imported file (for constructing source maps).
+   *
+   * Only on `@import` nodes when `@ekscss/plugin-import` is used.
+   */
+  __ast?: Element[];
   root: Element | null;
 }
 
@@ -96,10 +100,16 @@ export interface CompileOptions {
 export type BuildHookFn = () => void;
 
 export type TemplateFn = (xcss_: typeof xcss, x: Globals) => string;
+export interface RawSourceMap {
+  readonly _map: GenMapping;
+  addMapping(mapping: Parameters<typeof addMapping>[1]): void;
+  toString(): string;
+  toJSON(): EncodedSourceMap;
+}
 
 export interface CompileResult {
   css: string;
+  map: RawSourceMap | undefined;
   dependencies: string[];
-  map: SourceMapGenerator | undefined;
   warnings: Warning[];
 }

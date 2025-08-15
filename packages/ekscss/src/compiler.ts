@@ -65,23 +65,10 @@ export function compile(
   // dprint-ignore
   ctx.dependencies = ctx.from = ctx.rootDir = ctx.warnings = ctx.x = undefined; // eslint-disable-line no-multi-assign
 
-  let sourceMap: ReturnType<typeof compileSourceMap> | undefined;
-
-  if (map) {
-    if (process.env.BROWSER) {
-      warnings.push({
-        code: "browser-no-sourcemap",
-        message: "Browser runtime does not support sourcemap",
-      });
-    } else {
-      sourceMap = compileSourceMap(ast, rootDir, from, to);
-    }
-  }
-
   return {
     css,
+    map: map ? compileSourceMap(code, ast, rootDir, from, to, warnings) : undefined,
     dependencies,
-    map: sourceMap,
     warnings,
   };
 }

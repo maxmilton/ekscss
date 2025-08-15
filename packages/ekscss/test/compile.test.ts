@@ -3,8 +3,8 @@
 // - Validate "warnings" are generated in expected scenarios and file, line, column are correct
 // - Validate "dependencies" are added correctly
 
+import { GenMapping } from "@jridgewell/gen-mapping";
 import { describe, expect, mock, test } from "bun:test";
-import { SourceMapGenerator } from "source-map-js";
 import { compile, onAfterBuild, onBeforeBuild } from "../src/compiler.ts";
 
 const complexCodeFixture = `
@@ -198,8 +198,8 @@ describe("compile", () => {
     const compiled = compile("");
     expect(compiled).toEqual({
       css: "",
-      dependencies: [],
       map: undefined,
+      dependencies: [],
       warnings: [],
     });
   });
@@ -239,18 +239,42 @@ describe("compile", () => {
       expect(compiled.map).toBeObject();
     });
 
-    test("is an instance of SourceMapGenerator", () => {
+    test("has _map property as instance of GenMapping", () => {
       expect.assertions(1);
       const compiled = compile("", { map: true });
-      expect(compiled.map).toBeInstanceOf(SourceMapGenerator);
+      // eslint-disable-next-line no-underscore-dangle
+      expect(compiled.map?._map).toBeInstanceOf(GenMapping);
     });
 
-    test("has a toString function", () => {
+    test("has an addMapping method", () => {
+      expect.assertions(2);
+      const compiled = compile("", { map: true });
+      expect(compiled.map).toHaveProperty("addMapping");
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      expect(compiled.map?.addMapping).toBeFunction();
+    });
+
+    test("has a toString method", () => {
       expect.assertions(2);
       const compiled = compile("", { map: true });
       expect(compiled.map).toHaveProperty("toString");
       // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(compiled.map?.toString).toBeFunction();
     });
+
+    test("has a toJSON method", () => {
+      expect.assertions(2);
+      const compiled = compile("", { map: true });
+      expect(compiled.map).toHaveProperty("toJSON");
+      // eslint-disable-next-line @typescript-eslint/unbound-method
+      expect(compiled.map?.toJSON).toBeFunction();
+    });
+
+    // TODO: Test addMapping method expects 1 parameter
+    // TODO: Test addMapping method adds mapping to source map
+    // TODO: Test toString method expects 0 parameters
+    // TODO: Test toString method returns expected string
+    // TODO: Test toJSON method expects 0 parameters
+    // TODO: Test toJSON method returns expected object shape
   });
 });
