@@ -2,7 +2,7 @@
   "name": "@ekscss/plugin-apply",
   "version": "0.0.16",
   "description": "XCSS plugin to inline the properties of referenced rules",
-  "repository": "maxmilton/ekscss",
+  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
   "author": "Max Milton <max@2okki.com>",
   "license": "MIT",

@@ -2,7 +2,7 @@
   "name": "svelte-ekscss",
   "version": "0.0.15",
   "description": "Svelte plugin to add support for XCSS",
-  "repository": "maxmilton/ekscss",
+  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
   "author": "Max Milton <max@2okki.com>",
   "license": "MIT",

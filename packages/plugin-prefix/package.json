@@ -2,7 +2,7 @@
   "name": "@ekscss/plugin-prefix",
   "version": "0.0.15",
   "description": "XCSS plugin to add vendor prefixes",
-  "repository": "maxmilton/ekscss",
+  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
   "author": "Max Milton <max@2okki.com>",
   "license": "MIT",

@@ -2,7 +2,7 @@
   "name": "rollup-plugin-ekscss",
   "version": "0.0.20",
   "description": "Rollup plugin to add support for XCSS",
-  "repository": "maxmilton/ekscss",
+  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
   "author": "Max Milton <max@2okki.com>",
   "license": "MIT",
