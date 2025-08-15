@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "esbuild": "0.25.8",
-    "svelte": "5.37.3"
+    "esbuild": "0.25.9",
+    "svelte": "5.38.1"
   }
 }

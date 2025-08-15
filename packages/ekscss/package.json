@@ -19,13 +19,13 @@
     "dev": "NODE_ENV=development bun build.ts"
   },
   "dependencies": {
+    "@jridgewell/gen-mapping": "^0.3.13",
     "@types/stylis": "^4.2.7",
-    "source-map-js": "^1.2.1",
     "stylis": "^4.3.6"
   },
   "devDependencies": {
     "@ekscss/build-tools": "workspace:*",
     "@ekscss/plugin-null": "workspace:*",
-    "esbuild": "0.25.8"
+    "esbuild": "0.25.9"
   }
 }
