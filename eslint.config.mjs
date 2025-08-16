@@ -31,24 +31,15 @@ const config = ts.config(
       },
     },
     rules: {
+      "@typescript-eslint/prefer-nullish-coalescing": WARN, // compatibility with node >= v12
+      "no-plusplus": OFF, // byte savings
       quotes: [ERROR, "double", { avoidEscape: true }],
-
-      // Bad browser support
-      "unicorn/prefer-at": OFF,
-      // Prefer to clearly separate Bun and DOM
-      "unicorn/prefer-global-this": OFF,
-      // Compatibility with node >= v12
-      "@typescript-eslint/prefer-nullish-coalescing": WARN,
-
-      /* Performance and byte savings */
-      "no-plusplus": OFF,
-      "unicorn/no-array-callback-reference": OFF,
-      // forEach is slower but more compact (for non-performance-critical code)
-      "unicorn/no-array-for-each": OFF,
-      // Bad browser support and slower
-      "unicorn/prefer-string-replace-all": OFF,
-      // Byte savings (minification doesn't automatically remove)
-      "unicorn/switch-case-braces": [ERROR, "avoid"],
+      "unicorn/no-array-callback-reference": OFF, // byte savings
+      "unicorn/no-array-for-each": OFF, // slower but more compact (for non-performance-critical code)
+      "unicorn/prefer-at": OFF, // bad browser support
+      "unicorn/prefer-global-this": OFF, // prefer to clearly separate Bun and DOM
+      "unicorn/prefer-string-replace-all": OFF, // bad browser support and slower
+      "unicorn/switch-case-braces": [ERROR, "avoid"], // byte savings (minification doesn't automatically remove)
     },
   },
   {
@@ -97,7 +88,7 @@ const config = ts.config(
   {
     files: ["packages/cli/index.js"],
     rules: {
-      "@typescript-eslint/no-unsafe-assignment": WARN,
+      // "@typescript-eslint/no-unsafe-assignment": WARN,
       "@typescript-eslint/prefer-optional-chain": OFF,
       "@typescript-eslint/restrict-template-expressions": OFF,
       "global-require": OFF,
@@ -105,13 +96,6 @@ const config = ts.config(
       "no-console": OFF,
       "unicorn/no-anonymous-default-export": OFF,
       "unicorn/no-process-exit": OFF,
-    },
-  },
-  {
-    files: ["packages/framework/xcss.config.mjs"],
-    rules: {
-      "@typescript-eslint/explicit-module-boundary-types": WARN,
-      "@typescript-eslint/no-unsafe-assignment": WARN,
     },
   },
   { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.ts"] },

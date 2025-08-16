@@ -83,14 +83,7 @@ module.exports = async (src, dest, opts) => {
     console.error(colors.red("Error:"), warning.message || warning);
 
     if (warning.file) {
-      console.log(
-        "  at",
-        colors.dim(
-          [warning.file, warning.line, warning.column]
-            .filter(Boolean)
-            .join(":"),
-        ),
-      );
+      console.log("  at", colors.dim([warning.file, warning.line, warning.column].filter(Boolean).join(":")));
     }
   }
 
@@ -107,11 +100,7 @@ module.exports = async (src, dest, opts) => {
     }
 
     await Promise.all([
-      fs.promises.writeFile(
-        destFile,
-        `${css}\n/*# sourceMappingURL=${path.basename(destFile)}.map */`,
-        "utf8",
-      ),
+      fs.promises.writeFile(destFile, `${css}\n/*# sourceMappingURL=${path.basename(destFile)}.map */`, "utf8"),
       fs.promises.writeFile(`${destFile}.map`, sourcemap.toString(), "utf8"),
     ]);
   } else {
@@ -135,8 +124,7 @@ module.exports = async (src, dest, opts) => {
     const timeCompile = `${(t1 - t0).toFixed(2)}ms`;
     const timeTotal = `${Math.ceil(performance.now())}ms total`;
 
-    console.log(`
-@@
+    console.log(`@@
 @@ ${destFile}
 @@
 

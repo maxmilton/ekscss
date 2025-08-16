@@ -1,6 +1,6 @@
 /**
  * Internal XCSS configuration to build the framework. When importing a base
- * config into your own project, you should use `config.js` not this file.
+ * config into your own project, you should use `config.js`, not this file.
  */
 
 import { ctx, onBeforeBuild } from "ekscss";
@@ -11,6 +11,7 @@ import baseConfig from "./config.js";
 import { preloadApply } from "./utils.js";
 
 /** @type {import("./package.json")} */
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const pkg = JSON.parse(readFileSync(fileURLToPath(new URL("package.json", import.meta.url)), "utf8"));
 
 /** @type {string} */
@@ -20,7 +21,6 @@ onBeforeBuild(() => {
   if (ctx.from) {
     bundleName = (ctx.from.includes("/addon/") ? "addon/" : "") + path.basename(ctx.from, ".xcss");
 
-    // pre-populate applyPlugin ctx.applyRefs for #apply in addon/native.xcss
     if (ctx.from.endsWith("framework/addon/native.xcss")) {
       preloadApply("@import './level2.xcss';");
     }
@@ -37,6 +37,7 @@ onBeforeBuild(() => {
  */
 export default {
   ...baseConfig,
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get banner() {
     return `/*!
 * XCSS Framework [${bundleName}] v${pkg.version} - https://github.com/maxmilton/ekscss
