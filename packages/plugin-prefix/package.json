@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/plugin-prefix",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "XCSS plugin to add vendor prefixes",
   "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",

@@ -1,6 +1,6 @@
 {
   "name": "ekscss",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "A simple, fast, and powerful CSS preprocessor",
   "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
