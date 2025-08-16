@@ -24,7 +24,10 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: build
-          path: packages/*/dist/**
+          path: |
+            packages/*/dist/**
+            packages/framework/*.d.ts
+          if-no-files-found: error
   test:
     needs: build
     strategy:
