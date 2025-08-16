@@ -32,7 +32,7 @@
     },
     "packages/bun-plugin-ekscss": {
       "name": "bun-plugin-ekscss",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
       },
