@@ -6,6 +6,7 @@ console.time("build");
 await Bun.build({
   entrypoints: ["src/index.ts"],
   outdir: "dist",
+  external: ["@ekscss/config-loader", "ekscss"],
   target: "bun",
   minify: true,
   sourcemap: "linked",

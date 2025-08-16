@@ -1,4 +1,5 @@
-import esbuild, { type BuildOptions } from "esbuild";
+import { createTypes } from "@ekscss/build-tools";
+import { analyzeMetafile, build } from "esbuild";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === "development";
@@ -7,7 +8,8 @@ console.time("prebuild");
 await Bun.$`rm -rf dist`;
 console.timeEnd("prebuild");
 
-const esbuildConfig: BuildOptions = {
+console.time("build");
+const out = await build({
   entryPoints: ["src/index.ts"],
   outfile: "dist/index.js",
   platform: "node",
@@ -18,15 +20,11 @@ const esbuildConfig: BuildOptions = {
   minifySyntax: !dev,
   metafile: !dev && process.stdout.isTTY,
   logLevel: "debug",
-};
+});
+console.timeEnd("build");
 
-if (dev) {
-  const context = await esbuild.context(esbuildConfig);
-  await context.watch();
-} else {
-  console.time("build");
-  const out = await esbuild.build(esbuildConfig);
-  console.timeEnd("build");
+console.time("dts");
+createTypes(["src/index.ts"], "dist");
+console.timeEnd("dts");
 
-  if (out.metafile) console.log(await esbuild.analyzeMetafile(out.metafile));
-}
+if (out.metafile) console.log(await analyzeMetafile(out.metafile));

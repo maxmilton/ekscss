@@ -7,15 +7,13 @@
   "author": "Max Milton <max@2okki.com>",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "NODE_ENV=production bun build.ts",
-    "dev": "NODE_ENV=development bun build.ts",
-    "postbuild": "tsc --emitDeclarationOnly"
+    "dev": "NODE_ENV=development bun build.ts"
   },
   "peerDependencies": {
     "ekscss": "workspace:^",
@@ -26,11 +24,9 @@
     "@rollup/pluginutils": "^5.2.0"
   },
   "devDependencies": {
+    "@ekscss/build-tools": "workspace:*",
     "ekscss": "workspace:*",
     "esbuild": "0.25.9",
     "rollup": "4.46.2"
-  },
-  "engines": {
-    "node": ">=14"
   }
 }

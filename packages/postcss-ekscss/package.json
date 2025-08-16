@@ -25,6 +25,7 @@
     }
   },
   "devDependencies": {
+    "@ekscss/build-tools": "workspace:*",
     "esbuild": "0.25.9",
     "postcss": "8.5.6"
   }

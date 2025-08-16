@@ -17,7 +17,7 @@ const out = await build({
   define: {
     "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  external: ["ekscss", "stylis"],
+  external: ["ekscss"],
   bundle: true,
   sourcemap: true,
   minify: !dev,
