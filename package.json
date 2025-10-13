@@ -26,7 +26,7 @@
     "dprint": "0.50.1",
     "ekscss": "workspace:*",
     "eslint": "9.33.0",
-    "eslint-plugin-unicorn": "60.0.0",
+    "eslint-plugin-unicorn": "61.0.2",
     "postcss-ekscss": "workspace:*",
     "stylelint": "16.23.1",
     "stylelint-config-standard": "39.0.0",
