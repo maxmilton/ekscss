@@ -27,6 +27,6 @@
     "@ekscss/build-tools": "workspace:*",
     "ekscss": "workspace:*",
     "esbuild": "0.25.9",
-    "rollup": "4.46.2"
+    "rollup": "4.52.5"
   }
 }
