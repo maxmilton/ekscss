@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@eslint/js": "9.33.0",
-    "@maxmilton/eslint-config": "0.2.1",
+    "@maxmilton/eslint-config": "0.3.0",
     "@maxmilton/stylelint-config": "0.4.2",
     "@maxmilton/test-utils": "0.0.12",
     "@types/bun": "1.2.20",

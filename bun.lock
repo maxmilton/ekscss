@@ -4,7 +4,7 @@
     "": {
       "devDependencies": {
         "@eslint/js": "9.33.0",
-        "@maxmilton/eslint-config": "0.2.1",
+        "@maxmilton/eslint-config": "0.3.0",
         "@maxmilton/stylelint-config": "0.4.2",
         "@maxmilton/test-utils": "0.0.12",
         "@types/bun": "1.2.20",
@@ -365,7 +365,7 @@
 
     "@keyv/serialize": ["@keyv/serialize@1.1.0", "", {}, "sha512-RlDgexML7Z63Q8BSaqhXdCYNBy/JQnqYIwxofUrNLGCblOMHp+xux2Q8nLMLlPpgHQPoU0Do8Z6btCpRBEqZ8g=="],
 
-    "@maxmilton/eslint-config": ["@maxmilton/eslint-config@0.2.1", "", { "dependencies": { "confusing-browser-globals": "^1.0.11" }, "peerDependencies": { "@eslint/js": "^9.0.0", "eslint": "^9.0.0", "eslint-plugin-unicorn": ">=56.0.0", "typescript-eslint": "^8.0.0" }, "optionalPeers": ["eslint-plugin-unicorn"] }, "sha512-wgVbw2RYgPeMNNt0iOgxbBP4WpbYCh+6FaA3hIJEKkHp3EhUavuAVKrDUbTCpno2Yx3MaUbx4R8W59WBNNIDRw=="],
+    "@maxmilton/eslint-config": ["@maxmilton/eslint-config@0.3.0", "", { "peerDependencies": { "@eslint/js": "^9.38.0", "eslint": "^9.38.0", "eslint-plugin-unicorn": ">=62.0.0", "typescript-eslint": "^8.46.2" }, "optionalPeers": ["eslint-plugin-unicorn"] }, "sha512-aMxmJK1+G52eMffCj/nRLAvEmqcQUaIyn4HyGLXOQEwg/PtD90hz6ntl/9fPaGpoGK9JqLz4/ebdI3QpxyWPTA=="],
 
     "@maxmilton/html-parser": ["@maxmilton/html-parser@0.0.12", "", {}, "sha512-hrmgn5evsM1OpYF+iH5IEi/Z+ZKLmYAxSTVnehxypGERNkjhhp+MDPFeXmxPNKapru5F7XfvUGCXZgjkrM2q9g=="],
 
@@ -524,8 +524,6 @@
     "colord": ["colord@2.9.3", "", {}, "sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw=="],
 
     "concat-map": ["concat-map@0.0.1", "", {}, "sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg=="],
-
-    "confusing-browser-globals": ["confusing-browser-globals@1.0.11", "", {}, "sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA=="],
 
     "convert-source-map": ["convert-source-map@2.0.0", "", {}, "sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg=="],
 
