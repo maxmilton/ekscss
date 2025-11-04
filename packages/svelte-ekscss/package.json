@@ -27,6 +27,6 @@
     "@ekscss/build-tools": "workspace:*",
     "ekscss": "workspace:*",
     "esbuild": "0.25.9",
-    "svelte": "5.38.1"
+    "svelte": "5.43.3"
   }
 }
