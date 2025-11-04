@@ -52,24 +52,6 @@ export default defineConfig(
     },
   },
   {
-    files: [
-      "*.config.mjs",
-      "*.config.ts",
-      "*.d.ts",
-      "**/*.spec.ts",
-      "**/*.test.ts",
-      "**/*.test-node.js",
-      "packages/*/*.config.ts",
-      "packages/*/*.d.ts",
-      "packages/*/build.ts",
-      "packages/*/test/**",
-      "test/**",
-    ],
-    rules: {
-      "import/no-extraneous-dependencies": "off",
-    },
-  },
-  {
     files: ["packages/*/build.ts"],
     rules: {
       "no-console": "off",
@@ -78,7 +60,6 @@ export default defineConfig(
   {
     files: ["packages/cli/index.js"],
     rules: {
-      // "@typescript-eslint/no-unsafe-assignment": "warn",
       "@typescript-eslint/prefer-optional-chain": "off",
       "@typescript-eslint/restrict-template-expressions": "off",
       "global-require": "off",
