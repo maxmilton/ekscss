@@ -57,7 +57,7 @@
     "@ekscss/plugin-apply": "workspace:^",
     "@ekscss/plugin-import": "workspace:^",
     "@ekscss/plugin-prefix": "workspace:^",
-    "color": "^5.0.0",
+    "color": "^5.0.2",
     "cssremedy": "github:jensimmons/cssremedy#af14bf3",
     "dset": "^3.1.4"
   },
