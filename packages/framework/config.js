@@ -30,16 +30,7 @@ module.exports = {
       l: "(min-width: 60.01rem)",
     },
 
-    spacingValues: [
-      "0",
-      "0.25rem",
-      "0.5rem",
-      "1rem",
-      "2rem",
-      "4rem",
-      "8rem",
-      "16rem",
-    ],
+    spacingValues: ["0", "0.25rem", "0.5rem", "1rem", "2rem", "4rem", "8rem", "16rem"],
 
     /* Text */
     fontStack: [
@@ -209,9 +200,9 @@ module.exports = {
       helpMargin: (x) => x.input.paddingY,
       helpTextColor: (x) => x.color.dark3,
       selectCaret: (x) =>
-        `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${
-          encodeURIComponent(xcss`${x.color.text}`)
-        }' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e")`,
+        `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='${encodeURIComponent(
+          xcss`${x.color.text}`,
+        )}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e")`,
       checkboxSize: "1.4rem",
       checkboxBorder: (x) => xcss`2px solid ${x.color.gray3}`,
       checkboxRadius: (x) => x.input.radius,

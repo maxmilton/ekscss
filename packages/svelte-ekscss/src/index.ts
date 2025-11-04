@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { ConfigLoader } from "@ekscss/config-loader";
-import { compile, type CompileOptions, resolvePlugins } from "ekscss";
+import { type CompileOptions, compile, resolvePlugins } from "ekscss";
 import * as colors from "kleur/colors";
 import type { Preprocessor, PreprocessorGroup } from "svelte/compiler";
 
@@ -66,20 +66,13 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
       if (warning.file) {
         console.log(
           "  at",
-          colors.dim(
-            [warning.file, warning.line, warning.column]
-              .filter(Boolean)
-              .join(":"),
-          ),
+          colors.dim([warning.file, warning.line, warning.column].filter(Boolean).join(":")),
         );
       }
     }
 
     if (reBadValue.test(compiled.css)) {
-      console.warn(
-        colors.yellow("Warning:"),
-        "XCSS output may contain unwanted value",
-      );
+      console.warn(colors.yellow("Warning:"), "XCSS output may contain unwanted value");
     }
 
     const { css, dependencies, map } = compiled;

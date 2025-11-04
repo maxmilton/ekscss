@@ -1,7 +1,18 @@
+// biome-ignore-all lint/suspicious/noTemplateCurlyInString: used in tests
+
 import { describe, expect, mock, spyOn, test } from "bun:test";
 import { isProxy } from "node:util/types";
 import { compile } from "../src/compiler.ts";
-import { accessorsProxy, ctx, each, interpolate, map, noop, resolvePlugins, xcss } from "../src/helpers.ts";
+import {
+  accessorsProxy,
+  ctx,
+  each,
+  interpolate,
+  map,
+  noop,
+  resolvePlugins,
+  xcss,
+} from "../src/helpers.ts";
 import type { Context } from "../src/types.ts";
 
 describe("noop", () => {
@@ -151,10 +162,7 @@ describe("resolvePlugins", () => {
     function plugin1() {}
     // eslint-disable-next-line unicorn/consistent-function-scoping
     function plugin2() {}
-    expect(resolvePlugins([plugin1, plugin2])).toStrictEqual([
-      plugin1,
-      plugin2,
-    ]);
+    expect(resolvePlugins([plugin1, plugin2])).toStrictEqual([plugin1, plugin2]);
   });
 
   test("resolves plugins when strings", async () => {
@@ -177,11 +185,7 @@ describe("resolvePlugins", () => {
   test("resolves plugins when functions", async () => {
     expect.assertions(7);
     const plugin = await import("@ekscss/plugin-null");
-    const plugins = resolvePlugins([
-      plugin.default,
-      plugin.default,
-      plugin.default,
-    ]);
+    const plugins = resolvePlugins([plugin.default, plugin.default, plugin.default]);
     expect(plugins[0]).toBeFunction();
     expect(plugins[0]).toBe(plugin.default);
     expect(plugins[1]).toBeFunction();
@@ -194,11 +198,7 @@ describe("resolvePlugins", () => {
   test("resolves plugins when mixed", async () => {
     expect.assertions(7);
     const plugin = await import("@ekscss/plugin-null");
-    const plugins = resolvePlugins([
-      "@ekscss/plugin-null",
-      plugin.default,
-      "@ekscss/plugin-null",
-    ]);
+    const plugins = resolvePlugins(["@ekscss/plugin-null", plugin.default, "@ekscss/plugin-null"]);
     expect(plugins[0]).toBeFunction();
     expect(plugins[0]).toBe(plugin.default);
     expect(plugins[1]).toBeFunction();

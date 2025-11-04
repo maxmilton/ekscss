@@ -3,16 +3,18 @@
  * config into your own project, you should use `config.js`, not this file.
  */
 
-import { ctx, onBeforeBuild } from "ekscss";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { ctx, onBeforeBuild } from "ekscss";
 import baseConfig from "./config.js";
 import { preloadApply } from "./utils.js";
 
 /** @type {import("./package.json")} */
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const pkg = JSON.parse(readFileSync(fileURLToPath(new URL("package.json", import.meta.url)), "utf8"));
+const pkg = JSON.parse(
+  readFileSync(fileURLToPath(new URL("package.json", import.meta.url)), "utf8"),
+);
 
 /** @type {string} */
 let bundleName;

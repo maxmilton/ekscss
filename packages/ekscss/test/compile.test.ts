@@ -3,8 +3,10 @@
 // - Validate "warnings" are generated in expected scenarios and file, line, column are correct
 // - Validate "dependencies" are added correctly
 
-import { GenMapping } from "@jridgewell/gen-mapping";
+// biome-ignore-all lint/suspicious/noTemplateCurlyInString: used in tests
+
 import { describe, expect, mock, test } from "bun:test";
+import { GenMapping } from "@jridgewell/gen-mapping";
 import { compile, onAfterBuild, onBeforeBuild } from "../src/compiler.ts";
 
 const complexCodeFixture = `

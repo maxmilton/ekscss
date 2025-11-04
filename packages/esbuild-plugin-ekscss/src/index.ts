@@ -1,9 +1,9 @@
 // https://esbuild.github.io/plugins/
 
-import { ConfigLoader } from "@ekscss/config-loader";
-import { compile, type CompileOptions, resolvePlugins } from "ekscss";
-import type { PartialMessage, Plugin } from "esbuild";
 import * as fs from "node:fs";
+import { ConfigLoader } from "@ekscss/config-loader";
+import { type CompileOptions, compile, resolvePlugins } from "ekscss";
+import type { PartialMessage, Plugin } from "esbuild";
 
 export type Config = Omit<CompileOptions, "from" | "to">;
 
@@ -90,9 +90,9 @@ export const xcss = (config?: string | Config): Plugin => ({
       let output = compiled.css;
 
       if (compiled.map) {
-        output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${
-          Buffer.from(compiled.map.toString()).toString("base64")
-        } */`;
+        output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${Buffer.from(
+          compiled.map.toString(),
+        ).toString("base64")} */`;
       }
 
       const watchFiles = compiled.dependencies;

@@ -37,14 +37,16 @@ const out2 = await build({
     "process.env.NODE_ENV": JSON.stringify(mode),
   },
   external: ["stylis"],
-  plugins: [{
-    name: "stub-sourcemap",
-    setup(plugin) {
-      plugin.onLoad({ filter: /sourcemap\.ts$/ }, () => ({
-        contents: "export const compileSourceMap = () => {};",
-      }));
+  plugins: [
+    {
+      name: "stub-sourcemap",
+      setup(plugin) {
+        plugin.onLoad({ filter: /sourcemap\.ts$/ }, () => ({
+          contents: "export const compileSourceMap = () => {};",
+        }));
+      },
     },
-  }],
+  ],
   bundle: true,
   sourcemap: true,
   minifySyntax: !dev,

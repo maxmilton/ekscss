@@ -60,8 +60,8 @@ export type Expression =
 export type ExpressionOrNested = Expression | Dict<ExpressionOrNested>;
 
 export type Globals = ReadOnlyDict<ExpressionOrNested>;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Functions = ReadOnlyDict<(...args: any) => any>;
+// biome-ignore lint/suspicious/noExplicitAny: correctly accepts any type
+export type Functions = ReadOnlyDict<(...args: any) => any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 export interface CompileOptions {
   /**

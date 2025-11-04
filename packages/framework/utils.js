@@ -24,8 +24,8 @@ function color(value, model) {
   return Color(
     value instanceof Color || typeof value !== "function"
       ? value
-      // @ts-expect-error - TODO: Correctly type `value`
-      : xcss`${value}`,
+      : // @ts-expect-error - TODO: Correctly type `value`
+        xcss`${value}`,
     model,
   );
 }
@@ -45,9 +45,7 @@ function color(value, model) {
  * @param code - The XCSS code to preload, default is `"@import '@ekscss/framework/level2.xcss';"`.
  * @returns {void}
  */
-function preloadApply(
-  code = "@import '@ekscss/framework/level2.xcss';",
-) {
+function preloadApply(code = "@import '@ekscss/framework/level2.xcss';") {
   const oldDependencies = [...ctx.dependencies];
   const oldWarnings = [...ctx.warnings];
 
@@ -116,9 +114,8 @@ function resolveGlobals(globals) {
       val = val(ctx.x, ctx.fn);
     }
 
-    resolved[key] = typeof val === "object" && val !== null && !Array.isArray(val)
-      ? resolveGlobals(val)
-      : val;
+    resolved[key] =
+      typeof val === "object" && val !== null && !Array.isArray(val) ? resolveGlobals(val) : val;
   }
 
   return resolved;

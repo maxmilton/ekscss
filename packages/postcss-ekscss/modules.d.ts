@@ -22,12 +22,7 @@ declare module "postcss/lib/parser" {
     atrule(token: Token): void;
 
     init(node: Node, offset?: number): void;
-    raw(
-      node: Node,
-      prop: string,
-      tokens: Token[],
-      customProperty: boolean,
-    ): void;
+    raw(node: Node, prop: string, tokens: Token[], customProperty: boolean): void;
     spacesAndCommentsFromStart(tokens: Token[]): string;
     spacesFromEnd(tokens: Token[]): string;
     stringFrom(tokens: Token[], from: number): string;

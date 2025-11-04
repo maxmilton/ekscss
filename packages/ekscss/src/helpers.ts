@@ -79,11 +79,7 @@ class UndefinedProperty {
 export function accessorsProxy<T extends object>(obj: T, parentPath: string): T {
   // Shallow clone to prevent mutations on the original object
   const baseTarget = (
-    Array.isArray(obj)
-      ? [...obj]
-      : toType(obj) === "[object Object]"
-      ? { ...obj }
-      : obj
+    Array.isArray(obj) ? [...obj] : toType(obj) === "[object Object]" ? { ...obj } : obj
   ) as T;
 
   // eslint-disable-next-line guard-for-in
@@ -160,7 +156,10 @@ export function map<T>(arr: T[], callback: (value: T, index: number) => string):
 /**
  * Iterate over each of an object's properties then combine the result.
  */
-export function each<T>(obj: Record<string, T>, callback: (key: string, value: T) => string): string {
+export function each<T>(
+  obj: Record<string, T>,
+  callback: (key: string, value: T) => string,
+): string {
   if (toType(obj) !== "[object Object]") {
     ctx.warnings.push({
       code: "each-invalid-object",
@@ -207,10 +206,9 @@ export function xcss(template: TemplateStringsArray, ...expressions: Expression[
       } else {
         ctx.warnings.push({
           code: "expression-invalid",
-          message:
-            `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${
-              toType(value)
-            }`,
+          message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${toType(
+            value,
+          )}`,
           file: ctx.from,
         });
 

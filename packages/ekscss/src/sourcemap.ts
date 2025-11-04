@@ -18,8 +18,14 @@
 
 /* eslint-disable @typescript-eslint/prefer-for-of, no-underscore-dangle, unicorn/no-for-loop */
 
-import { addMapping, GenMapping, maybeAddMapping, setSourceContent, toEncodedMap } from "@jridgewell/gen-mapping";
 import path from "node:path";
+import {
+  addMapping,
+  GenMapping,
+  maybeAddMapping,
+  setSourceContent,
+  toEncodedMap,
+} from "@jridgewell/gen-mapping";
 import * as stylis from "stylis";
 import type { Element, RawSourceMap, Warning } from "./types.ts";
 
@@ -31,9 +37,9 @@ function extractSourceMapRef(ast: Element[]): string | null {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-cond-assign
   while (++index < 4 && (currentNode = ast[ast.length - index])) {
     if (
-      currentNode.type === stylis.COMMENT
+      currentNode.type === stylis.COMMENT &&
       // XXX: In stylis, comment nodes always have a string children value.
-      && (currentNode.children as string).startsWith("# sourceMappingURL=")
+      (currentNode.children as string).startsWith("# sourceMappingURL=")
     ) {
       return (currentNode.children as string).slice("# sourceMappingURL=".length).trim();
     }

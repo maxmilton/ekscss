@@ -1,6 +1,6 @@
 import { ConfigLoader } from "@ekscss/config-loader";
 import { createFilter, type FilterPattern } from "@rollup/pluginutils";
-import { compile, type CompileOptions, resolvePlugins } from "ekscss";
+import { type CompileOptions, compile, resolvePlugins } from "ekscss";
 import type { Plugin } from "rollup";
 
 export type Config = Omit<CompileOptions, "from" | "to">;
@@ -98,9 +98,7 @@ export default function rollupPlugin({
         if (warning.file) {
           console.log(
             "  at",
-            [warning.file, warning.line, warning.column]
-              .filter(Boolean)
-              .join(":"),
+            [warning.file, warning.line, warning.column].filter(Boolean).join(":"),
           );
         }
         /* eslint-enable no-console */

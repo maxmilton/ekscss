@@ -1,3 +1,5 @@
+// biome-ignore-all lint/performance/noDynamicNamespaceImportAccess: used in tests
+
 import { expect, test } from "bun:test";
 import * as allExports from "../src/index.ts";
 
@@ -15,25 +17,19 @@ const helperPublicExports: [string, unknown][] = [
   ["xcss", Function],
 ] as const;
 
-test.each(compilerPublicExports)(
-  'exports public "%s" compiler %p',
-  (name, type) => {
-    expect.assertions(2);
-    expect(allExports).toHaveProperty(name);
-    // @ts-expect-error - FIXME: Tricky type error that's different on cli lint and IDE.
-    expect(allExports[name]).toBeInstanceOf(type);
-  },
-);
+test.each(compilerPublicExports)('exports public "%s" compiler %p', (name, type) => {
+  expect.assertions(2);
+  expect(allExports).toHaveProperty(name);
+  // @ts-expect-error - FIXME: Tricky type error that's different on cli lint and IDE.
+  expect(allExports[name]).toBeInstanceOf(type);
+});
 
-test.each(helperPublicExports)(
-  'exports public "%s" helper %p',
-  (name, type) => {
-    expect.assertions(2);
-    expect(allExports).toHaveProperty(name);
-    // @ts-expect-error - FIXME: Tricky type error that's different on cli lint and IDE.
-    expect(allExports[name]).toBeInstanceOf(type);
-  },
-);
+test.each(helperPublicExports)('exports public "%s" helper %p', (name, type) => {
+  expect.assertions(2);
+  expect(allExports).toHaveProperty(name);
+  // @ts-expect-error - FIXME: Tricky type error that's different on cli lint and IDE.
+  expect(allExports[name]).toBeInstanceOf(type);
+});
 
 test("does not export any private internals", () => {
   expect.assertions(2);
@@ -42,9 +38,7 @@ test("does not export any private internals", () => {
     ...helperPublicExports.map((x) => x[0]),
   ];
   const scriptExports = new Set(Object.keys(allExports));
-  expect(scriptExports.size).toBeGreaterThanOrEqual(
-    allPublicExportNames.length,
-  );
+  expect(scriptExports.size).toBeGreaterThanOrEqual(allPublicExportNames.length);
   for (const name of allPublicExportNames) {
     scriptExports.delete(name);
   }

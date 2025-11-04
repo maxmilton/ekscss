@@ -38,12 +38,7 @@ onAfterBuild(() => {
 /**
  * XCSS plugin to inline the properties of referenced rules.
  */
-export const applyPlugin: Middleware = (
-  element,
-  _index,
-  _children,
-  callback,
-): void => {
+export const applyPlugin: Middleware = (element, _index, _children, callback): void => {
   if (element.type === stylis.RULESET) {
     for (const selector of element.props) {
       ((ctx.applyRefs as ApplyRefs)[selector] ??= []).push(element);

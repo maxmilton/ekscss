@@ -1,5 +1,5 @@
 import * as stylis from "stylis";
-import { accessorsProxy, ctx, each, interpolate, map as _map, xcss } from "./helpers.ts";
+import { map as _map, accessorsProxy, ctx, each, interpolate, xcss } from "./helpers.ts";
 import { compileSourceMap } from "./sourcemap.ts";
 import type { BuildHook, CompileOptions, CompileResult, Warning } from "./types.ts";
 

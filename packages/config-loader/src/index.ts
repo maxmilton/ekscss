@@ -50,9 +50,7 @@ export class ConfigLoader {
 
     this.files = files;
     this.cwd = path.resolve(cwd);
-    this.stopDir = stopDir
-      ? path.resolve(stopDir)
-      : path.parse(this.cwd).root;
+    this.stopDir = stopDir ? path.resolve(stopDir) : path.parse(this.cwd).root;
     this.packageKey = packageKey;
     this.noCache = noCache;
   }
@@ -103,9 +101,7 @@ export class ConfigLoader {
   }
 
   async load(configPath?: string): Promise<ConfigLoaderResult | null> {
-    const filePath = configPath
-      ? path.resolve(configPath)
-      : await this.resolve(this.cwd);
+    const filePath = configPath ? path.resolve(configPath) : await this.resolve(this.cwd);
 
     if (!filePath) return null;
 

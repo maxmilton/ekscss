@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign, no-underscore-dangle */
 
-import { ctx, type Element, interpolate, type Middleware, stylis, xcss } from "ekscss";
 import fs from "node:fs";
 import path from "node:path";
+import { ctx, type Element, interpolate, type Middleware, stylis, xcss } from "ekscss";
 
 // TODO: Document this plugin should come first.
 
@@ -38,18 +38,10 @@ const resolveFile = (filePath: string, dirs: string[]): string | null => {
  *
  * Only works with the filesystem; will not inline `url(...)`.
  */
-export const importPlugin: Middleware = (
-  element: Element,
-  _index,
-  _children,
-  callback,
-): void => {
+export const importPlugin: Middleware = (element: Element, _index, _children, callback): void => {
   if (element.type !== stylis.IMPORT || element.return) return;
 
-  const importPath = stylis
-    .tokenize(element.value)[3]
-    .replace(/^["']/, "")
-    .replace(/["']$/, "");
+  const importPath = stylis.tokenize(element.value)[3].replace(/^["']/, "").replace(/["']$/, "");
 
   if (importPath === "url") return;
 
