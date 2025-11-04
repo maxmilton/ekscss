@@ -1,0 +1,99 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "assist": {
+    "actions": {
+      "recommended": true,
+      "source": { "useSortedProperties": "on" },
+    },
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "lineWidth": 100,
+  },
+  "linter": {
+    "domains": {
+      "project": "all",
+    },
+    "rules": {
+      "recommended": true,
+      "style": {
+        "noNonNullAssertion": "off",
+      },
+      "suspicious": {
+        "noAssignInExpressions": "off",
+        "noConstEnum": "off",
+        "noPrototypeBuiltins": "off", // poor compatibility
+      },
+      "nursery": {
+        "noUnresolvedImports": "off", // covered by typescript
+      },
+    },
+  },
+  "javascript": {
+    "globals": ["Bun"],
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.jsonc", ".vscode/*.json", "**/tsconfig*.json", "turbo.json"],
+      "json": {
+        "parser": {
+          "allowComments": true,
+          "allowTrailingCommas": true,
+        },
+        "formatter": {
+          "trailingCommas": "all",
+        },
+      },
+    },
+    {
+      "includes": ["**/*.spec.ts", "**/*.test.ts", "packages/*/test/**", "test/**"],
+      "linter": {
+        "domains": {
+          "test": "all",
+        },
+        "rules": {
+          "correctness": {
+            "noUndeclaredDependencies": "off",
+          },
+        },
+      },
+    },
+    {
+      "includes": ["**/*.cjs", "**/*.test-node.js", "packages/cli/*.js", "packages/framework/*.js"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "useOptionalChain": "off", // we need to support old node versions
+          },
+          "suspicious": {
+            "noRedundantUseStrict": "off",
+          },
+        },
+      },
+    },
+    {
+      "includes": ["packages/ekscss/**"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noPrivateImports": "off",
+          },
+        },
+      },
+    },
+    {
+      "includes": ["docs/index.html", "docs/dev/index.html"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noCommaOperator": "off",
+          },
+          "correctness": {
+            "noUnusedVariables": "off",
+          },
+        },
+      },
+    },
+  ],
+}
