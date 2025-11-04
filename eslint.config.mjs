@@ -1,14 +1,10 @@
 import js from "@eslint/js";
 import mm from "@maxmilton/eslint-config";
+import { defineConfig } from "eslint/config";
 import unicorn from "eslint-plugin-unicorn";
 import ts from "typescript-eslint";
 
-const OFF = 0;
-const WARN = 1;
-const ERROR = 2;
-
-/** @type {import("typescript-eslint").ConfigArray} */
-const config = ts.config(
+export default defineConfig(
   js.configs.recommended,
   ts.configs.strictTypeChecked,
   ts.configs.stylisticTypeChecked,
@@ -16,7 +12,7 @@ const config = ts.config(
   mm.configs.recommended,
   {
     linterOptions: {
-      reportUnusedDisableDirectives: ERROR,
+      reportUnusedDisableDirectives: "error",
     },
     languageOptions: {
       parserOptions: {
@@ -31,34 +27,28 @@ const config = ts.config(
       },
     },
     rules: {
-      "@typescript-eslint/prefer-nullish-coalescing": WARN, // compatibility with node >= v12
-      "no-plusplus": OFF, // byte savings
-      quotes: [ERROR, "double", { avoidEscape: true }],
-      "unicorn/no-array-callback-reference": OFF, // byte savings
-      "unicorn/no-array-for-each": OFF, // slower but more compact (for non-performance-critical code)
-      "unicorn/prefer-at": OFF, // bad browser support
-      "unicorn/prefer-global-this": OFF, // prefer to clearly separate Bun and DOM
-      "unicorn/prefer-string-replace-all": OFF, // bad browser support and slower
-      "unicorn/switch-case-braces": [ERROR, "avoid"], // byte savings (minification doesn't automatically remove)
+      "@typescript-eslint/prefer-nullish-coalescing": "warn", // compatibility with node >= v12
+      "no-plusplus": "off", // byte savings
+      "unicorn/no-array-callback-reference": "off", // byte savings
+      "unicorn/no-array-for-each": "off", // slower but more compact (for non-performance-critical code)
+      "unicorn/prefer-at": "off", // bad browser support
+      "unicorn/prefer-global-this": "off", // prefer to clearly separate Bun and DOM
+      "unicorn/prefer-string-replace-all": "off", // bad browser support and slower
+      "unicorn/switch-case-braces": ["error", "avoid"], // byte savings (minification doesn't automatically remove)
     },
   },
   {
-    files: [
-      "**/*.cjs",
-      "**/*.test-node.js",
-      "packages/cli/*.js",
-      "packages/framework/*.js",
-    ],
+    files: ["**/*.cjs", "**/*.test-node.js", "packages/cli/*.js", "packages/framework/*.js"],
     languageOptions: {
       parserOptions: {
         sourceType: "script",
       },
     },
     rules: {
-      "@typescript-eslint/no-require-imports": OFF,
-      "@typescript-eslint/prefer-nullish-coalescing": OFF,
-      strict: [ERROR, "global"],
-      "unicorn/prefer-module": OFF,
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/prefer-nullish-coalescing": "off",
+      strict: ["error", "global"],
+      "unicorn/prefer-module": "off",
     },
   },
   {
@@ -76,29 +66,27 @@ const config = ts.config(
       "test/**",
     ],
     rules: {
-      "import/no-extraneous-dependencies": OFF,
+      "import/no-extraneous-dependencies": "off",
     },
   },
   {
     files: ["packages/*/build.ts"],
     rules: {
-      "no-console": OFF,
+      "no-console": "off",
     },
   },
   {
     files: ["packages/cli/index.js"],
     rules: {
-      // "@typescript-eslint/no-unsafe-assignment": WARN,
-      "@typescript-eslint/prefer-optional-chain": OFF,
-      "@typescript-eslint/restrict-template-expressions": OFF,
-      "global-require": OFF,
-      "no-await-in-loop": OFF,
-      "no-console": OFF,
-      "unicorn/no-anonymous-default-export": OFF,
-      "unicorn/no-process-exit": OFF,
+      // "@typescript-eslint/no-unsafe-assignment": "warn",
+      "@typescript-eslint/prefer-optional-chain": "off",
+      "@typescript-eslint/restrict-template-expressions": "off",
+      "global-require": "off",
+      "no-await-in-loop": "off",
+      "no-console": "off",
+      "unicorn/no-anonymous-default-export": "off",
+      "unicorn/no-process-exit": "off",
     },
   },
   { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.ts"] },
 );
-
-export default config;
