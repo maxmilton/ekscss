@@ -11,7 +11,8 @@
     "lint:fmt": "biome check",
     "lint:js": "eslint",
     "lint:ts": "tsc --build --noEmit",
-    "test": "bun test",
+    "test": "bun test --only-failures",
+    "test:ci": "bun test --coverage --random --rerun-each=3",
     "test:node": "uvu packages '\\/test\\/.+\\.test-node\\.js$'",
     "test:node:c8": "c8 npm run test:node"
   },
