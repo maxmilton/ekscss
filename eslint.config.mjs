@@ -13,15 +13,10 @@ export default defineConfig(
   {
     linterOptions: {
       reportUnusedDisableDirectives: "error",
+      reportUnusedInlineConfigs: "error",
     },
     languageOptions: {
       parserOptions: {
-        project: [
-          "tsconfig.json",
-          "tsconfig.bun.json",
-          "tsconfig.node.json",
-          "packages/*/tsconfig.json",
-        ],
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
@@ -34,7 +29,7 @@ export default defineConfig(
       "unicorn/prefer-at": "off", // bad browser support
       "unicorn/prefer-global-this": "off", // prefer to clearly separate Bun and DOM
       "unicorn/prefer-string-replace-all": "off", // bad browser support and slower
-      "unicorn/switch-case-braces": ["error", "avoid"], // byte savings (minification doesn't automatically remove)
+      "unicorn/switch-case-braces": ["error", "avoid"], // byte savings when minification doesn't remove
     },
   },
   {
