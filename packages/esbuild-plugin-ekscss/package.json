@@ -19,14 +19,14 @@
   },
   "peerDependencies": {
     "ekscss": "workspace:^",
-    "esbuild": ">=0.13.0 <0.26.0"
+    "esbuild": "<0.28.0"
   },
   "dependencies": {
     "@ekscss/config-loader": "workspace:^"
   },
   "devDependencies": {
     "ekscss": "workspace:*",
-    "esbuild": "0.25.12"
+    "esbuild": "0.27.0"
   },
   "engines": {
     "node": ">=14"
