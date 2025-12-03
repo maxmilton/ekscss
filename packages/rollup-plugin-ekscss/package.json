@@ -26,7 +26,7 @@
   "devDependencies": {
     "@ekscss/build-tools": "workspace:*",
     "ekscss": "workspace:*",
-    "esbuild": "0.25.12",
-    "rollup": "4.52.5"
+    "esbuild": "0.27.1",
+    "rollup": "4.53.3"
   }
 }
