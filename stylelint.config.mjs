@@ -12,6 +12,7 @@ export default {
     "**/*.bak/**",
     "**/dist/**",
     "**/node_modules/**",
+    "packages/framework/test/test.xcss",
 
     // TODO: Remove these when fixed.
     "packages/framework/addon/alert.xcss",
@@ -23,7 +24,6 @@ export default {
     "packages/framework/level2/grid.xcss",
     "packages/framework/level2/position.xcss",
     "packages/framework/level2/spacing.xcss",
-    "packages/framework/test/test.xcss",
   ],
   rules: {
     "media-query-no-invalid": null,

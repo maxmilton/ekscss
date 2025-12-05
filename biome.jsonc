@@ -4,96 +4,93 @@
   "assist": {
     "actions": {
       "recommended": true,
-      "source": { "useSortedProperties": "on" },
-    },
+      "source": { "useSortedProperties": "on" }
+    }
   },
   "formatter": {
     "indentStyle": "space",
-    "lineWidth": 100,
+    "lineWidth": 100
   },
   "linter": {
     "domains": {
-      "project": "all",
+      "project": "all"
     },
     "rules": {
       "recommended": true,
       "style": {
-        "noNonNullAssertion": "off",
+        "noNonNullAssertion": "off"
       },
       "suspicious": {
         "noAssignInExpressions": "off",
         "noConstEnum": "off",
-        "noPrototypeBuiltins": "off", // poor compatibility
-      },
-      "nursery": {
-        "noUnresolvedImports": "off", // covered by typescript
-      },
-    },
+        "noPrototypeBuiltins": "off" // poor compatibility
+      }
+    }
   },
   "javascript": {
     "globals": ["Bun"],
+    "formatter": {
+      "operatorLinebreak": "before"
+    }
   },
   "overrides": [
     {
-      "includes": ["**/*.jsonc", ".vscode/*.json", "**/tsconfig*.json", "turbo.json"],
+      "includes": ["**/*.jsonc", "**/tsconfig*.json", ".vscode/*.json", "turbo.json"],
       "json": {
         "parser": {
           "allowComments": true,
-          "allowTrailingCommas": true,
-        },
-        "formatter": {
-          "trailingCommas": "all",
-        },
-      },
+          "allowTrailingCommas": true
+        }
+      }
     },
     {
       "includes": ["**/*.spec.ts", "**/*.test.ts", "packages/*/test/**", "test/**"],
       "linter": {
         "domains": {
-          "test": "all",
+          "test": "all"
         },
         "rules": {
           "correctness": {
-            "noUndeclaredDependencies": "off",
-          },
-        },
-      },
+            "noUndeclaredDependencies": "off"
+          }
+        }
+      }
     },
     {
       "includes": ["**/*.cjs", "**/*.test-node.js", "packages/cli/*.js", "packages/framework/*.js"],
       "linter": {
         "rules": {
           "complexity": {
-            "useOptionalChain": "off", // we need to support old node versions
+            "useOptionalChain": "off" // we need to support old node versions
           },
           "suspicious": {
-            "noRedundantUseStrict": "off",
-          },
-        },
-      },
+            "noRedundantUseStrict": "off"
+          }
+        }
+      }
     },
     {
       "includes": ["packages/ekscss/**"],
       "linter": {
         "rules": {
           "correctness": {
-            "noPrivateImports": "off",
-          },
-        },
-      },
+            "noPrivateImports": "off"
+          }
+        }
+      }
     },
     {
       "includes": ["docs/index.html", "docs/dev/index.html"],
       "linter": {
         "rules": {
           "complexity": {
-            "noCommaOperator": "off",
+            "noCommaOperator": "off"
           },
           "correctness": {
-            "noUnusedVariables": "off",
-          },
-        },
-      },
-    },
-  ],
+            "noUnusedVariables": "off"
+          }
+        }
+      }
+    }
+  ]
 }
