@@ -5,7 +5,7 @@
 //    to newer browsers only -- fallbacks are possible but at a high byte cost
 //  ↳ No explicit transition/animation, it's superfluous and distracting
 
-// XXX: Assuming colour preference from what the OS or browser is telling you
+// NOTE: Assuming colour preference from what the OS or browser is telling you
 // is not always not the expectation from a user perspective, often it's much
 // better to use JS + a toggle button allowing the user to choose themselves
 // @media (prefers-color-scheme: light) {}

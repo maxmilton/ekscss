@@ -19,11 +19,11 @@
     "allowUnreachableCode": false,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": false, // covered by eslint
+    "noFallthroughCasesInSwitch": false, // covered by linters
     "noImplicitOverride": true,
     "noUncheckedSideEffectImports": true,
-    "noUnusedLocals": false, // covered by eslint
-    "noUnusedParameters": false, // covered by eslint
-    "verbatimModuleSyntax": true,
-  },
+    "noUnusedLocals": false, // covered by linters
+    "noUnusedParameters": false, // covered by linters
+    "verbatimModuleSyntax": true
+  }
 }

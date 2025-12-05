@@ -8,6 +8,6 @@
     "packages/*/src",
     "packages/*/test",
     "packages/framework/xcss.config.mjs",
-    "test",
-  ],
+    "test"
+  ]
 }

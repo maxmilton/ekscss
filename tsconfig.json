@@ -5,11 +5,11 @@
   "compilerOptions": {
     "noEmit": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": true
   },
   "references": [
     { "path": "./tsconfig.bun.json" },
     { "path": "./tsconfig.node.json" },
-    { "path": "./packages/framework/tsconfig.json" },
-  ],
+    { "path": "./packages/framework/tsconfig.json" }
+  ]
 }

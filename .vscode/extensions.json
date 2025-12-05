@@ -4,10 +4,9 @@
     "dbaeumer.vscode-eslint",
     "MylesMurphy.prettify-ts",
     "oven.bun-vscode",
-    "redhat.vscode-yaml",
     "stylelint.vscode-stylelint",
     "tekumara.typos-vscode",
-    "yoavbls.pretty-ts-errors",
+    "yoavbls.pretty-ts-errors"
   ],
-  "unwantedRecommendations": ["dprint.dprint", "esbenp.prettier-vscode"],
+  "unwantedRecommendations": ["dprint.dprint", "esbenp.prettier-vscode", "prettier.prettier-vscode"]
 }

@@ -41,7 +41,7 @@ export function interpolate(template: string): TemplateFn {
  * object lookups and still report back a string value. This results in
  * non-crashing builds and better visibility into what's wrong to users.
  *
- * XXX: Uses a class so we can use `instanceof` to identify when it's used as
+ * NOTE: Uses a class so we can use `instanceof` to identify when it's used as
  * an object's property value. `instanceof` tends to be slightly faster than
  * direct property access for mixed object types - <https://jsben.ch/KVoXV>.
  */

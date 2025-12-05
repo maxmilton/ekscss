@@ -356,6 +356,6 @@ module.exports = {
     },
 
     /* Addon: ux-larger-click-zone.xcss */
-    linkClickArea: "0.4em", // XXX: Reduce if links overlap
+    linkClickArea: "0.4em", // reduce if links overlap!
   },
 };

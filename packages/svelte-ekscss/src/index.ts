@@ -30,7 +30,7 @@ export const style = ({ config }: PluginOptions = {}): Preprocessor => {
   return async ({ attributes, content, filename }) => {
     if (attributes.lang !== "xcss") return;
 
-    // XXX: Svelte has no way to identify when the config was changed when
+    // NOTE: Svelte has no way to identify when the config was changed when
     // watching during dev mode, so to update the config the whole svelte
     // processes must be manually restarted
 

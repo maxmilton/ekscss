@@ -6,7 +6,7 @@
     "declaration": true,
     "sourceMap": true,
     "noEmit": false,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": true
   },
-  "include": ["config.js", "utils.js"],
+  "include": ["config.js", "utils.js"]
 }

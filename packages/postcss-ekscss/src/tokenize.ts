@@ -137,11 +137,11 @@ export function tokenize(
           next += 1;
           code = css.charCodeAt(next);
         } while (
-          code === SPACE ||
-          code === NEWLINE ||
-          code === TAB ||
-          code === CR ||
-          code === FEED
+          code === SPACE
+          || code === NEWLINE
+          || code === TAB
+          || code === CR
+          || code === FEED
         );
 
         currentToken = ["space", css.slice(pos, next)];
@@ -250,13 +250,13 @@ export function tokenize(
         }
         code = css.charCodeAt(next + 1);
         if (
-          escape &&
-          code !== SLASH &&
-          code !== SPACE &&
-          code !== NEWLINE &&
-          code !== TAB &&
-          code !== CR &&
-          code !== FEED
+          escape
+          && code !== SLASH
+          && code !== SPACE
+          && code !== NEWLINE
+          && code !== TAB
+          && code !== CR
+          && code !== FEED
         ) {
           next += 1;
           if (RE_HEX_ESCAPE.test(css.charAt(next))) {

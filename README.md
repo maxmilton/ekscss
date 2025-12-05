@@ -91,7 +91,7 @@ See [releases on GitHub](https://github.com/maxmilton/ekscss/releases).
 
 ## License
 
-MIT license. See [LICENSE](https://github.com/maxmilton/ekscss/blob/master/LICENSE).
+MIT license. See [LICENSE](./LICENSE).
 
 ---
 

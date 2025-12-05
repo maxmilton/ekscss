@@ -47,7 +47,7 @@ describe("ctx", () => {
 
   test("has expected properties before compile", () => {
     expect.assertions(1);
-    // XXX: Before a compile has run all ctx properties are present on the ctx
+    // NOTE: Before a compile has run all ctx properties are present on the ctx
     // object but set as undefined.
     expect(ctx).toStrictEqual({
       rootDir: undefined,

@@ -36,10 +36,10 @@ function extractSourceMapRef(ast: Element[]): string | null {
   // Look through the last 3 AST nodes to try find a source map ref comment
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-cond-assign
   while (++index < 4 && (currentNode = ast[ast.length - index])) {
+    // NOTE: In stylis, comment nodes always have a string children value.
     if (
-      currentNode.type === stylis.COMMENT &&
-      // XXX: In stylis, comment nodes always have a string children value.
-      (currentNode.children as string).startsWith("# sourceMappingURL=")
+      currentNode.type === stylis.COMMENT
+      && (currentNode.children as string).startsWith("# sourceMappingURL=")
     ) {
       return (currentNode.children as string).slice("# sourceMappingURL=".length).trim();
     }
@@ -74,7 +74,7 @@ export function compileSourceMap(
 
   setSourceContent(map, from ? path.relative(rootDir, from) : "<unknown>", code);
 
-  // XXX: Stylis stringify transforms the AST into a single line string, so we
+  // NOTE: Stylis stringify transforms the AST into a single line string, so we
   // only need to track the generated output column position.
   let position = 0;
 
