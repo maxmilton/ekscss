@@ -3,32 +3,30 @@
 import { expect, test } from "bun:test";
 import * as allExports from "../src/index.ts";
 
-const compilerPublicExports: [string, unknown][] = [
-  ["onBeforeBuild", Function],
-  ["onAfterBuild", Function],
-  ["compile", Function],
-] as const;
-const helperPublicExports: [string, unknown][] = [
-  ["accessorsProxy", Function],
-  ["ctx", Object],
-  ["interpolate", Function],
-  ["resolvePlugins", Function],
-  ["stylis", Object],
-  ["xcss", Function],
-] as const;
+const compilerPublicExports = [
+  ["onBeforeBuild", "Function"],
+  ["onAfterBuild", "Function"],
+  ["compile", "Function"],
+] as const satisfies readonly [name: string, type: string][];
+const helperPublicExports = [
+  ["accessorsProxy", "Function"],
+  ["ctx", "Object"],
+  ["interpolate", "Function"],
+  ["resolvePlugins", "Function"],
+  ["stylis", "Module"],
+  ["xcss", "Function"],
+] as const satisfies readonly [name: string, type: string][];
 
-test.each(compilerPublicExports)('exports public "%s" compiler %p', (name, type) => {
+test.each(compilerPublicExports)('exports public "%s" compiler %s', (name, type) => {
   expect.assertions(2);
   expect(allExports).toHaveProperty(name);
-  // @ts-expect-error - FIXME: Tricky type error that's different on cli lint and IDE.
-  expect(allExports[name]).toBeInstanceOf(type);
+  expect(allExports[name]).toHaveObjectType(`[object ${type}]`);
 });
 
-test.each(helperPublicExports)('exports public "%s" helper %p', (name, type) => {
+test.each(helperPublicExports)('exports public "%s" helper %s', (name, type) => {
   expect.assertions(2);
   expect(allExports).toHaveProperty(name);
-  // @ts-expect-error - FIXME: Tricky type error that's different on cli lint and IDE.
-  expect(allExports[name]).toBeInstanceOf(type);
+  expect(allExports[name]).toHaveObjectType(`[object ${type}]`);
 });
 
 test("does not export any private internals", () => {
@@ -49,11 +47,11 @@ test("default export is undefined", () => {
   expect.assertions(4);
 
   // Runtime
-  expect(allExports).toBeInstanceOf(Object);
+  expect(allExports).toHaveObjectType("[object Module]");
   expect(allExports).not.toHaveProperty("default");
 
   // Build output
   const bundle = require("../dist/index.js"); // eslint-disable-line
-  expect(bundle).toBeInstanceOf(Object);
+  expect(bundle).toHaveObjectType("[object Object]");
   expect(bundle).not.toHaveProperty("default");
 });
