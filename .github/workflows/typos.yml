@@ -13,12 +13,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+permissions: {}
+
 jobs:
   typos:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - uses: crate-ci/typos@2d0ce569feab1f8752f1dde43cc2f2aa53236e06 # v1
