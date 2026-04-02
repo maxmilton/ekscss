@@ -27,7 +27,7 @@
     "c8": "10.1.3",
     "ekscss": "workspace:*",
     "eslint": "10.1.0",
-    "eslint-plugin-unicorn": "63.0.0",
+    "eslint-plugin-unicorn": "64.0.0",
     "postcss-ekscss": "workspace:*",
     "stylelint": "17.6.0",
     "stylelint-config-standard": "40.0.0",
