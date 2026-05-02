@@ -29,7 +29,7 @@
     "eslint": "10.2.1",
     "eslint-plugin-unicorn": "64.0.0",
     "postcss-ekscss": "workspace:*",
-    "stylelint": "17.6.0",
+    "stylelint": "17.9.1",
     "stylelint-config-standard": "40.0.0",
     "turbo": "2.8.1",
     "typescript": "5.9.3",
