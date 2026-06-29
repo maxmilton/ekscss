@@ -78,9 +78,9 @@ jobs:
             platform: macos-latest
         include:
           - node-version: 12
-            platform: macos-13
+            platform: macos-14
           - node-version: 14
-            platform: macos-13
+            platform: macos-14
     name: test-node (v${{ matrix.node-version }} ${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     timeout-minutes: 10
