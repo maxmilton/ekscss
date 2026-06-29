@@ -43,7 +43,7 @@ export default {
   get banner() {
     return `/*!
 * XCSS Framework [${bundleName}] v${pkg.version} - https://github.com/maxmilton/ekscss
-* (c) 2025 Max Milton
+* (c) 2026 Max Milton
 * MIT Licensed - https://github.com/maxmilton/ekscss/blob/main/LICENSE
 */`;
   },
