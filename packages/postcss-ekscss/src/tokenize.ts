@@ -67,9 +67,8 @@ export function tokenize(
   let next: number;
   let quote: typeof SINGLE_QUOTE | typeof DOUBLE_QUOTE;
   let content: string;
-  // biome-ignore lint/suspicious/noShadowRestrictedNames: TODO:!
-  let escape: boolean;
-  let escaped: boolean;
+  let shouldEscape: boolean;
+  let isEscaped: boolean;
   let prev: string;
   let n: number;
   let currentToken: Token;
@@ -83,14 +82,15 @@ export function tokenize(
     throw input.error(`Unclosed ${what}`, pos);
   }
 
+  // eslint-disable-next-line unicorn/consistent-boolean-name
   function endOfFile() {
     return returned.length === 0 && pos >= len;
   }
 
   function interpolation() {
     let depth = 1;
-    let stringQuote: boolean | number = false;
-    let stringEscaped = false;
+    let isStringQuote: boolean | number = false;
+    let isStringEscaped = false;
 
     while (depth > 0) {
       next += 1;
@@ -99,17 +99,17 @@ export function tokenize(
       code = css.charCodeAt(next);
       n = css.charCodeAt(next + 1);
 
-      if (stringQuote) {
-        if (!stringEscaped && code === stringQuote) {
-          stringQuote = false;
-          stringEscaped = false;
+      if (isStringQuote) {
+        if (!isStringEscaped && code === isStringQuote) {
+          isStringQuote = false;
+          isStringEscaped = false;
         } else if (code === BACKSLASH) {
-          stringEscaped = !stringEscaped;
-        } else if (stringEscaped) {
-          stringEscaped = false;
+          isStringEscaped = !isStringEscaped;
+        } else if (isStringEscaped) {
+          isStringEscaped = false;
         }
       } else if (code === SINGLE_QUOTE || code === DOUBLE_QUOTE) {
-        stringQuote = code;
+        isStringQuote = code;
       } else if (code === CLOSE_CURLY) {
         depth -= 1;
       } else if (n === OPEN_CURLY) {
@@ -137,6 +137,7 @@ export function tokenize(
           next += 1;
           code = css.charCodeAt(next);
         } while (
+          // eslint-disable-next-line unicorn/prefer-includes-over-repeated-comparisons
           code === SPACE
           || code === NEWLINE
           || code === TAB
@@ -170,13 +171,13 @@ export function tokenize(
 
         if (prev === "url" && n !== SINGLE_QUOTE && n !== DOUBLE_QUOTE) {
           brackets = 1;
-          escaped = false;
+          isEscaped = false;
           next = pos + 1;
           while (next <= css.length - 1) {
             n = css.charCodeAt(next);
             // eslint-disable-next-line unicorn/prefer-switch
             if (n === BACKSLASH) {
-              escaped = !escaped;
+              isEscaped = !isEscaped;
             } else if (n === OPEN_PARENTHESES) {
               brackets += 1;
             } else if (n === CLOSE_PARENTHESES) {
@@ -207,7 +208,7 @@ export function tokenize(
         quote = code;
         next = pos;
 
-        escaped = false;
+        isEscaped = false;
         while (next < len) {
           next++;
           if (next === len) unclosed("string");
@@ -215,13 +216,13 @@ export function tokenize(
           code = css.charCodeAt(next);
           n = css.charCodeAt(next + 1);
 
-          if (!escaped && code === quote) {
+          if (!isEscaped && code === quote) {
             break;
           }
           if (code === BACKSLASH) {
-            escaped = !escaped;
-          } else if (escaped) {
-            escaped = false;
+            isEscaped = !isEscaped;
+          } else if (isEscaped) {
+            isEscaped = false;
           } else if (code === DOLLAR_SIGN && n === OPEN_CURLY) {
             interpolation();
           }
@@ -243,14 +244,14 @@ export function tokenize(
 
       case BACKSLASH:
         next = pos;
-        escape = true;
+        shouldEscape = true;
         while (css.charCodeAt(next + 1) === BACKSLASH) {
           next += 1;
-          escape = !escape;
+          shouldEscape = !shouldEscape;
         }
         code = css.charCodeAt(next + 1);
         if (
-          escape
+          shouldEscape
           && code !== SLASH
           && code !== SPACE
           && code !== NEWLINE
@@ -282,6 +283,7 @@ export function tokenize(
           interpolation();
           content = css.slice(pos, next + 1);
           currentToken = ["root", content, pos, next];
+          // eslint-disable-next-line unicorn/prefer-hoisting-branch-code
           pos = next;
         } else if (code === SLASH && n === ASTERISK) {
           next = css.indexOf("*/", pos + 2) + 1;

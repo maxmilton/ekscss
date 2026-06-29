@@ -26,7 +26,7 @@ export class XCSSStringifier extends Stringifier {
     }
   }
 
-  override decl(node: Declaration & { isNested?: boolean }, semicolon?: boolean): void {
+  override decl(node: Declaration & { isNested?: boolean }, hasSemicolon?: boolean): void {
     if (node.isNested) {
       const between = this.raw(node, "between", "colon");
       let string = node.prop + between + this.rawValue(node, "value");
@@ -46,7 +46,7 @@ export class XCSSStringifier extends Stringifier {
       if (after) this.builder(after);
       this.builder("}", node, "end");
     } else {
-      super.decl(node, semicolon);
+      super.decl(node, hasSemicolon);
     }
   }
 

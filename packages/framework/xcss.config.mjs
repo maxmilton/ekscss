@@ -13,19 +13,27 @@ import { preloadApply } from "./utils.js";
 /** @type {import("./package.json")} */
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const pkg = JSON.parse(
-  readFileSync(fileURLToPath(new URL("package.json", import.meta.url)), "utf8"),
+  readFileSync(
+    fileURLToPath(
+      // eslint-disable-next-line unicorn/max-nested-calls
+      new URL("package.json", import.meta.url),
+    ),
+    "utf8",
+  ),
 );
 
 /** @type {string} */
 let bundleName;
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 onBeforeBuild(() => {
-  if (ctx.from) {
-    bundleName = (ctx.from.includes("/addon/") ? "addon/" : "") + path.basename(ctx.from, ".xcss");
+  if (!ctx.from) return;
 
-    if (ctx.from.endsWith("framework/addon/native.xcss")) {
-      preloadApply("@import './level2.xcss';");
-    }
+  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
+  bundleName = (ctx.from.includes("/addon/") ? "addon/" : "") + path.basename(ctx.from, ".xcss");
+
+  if (ctx.from.endsWith("framework/addon/native.xcss")) {
+    preloadApply("@import './level2.xcss';");
   }
 });
 

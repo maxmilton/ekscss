@@ -1,4 +1,7 @@
 /* eslint-disable no-param-reassign, no-underscore-dangle */
+/* eslint "@typescript-eslint/no-unsafe-assignment": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-call": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-member-access": "warn" */
 
 import fs from "node:fs";
 import path from "node:path";

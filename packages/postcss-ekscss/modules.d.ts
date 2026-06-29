@@ -22,6 +22,7 @@ declare module "postcss/lib/parser" {
     atrule(token: Token): void;
 
     init(node: Node, offset?: number): void;
+    // eslint-disable-next-line unicorn/consistent-boolean-name
     raw(node: Node, prop: string, tokens: Token[], customProperty: boolean): void;
     spacesAndCommentsFromStart(tokens: Token[]): string;
     spacesFromEnd(tokens: Token[]): string;
