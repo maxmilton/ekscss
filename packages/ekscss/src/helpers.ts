@@ -52,14 +52,15 @@ class UndefinedProperty {
     // These "own functions" must be non-enumerable so when an UndefinedProperty
     // instance's properties are enumerated these functions are not included
     // e.g., `Object.keys(...)`
-    Object.defineProperty(this, "toString", {
-      enumerable: false,
-      value: () => this.UNDEFINED,
-    });
-
-    Object.defineProperty(this, Symbol.toPrimitive, {
-      enumerable: false,
-      value: noop,
+    Object.defineProperties(this, {
+      toString: {
+        enumerable: false,
+        value: () => this.UNDEFINED,
+      },
+      [Symbol.toPrimitive]: {
+        enumerable: false,
+        value: noop,
+      },
     });
   }
 }
@@ -84,9 +85,11 @@ export function accessorsProxy<T extends object>(obj: T, parentPath: string): T 
 
   // eslint-disable-next-line guard-for-in
   for (const key in baseTarget) {
+    // eslint-disable-next-line unicorn/no-unsafe-property-key
     const value = baseTarget[key];
 
     if (typeof value === "object" && value !== null) {
+      // eslint-disable-next-line unicorn/no-unsafe-property-key
       baseTarget[key] = accessorsProxy(value, `${parentPath}.${key}`);
     }
   }

@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-this-outside-of-class */
+
 import { ConfigLoader } from "@ekscss/config-loader";
 import { createFilter, type FilterPattern } from "@rollup/pluginutils";
 import { type CompileOptions, compile, resolvePlugins } from "ekscss";
@@ -136,13 +138,13 @@ export default function rollupPlugin({
     },
 
     watchChange(id) {
-      if (id === configPath) {
-        // delete require.cache[configPath];
-        // @ts-expect-error - Clearing data between builds
-        configData = undefined;
-        configPath = undefined;
-        cl.clearCache();
-      }
+      if (id !== configPath) return;
+
+      // delete require.cache[configPath];
+      // @ts-expect-error - Clearing data between builds
+      configData = undefined;
+      configPath = undefined;
+      cl.clearCache();
     },
   };
 }

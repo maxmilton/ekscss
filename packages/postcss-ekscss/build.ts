@@ -2,7 +2,7 @@ import { createTypes } from "@ekscss/build-tools";
 import { analyzeMetafile, build } from "esbuild";
 
 const mode = process.env.NODE_ENV;
-const dev = mode === "development";
+const isDev = mode === "development";
 
 console.time("prebuild");
 await Bun.$`rm -rf dist`;
@@ -17,8 +17,8 @@ const out = await build({
   external: ["postcss"],
   bundle: true,
   sourcemap: true,
-  minifySyntax: !dev,
-  metafile: !dev && process.stdout.isTTY,
+  minifySyntax: !isDev,
+  metafile: !isDev && process.stdout.isTTY,
   logLevel: "debug",
 });
 console.timeEnd("build");

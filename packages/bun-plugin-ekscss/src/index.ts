@@ -73,7 +73,7 @@ export const xcss = (config?: string | Config): BunPlugin => ({
       if (compiled.map) {
         output += `\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,${Buffer.from(
           compiled.map.toString(),
-        ).toString("base64")} */`;
+        ).toBase64()} */`;
       }
 
       return {

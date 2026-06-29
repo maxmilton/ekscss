@@ -1,3 +1,8 @@
+/* eslint "@typescript-eslint/no-unsafe-argument": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-assignment": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-call": "warn" */
+/* eslint "@typescript-eslint/no-unsafe-member-access": "warn" */
+
 "use strict";
 
 const { applyPlugin } = require("@ekscss/plugin-apply");
@@ -96,10 +101,10 @@ function extend(target, source) {
 }
 
 /** @typedef {Exclude<Expression, function>} ResolvedExpression */
-/** @typedef {Dict<ResolvedExpression | ResolvedOrNested>} ResolvedOrNested */
+/** @typedef {{[key: string]: ResolvedExpression | ResolvedOrNested | undefined}} ResolvedOrNested */
 
 /**
- * @param {Dict<ExpressionOrNested>} globals
+ * @param {{[key: string]: ExpressionOrNested | undefined}} globals
  * @returns {ResolvedOrNested}
  */
 function resolveGlobals(globals) {

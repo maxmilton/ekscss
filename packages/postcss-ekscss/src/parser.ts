@@ -74,10 +74,12 @@ export class XCSSParser extends Parser {
     node: AnyNode,
     prop: string,
     tokens: Token[],
+    // eslint-disable-next-line unicorn/consistent-boolean-name
     customProperty: boolean,
   ): string | undefined {
     super.raw(node, prop, tokens, customProperty);
 
+    // eslint-disable-next-line unicorn/no-computed-property-existence-check
     if (node.raws[prop]) {
       const xcss = node.raws[prop].raw;
       // eslint-disable-next-line no-param-reassign, unicorn/no-array-reduce
@@ -97,12 +99,12 @@ export class XCSSParser extends Parser {
   }
 
   override rule(tokens: Token[]): void {
-    let withColon = false;
+    let hasColon = false;
     let brackets = 0;
     let value = "";
 
     for (const i of tokens) {
-      if (withColon) {
+      if (hasColon) {
         if (i[0] !== "comment" && i[0] !== "{") {
           value += i[1];
         }
@@ -113,11 +115,11 @@ export class XCSSParser extends Parser {
       } else if (i[0] === ")") {
         brackets -= 1;
       } else if (brackets === 0 && i[0] === ":") {
-        withColon = true;
+        hasColon = true;
       }
     }
 
-    if (!withColon || value.trim() === "" || /^[#:A-Za-z-]/.test(value)) {
+    if (!hasColon || value.trim() === "" || /^[#:A-Za-z-]/.test(value)) {
       super.rule(tokens);
     } else {
       tokens.pop();
@@ -163,7 +165,7 @@ export class XCSSParser extends Parser {
       node.prop = "";
       while (tokens.length > 0) {
         const type = tokens[0][0];
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, unicorn/prefer-includes-over-repeated-comparisons
         if (type === ":" || type === "space" || type === "comment") {
           break;
         }
@@ -206,14 +208,13 @@ export class XCSSParser extends Parser {
           let str = "";
           for (let j = i; j > 0; j--) {
             const type = cache[j][0];
-            // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
-            if (str.trim().indexOf("!") === 0 && type !== "space") {
+            if (str.trim().startsWith("!") && type !== "space") {
+              // eslint-disable-next-line unicorn/no-break-in-nested-loop
               break;
             }
             str = cache.pop()[1] + str;
           }
-          // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
-          if (str.trim().indexOf("!") === 0) {
+          if (str.trim().startsWith("!")) {
             node.important = true;
             node.raws.important = str;
             // eslint-disable-next-line no-param-reassign

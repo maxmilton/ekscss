@@ -2,7 +2,7 @@ import { createTypes } from "@ekscss/build-tools";
 import { analyzeMetafile, build } from "esbuild";
 
 const mode = process.env.NODE_ENV;
-const dev = mode === "development";
+const isDev = mode === "development";
 
 console.time("prebuild");
 await Bun.$`rm -rf dist`;
@@ -22,8 +22,8 @@ const out1 = await build({
   external: ["@jridgewell/gen-mapping", "stylis"],
   bundle: true,
   sourcemap: true,
-  minify: !dev,
-  metafile: !dev && process.stdout.isTTY,
+  minify: !isDev,
+  metafile: !isDev && process.stdout.isTTY,
   logLevel: "debug",
 });
 // Browser compatible ESM bundle (without sourcemap support)
@@ -49,8 +49,8 @@ const out2 = await build({
   ],
   bundle: true,
   sourcemap: true,
-  minifySyntax: !dev,
-  metafile: !dev && process.stdout.isTTY,
+  minifySyntax: !isDev,
+  metafile: !isDev && process.stdout.isTTY,
   logLevel: "debug",
 });
 console.timeEnd("build");

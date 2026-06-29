@@ -1,7 +1,7 @@
 import esbuild, { type BuildOptions } from "esbuild";
 
 const mode = process.env.NODE_ENV;
-const dev = mode === "development";
+const isDev = mode === "development";
 
 console.time("prebuild");
 await Bun.$`rm -rf dist`;
@@ -19,8 +19,8 @@ const esbuildConfig1: BuildOptions = {
   external: ["ekscss", "stylis"],
   bundle: true,
   sourcemap: true,
-  minify: !dev,
-  metafile: !dev && process.stdout.isTTY,
+  minify: !isDev,
+  metafile: !isDev && process.stdout.isTTY,
   logLevel: "debug",
 };
 
@@ -37,12 +37,12 @@ const esbuildConfig2: BuildOptions = {
   external: ["ekscss", "stylis"],
   bundle: true,
   sourcemap: true,
-  minify: !dev,
-  metafile: !dev && process.stdout.isTTY,
+  minify: !isDev,
+  metafile: !isDev && process.stdout.isTTY,
   logLevel: "debug",
 };
 
-if (dev) {
+if (isDev) {
   const context1 = await esbuild.context(esbuildConfig1);
   const context2 = await esbuild.context(esbuildConfig2);
   await Promise.all([context1.watch(), context2.watch()]);

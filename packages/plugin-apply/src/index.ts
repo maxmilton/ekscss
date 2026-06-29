@@ -27,10 +27,12 @@ import { ctx, type Element, type Middleware, onAfterBuild, onBeforeBuild, stylis
 
 type ApplyRefs = Record<string, Element[] | undefined>;
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 onBeforeBuild(() => {
   ctx.applyRefs = {};
 });
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 onAfterBuild(() => {
   ctx.applyRefs = undefined;
 });

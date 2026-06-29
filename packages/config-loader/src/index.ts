@@ -114,9 +114,10 @@ export class ConfigLoader {
     return { path: filePath, data };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents, unicorn/consistent-class-member-order
   private loadData(filePath: string): unknown | Promise<unknown> {
     const extname = path.extname(filePath);
+    // eslint-disable-next-line unicorn/prefer-includes-over-repeated-comparisons
     if (extname === ".js" || extname === ".ts" || extname === ".mjs" || extname === ".cjs") {
       // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete require.cache[filePath];
