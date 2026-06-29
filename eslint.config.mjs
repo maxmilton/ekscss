@@ -29,6 +29,7 @@ export default defineConfig(
       "unicorn/prefer-at": "off", // bad browser support
       "unicorn/prefer-global-this": "off", // prefer to clearly separate Bun and DOM
       "unicorn/prefer-string-replace-all": "off", // bad browser support and slower
+      "unicorn/prefer-uint8array-base64": "off", // not available in node < v25
       "unicorn/switch-case-braces": ["error", "avoid"], // byte savings when minification doesn't remove
     },
   },
@@ -55,6 +56,7 @@ export default defineConfig(
   {
     files: ["packages/cli/index.js"],
     rules: {
+      "@typescript-eslint/no-unsafe-assignment": "warn",
       "@typescript-eslint/prefer-optional-chain": "off",
       "@typescript-eslint/restrict-template-expressions": "off",
       "global-require": "off",
@@ -62,6 +64,9 @@ export default defineConfig(
       "no-console": "off",
       "unicorn/no-anonymous-default-export": "off",
       "unicorn/no-process-exit": "off",
+      "unicorn/no-unsafe-string-replacement": "warn",
+      "unicorn/prefer-logical-operator-over-ternary": "off",
+      "unicorn/prefer-minimal-ternary": "off",
     },
   },
   { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.ts"] },

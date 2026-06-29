@@ -3,20 +3,28 @@
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "assist": {
     "actions": {
-      "recommended": true,
+      "preset": "recommended",
       "source": { "useSortedProperties": "on" }
     }
   },
   "formatter": {
+    "enabled": true,
     "indentStyle": "space",
     "lineWidth": 100
   },
   "linter": {
+    "enabled": true,
     "domains": {
       "project": "all"
     },
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
+      "a11y": {
+        "noSvgWithoutTitle": "off"
+      },
+      "correctness": {
+        "noUnresolvedImports": "off" // covered by typescript
+      },
       "style": {
         "noNonNullAssertion": "off"
       },
