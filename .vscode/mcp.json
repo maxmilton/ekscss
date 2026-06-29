@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "filesystem": {
+      "command": "bunx",
+      "args": ["@modelcontextprotocol/server-filesystem", "${workspaceFolder}"]
+    }
+  }
+}
