@@ -6,7 +6,7 @@
     "oven.bun-vscode",
     "stylelint.vscode-stylelint",
     "tekumara.typos-vscode",
-    "yoavbls.pretty-ts-errors"
+    "YoavBls.pretty-ts-errors"
   ],
   "unwantedRecommendations": ["dprint.dprint", "esbenp.prettier-vscode", "prettier.prettier-vscode"]
 }
