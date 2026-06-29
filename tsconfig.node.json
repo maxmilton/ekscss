@@ -1,13 +1,17 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "moduleResolution": "node10",
-    "allowSyntheticDefaultImports": true
+    "moduleResolution": "node16",
+    "module": "node16",
+    "allowSyntheticDefaultImports": true,
+
+    "types": ["node"]
   },
   "include": [
     "**/*.cjs",
     "**/package.json", // may be imported
     "packages/cli/*.js",
     "packages/framework/*.js"
-  ]
+  ],
+  "exclude": ["packages/framework/config.js", "packages/framework/utils.js"]
 }
