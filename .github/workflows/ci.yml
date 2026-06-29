@@ -68,7 +68,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [12, 14, 16, 18, 20, 22, 24]
+        node-version: [12, 14, 16, 18, 20, 22, 24, 26]
         platform: [ubuntu-latest, windows-latest, macos-latest]
         exclude:
           # no prebuilt node <=14 for darwin arm64 (macos-latest; macos-14)
@@ -100,9 +100,9 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: npm run test:node
-        if: ${{ matrix.node-version < 24 || matrix.platform != 'ubuntu-latest' }}
+        if: ${{ matrix.node-version < 26 || matrix.platform != 'ubuntu-latest' }}
       - run: npm run test:node:c8
-        if: ${{ matrix.node-version == 24 && matrix.platform == 'ubuntu-latest' }}
+        if: ${{ matrix.node-version == 26 && matrix.platform == 'ubuntu-latest' }}
       - name: Report coverage
         if: ${{ matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
         uses: qltysh/qlty-action/coverage@a19242102d17e497f437d7466aa01b528537e899 # v2
