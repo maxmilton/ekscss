@@ -2,10 +2,10 @@
   "name": "esbuild-plugin-ekscss",
   "version": "0.0.23",
   "description": "esbuild plugin to add support for XCSS",
-  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
-  "author": "Max Milton <max@2okki.com>",
+  "repository": "github:maxmilton/ekscss",
   "license": "MIT",
+  "author": "Max Milton <max@2okki.com>",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -14,12 +14,8 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production bun build.ts",
-    "dev": "NODE_ENV=development bun build.ts",
-    "postbuild": "tsc --emitDeclarationOnly"
-  },
-  "peerDependencies": {
-    "ekscss": "workspace:^",
-    "esbuild": ">=0.13.0 <0.29.0"
+    "postbuild": "tsc --emitDeclarationOnly",
+    "dev": "NODE_ENV=development bun build.ts"
   },
   "dependencies": {
     "@ekscss/config-loader": "workspace:^"
@@ -27,6 +23,10 @@
   "devDependencies": {
     "ekscss": "workspace:*",
     "esbuild": "0.28.1"
+  },
+  "peerDependencies": {
+    "ekscss": "workspace:^",
+    "esbuild": ">=0.13.0 <0.29.0"
   },
   "engines": {
     "node": ">=14"

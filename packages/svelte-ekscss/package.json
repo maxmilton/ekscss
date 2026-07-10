@@ -2,10 +2,10 @@
   "name": "svelte-ekscss",
   "version": "0.0.17",
   "description": "Svelte plugin to add support for XCSS",
-  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
-  "author": "Max Milton <max@2okki.com>",
+  "repository": "github:maxmilton/ekscss",
   "license": "MIT",
+  "author": "Max Milton <max@2okki.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -14,10 +14,6 @@
   "scripts": {
     "build": "NODE_ENV=production bun build.ts",
     "dev": "NODE_ENV=development bun build.ts"
-  },
-  "peerDependencies": {
-    "ekscss": "workspace:^",
-    "svelte": ">=3.0.0 <6.0.0"
   },
   "dependencies": {
     "@ekscss/config-loader": "workspace:^",
@@ -28,5 +24,9 @@
     "ekscss": "workspace:*",
     "esbuild": "0.28.1",
     "svelte": "5.56.4"
+  },
+  "peerDependencies": {
+    "ekscss": "workspace:^",
+    "svelte": ">=3.0.0 <6.0.0"
   }
 }

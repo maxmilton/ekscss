@@ -2,10 +2,10 @@
   "name": "postcss-ekscss",
   "version": "0.0.15",
   "description": "PostCSS plugin to add support for XCSS",
-  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
-  "author": "Max Milton <max@2okki.com>",
+  "repository": "github:maxmilton/ekscss",
   "license": "MIT",
+  "author": "Max Milton <max@2okki.com>",
   "main": "dist/index.js",
   "types": "types.d.ts",
   "files": [
@@ -16,6 +16,11 @@
     "build": "NODE_ENV=production bun build.ts",
     "dev": "NODE_ENV=development bun build.ts"
   },
+  "devDependencies": {
+    "@ekscss/build-tools": "workspace:*",
+    "esbuild": "0.28.1",
+    "postcss": "8.5.16"
+  },
   "peerDependencies": {
     "postcss": "^8.0.0"
   },
@@ -23,10 +28,5 @@
     "postcss": {
       "optional": true
     }
-  },
-  "devDependencies": {
-    "@ekscss/build-tools": "workspace:*",
-    "esbuild": "0.28.1",
-    "postcss": "8.5.16"
   }
 }

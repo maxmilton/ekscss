@@ -4,7 +4,10 @@
   "assist": {
     "actions": {
       "preset": "recommended",
-      "source": { "useSortedProperties": "on" }
+      "source": {
+        "useSortedPackageJson": "on",
+        "useSortedProperties": "on"
+      }
     }
   },
   "formatter": {

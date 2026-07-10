@@ -1,7 +1,7 @@
 {
   "name": "@ekscss/plugin-null",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "description": "Internal testing XCSS plugin that does nothing",
   "license": "MIT",
   "main": "src/index.js",

@@ -2,10 +2,10 @@
   "name": "@ekscss/config-loader",
   "version": "0.0.3",
   "description": "XCSS configuration file resolver and loader",
-  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
-  "author": "Max Milton <max@2okki.com>",
+  "repository": "github:maxmilton/ekscss",
   "license": "MIT",
+  "author": "Max Milton <max@2okki.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

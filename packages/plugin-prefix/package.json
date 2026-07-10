@@ -2,10 +2,10 @@
   "name": "@ekscss/plugin-prefix",
   "version": "0.0.17",
   "description": "XCSS plugin to add vendor prefixes",
-  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
-  "author": "Max Milton <max@2okki.com>",
+  "repository": "github:maxmilton/ekscss",
   "license": "MIT",
+  "author": "Max Milton <max@2okki.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -16,9 +16,6 @@
     "build": "NODE_ENV=production bun build.ts",
     "dev": "NODE_ENV=development bun build.ts"
   },
-  "peerDependencies": {
-    "ekscss": "workspace:^"
-  },
   "dependencies": {
     "stylis": "^4.3.6"
   },
@@ -26,5 +23,8 @@
     "@ekscss/build-tools": "workspace:*",
     "ekscss": "workspace:*",
     "esbuild": "0.28.1"
+  },
+  "peerDependencies": {
+    "ekscss": "workspace:^"
   }
 }

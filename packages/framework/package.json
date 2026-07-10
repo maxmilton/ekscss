@@ -2,11 +2,10 @@
   "name": "@ekscss/framework",
   "version": "0.0.60",
   "description": "Progressive CSS framework powered by ekscss",
-  "repository": "github:maxmilton/ekscss",
   "homepage": "https://ekscss.js.org",
-  "author": "Max Milton <max@2okki.com>",
+  "repository": "github:maxmilton/ekscss",
   "license": "MIT",
-  "main": "level2.xcss",
+  "author": "Max Milton <max@2okki.com>",
   "exports": {
     ".": "./level2.xcss",
     "./level1.xcss": "./level1.xcss",
@@ -26,6 +25,7 @@
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
   },
+  "main": "level2.xcss",
   "files": [
     "*.xcss",
     "addon",
@@ -38,20 +38,12 @@
     "utils.js"
   ],
   "scripts": {
+    "prebuild": "rm -rf dist *.d.ts",
     "build": "bun run build-levels && bun run build-addons",
+    "postbuild": "tsc --emitDeclarationOnly --composite false --incremental false",
     "build-addons": "for f in $(basename -s .xcss addon/*.xcss); do xcss -qm addon/$f.xcss dist/addon/$f.css; done",
     "build-levels": "for f in level1 level2 level3; do xcss -qm $f.xcss dist/$f.css; done",
-    "postbuild": "tsc --emitDeclarationOnly --composite false --incremental false",
-    "prebuild": "rm -rf dist *.d.ts",
     "test": "xcss test/test.xcss /dev/null"
-  },
-  "peerDependencies": {
-    "ekscss": "workspace:^"
-  },
-  "peerDependenciesMeta": {
-    "ekscss": {
-      "optional": true
-    }
   },
   "dependencies": {
     "@ekscss/plugin-apply": "workspace:^",
@@ -64,5 +56,13 @@
   "devDependencies": {
     "@ekscss/cli": "workspace:*",
     "ekscss": "workspace:*"
+  },
+  "peerDependencies": {
+    "ekscss": "workspace:^"
+  },
+  "peerDependenciesMeta": {
+    "ekscss": {
+      "optional": true
+    }
   }
 }
