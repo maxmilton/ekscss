@@ -54,6 +54,9 @@
     "editor.unicodeHighlight.invisibleCharacters": true,
     "files.trimTrailingWhitespace": false
   },
+  "[tailwindcss]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
   "[typescript]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never",

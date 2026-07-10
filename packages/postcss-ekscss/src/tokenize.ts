@@ -89,6 +89,7 @@ export function tokenize(
 
   function interpolation() {
     let depth = 1;
+    // eslint-disable-next-line unicorn/consistent-boolean-name
     let isStringQuote: boolean | number = false;
     let isStringEscaped = false;
 

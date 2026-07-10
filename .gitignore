@@ -7,6 +7,7 @@
 dist/
 node_modules/
 !/bun.lock
+/.claude/
 /coverage/
 
 # auto-generated
