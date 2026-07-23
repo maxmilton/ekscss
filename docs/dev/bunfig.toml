@@ -1,0 +1,11 @@
+"$schema" = "https://www.schemastore.org/bunfig.json"
+
+logLevel = "debug"
+
+[install]
+linker = "isolated"
+peer = false
+minimumReleaseAge = 604800 # 7 days
+
+[install.lockfile]
+save = false
