@@ -27,6 +27,7 @@ const { ctx, interpolate, stylis, xcss } = require("ekscss");
  */
 function color(value, model) {
   return Color(
+    // eslint-disable-next-line unicorn/prefer-simple-condition-first
     value instanceof Color || typeof value !== "function"
       ? value
       : // @ts-expect-error - TODO: Correctly type `value`

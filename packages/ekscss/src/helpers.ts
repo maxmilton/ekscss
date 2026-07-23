@@ -85,11 +85,9 @@ export function accessorsProxy<T extends object>(obj: T, parentPath: string): T 
 
   // eslint-disable-next-line guard-for-in
   for (const key in baseTarget) {
-    // eslint-disable-next-line unicorn/no-unsafe-property-key
     const value = baseTarget[key];
 
     if (typeof value === "object" && value !== null) {
-      // eslint-disable-next-line unicorn/no-unsafe-property-key
       baseTarget[key] = accessorsProxy(value, `${parentPath}.${key}`);
     }
   }
@@ -219,7 +217,7 @@ export function xcss(template: TemplateStringsArray, ...expressions: Expression[
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/restrict-plus-operands
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/restrict-plus-operands, unicorn/prefer-simple-condition-first
     out += (value || (value == null || value === false ? "" : value)) + strings[index];
   }
 
