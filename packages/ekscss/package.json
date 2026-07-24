@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@jridgewell/gen-mapping": "^0.3.13",
+    "@jridgewell/remapping": "^2.3.5",
     "@types/stylis": "^4.2.7",
     "stylis": "^4.3.6"
   },

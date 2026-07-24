@@ -10,6 +10,8 @@ const toType = (value: unknown): string => Object.prototype.toString.call(value)
 export const ctx = {
   rootDir: undefined,
   from: undefined,
+  raw: undefined,
+  pos: undefined,
   fn: undefined,
   x: undefined,
   dependencies: undefined,
@@ -181,6 +183,33 @@ export function each<T>(
   return out;
 }
 
+function resolveExpressionValue(value: Expression): string {
+  // Reduce XCSS function expressions to their final value
+  while (typeof value === "function") {
+    // eslint-disable-next-line no-param-reassign
+    value = value(ctx.x, ctx.fn);
+  }
+
+  if (typeof value === "object" && value !== null) {
+    if (typeof value.toString === "function") {
+      // eslint-disable-next-line no-param-reassign
+      value = value.toString();
+    } else {
+      ctx.warnings.push({
+        code: "expression-invalid",
+        message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${toType(
+          value,
+        )}`,
+        file: ctx.from,
+      });
+
+      return "INVALID";
+    }
+  }
+
+  return value === false || value == null ? "" : String(value);
+}
+
 /**
  * XCSS template literal tag function.
  *
@@ -193,35 +222,62 @@ export function xcss(template: TemplateStringsArray, ...expressions: Expression[
   let index = 0;
   let out = "";
 
-  for (; index < len; index++) {
-    let value = expressions[index - 1];
+  // eslint-disable-next-line prefer-destructuring
+  const raw = ctx.raw;
+  const track = raw !== undefined && len > 1;
 
-    // Reduce XCSS function expressions to their final value
-    while (typeof value === "function") {
-      value = value(ctx.x, ctx.fn);
+  // Flat `[genStart, origStart, genStart, origStart, ...]` pairs
+  let segments: number[] | undefined;
+  let offsets: number[] | undefined;
+
+  if (track) {
+    segments = [];
+    ctx.pos!.set(ctx.from, segments);
+
+    // Literal chunks (`.raw`) are exact, in-order, non-overlapping
+    // substrings of the original source, so their original offsets can be
+    // recovered with a sequential scan. We don't have the source text of
+    // `${...}` expressions themselves (only their evaluated value), so
+    // expression segments below collapse to a single point instead.
+    offsets = [];
+    let cursor = 0;
+
+    for (let i = 0; i < len; i++) {
+      const found = raw.indexOf(strings[i], cursor);
+      const start = found === -1 ? cursor : found;
+      offsets[i] = start;
+      cursor = start + strings[i].length;
     }
 
-    if (typeof value === "object" && value !== null) {
-      if (typeof value.toString === "function") {
-        value = value.toString();
-      } else {
-        ctx.warnings.push({
-          code: "expression-invalid",
-          message: `Invalid XCSS template expression. Must be string, object with toString() method, number, or falsely but got ${toType(
-            value,
-          )}`,
-          file: ctx.from,
-        });
-
-        value = "INVALID";
-      }
-    }
-
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing, @typescript-eslint/restrict-plus-operands, unicorn/prefer-simple-condition-first
-    out += (value || (value == null || value === false ? "" : value)) + strings[index];
+    // Guard against reentrancy while position-tracking: an expression can
+    // itself call `xcss` e.g., `${fn.each(items, (k, v) => xcss`...`)}`.
+    ctx.raw = undefined;
   }
 
-  return out;
+  try {
+    for (; index < len; index++) {
+      const resolved = resolveExpressionValue(expressions[index - 1]);
+
+      if (track && index > 0) {
+        // The expression value interpolated between the previous literal
+        // chunk and this one collapses to a single point mapping at the
+        // original `${` boundary.
+        segments!.push(out.length, offsets![index - 1] + strings[index - 1].length);
+      }
+
+      out += resolved;
+
+      if (track) {
+        segments!.push(out.length, offsets![index]);
+      }
+
+      out += strings[index];
+    }
+
+    return out;
+  } finally {
+    if (track) ctx.raw = raw;
+  }
 }
 
 /**
@@ -240,7 +296,7 @@ export function resolvePlugins(plugins: (Middleware | string)[]): Middleware[] {
     if (typeof plugin !== "string") return plugin;
 
     try {
-      // eslint-disable-next-line
+      // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-assignment, global-require
       const mod = require(plugin);
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       return (mod.default ?? mod) as Middleware;

@@ -94,12 +94,7 @@ module.exports = async (src, dest, opts) => {
 
   if (sourcemap) {
     if (config.banner) {
-      const bannerLineCount = config.banner.split("\n").length;
-      for (let i = 0; i < bannerLineCount; i++) {
-        // @ts-expect-error - internal property
-        // eslint-disable-next-line
-        sourcemap._map._mappings.unshift([]);
-      }
+      sourcemap.shift(config.banner.split("\n").length);
     }
 
     await Promise.all([
