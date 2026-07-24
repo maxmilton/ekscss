@@ -1,0 +1,177 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`source map snapshots encoded map for a simple compile with no interpolation or imports 1`] = `
+{
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": "AAAE,aACA",
+  "names": [],
+  "sourceRoot": undefined,
+  "sources": [
+    "<unknown>",
+  ],
+  "sourcesContent": [
+    
+"a{color:red}
+b{color:blue}"
+,
+  ],
+  "version": 3,
+}
+`;
+
+exports[`source map snapshots encoded map for interpolated expressions spread over multiple rules 1`] = `
+{
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": "AAAE,kCACA,mCACA",
+  "names": [],
+  "sourceRoot": undefined,
+  "sources": [
+    "<unknown>",
+  ],
+  "sourcesContent": [
+    
+"a{--c1:\${x.c1};--c2:\${x.c2};--c3:\${x.c3}}
+b{--c4:\${x.c4};--c5:\${x.c5};--c6:\${x.c6}}
+c{--c7:\${x.c7};--c8:\${x.c8};--c9:\${x.c9}}"
+,
+  ],
+  "version": 3,
+}
+`;
+
+exports[`source map snapshots encoded map across an @import chain from multiple distinct files 1`] = `
+{
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": "ACAG,cACA,iBCDA,eACA,eFCD",
+  "names": [],
+  "sourceRoot": undefined,
+  "sources": [
+    "<unknown>",
+    "a.css",
+    "b.css",
+  ],
+  "sourcesContent": [
+    
+"@import "/virtual/a.css";
+@import "/virtual/b.css";
+c{color:green}"
+,
+    
+"a1{color:red}
+a2{color:orange}"
+,
+    
+"b1{color:blue}
+b2{color:navy}"
+,
+  ],
+  "version": 3,
+}
+`;
+
+exports[`source map snapshots encoded map when a nested @import's own sourceMappingURL is remapped 1`] = `
+SourceMap {
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": "AAAA,cCCE",
+  "names": [],
+  "sourceRoot": undefined,
+  "sources": [
+    "foo.scss",
+    "<unknown>",
+  ],
+  "sourcesContent": [
+    null,
+    
+"@import "/virtual/foo.css";
+a{color:red}"
+,
+  ],
+  "version": 3,
+}
+`;
+
+exports[`source map snapshots encoded map after shift prepends a banner offset 1`] = `
+{
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": ";;AAAE,aACA",
+  "names": [],
+  "sourceRoot": undefined,
+  "sources": [
+    "<unknown>",
+  ],
+  "sourcesContent": [
+    
+"a{color:red}
+b{color:blue}"
+,
+  ],
+  "version": 3,
+}
+`;
+
+exports[`source map snapshots encoded map after addMapping following shift keeps both 1`] = `
+{
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": ";;AAAE;;;;;;;;;ACAFA",
+  "names": [
+    "synthetic",
+  ],
+  "sourceRoot": undefined,
+  "sources": [
+    "<unknown>",
+    "synthetic.css",
+  ],
+  "sourcesContent": [
+    "a{color:red}",
+    null,
+  ],
+  "version": 3,
+}
+`;
+
+exports[`source map snapshots encoded map after shift prepends a banner offset 1`] = `
+{
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": ";;AAAE,aACA",
+  "names": [],
+  "sourceRoot": undefined,
+  "sources": [
+    "<unknown>",
+  ],
+  "sourcesContent": [
+    
+"a{color:red}
+b{color:blue}"
+,
+  ],
+  "version": 3,
+}
+`;
+
+exports[`source map snapshots encoded map after addMapping following shift keeps both 1`] = `
+{
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": ";;AAAE;;;;;;;;;ACAFA",
+  "names": [
+    "synthetic",
+  ],
+  "sourceRoot": undefined,
+  "sources": [
+    "<unknown>",
+    "synthetic.css",
+  ],
+  "sourcesContent": [
+    "a{color:red}",
+    null,
+  ],
+  "version": 3,
+}
+`;

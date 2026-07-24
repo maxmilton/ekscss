@@ -52,6 +52,8 @@ describe("ctx", () => {
     expect(ctx).toStrictEqual({
       rootDir: undefined,
       from: undefined,
+      raw: undefined,
+      pos: undefined,
       fn: undefined,
       x: undefined,
       dependencies: undefined,
@@ -65,6 +67,8 @@ describe("ctx", () => {
     expect(ctx).toStrictEqual({
       rootDir: undefined,
       from: undefined,
+      raw: undefined,
+      pos: undefined,
       fn: undefined,
       x: undefined,
       dependencies: undefined,
@@ -74,10 +78,16 @@ describe("ctx", () => {
 
   test("has expected properties during compile", () => {
     expect.assertions(1);
+    const code = "${(x, fn) => fn.check()}"; // eslint-disable-line no-template-curly-in-string
     const check = () => {
       expect(ctx).toEqual({
         rootDir: process.cwd(),
         from: undefined,
+        // map option isn't set in this compile() call, so raw (which
+        // doubles as the "track interpolation positions" flag) stays unset,
+        // and pos is never allocated.
+        raw: undefined,
+        pos: undefined,
         fn: {
           check, // this custom function
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -90,8 +100,7 @@ describe("ctx", () => {
         warnings: [],
       });
     };
-    // eslint-disable-next-line no-template-curly-in-string
-    compile("${(x, fn) => fn.check()}", {
+    compile(code, {
       functions: {
         check,
       },
