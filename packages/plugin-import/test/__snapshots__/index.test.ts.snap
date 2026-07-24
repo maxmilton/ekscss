@@ -1,0 +1,24 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`importPlugin encoded map snapshot for an interpolated .xcss import (real plugin, not a mock) 1`] = `
+{
+  "file": undefined,
+  "ignoreList": [],
+  "mappings": "ACAE,aACA,eACA",
+  "names": [],
+  "sourceRoot": undefined,
+  "sources": [
+    "<unknown>",
+    "<tmp>/fixture.xcss",
+  ],
+  "sourcesContent": [
+    "@import "<tmp>/fixture.xcss";",
+    
+"a{color:red}
+b{color:\${x.foo}}
+c{color:blue}"
+,
+  ],
+  "version": 3,
+}
+`;
