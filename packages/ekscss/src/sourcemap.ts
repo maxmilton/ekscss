@@ -143,14 +143,14 @@ export function compileSourceMap(
   const from = ctx.from;
   const code = ctx.raw!;
   const sourcePath = to ?? from;
-  const sourceRoot = sourcePath ? path.dirname(sourcePath) : ctx.rootDir;
+  const sourceRoot = sourcePath ? path.dirname(sourcePath) : rootDir;
 
   const map = new GenMapping({
     file: to ? path.relative(sourceRoot, to) : null,
-    sourceRoot: path.relative(sourceRoot, ctx.rootDir),
+    sourceRoot: path.relative(sourceRoot, rootDir),
   });
 
-  setSourceContent(map, from ? path.relative(ctx.rootDir, from) : "<unknown>", code);
+  setSourceContent(map, from ? path.relative(rootDir, from) : "<unknown>", code);
 
   const rawTextByFile = new Map<string | undefined, string>([[from, code]]);
   const genTextByFile = new Map<string | undefined, string>([[from, interpolated]]);
