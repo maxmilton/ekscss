@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@ekscss/build-tools": "workspace:*",
-    "@jridgewell/trace-mapping": "^0.3.31",
+    "@jridgewell/trace-mapping": "0.3.31",
     "ekscss": "workspace:*",
     "esbuild": "0.28.1"
   },
