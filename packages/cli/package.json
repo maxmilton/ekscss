@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/cli",
-  "version": "0.0.21",
+  "version": "0.0.22-next.0",
   "description": "A simple, fast, and powerful CSS preprocessor",
   "homepage": "https://ekscss.js.org",
   "repository": "github:maxmilton/ekscss",
