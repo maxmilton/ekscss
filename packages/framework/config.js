@@ -66,6 +66,7 @@ module.exports = {
        * Copyright 2015 Palantir Technologies, Inc. All rights reserved.
        * Licensed under the Apache License, Version 2.0.
        * @see https://github.com/palantir/blueprint/blob/d4c772931b861ec60a0f4ef2032fb296746f8d9b/packages/core/src/common/_colors.scss
+       * @see https://github.com/palantir/blueprint/blob/develop/packages/colors/src/_colors.scss
        */
       // Gray scale
       black: "#10161a",

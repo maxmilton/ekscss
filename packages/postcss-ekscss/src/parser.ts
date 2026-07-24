@@ -74,7 +74,6 @@ export class XCSSParser extends Parser {
     node: AnyNode,
     prop: string,
     tokens: Token[],
-    // eslint-disable-next-line unicorn/consistent-boolean-name
     customProperty: boolean,
   ): string | undefined {
     super.raw(node, prop, tokens, customProperty);
