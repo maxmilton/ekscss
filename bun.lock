@@ -33,7 +33,7 @@
     },
     "packages/bun-plugin-ekscss": {
       "name": "bun-plugin-ekscss",
-      "version": "0.0.3",
+      "version": "0.0.4-next.0",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
       },
@@ -46,7 +46,7 @@
     },
     "packages/cli": {
       "name": "@ekscss/cli",
-      "version": "0.0.21",
+      "version": "0.0.22-next.0",
       "bin": {
         "ekscss": "bin.js",
         "xcss": "bin.js",
@@ -68,7 +68,7 @@
     },
     "packages/ekscss": {
       "name": "ekscss",
-      "version": "0.0.23",
+      "version": "0.0.24-next.0",
       "dependencies": {
         "@jridgewell/gen-mapping": "^0.3.13",
         "@jridgewell/remapping": "^2.3.5",
@@ -99,7 +99,7 @@
     },
     "packages/framework": {
       "name": "@ekscss/framework",
-      "version": "0.0.60",
+      "version": "0.0.61-next.0",
       "dependencies": {
         "@ekscss/plugin-apply": "workspace:^",
         "@ekscss/plugin-import": "workspace:^",
@@ -121,7 +121,7 @@
     },
     "packages/plugin-apply": {
       "name": "@ekscss/plugin-apply",
-      "version": "0.0.18",
+      "version": "0.0.19-next.0",
       "dependencies": {
         "stylis": "^4.3.6",
       },
@@ -136,7 +136,7 @@
     },
     "packages/plugin-import": {
       "name": "@ekscss/plugin-import",
-      "version": "0.0.18",
+      "version": "0.0.19-next.0",
       "dependencies": {
         "stylis": "^4.3.6",
       },
@@ -159,7 +159,7 @@
     },
     "packages/plugin-prefix": {
       "name": "@ekscss/plugin-prefix",
-      "version": "0.0.17",
+      "version": "0.0.18-next.0",
       "dependencies": {
         "stylis": "^4.3.6",
       },
@@ -174,7 +174,7 @@
     },
     "packages/postcss-ekscss": {
       "name": "postcss-ekscss",
-      "version": "0.0.15",
+      "version": "0.0.16-next.0",
       "devDependencies": {
         "@ekscss/build-tools": "workspace:*",
         "esbuild": "0.28.1",
@@ -972,6 +972,8 @@
     "@eslint-community/eslint-utils/eslint-visitor-keys": ["eslint-visitor-keys@3.4.3", "", {}, "sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag=="],
 
     "@keyv/bigmap/keyv": ["keyv@5.6.0", "", { "dependencies": { "@keyv/serialize": "^1.1.1" } }, "sha512-CYDD3SOtsHtyXeEORYRx2qBtpDJFjRTGXUtmNEMGyzYOKj1TE3tycdlho7kA1Ufx9OYWZzg52QFBGALTirzDSw=="],
+
+    "@maxmilton/stylelint-config/postcss-ekscss": ["postcss-ekscss@0.0.15", "", { "peerDependencies": { "postcss": "^8.0.0" }, "optionalPeers": ["postcss"] }, "sha512-jNjVElQTM3pRm+7HAbIY1shr+03C1fAnl9gBKCkTIYpG8oZlFlkqZJyuQpWucR9uU7Dz1+lfgFh4iQIqk6bjAQ=="],
 
     "@typescript-eslint/eslint-plugin/ignore": ["ignore@7.0.6", "", {}, "sha512-BAg6QkE8W+TuQLrrw0Ugr7HegXduRuuj8/ti2kSOc+jz1dmx8/WNcjr6XGnq5YpDWxFwwaavqD0+jIUOKelTsw=="],
 
