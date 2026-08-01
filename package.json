@@ -17,7 +17,7 @@
     "test:node:c8": "c8 npm run test:node"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.1",
+    "@biomejs/biome": "2.5.5",
     "@eslint/js": "10.0.1",
     "@maxmilton/eslint-config": "0.3.2",
     "@maxmilton/stylelint-config": "0.4.3",
