@@ -53,7 +53,7 @@ export const applyPlugin: Middleware = (element, _index, _children, callback): v
     // TODO: Remove type cast; stylis types don't differentiate by element.type
     const targets = (element.children as string)
       .split(",")
-      .map((x) => x.trim().replace(/^["']/, "").replace(/["']$/, ""));
+      .map((x) => x.trim().replace(/^["']|["']$/g, ""));
     const decls: Element[] = [];
 
     for (const target of targets) {
@@ -62,7 +62,9 @@ export const applyPlugin: Middleware = (element, _index, _children, callback): v
       if (refs) {
         for (const ref of refs) {
           // TODO: Remove type cast; stylis types don't differentiate by element.type
-          decls.push(...(ref.children as Element[]));
+          for (const decl of ref.children as Element[]) {
+            decls.push(decl);
+          }
         }
       } else {
         ctx.warnings.push({

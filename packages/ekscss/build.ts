@@ -19,7 +19,7 @@ const out1 = await build({
     "process.env.BROWSER": "false",
     "process.env.NODE_ENV": JSON.stringify(mode),
   },
-  external: ["@jridgewell/gen-mapping", "stylis"],
+  external: ["@jridgewell/*", "stylis"],
   bundle: true,
   sourcemap: true,
   minify: !isDev,

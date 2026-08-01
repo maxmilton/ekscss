@@ -1,6 +1,6 @@
 {
   "name": "postcss-ekscss",
-  "version": "0.0.15",
+  "version": "0.0.16-next.0",
   "description": "PostCSS plugin to add support for XCSS",
   "homepage": "https://ekscss.js.org",
   "repository": "github:maxmilton/ekscss",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@ekscss/build-tools": "workspace:*",
     "esbuild": "0.28.1",
-    "postcss": "8.5.16"
+    "postcss": "8.5.19"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"

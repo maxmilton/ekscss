@@ -5,10 +5,5 @@
   "devDependencies": {
     "microdoc": "*",
     "sirv-cli": "*"
-  },
-  "__pnpm": {
-    "overrides": {
-      "microdoc": "../../../microdoc"
-    }
   }
 }

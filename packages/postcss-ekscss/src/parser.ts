@@ -74,7 +74,6 @@ export class XCSSParser extends Parser {
     node: AnyNode,
     prop: string,
     tokens: Token[],
-    // eslint-disable-next-line unicorn/consistent-boolean-name
     customProperty: boolean,
   ): string | undefined {
     super.raw(node, prop, tokens, customProperty);
@@ -208,13 +207,13 @@ export class XCSSParser extends Parser {
           let str = "";
           for (let j = i; j > 0; j--) {
             const type = cache[j][0];
-            if (str.trim().startsWith("!") && type !== "space") {
+            if (type !== "space" && str.trimStart().startsWith("!")) {
               // eslint-disable-next-line unicorn/no-break-in-nested-loop
               break;
             }
             str = cache.pop()[1] + str;
           }
-          if (str.trim().startsWith("!")) {
+          if (str.trimStart().startsWith("!")) {
             node.important = true;
             node.raws.important = str;
             // eslint-disable-next-line no-param-reassign

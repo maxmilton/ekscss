@@ -24,9 +24,11 @@ export default defineConfig(
     rules: {
       "@typescript-eslint/prefer-nullish-coalescing": "warn", // compatibility with node >= v12
       "no-plusplus": "off", // byte savings
+      "unicorn/consistent-boolean-name": "off",
       "unicorn/no-array-callback-reference": "off", // byte savings
       "unicorn/no-array-for-each": "off", // slower but more compact (for non-performance-critical code)
       "unicorn/prefer-at": "off", // bad browser support
+      "unicorn/prefer-code-point": "off", // faster
       "unicorn/prefer-global-this": "off", // prefer to clearly separate Bun and DOM
       "unicorn/prefer-string-replace-all": "off", // bad browser support and slower
       "unicorn/prefer-uint8array-base64": "off", // not available in node < v25
@@ -69,5 +71,5 @@ export default defineConfig(
       "unicorn/prefer-minimal-ternary": "off",
     },
   },
-  { ignores: ["**/*.bak", "**/dist", "coverage", "packages/framework/*.d.ts"] },
+  { ignores: ["**/*.bak", "**/dist", ".claude", "coverage", "packages/framework/*.d.ts"] },
 );

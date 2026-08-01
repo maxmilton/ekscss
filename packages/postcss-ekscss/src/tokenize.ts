@@ -2,8 +2,6 @@
 
 // TODO: Tokenize xcss tagged template literals within XCSS expressions
 
-/* eslint-disable unicorn/prefer-code-point */
-
 import type { Input } from "postcss";
 
 const SINGLE_QUOTE = 39; // '
@@ -82,14 +80,12 @@ export function tokenize(
     throw input.error(`Unclosed ${what}`, pos);
   }
 
-  // eslint-disable-next-line unicorn/consistent-boolean-name
   function endOfFile() {
     return returned.length === 0 && pos >= len;
   }
 
   function interpolation() {
     let depth = 1;
-    // eslint-disable-next-line unicorn/consistent-boolean-name
     let isStringQuote: boolean | number = false;
     let isStringEscaped = false;
 

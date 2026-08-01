@@ -89,11 +89,15 @@ export const importPlugin: Middleware = (element: Element, _index, _children, ca
   ctx.from = from;
 
   const ext = path.extname(from);
-  let code = fs.readFileSync(from, "utf8");
+  const raw = fs.readFileSync(from, "utf8");
+  let code = raw;
 
   // TODO: Document this behaviour.
   if (ext === ".xcss" || !ext) {
+    const oldRaw = ctx.raw;
+    if (oldRaw !== undefined) ctx.raw = code;
     code = interpolate(code)(xcss, ctx.x, ctx.fn);
+    ctx.raw = oldRaw;
   }
 
   const ast = stylis.compile(code);
@@ -101,6 +105,7 @@ export const importPlugin: Middleware = (element: Element, _index, _children, ca
 
   // Expose data for constructing source maps
   element.__from = from;
+  element.__raw = raw;
   element.__code = code;
   element.__ast = ast;
 

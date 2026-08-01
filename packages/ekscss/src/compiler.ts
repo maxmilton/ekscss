@@ -36,27 +36,31 @@ export function compile(
 
   ctx.rootDir = rootDir;
   ctx.from = from;
+  ctx.raw = map ? code : undefined;
+  ctx.pos = map ? new Map<string | undefined, number[]>() : undefined;
   ctx.fn = fn;
   ctx.x = x;
   ctx.dependencies = dependencies;
   ctx.warnings = warnings;
 
-  for (const run of beforeBuild) run();
+  try {
+    for (const run of beforeBuild) run();
 
-  const interpolated = interpolate(code)(xcss, x, fn);
-  const ast = stylis.compile(interpolated);
-  const css = stylis.serialize(ast, stylis.middleware(middlewares));
+    const interpolated = interpolate(code)(xcss, x, fn);
+    const ast = stylis.compile(interpolated);
+    const css = stylis.serialize(ast, stylis.middleware(middlewares));
 
-  for (const run of afterBuild) run();
+    for (const run of afterBuild) run();
 
-  // @ts-expect-error - reset ctx to initial state
-  // dprint-ignore
-  ctx.rootDir = ctx.from = ctx.fn = ctx.x = ctx.dependencies = ctx.warnings = undefined; // eslint-disable-line no-multi-assign
-
-  return {
-    css,
-    map: map ? compileSourceMap(code, ast, rootDir, from, to, warnings) : undefined,
-    dependencies,
-    warnings,
-  };
+    return {
+      css,
+      map: map ? compileSourceMap(interpolated, ast, to) : undefined,
+      dependencies,
+      warnings,
+    };
+  } finally {
+    // @ts-expect-error - reset ctx for next compile
+    // biome-ignore format: Reset ctx
+    ctx.rootDir = ctx.from = ctx.raw = ctx.pos = ctx.fn = ctx.x = ctx.dependencies = ctx.warnings = undefined; // eslint-disable-line no-multi-assign
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "ekscss",
-  "version": "0.0.23",
+  "version": "0.0.24-next.0",
   "description": "A simple, fast, and powerful CSS preprocessor",
   "homepage": "https://ekscss.js.org",
   "repository": "github:maxmilton/ekscss",
@@ -19,12 +19,14 @@
   },
   "dependencies": {
     "@jridgewell/gen-mapping": "^0.3.13",
+    "@jridgewell/remapping": "^2.3.5",
     "@types/stylis": "^4.2.7",
     "stylis": "^4.3.6"
   },
   "devDependencies": {
     "@ekscss/build-tools": "workspace:*",
     "@ekscss/plugin-null": "workspace:*",
+    "@jridgewell/trace-mapping": "0.3.31",
     "esbuild": "0.28.1"
   }
 }
