@@ -26,7 +26,7 @@
     "@types/node": "26.1.1",
     "c8": "11.0.0",
     "ekscss": "workspace:*",
-    "eslint": "10.6.0",
+    "eslint": "10.8.0",
     "eslint-plugin-unicorn": "70.0.0",
     "postcss-ekscss": "workspace:*",
     "stylelint": "17.14.0",
