@@ -23,7 +23,7 @@
     "@maxmilton/stylelint-config": "0.4.4",
     "@maxmilton/test-utils": "0.0.18",
     "@types/bun": "1.4.0",
-    "@types/node": "26.1.1",
+    "@types/node": "26.3.0",
     "c8": "11.0.0",
     "ekscss": "workspace:*",
     "eslint": "10.8.0",
