@@ -22,7 +22,7 @@
   "devDependencies": {
     "@ekscss/build-tools": "workspace:*",
     "ekscss": "workspace:*",
-    "esbuild": "0.28.1",
+    "esbuild": "0.28.2",
     "rollup": "4.63.0"
   },
   "peerDependencies": {
