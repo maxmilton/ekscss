@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "@ekscss/build-tools": "workspace:*",
-    "esbuild": "0.28.1",
-    "postcss": "8.5.23"
+    "esbuild": "0.28.2",
+    "postcss": "8.5.26"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"
