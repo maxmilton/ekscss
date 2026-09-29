@@ -14,6 +14,7 @@ export function createTypes(entrypoints: string[], outdir = "dist"): void {
     skipLibCheck: true,
   };
   const result = createProgram(entrypoints, config).emit(undefined, undefined, undefined, true);
+  // eslint-disable-next-line unicorn/prefer-early-return
   if (result.emitSkipped) {
     // eslint-disable-next-line no-console
     console.error(

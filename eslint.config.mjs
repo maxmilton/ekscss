@@ -67,6 +67,7 @@ export default defineConfig(
       "unicorn/no-anonymous-default-export": "off",
       "unicorn/no-process-exit": "off",
       "unicorn/no-unsafe-string-replacement": "warn",
+      "unicorn/prefer-early-return": "off",
       "unicorn/prefer-logical-operator-over-ternary": "off",
       "unicorn/prefer-minimal-ternary": "off",
     },

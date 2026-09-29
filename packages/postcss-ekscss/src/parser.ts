@@ -78,7 +78,7 @@ export class XCSSParser extends Parser {
   ): string | undefined {
     super.raw(node, prop, tokens, customProperty);
 
-    // eslint-disable-next-line unicorn/no-computed-property-existence-check
+    // eslint-disable-next-line unicorn/no-computed-property-existence-check, unicorn/prefer-early-return
     if (node.raws[prop]) {
       const xcss = node.raws[prop].raw;
       // eslint-disable-next-line no-param-reassign, unicorn/no-array-reduce

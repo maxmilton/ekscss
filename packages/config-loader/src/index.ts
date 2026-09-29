@@ -125,10 +125,8 @@ export class ConfigLoader {
       return mod.default || mod;
     }
 
-    if (this.packageJsonCache.has(filePath)) {
-      return this.packageJsonCache.get(filePath);
-    }
-
-    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+    return this.packageJsonCache.has(filePath)
+      ? this.packageJsonCache.get(filePath)
+      : JSON.parse(fs.readFileSync(filePath, "utf8"));
   }
 }

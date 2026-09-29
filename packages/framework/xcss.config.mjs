@@ -10,7 +10,7 @@ import { ctx, onBeforeBuild } from "ekscss";
 import baseConfig from "./config.js";
 import { preloadApply } from "./utils.js";
 
-/** @type {import("./package.json")} */
+/** @type {typeof import("./package.json")} */
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const pkg = JSON.parse(
   readFileSync(

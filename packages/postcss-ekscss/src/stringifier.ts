@@ -54,9 +54,6 @@ export class XCSSStringifier extends Stringifier {
   override rawValue(node: AnyNode, prop: string): string {
     const value = node[prop];
     const raw = node.raws[prop];
-    if (raw && raw.value === value) {
-      return raw.xcss || raw.raw;
-    }
-    return value;
+    return raw && raw.value === value ? raw.xcss || raw.raw : value;
   }
 }

@@ -49,6 +49,7 @@ export const applyPlugin: Middleware = (element, _index, _children, callback): v
     return;
   }
 
+  // eslint-disable-next-line unicorn/prefer-early-return
   if (element.type === stylis.DECLARATION && element.props === "#apply") {
     // TODO: Remove type cast; stylis types don't differentiate by element.type
     const targets = (element.children as string)
