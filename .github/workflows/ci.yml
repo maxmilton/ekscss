@@ -58,7 +58,7 @@ jobs:
       - run: bun run test:ci --coverage-reporter=lcov --coverage-reporter=text
       - name: Report coverage
         if: ${{ matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
-        uses: qltysh/qlty-action/coverage@08a0a862c159eae9b9003081da6663d96efef637 # v2
+        uses: qltysh/qlty-action/coverage@c9b09987143d1e4ac955f4803c7bea742102feb5 # v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
           files: coverage/lcov.info
@@ -105,7 +105,7 @@ jobs:
         if: ${{ matrix.node-version == 26 && matrix.platform == 'ubuntu-latest' }}
       - name: Report coverage
         if: ${{ matrix.platform == 'ubuntu-latest' && github.repository_owner == 'maxmilton' }}
-        uses: qltysh/qlty-action/coverage@08a0a862c159eae9b9003081da6663d96efef637 # v2
+        uses: qltysh/qlty-action/coverage@c9b09987143d1e4ac955f4803c7bea742102feb5 # v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
           files: coverage/lcov.info
