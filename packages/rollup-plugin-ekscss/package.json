@@ -23,7 +23,7 @@
     "@ekscss/build-tools": "workspace:*",
     "ekscss": "workspace:*",
     "esbuild": "0.28.2",
-    "rollup": "4.63.1"
+    "rollup": "4.63.4"
   },
   "peerDependencies": {
     "ekscss": "workspace:^",

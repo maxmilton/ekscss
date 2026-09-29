@@ -23,7 +23,7 @@
     "@ekscss/build-tools": "workspace:*",
     "ekscss": "workspace:*",
     "esbuild": "0.28.2",
-    "svelte": "5.57.0"
+    "svelte": "5.57.1"
   },
   "peerDependencies": {
     "ekscss": "workspace:^",
