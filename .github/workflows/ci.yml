@@ -69,6 +69,7 @@ jobs:
         with:
           oidc: true
           files: coverage/lcov.info
+          incomplete: true
 
   test-node:
     needs: build
@@ -119,6 +120,23 @@ jobs:
         with:
           oidc: true
           files: coverage/lcov.info
+          incomplete: true
+
+  test-coverage-complete:
+    needs:
+      - test
+      - test-node
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: qltysh/qlty-action/coverage@c9b09987143d1e4ac955f4803c7bea742102feb5 # v2
+        if: ${{ github.repository_owner == 'maxmilton' }}
+        with:
+          oidc: true
+          command: complete
 
   lint:
     needs: build
