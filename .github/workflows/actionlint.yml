@@ -73,4 +73,5 @@ jobs:
         run: |
           echo "::add-matcher::$RUNNER_TEMP/actionlint-matcher.json"
           actionlint -color -verbose -shellcheck shellcheck -pyflakes 'ruff check --isolated --select F,B,UP,SIM,PERF,RUF --output-format concise --stdin-filename "<stdin>" -'
-      - run: shellcheck --norc -a .github/scripts/*.sh
+      # TODO: Uncomment once we have npm publishing automation script/s.
+      # - run: shellcheck --norc -a .github/scripts/*.sh
