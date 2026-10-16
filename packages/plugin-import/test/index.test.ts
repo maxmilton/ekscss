@@ -12,7 +12,7 @@ function tempFile(content: string, ext = ".xcss"): string {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ekscss-plugin-import-"));
   const file = path.join(dir, `fixture${ext}`);
   fs.writeFileSync(file, content);
-  return file;
+  return fs.realpathSync(file);
 }
 
 describe("importPlugin", () => {
