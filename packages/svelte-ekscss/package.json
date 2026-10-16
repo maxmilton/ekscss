@@ -1,6 +1,6 @@
 {
   "name": "svelte-ekscss",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Svelte plugin to add support for XCSS",
   "homepage": "https://ekscss.js.org",
   "repository": "github:maxmilton/ekscss",

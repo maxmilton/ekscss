@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/config-loader",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "XCSS configuration file resolver and loader",
   "homepage": "https://ekscss.js.org",
   "repository": "github:maxmilton/ekscss",

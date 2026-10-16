@@ -33,7 +33,7 @@
     },
     "packages/bun-plugin-ekscss": {
       "name": "bun-plugin-ekscss",
-      "version": "0.0.4-next.0",
+      "version": "0.0.4",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
       },
@@ -46,7 +46,7 @@
     },
     "packages/cli": {
       "name": "@ekscss/cli",
-      "version": "0.0.22-next.0",
+      "version": "0.0.22",
       "bin": {
         "ekscss": "bin.js",
         "xcss": "bin.js",
@@ -60,7 +60,7 @@
     },
     "packages/config-loader": {
       "name": "@ekscss/config-loader",
-      "version": "0.0.3",
+      "version": "0.0.4",
       "devDependencies": {
         "@ekscss/build-tools": "workspace:*",
         "esbuild": "0.28.2",
@@ -68,7 +68,7 @@
     },
     "packages/ekscss": {
       "name": "ekscss",
-      "version": "0.0.24-next.0",
+      "version": "0.0.24",
       "dependencies": {
         "@jridgewell/gen-mapping": "^0.3.13",
         "@jridgewell/remapping": "^2.3.5",
@@ -84,7 +84,7 @@
     },
     "packages/esbuild-plugin-ekscss": {
       "name": "esbuild-plugin-ekscss",
-      "version": "0.0.23",
+      "version": "0.0.24",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
       },
@@ -99,7 +99,7 @@
     },
     "packages/framework": {
       "name": "@ekscss/framework",
-      "version": "0.0.61-next.0",
+      "version": "0.0.61",
       "dependencies": {
         "@ekscss/plugin-apply": "workspace:^",
         "@ekscss/plugin-import": "workspace:^",
@@ -121,7 +121,7 @@
     },
     "packages/plugin-apply": {
       "name": "@ekscss/plugin-apply",
-      "version": "0.0.19-next.0",
+      "version": "0.0.19",
       "dependencies": {
         "stylis": "^4.4.0",
       },
@@ -136,7 +136,7 @@
     },
     "packages/plugin-import": {
       "name": "@ekscss/plugin-import",
-      "version": "0.0.19-next.0",
+      "version": "0.0.19",
       "dependencies": {
         "stylis": "^4.4.0",
       },
@@ -159,7 +159,7 @@
     },
     "packages/plugin-prefix": {
       "name": "@ekscss/plugin-prefix",
-      "version": "0.0.18-next.0",
+      "version": "0.0.18",
       "dependencies": {
         "stylis": "^4.4.0",
       },
@@ -174,7 +174,7 @@
     },
     "packages/postcss-ekscss": {
       "name": "postcss-ekscss",
-      "version": "0.0.16-next.0",
+      "version": "0.0.16",
       "devDependencies": {
         "@ekscss/build-tools": "workspace:*",
         "esbuild": "0.28.2",
@@ -189,7 +189,7 @@
     },
     "packages/rollup-plugin-ekscss": {
       "name": "rollup-plugin-ekscss",
-      "version": "0.0.22",
+      "version": "0.0.23",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
         "@rollup/pluginutils": "^5.4.0",
@@ -207,7 +207,7 @@
     },
     "packages/svelte-ekscss": {
       "name": "svelte-ekscss",
-      "version": "0.0.17",
+      "version": "0.0.18",
       "dependencies": {
         "@ekscss/config-loader": "workspace:^",
         "kleur": "^4.1.5",

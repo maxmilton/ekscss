@@ -1,6 +1,6 @@
 {
   "name": "@ekscss/plugin-apply",
-  "version": "0.0.19-next.0",
+  "version": "0.0.19",
   "description": "XCSS plugin to inline the properties of referenced rules",
   "homepage": "https://ekscss.js.org",
   "repository": "github:maxmilton/ekscss",
