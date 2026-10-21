@@ -1,6 +1,6 @@
 import js from "@eslint/js";
 import mm from "@maxmilton/eslint-config";
-import { defineConfig } from "eslint/config";
+import { defineConfig, includeIgnoreFile } from "eslint/config";
 import unicorn from "eslint-plugin-unicorn";
 import ts from "typescript-eslint";
 
@@ -73,5 +73,7 @@ export default defineConfig(
       "unicorn/prefer-minimal-ternary": "off",
     },
   },
-  { ignores: ["**/*.bak", "**/dist", ".claude", "coverage", "packages/framework/*.d.ts"] },
+  includeIgnoreFile(new URL(".gitignore", import.meta.url).pathname, {
+    gitignoreResolution: true,
+  }),
 );
