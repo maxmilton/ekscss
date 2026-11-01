@@ -33,7 +33,7 @@
     "stylelint-config-standard": "40.0.0",
     "turbo": "2.11.8",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.71.2",
+    "typescript-eslint": "8.72.0",
     "uvu": "0.5.6"
   },
   "packageManager": "bun@1.4.3"
